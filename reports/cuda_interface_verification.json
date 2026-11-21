@@ -1,0 +1,78 @@
+{
+  "kind": "adaptive demo check; not benchmark",
+  "cases": [
+    {
+      "model": "LSTM",
+      "length": "Short",
+      "device": "cuda",
+      "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds."
+    },
+    {
+      "model": "LSTM",
+      "length": "Medium",
+      "device": "cuda",
+      "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds."
+    },
+    {
+      "model": "LSTM",
+      "length": "Detailed",
+      "device": "cuda",
+      "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds."
+    },
+    {
+      "model": "Transformer",
+      "length": "Short",
+      "device": "cuda",
+      "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds and will be funded by the council and a national transport grant."
+    },
+    {
+      "model": "Transformer",
+      "length": "Medium",
+      "device": "cuda",
+      "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds and will be funded by the council and a national transport grant."
+    },
+    {
+      "model": "Transformer",
+      "length": "Detailed",
+      "device": "cuda",
+      "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds and will be funded by the council and a national transport grant."
+    },
+    {
+      "model": "BART",
+      "length": "Short",
+      "device": "cuda",
+      "summary": "The first 50 buses will begin operating in september. The project will cost 80 million pounds and will be funded by the council and a national transport grant."
+    },
+    {
+      "model": "BART",
+      "length": "Medium",
+      "device": "cuda",
+      "summary": "The first 50 buses will begin operating in september. The project will cost 80 million pounds and will be funded by the council and a national transport grant."
+    },
+    {
+      "model": "BART",
+      "length": "Detailed",
+      "device": "cuda",
+      "summary": "The first 50 buses will begin operating in september. The project will cost 80 million pounds and will be funded by the council and a national transport grant."
+    },
+    {
+      "model": "PEGASUS",
+      "length": "Short",
+      "device": "cuda",
+      "summary": "The first 50 buses will begin operating in September. The project will cost 80 million pounds and will be funded by the council and a national transport grant."
+    },
+    {
+      "model": "PEGASUS",
+      "length": "Medium",
+      "device": "cuda",
+      "summary": "The first 50 buses will begin operating in September. The project will cost 80 million pounds and will be funded by the council and a national transport grant."
+    },
+    {
+      "model": "PEGASUS",
+      "length": "Detailed",
+      "device": "cuda",
+      "summary": "The first 50 buses will begin operating in September. The project will cost 80 million pounds and will be funded by the council and a national transport grant."
+    }
+  ],
+  "models_reused": true
+}

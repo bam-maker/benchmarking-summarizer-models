@@ -1,0 +1,16 @@
+{
+  "BART": {
+    "id": "facebook/bart-large-cnn",
+    "revision": "37f520fa929c961707657b28798b30c003dd100b",
+    "weight_file": "model.safetensors",
+    "source_limit": 1024,
+    "preprocessing": "Original BART byte-level BPE tokenizer; original case preserved."
+  },
+  "PEGASUS": {
+    "id": "google/pegasus-cnn_dailymail",
+    "revision": "40d588fdab0cc077b80d950b300bf66ad3c75b92",
+    "weight_file": "pytorch_model.bin",
+    "source_limit": 1024,
+    "preprocessing": "Original PEGASUS SentencePiece tokenizer; original case preserved."
+  }
+}

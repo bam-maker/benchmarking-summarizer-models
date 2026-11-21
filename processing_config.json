@@ -1,0 +1,16 @@
+{
+  "processing_mode": "full",
+  "ratios": {"Short": 0.10, "Medium": 0.15, "Detailed": 0.22},
+  "tokens_per_word": {"LSTM": 1.6, "Transformer": 1.6, "BART": 1.5, "PEGASUS": 1.6},
+  "max_output_tokens": {"LSTM": 256, "Transformer": 256, "BART": 512, "PEGASUS": 512},
+  "word_budget_slack": 1.35,
+  "intermediate_ratio": 0.35,
+  "max_article_characters": 120000,
+  "max_article_words": 12000,
+  "max_source_chunks": 64,
+  "max_model_calls": 96,
+  "max_total_input_tokens": 64000,
+  "max_consolidation_passes": 4,
+  "max_runtime_seconds": 180,
+  "concise_input_words": 12
+}

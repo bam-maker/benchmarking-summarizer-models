@@ -1,0 +1,297 @@
+{
+  "kind": "synthetic fixture speed/inference check; NOT CNN/DailyMail quality evaluation",
+  "timestamp_utc": "2026-11-21T00:11:20Z",
+  "device": "cuda",
+  "hardware": "NVIDIA GeForce RTX 4090",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.9",
+  "torch": "2.5.1+cu124",
+  "cuda_runtime": "12.4",
+  "threads": 2,
+  "batch_size": 1,
+  "beam_size": 4,
+  "precision": "float32; TF32 disabled",
+  "length": "Medium",
+  "warmups": 1,
+  "repeats": 3,
+  "article": "london (reuters)--a city council has approved a plan to replace 200 diesel buses with electric vehicles over the next three years. the first 50 buses will begin operating in september, officials said on tuesday. the project will cost 80 million pounds and will be funded by the council and a national transport grant. transport director sarah james said the new vehicles would reduce air pollution and lower maintenance costs. charging stations will be installed at two bus depots before the first vehicles arrive. existing routes and ticket prices will remain unchanged. the council said it would publish progress reports every six months.",
+  "article_sha256": "de2a51cb6d301c653607375e1919ca0b7daa90df6546bae3feb2e1583761364f",
+  "timing": "CUDA synchronized before/after timed regions. Generation excludes load/transfer, tokenization, and queue waiting. Cold loading includes device transfers and disk/model initialization, including first-use download if not cached.",
+  "results": [
+    {
+      "model": "LSTM",
+      "status": "passed",
+      "device": "cuda",
+      "dtype": "float32",
+      "parameters": 42789205,
+      "learned_parameters": 42789205,
+      "checkpoint": {
+        "url": "https://s3.amazonaws.com/opennmt-models/Summary/ada6_bridge_oldcopy_tagged_acc_54.17_ppl_11.17_e20.pt",
+        "bytes": 363581349,
+        "sha256": "7e0092b066014af8b02c1221853ad48f0ee0db2182787baeb40abd9df2331d2e",
+        "code_revision": "6db7ec1b3afae28c257a0416dd947022c3b12bc0"
+      },
+      "loading_info": {},
+      "cold_load_transfer_seconds": 0.545639600022696,
+      "cold_generation_seconds": 0.47703539999201894,
+      "generation_median_seconds": 0.2759345000376925,
+      "generation_p95_seconds": 0.27772324993275105,
+      "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds and will be funded by the council.",
+      "word_count": 23,
+      "warm_results": [
+        {
+          "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds and will be funded by the council.",
+          "model": "LSTM",
+          "length": "Medium",
+          "word_count": 23,
+          "seconds": 0.2759345000376925,
+          "generated_tokens": 29,
+          "ended_with_eos": true,
+          "input_tokens": 114,
+          "used_tokens": 114,
+          "notices": "LSTM | CUDA | Medium: approximate 30-65 decoding-token budget (not a word-count promise).\nInput: 114 of 114 tokens used. Output: 29 backend tokens, excluding EOS; subwords, punctuation, and OpenNMT sentence tags count.\nThe model emitted an end-of-sequence token.\nModel loading / device transfer: 0.000 seconds (separate from generation).\nGeneration time excludes model loading and input tokenization.",
+          "load_seconds": 0.00044169998727738857,
+          "device": "cuda"
+        },
+        {
+          "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds and will be funded by the council.",
+          "model": "LSTM",
+          "length": "Medium",
+          "word_count": 23,
+          "seconds": 0.2537723999703303,
+          "generated_tokens": 29,
+          "ended_with_eos": true,
+          "input_tokens": 114,
+          "used_tokens": 114,
+          "notices": "LSTM | CUDA | Medium: approximate 30-65 decoding-token budget (not a word-count promise).\nInput: 114 of 114 tokens used. Output: 29 backend tokens, excluding EOS; subwords, punctuation, and OpenNMT sentence tags count.\nThe model emitted an end-of-sequence token.\nModel loading / device transfer: 0.001 seconds (separate from generation).\nGeneration time excludes model loading and input tokenization.",
+          "load_seconds": 0.000548299984075129,
+          "device": "cuda"
+        },
+        {
+          "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds and will be funded by the council.",
+          "model": "LSTM",
+          "length": "Medium",
+          "word_count": 23,
+          "seconds": 0.2779219999210909,
+          "generated_tokens": 29,
+          "ended_with_eos": true,
+          "input_tokens": 114,
+          "used_tokens": 114,
+          "notices": "LSTM | CUDA | Medium: approximate 30-65 decoding-token budget (not a word-count promise).\nInput: 114 of 114 tokens used. Output: 29 backend tokens, excluding EOS; subwords, punctuation, and OpenNMT sentence tags count.\nThe model emitted an end-of-sequence token.\nModel loading / device transfer: 0.000 seconds (separate from generation).\nGeneration time excludes model loading and input tokenization.",
+          "load_seconds": 0.00042399996891617775,
+          "device": "cuda"
+        }
+      ]
+    },
+    {
+      "model": "Transformer",
+      "status": "passed",
+      "device": "cuda",
+      "dtype": "float32",
+      "parameters": 81468757,
+      "learned_parameters": 81468757,
+      "checkpoint": {
+        "url": "https://s3.amazonaws.com/opennmt-models/sum_transformer_model_acc_57.25_ppl_9.22_e16.pt",
+        "bytes": 1112348421,
+        "sha256": "683ef35e72d47cb33043e5db243b78a1386dd8a57e079c84b7642fba126c6605",
+        "code_revision": "6db7ec1b3afae28c257a0416dd947022c3b12bc0"
+      },
+      "loading_info": {},
+      "cold_load_transfer_seconds": 1.186254500062205,
+      "cold_generation_seconds": 0.7908203999977559,
+      "generation_median_seconds": 0.6381060000276193,
+      "generation_p95_seconds": 0.6759322800324299,
+      "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds and will be funded by the council and a national transport grant.",
+      "word_count": 28,
+      "warm_results": [
+        {
+          "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds and will be funded by the council and a national transport grant.",
+          "model": "Transformer",
+          "length": "Medium",
+          "word_count": 28,
+          "seconds": 0.6377677000127733,
+          "generated_tokens": 34,
+          "ended_with_eos": true,
+          "input_tokens": 114,
+          "used_tokens": 114,
+          "notices": "Transformer | CUDA | Medium: approximate 30-65 decoding-token budget (not a word-count promise).\nInput: 114 of 114 tokens used. Output: 34 backend tokens, excluding EOS; subwords, punctuation, and OpenNMT sentence tags count.\nThe model emitted an end-of-sequence token.\nModel loading / device transfer: 0.001 seconds (separate from generation).\nGeneration time excludes model loading and input tokenization.",
+          "load_seconds": 0.0005404000403359532,
+          "device": "cuda"
+        },
+        {
+          "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds and will be funded by the council and a national transport grant.",
+          "model": "Transformer",
+          "length": "Medium",
+          "word_count": 28,
+          "seconds": 0.6801352000329643,
+          "generated_tokens": 34,
+          "ended_with_eos": true,
+          "input_tokens": 114,
+          "used_tokens": 114,
+          "notices": "Transformer | CUDA | Medium: approximate 30-65 decoding-token budget (not a word-count promise).\nInput: 114 of 114 tokens used. Output: 34 backend tokens, excluding EOS; subwords, punctuation, and OpenNMT sentence tags count.\nThe model emitted an end-of-sequence token.\nModel loading / device transfer: 0.000 seconds (separate from generation).\nGeneration time excludes model loading and input tokenization.",
+          "load_seconds": 0.00041060009971261024,
+          "device": "cuda"
+        },
+        {
+          "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds and will be funded by the council and a national transport grant.",
+          "model": "Transformer",
+          "length": "Medium",
+          "word_count": 28,
+          "seconds": 0.6381060000276193,
+          "generated_tokens": 34,
+          "ended_with_eos": true,
+          "input_tokens": 114,
+          "used_tokens": 114,
+          "notices": "Transformer | CUDA | Medium: approximate 30-65 decoding-token budget (not a word-count promise).\nInput: 114 of 114 tokens used. Output: 34 backend tokens, excluding EOS; subwords, punctuation, and OpenNMT sentence tags count.\nThe model emitted an end-of-sequence token.\nModel loading / device transfer: 0.001 seconds (separate from generation).\nGeneration time excludes model loading and input tokenization.",
+          "load_seconds": 0.0005951999919489026,
+          "device": "cuda"
+        }
+      ]
+    },
+    {
+      "model": "BART",
+      "status": "passed",
+      "device": "cuda",
+      "dtype": "float32",
+      "parameters": 406290432,
+      "learned_parameters": 406290432,
+      "checkpoint": {
+        "id": "facebook/bart-large-cnn",
+        "revision": "37f520fa929c961707657b28798b30c003dd100b",
+        "weight_file": "model.safetensors",
+        "source_limit": 1024,
+        "preprocessing": "Original BART byte-level BPE tokenizer; original case preserved."
+      },
+      "loading_info": {
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      },
+      "cold_load_transfer_seconds": 2.1678715999005362,
+      "cold_generation_seconds": 1.195918699959293,
+      "generation_median_seconds": 0.47058040008414537,
+      "generation_p95_seconds": 0.47483497000066566,
+      "summary": "The project will cost 80 million pounds and will be funded by the council and a national transport grant. charging stations will be installed at two bus depots before the first vehicles arrive.",
+      "word_count": 33,
+      "warm_results": [
+        {
+          "summary": "The project will cost 80 million pounds and will be funded by the council and a national transport grant. charging stations will be installed at two bus depots before the first vehicles arrive.",
+          "model": "BART",
+          "length": "Medium",
+          "word_count": 33,
+          "seconds": 0.469420799985528,
+          "generated_tokens": 37,
+          "ended_with_eos": true,
+          "input_tokens": 123,
+          "used_tokens": 123,
+          "notices": "BART | CUDA | Medium: approximate 30-65 decoding-token budget (not a word-count promise).\nInput: 123 of 123 tokens used. Output: 37 backend tokens, excluding EOS; subwords, punctuation, and OpenNMT sentence tags count.\nThe model emitted an end-of-sequence token.\nModel loading / device transfer: 0.003 seconds (separate from generation).\nGeneration time excludes model loading and input tokenization.",
+          "load_seconds": 0.0033774999901652336,
+          "device": "cuda"
+        },
+        {
+          "summary": "The project will cost 80 million pounds and will be funded by the council and a national transport grant. charging stations will be installed at two bus depots before the first vehicles arrive.",
+          "model": "BART",
+          "length": "Medium",
+          "word_count": 33,
+          "seconds": 0.47058040008414537,
+          "generated_tokens": 37,
+          "ended_with_eos": true,
+          "input_tokens": 123,
+          "used_tokens": 123,
+          "notices": "BART | CUDA | Medium: approximate 30-65 decoding-token budget (not a word-count promise).\nInput: 123 of 123 tokens used. Output: 37 backend tokens, excluding EOS; subwords, punctuation, and OpenNMT sentence tags count.\nThe model emitted an end-of-sequence token.\nModel loading / device transfer: 0.004 seconds (separate from generation).\nGeneration time excludes model loading and input tokenization.",
+          "load_seconds": 0.00409659999422729,
+          "device": "cuda"
+        },
+        {
+          "summary": "The project will cost 80 million pounds and will be funded by the council and a national transport grant. charging stations will be installed at two bus depots before the first vehicles arrive.",
+          "model": "BART",
+          "length": "Medium",
+          "word_count": 33,
+          "seconds": 0.4753076999913901,
+          "generated_tokens": 37,
+          "ended_with_eos": true,
+          "input_tokens": 123,
+          "used_tokens": 123,
+          "notices": "BART | CUDA | Medium: approximate 30-65 decoding-token budget (not a word-count promise).\nInput: 123 of 123 tokens used. Output: 37 backend tokens, excluding EOS; subwords, punctuation, and OpenNMT sentence tags count.\nThe model emitted an end-of-sequence token.\nModel loading / device transfer: 0.004 seconds (separate from generation).\nGeneration time excludes model loading and input tokenization.",
+          "load_seconds": 0.003873900044709444,
+          "device": "cuda"
+        }
+      ]
+    },
+    {
+      "model": "PEGASUS",
+      "status": "passed",
+      "device": "cuda",
+      "dtype": "float32",
+      "parameters": 570797056,
+      "learned_parameters": 568699904,
+      "checkpoint": {
+        "id": "google/pegasus-cnn_dailymail",
+        "revision": "40d588fdab0cc077b80d950b300bf66ad3c75b92",
+        "weight_file": "pytorch_model.bin",
+        "source_limit": 1024,
+        "preprocessing": "Original PEGASUS SentencePiece tokenizer; original case preserved."
+      },
+      "loading_info": {
+        "missing_keys": [
+          "model.decoder.embed_positions.weight",
+          "model.encoder.embed_positions.weight"
+        ],
+        "unexpected_keys": [],
+        "mismatched_keys": [],
+        "error_msgs": []
+      },
+      "cold_load_transfer_seconds": 3.3118977000704035,
+      "cold_generation_seconds": 0.6640499000204727,
+      "generation_median_seconds": 0.5620638999389485,
+      "generation_p95_seconds": 0.6032468200428411,
+      "summary": "The project will cost 80 million pounds and will be funded by the council and a national transport grant.\n charging stations will be installed at two bus depots before the first vehicles arrive.",
+      "word_count": 33,
+      "warm_results": [
+        {
+          "summary": "The project will cost 80 million pounds and will be funded by the council and a national transport grant.\n charging stations will be installed at two bus depots before the first vehicles arrive.",
+          "model": "PEGASUS",
+          "length": "Medium",
+          "word_count": 33,
+          "seconds": 0.5620638999389485,
+          "generated_tokens": 39,
+          "ended_with_eos": true,
+          "input_tokens": 117,
+          "used_tokens": 117,
+          "notices": "PEGASUS | CUDA | Medium: approximate 30-65 decoding-token budget (not a word-count promise).\nInput: 117 of 117 tokens used. Output: 39 backend tokens, excluding EOS; subwords, punctuation, and OpenNMT sentence tags count.\nThe model emitted an end-of-sequence token.\nModel loading / device transfer: 0.003 seconds (separate from generation).\nGeneration time excludes model loading and input tokenization.",
+          "load_seconds": 0.00342850002925843,
+          "device": "cuda"
+        },
+        {
+          "summary": "The project will cost 80 million pounds and will be funded by the council and a national transport grant.\n charging stations will be installed at two bus depots before the first vehicles arrive.",
+          "model": "PEGASUS",
+          "length": "Medium",
+          "word_count": 33,
+          "seconds": 0.5579880999866873,
+          "generated_tokens": 39,
+          "ended_with_eos": true,
+          "input_tokens": 117,
+          "used_tokens": 117,
+          "notices": "PEGASUS | CUDA | Medium: approximate 30-65 decoding-token budget (not a word-count promise).\nInput: 117 of 117 tokens used. Output: 39 backend tokens, excluding EOS; subwords, punctuation, and OpenNMT sentence tags count.\nThe model emitted an end-of-sequence token.\nModel loading / device transfer: 0.003 seconds (separate from generation).\nGeneration time excludes model loading and input tokenization.",
+          "load_seconds": 0.0031986000249162316,
+          "device": "cuda"
+        },
+        {
+          "summary": "The project will cost 80 million pounds and will be funded by the council and a national transport grant.\n charging stations will be installed at two bus depots before the first vehicles arrive.",
+          "model": "PEGASUS",
+          "length": "Medium",
+          "word_count": 33,
+          "seconds": 0.6078227000543848,
+          "generated_tokens": 39,
+          "ended_with_eos": true,
+          "input_tokens": 117,
+          "used_tokens": 117,
+          "notices": "PEGASUS | CUDA | Medium: approximate 30-65 decoding-token budget (not a word-count promise).\nInput: 117 of 117 tokens used. Output: 39 backend tokens, excluding EOS; subwords, punctuation, and OpenNMT sentence tags count.\nThe model emitted an end-of-sequence token.\nModel loading / device transfer: 0.003 seconds (separate from generation).\nGeneration time excludes model loading and input tokenization.",
+          "load_seconds": 0.0033997000427916646,
+          "device": "cuda"
+        }
+      ]
+    }
+  ]
+}

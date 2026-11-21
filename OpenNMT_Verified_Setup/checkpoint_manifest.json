@@ -1,0 +1,12 @@
+{
+  "lstm": {
+    "url": "https://s3.amazonaws.com/opennmt-models/Summary/ada6_bridge_oldcopy_tagged_acc_54.17_ppl_11.17_e20.pt",
+    "bytes": 363581349,
+    "sha256": "7e0092b066014af8b02c1221853ad48f0ee0db2182787baeb40abd9df2331d2e"
+  },
+  "transformer": {
+    "url": "https://s3.amazonaws.com/opennmt-models/sum_transformer_model_acc_57.25_ppl_9.22_e16.pt",
+    "bytes": 1112348421,
+    "sha256": "683ef35e72d47cb33043e5db243b78a1386dd8a57e079c84b7642fba126c6605"
+  }
+}

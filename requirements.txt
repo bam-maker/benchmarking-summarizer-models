@@ -1,0 +1,9 @@
+# Install either the CPU or CUDA 12.4 wheel first; see README.md.
+torch==2.5.1
+-r OpenNMT_Verified_Setup/requirements.txt
+gradio==5.49.1
+nltk==3.9.2
+transformers==4.46.3
+huggingface-hub==0.36.0
+safetensors==0.6.2
+tokenizers==0.20.3

@@ -1,0 +1,888 @@
+{
+  "kind": "application integration checks; not benchmark scores",
+  "cases": [
+    {
+      "summary": "contractors must publish monthly progress reports and meet independent safety standards. the first phase will begin in september.",
+      "model": "LSTM",
+      "length": "Short",
+      "requested_words": 120,
+      "source_words": 1200,
+      "actual_words": 18,
+      "source_characters": 7781,
+      "covered_characters": 7781,
+      "source_chunks": 4,
+      "chunk_spans": [
+        [
+          0,
+          2352
+        ],
+        [
+          2352,
+          4733
+        ],
+        [
+          4733,
+          7128
+        ],
+        [
+          7128,
+          7781
+        ]
+      ],
+      "consolidation_passes": 1,
+      "model_calls": 5,
+      "total_input_tokens": 1347,
+      "generation_seconds": 1.8118478999240324,
+      "load_seconds": 0.625957699958235,
+      "device": "cuda",
+      "warnings": [
+        "Length is approximate: requested about 120 words; produced 18."
+      ],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 4,
+          "input_words": 1200,
+          "output_words": 47,
+          "input_tokens": 1296,
+          "output_tokens": 51
+        },
+        {
+          "phase": "Consolidating pass 1",
+          "chunks": 1,
+          "input_words": 47,
+          "output_words": 18,
+          "input_tokens": 51,
+          "output_tokens": 20
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0
+    },
+    {
+      "summary": "contractors must publish monthly progress reports and meet independent safety standards. the first phase will begin in september.",
+      "model": "LSTM",
+      "length": "Medium",
+      "requested_words": 180,
+      "source_words": 1200,
+      "actual_words": 18,
+      "source_characters": 7781,
+      "covered_characters": 7781,
+      "source_chunks": 4,
+      "chunk_spans": [
+        [
+          0,
+          2352
+        ],
+        [
+          2352,
+          4733
+        ],
+        [
+          4733,
+          7128
+        ],
+        [
+          7128,
+          7781
+        ]
+      ],
+      "consolidation_passes": 1,
+      "model_calls": 5,
+      "total_input_tokens": 1347,
+      "generation_seconds": 1.989961800049059,
+      "load_seconds": 0.0004988000728189945,
+      "device": "cuda",
+      "warnings": [
+        "Length is approximate: requested about 180 words; produced 18."
+      ],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 4,
+          "input_words": 1200,
+          "output_words": 47,
+          "input_tokens": 1296,
+          "output_tokens": 51
+        },
+        {
+          "phase": "Consolidating pass 1",
+          "chunks": 1,
+          "input_words": 47,
+          "output_words": 18,
+          "input_tokens": 51,
+          "output_tokens": 20
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0
+    },
+    {
+      "summary": "contractors must publish monthly progress reports and meet independent safety standards. the first phase will begin in september.",
+      "model": "LSTM",
+      "length": "Detailed",
+      "requested_words": 264,
+      "source_words": 1200,
+      "actual_words": 18,
+      "source_characters": 7781,
+      "covered_characters": 7781,
+      "source_chunks": 4,
+      "chunk_spans": [
+        [
+          0,
+          2352
+        ],
+        [
+          2352,
+          4733
+        ],
+        [
+          4733,
+          7128
+        ],
+        [
+          7128,
+          7781
+        ]
+      ],
+      "consolidation_passes": 1,
+      "model_calls": 5,
+      "total_input_tokens": 1347,
+      "generation_seconds": 2.2224605000810698,
+      "load_seconds": 0.0006038999417796731,
+      "device": "cuda",
+      "warnings": [
+        "Length is approximate: requested about 264 words; produced 18."
+      ],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 4,
+          "input_words": 1200,
+          "output_words": 47,
+          "input_tokens": 1296,
+          "output_tokens": 51
+        },
+        {
+          "phase": "Consolidating pass 1",
+          "chunks": 1,
+          "input_words": 47,
+          "output_words": 18,
+          "input_tokens": 51,
+          "output_tokens": 20
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0
+    },
+    {
+      "summary": "council in district 1 has approved a plan to improve water pipes over the next three years the first phase will begin in september.",
+      "model": "LSTM",
+      "length": "Medium",
+      "requested_words": 180,
+      "source_words": 1200,
+      "actual_words": 24,
+      "source_characters": 7686,
+      "covered_characters": 7686,
+      "source_chunks": 4,
+      "chunk_spans": [
+        [
+          0,
+          2536
+        ],
+        [
+          2536,
+          5074
+        ],
+        [
+          5074,
+          7619
+        ],
+        [
+          7619,
+          7686
+        ]
+      ],
+      "consolidation_passes": 1,
+      "model_calls": 5,
+      "total_input_tokens": 1361,
+      "generation_seconds": 33.20342889986932,
+      "load_seconds": 0.000569900032132864,
+      "device": "cuda",
+      "warnings": [
+        "Length is approximate: requested about 180 words; produced 24."
+      ],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 4,
+          "input_words": 1200,
+          "output_words": 143,
+          "input_tokens": 1212,
+          "output_tokens": 149
+        },
+        {
+          "phase": "Consolidating pass 1",
+          "chunks": 1,
+          "input_words": 143,
+          "output_words": 24,
+          "input_tokens": 149,
+          "output_tokens": 25
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 1
+    },
+    {
+      "summary": "council in district 5 has approved a plan to improve recycling facilities over the next three years. contractors must publish monthly progress reports and meet independent safety standards.",
+      "model": "Transformer",
+      "length": "Short",
+      "requested_words": 120,
+      "source_words": 1200,
+      "actual_words": 28,
+      "source_characters": 7781,
+      "covered_characters": 7781,
+      "source_chunks": 4,
+      "chunk_spans": [
+        [
+          0,
+          2352
+        ],
+        [
+          2352,
+          4733
+        ],
+        [
+          4733,
+          7128
+        ],
+        [
+          7128,
+          7781
+        ]
+      ],
+      "consolidation_passes": 1,
+      "model_calls": 5,
+      "total_input_tokens": 1380,
+      "generation_seconds": 3.5340584999648854,
+      "load_seconds": 1.2453075000084937,
+      "device": "cuda",
+      "warnings": [
+        "Length is approximate: requested about 120 words; produced 28."
+      ],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 4,
+          "input_words": 1200,
+          "output_words": 79,
+          "input_tokens": 1296,
+          "output_tokens": 84
+        },
+        {
+          "phase": "Consolidating pass 1",
+          "chunks": 1,
+          "input_words": 79,
+          "output_words": 28,
+          "input_tokens": 84,
+          "output_tokens": 30
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0
+    },
+    {
+      "summary": "council in district 5 has approved a plan to improve recycling facilities over the next three years. contractors must publish monthly progress reports and meet independent safety standards.",
+      "model": "Transformer",
+      "length": "Medium",
+      "requested_words": 180,
+      "source_words": 1200,
+      "actual_words": 28,
+      "source_characters": 7781,
+      "covered_characters": 7781,
+      "source_chunks": 4,
+      "chunk_spans": [
+        [
+          0,
+          2352
+        ],
+        [
+          2352,
+          4733
+        ],
+        [
+          4733,
+          7128
+        ],
+        [
+          7128,
+          7781
+        ]
+      ],
+      "consolidation_passes": 1,
+      "model_calls": 5,
+      "total_input_tokens": 1380,
+      "generation_seconds": 3.7177113000070676,
+      "load_seconds": 0.000723400036804378,
+      "device": "cuda",
+      "warnings": [
+        "Length is approximate: requested about 180 words; produced 28."
+      ],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 4,
+          "input_words": 1200,
+          "output_words": 79,
+          "input_tokens": 1296,
+          "output_tokens": 84
+        },
+        {
+          "phase": "Consolidating pass 1",
+          "chunks": 1,
+          "input_words": 79,
+          "output_words": 28,
+          "input_tokens": 84,
+          "output_tokens": 30
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0
+    },
+    {
+      "summary": "council in district 5 has approved a plan to improve recycling facilities over the next three years. contractors must publish monthly progress reports and meet independent safety standards.",
+      "model": "Transformer",
+      "length": "Detailed",
+      "requested_words": 264,
+      "source_words": 1200,
+      "actual_words": 28,
+      "source_characters": 7781,
+      "covered_characters": 7781,
+      "source_chunks": 4,
+      "chunk_spans": [
+        [
+          0,
+          2352
+        ],
+        [
+          2352,
+          4733
+        ],
+        [
+          4733,
+          7128
+        ],
+        [
+          7128,
+          7781
+        ]
+      ],
+      "consolidation_passes": 1,
+      "model_calls": 5,
+      "total_input_tokens": 1380,
+      "generation_seconds": 3.7080760998651385,
+      "load_seconds": 0.0008113000076264143,
+      "device": "cuda",
+      "warnings": [
+        "Length is approximate: requested about 264 words; produced 28."
+      ],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 4,
+          "input_words": 1200,
+          "output_words": 79,
+          "input_tokens": 1296,
+          "output_tokens": 84
+        },
+        {
+          "phase": "Consolidating pass 1",
+          "chunks": 1,
+          "input_words": 79,
+          "output_words": 28,
+          "input_tokens": 84,
+          "output_tokens": 30
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0
+    },
+    {
+      "summary": "the first phase will begin in september and will cost 50 million pounds. first year and publish results will review the budget after the first year.",
+      "model": "Transformer",
+      "length": "Medium",
+      "requested_words": 180,
+      "source_words": 1200,
+      "actual_words": 26,
+      "source_characters": 7686,
+      "covered_characters": 7686,
+      "source_chunks": 4,
+      "chunk_spans": [
+        [
+          0,
+          2536
+        ],
+        [
+          2536,
+          5074
+        ],
+        [
+          5074,
+          7619
+        ],
+        [
+          7619,
+          7686
+        ]
+      ],
+      "consolidation_passes": 1,
+      "model_calls": 5,
+      "total_input_tokens": 1285,
+      "generation_seconds": 4.427987499977462,
+      "load_seconds": 0.0006742000114172697,
+      "device": "cuda",
+      "warnings": [
+        "Length is approximate: requested about 180 words; produced 26."
+      ],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 4,
+          "input_words": 1200,
+          "output_words": 69,
+          "input_tokens": 1212,
+          "output_tokens": 73
+        },
+        {
+          "phase": "Consolidating pass 1",
+          "chunks": 1,
+          "input_words": 69,
+          "output_words": 26,
+          "input_tokens": 73,
+          "output_tokens": 28
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0
+    },
+    {
+      "summary": "The council in district 1 has approved a plan to improve electric buses. The first phase will begin in September and will cost 20 million pounds. The council will review the budget after the first year and publish the results.",
+      "model": "BART",
+      "length": "Short",
+      "requested_words": 120,
+      "source_words": 1200,
+      "actual_words": 40,
+      "source_characters": 7781,
+      "covered_characters": 7781,
+      "source_chunks": 2,
+      "chunk_spans": [
+        [
+          0,
+          5835
+        ],
+        [
+          5835,
+          7781
+        ]
+      ],
+      "consolidation_passes": 1,
+      "model_calls": 3,
+      "total_input_tokens": 1446,
+      "generation_seconds": 2.4961723999585956,
+      "load_seconds": 2.40997400006745,
+      "device": "cuda",
+      "warnings": [
+        "Length is approximate: requested about 120 words; produced 40."
+      ],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 2,
+          "input_words": 1200,
+          "output_words": 92,
+          "input_tokens": 1344,
+          "output_tokens": 100
+        },
+        {
+          "phase": "Consolidating pass 1",
+          "chunks": 1,
+          "input_words": 92,
+          "output_words": 40,
+          "input_tokens": 100,
+          "output_tokens": 45
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0
+    },
+    {
+      "summary": "The council in district 1 has approved a plan to improve electric buses. The first phase will begin in September and will cost 20 million pounds. The council will review the budget after the first year and publish the results.",
+      "model": "BART",
+      "length": "Medium",
+      "requested_words": 180,
+      "source_words": 1200,
+      "actual_words": 40,
+      "source_characters": 7781,
+      "covered_characters": 7781,
+      "source_chunks": 2,
+      "chunk_spans": [
+        [
+          0,
+          5835
+        ],
+        [
+          5835,
+          7781
+        ]
+      ],
+      "consolidation_passes": 1,
+      "model_calls": 3,
+      "total_input_tokens": 1446,
+      "generation_seconds": 2.0692513999529183,
+      "load_seconds": 0.006733999936841428,
+      "device": "cuda",
+      "warnings": [
+        "Length is approximate: requested about 180 words; produced 40."
+      ],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 2,
+          "input_words": 1200,
+          "output_words": 92,
+          "input_tokens": 1344,
+          "output_tokens": 100
+        },
+        {
+          "phase": "Consolidating pass 1",
+          "chunks": 1,
+          "input_words": 92,
+          "output_words": 40,
+          "input_tokens": 100,
+          "output_tokens": 45
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0
+    },
+    {
+      "summary": "The council in district 1 has approved a plan to improve electric buses. The first phase will begin in September and will cost 20 million pounds. The council will review the budget after the first year and publish the results.",
+      "model": "BART",
+      "length": "Detailed",
+      "requested_words": 264,
+      "source_words": 1200,
+      "actual_words": 40,
+      "source_characters": 7781,
+      "covered_characters": 7781,
+      "source_chunks": 2,
+      "chunk_spans": [
+        [
+          0,
+          5835
+        ],
+        [
+          5835,
+          7781
+        ]
+      ],
+      "consolidation_passes": 1,
+      "model_calls": 3,
+      "total_input_tokens": 1446,
+      "generation_seconds": 2.2673112000338733,
+      "load_seconds": 0.006781900068745017,
+      "device": "cuda",
+      "warnings": [
+        "Length is approximate: requested about 264 words; produced 40."
+      ],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 2,
+          "input_words": 1200,
+          "output_words": 92,
+          "input_tokens": 1344,
+          "output_tokens": 100
+        },
+        {
+          "phase": "Consolidating pass 1",
+          "chunks": 1,
+          "input_words": 92,
+          "output_words": 40,
+          "input_tokens": 100,
+          "output_tokens": 45
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0
+    },
+    {
+      "summary": "The council in district 1 has approved a plan to improve electric buses. The work will be funded by the local council and a national transport and infrastructure grant. A public consultation found that residents supported the project.",
+      "model": "BART",
+      "length": "Medium",
+      "requested_words": 180,
+      "source_words": 1200,
+      "actual_words": 38,
+      "source_characters": 7686,
+      "covered_characters": 7686,
+      "source_chunks": 2,
+      "chunk_spans": [
+        [
+          0,
+          6353
+        ],
+        [
+          6353,
+          7686
+        ]
+      ],
+      "consolidation_passes": 1,
+      "model_calls": 3,
+      "total_input_tokens": 1333,
+      "generation_seconds": 2.270787800080143,
+      "load_seconds": 0.00650140002835542,
+      "device": "cuda",
+      "warnings": [
+        "Length is approximate: requested about 180 words; produced 38."
+      ],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 2,
+          "input_words": 1200,
+          "output_words": 85,
+          "input_tokens": 1238,
+          "output_tokens": 92
+        },
+        {
+          "phase": "Consolidating pass 1",
+          "chunks": 1,
+          "input_words": 85,
+          "output_words": 38,
+          "input_tokens": 92,
+          "output_tokens": 43
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0
+    },
+    {
+      "summary": "District 1 council has approved a plan to improve electric buses over the next three years. The first phase will begin in September and will cost 20 million pounds.",
+      "model": "PEGASUS",
+      "length": "Short",
+      "requested_words": 120,
+      "source_words": 1200,
+      "actual_words": 29,
+      "source_characters": 7781,
+      "covered_characters": 7781,
+      "source_chunks": 2,
+      "chunk_spans": [
+        [
+          0,
+          6035
+        ],
+        [
+          6035,
+          7781
+        ]
+      ],
+      "consolidation_passes": 1,
+      "model_calls": 3,
+      "total_input_tokens": 1375,
+      "generation_seconds": 2.0900350000010803,
+      "load_seconds": 3.4753081999951974,
+      "device": "cuda",
+      "warnings": [
+        "Length is approximate: requested about 120 words; produced 29."
+      ],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 2,
+          "input_words": 1200,
+          "output_words": 71,
+          "input_tokens": 1297,
+          "output_tokens": 77
+        },
+        {
+          "phase": "Consolidating pass 1",
+          "chunks": 1,
+          "input_words": 71,
+          "output_words": 29,
+          "input_tokens": 77,
+          "output_tokens": 32
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0
+    },
+    {
+      "summary": "District 1 council has approved a plan to improve electric buses over the next three years. The first phase will begin in September and will cost 20 million pounds.",
+      "model": "PEGASUS",
+      "length": "Medium",
+      "requested_words": 180,
+      "source_words": 1200,
+      "actual_words": 29,
+      "source_characters": 7781,
+      "covered_characters": 7781,
+      "source_chunks": 2,
+      "chunk_spans": [
+        [
+          0,
+          6035
+        ],
+        [
+          6035,
+          7781
+        ]
+      ],
+      "consolidation_passes": 1,
+      "model_calls": 3,
+      "total_input_tokens": 1375,
+      "generation_seconds": 2.1952812999952585,
+      "load_seconds": 0.007244100095704198,
+      "device": "cuda",
+      "warnings": [
+        "Length is approximate: requested about 180 words; produced 29."
+      ],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 2,
+          "input_words": 1200,
+          "output_words": 71,
+          "input_tokens": 1297,
+          "output_tokens": 77
+        },
+        {
+          "phase": "Consolidating pass 1",
+          "chunks": 1,
+          "input_words": 71,
+          "output_words": 29,
+          "input_tokens": 77,
+          "output_tokens": 32
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0
+    },
+    {
+      "summary": "District 1 council has approved a plan to improve electric buses over the next three years. The first phase will begin in September and will cost 20 million pounds.",
+      "model": "PEGASUS",
+      "length": "Detailed",
+      "requested_words": 264,
+      "source_words": 1200,
+      "actual_words": 29,
+      "source_characters": 7781,
+      "covered_characters": 7781,
+      "source_chunks": 2,
+      "chunk_spans": [
+        [
+          0,
+          6035
+        ],
+        [
+          6035,
+          7781
+        ]
+      ],
+      "consolidation_passes": 1,
+      "model_calls": 3,
+      "total_input_tokens": 1375,
+      "generation_seconds": 2.3666991000063717,
+      "load_seconds": 0.008158500073477626,
+      "device": "cuda",
+      "warnings": [
+        "Length is approximate: requested about 264 words; produced 29."
+      ],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 2,
+          "input_words": 1200,
+          "output_words": 71,
+          "input_tokens": 1297,
+          "output_tokens": 77
+        },
+        {
+          "phase": "Consolidating pass 1",
+          "chunks": 1,
+          "input_words": 71,
+          "output_words": 29,
+          "input_tokens": 77,
+          "output_tokens": 32
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0
+    },
+    {
+      "summary": "The first phase will begin in September and will cost 20 million pounds. Existing public services will remain available during construction.",
+      "model": "PEGASUS",
+      "length": "Medium",
+      "requested_words": 180,
+      "source_words": 1200,
+      "actual_words": 21,
+      "source_characters": 7686,
+      "covered_characters": 7686,
+      "source_chunks": 2,
+      "chunk_spans": [
+        [
+          0,
+          6474
+        ],
+        [
+          6474,
+          7686
+        ]
+      ],
+      "consolidation_passes": 1,
+      "model_calls": 3,
+      "total_input_tokens": 1274,
+      "generation_seconds": 2.02690309996251,
+      "load_seconds": 0.007903599995188415,
+      "device": "cuda",
+      "warnings": [
+        "Length is approximate: requested about 180 words; produced 21."
+      ],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 2,
+          "input_words": 1200,
+          "output_words": 55,
+          "input_tokens": 1213,
+          "output_tokens": 60
+        },
+        {
+          "phase": "Consolidating pass 1",
+          "chunks": 1,
+          "input_words": 55,
+          "output_words": 21,
+          "input_tokens": 60,
+          "output_tokens": 24
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0
+    }
+  ],
+  "complete_source_coverage": true,
+  "model_identity_reused": true,
+  "workload_limit_rejected": true
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "model": "lstm",
+    "parameters": 42789205,
+    "length": "short",
+    "min_tokens": 10,
+    "max_tokens": 35,
+    "seconds": 0.955,
+    "words": 16,
+    "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds."
+  },
+  {
+    "model": "lstm",
+    "parameters": 42789205,
+    "length": "medium",
+    "min_tokens": 30,
+    "max_tokens": 65,
+    "seconds": 1.005,
+    "words": 23,
+    "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds and will be funded by the council."
+  },
+  {
+    "model": "lstm",
+    "parameters": 42789205,
+    "length": "detailed",
+    "min_tokens": 55,
+    "max_tokens": 100,
+    "seconds": 1.496,
+    "words": 47,
+    "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds and will be funded by the council and a national transport grant. the council said it would publish progress reports every six months. existing routes and ticket prices will remain unchanged."
+  },
+  {
+    "model": "transformer",
+    "parameters": 81468757,
+    "length": "short",
+    "min_tokens": 10,
+    "max_tokens": 35,
+    "seconds": 1.634,
+    "words": 28,
+    "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds and will be funded by the council and a national transport grant."
+  },
+  {
+    "model": "transformer",
+    "parameters": 81468757,
+    "length": "medium",
+    "min_tokens": 30,
+    "max_tokens": 65,
+    "seconds": 2.514,
+    "words": 28,
+    "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds and will be funded by the council and a national transport grant."
+  },
+  {
+    "model": "transformer",
+    "parameters": 81468757,
+    "length": "detailed",
+    "min_tokens": 55,
+    "max_tokens": 100,
+    "seconds": 3.079,
+    "words": 50,
+    "summary": "the first 50 buses will begin operating in september. the project will cost 80 million pounds and will be funded by the council and a national transport grant. charging stations will be installed at two bus depots before the first vehicles arrive. existing routes and ticket prices will remain unchanged."
+  }
+]
