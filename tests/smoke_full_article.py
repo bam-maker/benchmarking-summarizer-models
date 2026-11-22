@@ -53,7 +53,11 @@ def main():
             result = full.summarize_article(article, name, length, config=config)
             assert result.summary and result.coverage_complete
             assert result.covered_characters == len(article)
-            assert result.source_chunks > 1 and result.consolidation_passes > 0
+            assert result.source_chunks > 1
+            assert result.model_calls >= result.source_chunks
+            assert 0 <= result.consolidation_passes <= config.max_consolidation_passes
+            if result.consolidation_passes == 0:
+                assert result.actual_words <= result.requested_words
             assert result.requested_words == full.requested_words(
                 len(article.split()), length, config
             )

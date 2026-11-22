@@ -1,0 +1,173 @@
+{
+  "selection": "Purposive six-case development review: one plausible success and five diagnosed cases, not an unbiased error-rate estimate. Independently shuffled model order per case; partial blinding only because style/casing or prior exposure may reveal identity.",
+  "mapping": [
+    {
+      "candidate": "Case01-A",
+      "row_idx": 30,
+      "article_id": "8569a517d115d140fbf3550ee0c14bc42477b108",
+      "model": "Transformer",
+      "summary_sha256": "02b75aed4cb773ed8261523b613499549dd0a93f19354a53f067be5fd0665c6f"
+    },
+    {
+      "candidate": "Case01-B",
+      "row_idx": 30,
+      "article_id": "8569a517d115d140fbf3550ee0c14bc42477b108",
+      "model": "PEGASUS",
+      "summary_sha256": "f7df7c4eb5baa5ba4b862aa9e8598692e0958d0c0ff3b8f5d894267e181692f0"
+    },
+    {
+      "candidate": "Case01-C",
+      "row_idx": 30,
+      "article_id": "8569a517d115d140fbf3550ee0c14bc42477b108",
+      "model": "BART",
+      "summary_sha256": "fe2e4e3517c0d97dc3a8d7ca0818822b37c6cf486c6048e47cf487909bd8d69c"
+    },
+    {
+      "candidate": "Case01-D",
+      "row_idx": 30,
+      "article_id": "8569a517d115d140fbf3550ee0c14bc42477b108",
+      "model": "LSTM",
+      "summary_sha256": "ec1378abb47a2180ffa78f78941c7338d512bf7a30bb59eee34ca69249061707"
+    },
+    {
+      "candidate": "Case02-A",
+      "row_idx": 39,
+      "article_id": "aa9a164b2f592570b64063546dda4eed22133a0e",
+      "model": "PEGASUS",
+      "summary_sha256": "4bba3623a180a1f1527ed459c6189bebb39d543948028cd61c26a8bb845481d0"
+    },
+    {
+      "candidate": "Case02-B",
+      "row_idx": 39,
+      "article_id": "aa9a164b2f592570b64063546dda4eed22133a0e",
+      "model": "Transformer",
+      "summary_sha256": "6fad36e99ee9230fccc9f99aa807dc3d475aae8448a93aa524600453d3e0ba43"
+    },
+    {
+      "candidate": "Case02-C",
+      "row_idx": 39,
+      "article_id": "aa9a164b2f592570b64063546dda4eed22133a0e",
+      "model": "LSTM",
+      "summary_sha256": "984a551b21877d6cd9c4210113876c10d40b13a159aa32424a6b5c16237435a4"
+    },
+    {
+      "candidate": "Case02-D",
+      "row_idx": 39,
+      "article_id": "aa9a164b2f592570b64063546dda4eed22133a0e",
+      "model": "BART",
+      "summary_sha256": "615b313277b2ec8c5cd373e0b75695062c8e52d3c16bb99662fd1a1c5c928726"
+    },
+    {
+      "candidate": "Case03-A",
+      "row_idx": 19,
+      "article_id": "223f2d2ff1fa774a816c9dbd0253e8d158b6bc7d",
+      "model": "PEGASUS",
+      "summary_sha256": "17ac5e9dc8955012e4ffd64a7101d717dcfd25d8a35d3a09dd761a6d2a64e4bc"
+    },
+    {
+      "candidate": "Case03-B",
+      "row_idx": 19,
+      "article_id": "223f2d2ff1fa774a816c9dbd0253e8d158b6bc7d",
+      "model": "Transformer",
+      "summary_sha256": "ea24dc2c811b8736ced01afcb414b91f2b513174a700576637dd26e714645f68"
+    },
+    {
+      "candidate": "Case03-C",
+      "row_idx": 19,
+      "article_id": "223f2d2ff1fa774a816c9dbd0253e8d158b6bc7d",
+      "model": "BART",
+      "summary_sha256": "57e4332c856d6b6059abd8c55c1c8a93d85b81fd5d3c9ad36a40ccc7b334adf1"
+    },
+    {
+      "candidate": "Case03-D",
+      "row_idx": 19,
+      "article_id": "223f2d2ff1fa774a816c9dbd0253e8d158b6bc7d",
+      "model": "LSTM",
+      "summary_sha256": "fb3b2dbb689dd97c94e5813f861edbe6193470cad0d04a7db7a3229eedff329d"
+    },
+    {
+      "candidate": "Case04-A",
+      "row_idx": 2,
+      "article_id": "60736693e3b1b32d14337a317190c6606e879a85",
+      "model": "PEGASUS",
+      "summary_sha256": "cfbce280878a5c393e4233479856f34fe63cb08ce7d59cc3ae6866ff1c06e33b"
+    },
+    {
+      "candidate": "Case04-B",
+      "row_idx": 2,
+      "article_id": "60736693e3b1b32d14337a317190c6606e879a85",
+      "model": "LSTM",
+      "summary_sha256": "70f0d23e3dfe61620fd4122b8547f9df0f63fefbd166418f8be1c69588544d0e"
+    },
+    {
+      "candidate": "Case04-C",
+      "row_idx": 2,
+      "article_id": "60736693e3b1b32d14337a317190c6606e879a85",
+      "model": "Transformer",
+      "summary_sha256": "54089ff83c14841a515c53ab539b44d03268beb12e1f6b2eae5cbd6768b95b21"
+    },
+    {
+      "candidate": "Case04-D",
+      "row_idx": 2,
+      "article_id": "60736693e3b1b32d14337a317190c6606e879a85",
+      "model": "BART",
+      "summary_sha256": "bd53e1e551ff50e89c14a4d1ba61f4091f4e03ba477fdd4fed3bde20fe7d49e4"
+    },
+    {
+      "candidate": "Case05-A",
+      "row_idx": 35,
+      "article_id": "fee1bf4f253bb464e5efb38197d881adf7f4d82d",
+      "model": "Transformer",
+      "summary_sha256": "6f0ddbce364afd4d8505121676681c1becd2512100cc9c6cacea5c40159eede6"
+    },
+    {
+      "candidate": "Case05-B",
+      "row_idx": 35,
+      "article_id": "fee1bf4f253bb464e5efb38197d881adf7f4d82d",
+      "model": "PEGASUS",
+      "summary_sha256": "81bc7ac6b50252a87616c9e7ac36ac4397d67e6cc81f43159420967bd4607c16"
+    },
+    {
+      "candidate": "Case05-C",
+      "row_idx": 35,
+      "article_id": "fee1bf4f253bb464e5efb38197d881adf7f4d82d",
+      "model": "LSTM",
+      "summary_sha256": "6428246d606272d1928928e0cfd8c55eadadebc23e35ad1a79cd82711b6016d8"
+    },
+    {
+      "candidate": "Case05-D",
+      "row_idx": 35,
+      "article_id": "fee1bf4f253bb464e5efb38197d881adf7f4d82d",
+      "model": "BART",
+      "summary_sha256": "854646caac0f438ea59f6f2017d223f24fb00f4acd94766c6a9e250357d38839"
+    },
+    {
+      "candidate": "Case06-A",
+      "row_idx": 21,
+      "article_id": "64d7ee44a6d3c726d4f5d197c325fd728e02ec53",
+      "model": "BART",
+      "summary_sha256": "5ed3b35764896834a01ecfee7a7be563a75d21190fbd646c093cf752805cacd4"
+    },
+    {
+      "candidate": "Case06-B",
+      "row_idx": 21,
+      "article_id": "64d7ee44a6d3c726d4f5d197c325fd728e02ec53",
+      "model": "Transformer",
+      "summary_sha256": "fd46d8cb84b27ad13596307f3701fbefe4fa4319a635a9643e6a0068b62df511"
+    },
+    {
+      "candidate": "Case06-C",
+      "row_idx": 21,
+      "article_id": "64d7ee44a6d3c726d4f5d197c325fd728e02ec53",
+      "model": "LSTM",
+      "summary_sha256": "baef6f953cb21ced2098188ba9481b28c02a3ebf7081139412a6608753054b44"
+    },
+    {
+      "candidate": "Case06-D",
+      "row_idx": 21,
+      "article_id": "64d7ee44a6d3c726d4f5d197c325fd728e02ec53",
+      "model": "PEGASUS",
+      "summary_sha256": "83a4475348c4fb73a10306b87089a84af721c3c496114184db1b0d030c67ba8d"
+    }
+  ]
+}

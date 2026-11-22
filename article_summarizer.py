@@ -24,6 +24,7 @@ from runtime import resolve_device, synchronize
 logger = logging.getLogger(__name__)
 ROOT = Path(__file__).resolve().parent
 LENGTH_CHOICES = ("Short", "Medium", "Detailed")
+NATURAL_POLICY = "natural-checkpoint-v1"
 
 
 class ProcessingLimitError(engine.InputError):
@@ -34,7 +35,7 @@ class ProcessingLimitError(engine.InputError):
 class ProcessingConfig:
     processing_mode: str = "full"
     ratios: dict = field(
-        default_factory=lambda: {"Short": 0.10, "Medium": 0.15, "Detailed": 0.22}
+        default_factory=lambda: {"Short": 0.15, "Medium": 0.25, "Detailed": 0.35}
     )
     tokens_per_word: dict = field(
         default_factory=lambda: {
@@ -62,6 +63,7 @@ class ProcessingConfig:
     max_consolidation_passes: int = 4
     max_runtime_seconds: float = 180
     concise_input_words: int = 12
+    opennmt_source_limit: int = 1024
 
     def __post_init__(self):
         if self.processing_mode not in {"full", "prefix"}:
@@ -84,6 +86,7 @@ class ProcessingConfig:
             "max_model_calls",
             "max_total_input_tokens",
             "max_runtime_seconds",
+            "opennmt_source_limit",
         ):
             if getattr(self, name) <= 0:
                 raise ValueError(f"{name} must be positive")
@@ -116,6 +119,17 @@ def requested_words(article_words: int, length: str, config: ProcessingConfig) -
     if length not in LENGTH_CHOICES:
         raise engine.InputError("Choose Short, Medium or Detailed.")
     return min(article_words, max(1, int(article_words * config.ratios[length] + 0.5)))
+
+
+def source_capacity(backend, config):
+    """App work window, bounded by actual positional capacity where present.
+
+    400 is OpenNMT's training/fixed-benchmark convention, not a network ceiling.
+    Larger app inputs are bounded and tested, not a claim of retraining parity.
+    """
+    if hasattr(backend, "extended_source_limit"):
+        return min(config.opennmt_source_limit, backend.extended_source_limit)
+    return backend.source_limit
 
 
 _punkt_params = PunktParameters()
@@ -280,7 +294,11 @@ def token_budget(
         config.tokens_per_word[backend.model_name],
         min(4.0, len(chunk.prepared.tokens) / words),
     )
-    desired_max = max(8, math.ceil(target * factor * config.word_budget_slack) + 6)
+    desired_max = max(
+        8,
+        math.ceil(target * factor * config.word_budget_slack) + 6,
+        getattr(backend, "summary_max_length", 0),
+    )
     # The application work cap is configurable; positional decoder capacity is
     # not. The recurrent LSTM has no positional-table limit.
     ceiling = (
@@ -288,8 +306,11 @@ def token_budget(
         or config.max_output_tokens[backend.model_name]
     )
     maximum = min(config.max_output_tokens[backend.model_name], ceiling, desired_max)
-    minimum = 0 if words < 40 else min(12, int(target * factor * 0.2), maximum - 2)
-    return engine.Budget(minimum, maximum), desired_max > maximum
+    # Retain the documented summarization floor, but never force a long output
+    # for a tiny source or try to pad all the way to a requested word target.
+    native_minimum = getattr(backend, "summary_min_length", 35)
+    minimum = min(native_minimum, len(chunk.prepared.tokens) // 4, maximum - 2)
+    return engine.Budget(minimum, maximum, profile="checkpoint"), desired_max > maximum
 
 
 @dataclass(frozen=True)
@@ -307,7 +328,7 @@ class ArticleResult:
     summary: str
     model: str
     length: str
-    requested_words: int
+    requested_words: int | None
     source_words: int
     actual_words: int
     source_characters: int
@@ -325,6 +346,10 @@ class ArticleResult:
     processing_mode: str
     returned_input: bool = False
     retained_fragments: int = 0
+    # Observability only: actual chosen-hypothesis IDs, excluding start/EOS.
+    # None means some decode work could not be measured (for example CUDA OOM).
+    total_generated_tokens: int | None = None
+    generation_policy: str = "adaptive-length-v1"
 
     @property
     def coverage_complete(self):
@@ -338,6 +363,7 @@ def summarize_article(
     *,
     config=None,
     progress_callback=None,
+    generation_policy="adaptive-length-v1",
 ) -> ArticleResult:
     config = config or load_config()
     if model_name not in engine.MODEL_CHOICES:
@@ -345,13 +371,18 @@ def summarize_article(
     if not isinstance(article, str) or not article.strip():
         raise engine.InputError("Enter an article before summarizing.")
     words = word_count(article)
-    target_words = requested_words(words, length, config)
+    if generation_policy not in {"adaptive-length-v1", NATURAL_POLICY}:
+        raise engine.InputError("Unknown generation policy.")
+    natural = generation_policy == NATURAL_POLICY
+    target_words = None if natural else requested_words(words, length, config)
+    if natural:
+        length = "Natural"
     if len(article) > config.max_article_characters or words > config.max_article_words:
         raise ProcessingLimitError(
             "This article exceeds the configured processing limit. Shorten it or raise the local limit; no final summary was returned."
         )
     notify = progress_callback or (lambda completed, total, phase: None)
-    if words <= config.concise_input_words and len(article) <= 240:
+    if not natural and words <= config.concise_input_words and len(article) <= 240:
         warning = (
             "Already concise: returned the original text without model generation."
         )
@@ -376,6 +407,7 @@ def summarize_article(
             (),
             config.processing_mode,
             True,
+            total_generated_tokens=0,
         )
         diagnostics = asdict(result)
         diagnostics.pop("summary")
@@ -389,6 +421,8 @@ def summarize_article(
         started = time.perf_counter()
         calls = input_tokens = source_completed = 0
         generation_seconds = 0.0
+        generated_tokens = 0
+        throughput_measured = True
         warnings = []
         stages = []
         retained_fragments = 0
@@ -399,7 +433,7 @@ def summarize_article(
                     "Processing reached the configured time limit. No final summary was returned."
                 )
 
-        notify(0, 1, "Preparing article")
+        notify(0, 1, f"Loading {model_name}")
         device = resolve_device("auto")
         load_started = time.perf_counter()
         try:
@@ -410,11 +444,17 @@ def summarize_article(
             logger.warning("CUDA activation OOM; continuing on CPU")
         synchronize(device)
         load_seconds = time.perf_counter() - load_started
+        notify(0, 1, "Preparing article")
+        original_source_limit = backend.source_limit
+        # The process execution lock covers this per-request change. Restore it
+        # even on error so direct/fixed-budget callers keep their 400-token policy.
+        backend.source_limit = source_capacity(backend, config)
         planner = ChunkPlanner(backend, check)
 
         def decode_once(chunk, budget, wanted, capped, intermediate):
             nonlocal calls, input_tokens, generation_seconds
             nonlocal device, load_seconds, retained_fragments
+            nonlocal generated_tokens, throughput_measured
             check()
             if (
                 calls >= config.max_model_calls
@@ -431,6 +471,9 @@ def summarize_article(
                     chunk.prepared, budget
                 )
             except torch.cuda.OutOfMemoryError:
+                # The failed attempt has no returned IDs or complete timing.
+                # Do not present a rate for an incompletely measured pipeline.
+                throughput_measured = False
                 logger.warning(
                     "CUDA decoding OOM; retrying the same complete chunk on CPU"
                 )
@@ -454,6 +497,7 @@ def summarize_article(
                     chunk.prepared, budget
                 )
             generation_seconds += seconds
+            generated_tokens += generated
             logger.info(
                 "decode %s",
                 json.dumps(
@@ -493,7 +537,24 @@ def summarize_article(
             return output, ended
 
         def generate(chunk, wanted, intermediate=False):
-            budget, capped = token_budget(backend, chunk, wanted, config)
+            if natural:
+                maximum = min(
+                    getattr(backend, "summary_max_length", 100),
+                    config.max_output_tokens[model_name],
+                    getattr(backend, "generation_limit", None)
+                    or config.max_output_tokens[model_name],
+                )
+                minimum = min(
+                    getattr(backend, "summary_min_length", 35),
+                    len(chunk.prepared.tokens) // 8,
+                    maximum - 2,
+                )
+                budget, capped = (
+                    engine.Budget(minimum, maximum, profile="checkpoint"),
+                    False,
+                )
+            else:
+                budget, capped = token_budget(backend, chunk, wanted, config)
             hard_limit = min(
                 config.max_output_tokens[model_name],
                 getattr(backend, "generation_limit", None)
@@ -557,7 +618,9 @@ def summarize_article(
                 outputs = []
                 for i, chunk in enumerate(chunks, 1):
                     chunk_words = word_count(chunk.text)
-                    if final:
+                    if natural:
+                        wanted = None
+                    elif final:
                         wanted = min(target_words, chunk_words)
                         if passes:
                             wanted = min(
@@ -608,8 +671,14 @@ def summarize_article(
                     raise ProcessingLimitError(
                         "The model could not shorten the intermediate text safely. No final summary was returned."
                     )
-                if final:
-                    if capped:
+                # Concatenation in source order plus exact-sentence deduplication
+                # is already a consolidation. If it fits the requested preference,
+                # another lossy decode only over-compresses an already short result.
+                within_preference = (
+                    natural or after_words <= target_words
+                ) and after_tokens <= backend.source_limit
+                if final or within_preference:
+                    if final and capped:
                         warnings.append(
                             "The requested length exceeds this model's final-pass budget; the summary may be shorter."
                         )
@@ -633,7 +702,9 @@ def summarize_article(
                 warnings.append(
                     "Some generated text may be unfinished; review the summary."
                 )
-            if after_words < target_words * 0.5 or after_words > target_words * 2:
+            if not natural and (
+                after_words < target_words * 0.5 or after_words > target_words * 2
+            ):
                 warnings.append(
                     f"Length is approximate: requested about {target_words} words; produced {after_words}."
                 )
@@ -658,6 +729,10 @@ def summarize_article(
                 tuple(stages),
                 config.processing_mode,
                 retained_fragments=retained_fragments,
+                total_generated_tokens=generated_tokens
+                if throughput_measured
+                else None,
+                generation_policy=generation_policy,
             )
             # Detailed diagnostics stay out of the demo. No article body is logged.
             diagnostics = asdict(result)
@@ -674,3 +749,5 @@ def summarize_article(
                 stages,
             )
             raise
+        finally:
+            backend.source_limit = original_source_limit

@@ -47,10 +47,11 @@ def main():
             client = Client(url, verbose=False)
             for name in engine.MODEL_CHOICES:
                 identity = None
-                for position, length in enumerate(("Short", "Medium", "Detailed")):
-                    summary = client.predict(
-                        article, name, position, api_name="/summarize"
+                for length in ("Short", "Medium", "Detailed"):
+                    outputs = client.predict(
+                        article, name, length, api_name="/summarize"
                     )
+                    summary = outputs[0]
                     assert isinstance(summary, str) and summary
                     backend = engine._models[name]
                     assert backend.device == args.device
@@ -66,7 +67,7 @@ def main():
                     )
                     print(json.dumps(rows[-1]), flush=True)
             identities = {name: id(model) for name, model in engine._models.items()}
-            assert client.predict(article, "LSTM", 1, api_name="/summarize")
+            assert client.predict(article, "LSTM", "Medium", api_name="/summarize")[0]
             assert identities == {
                 name: id(model) for name, model in engine._models.items()
             }

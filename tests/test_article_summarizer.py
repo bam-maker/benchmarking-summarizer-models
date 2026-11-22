@@ -118,7 +118,8 @@ class PipelineTests(unittest.TestCase):
             result.consolidation_passes, self.config.max_consolidation_passes
         )
         self.assertEqual(
-            result.requested_words, round(len(self.article.split()) * 0.15)
+            result.requested_words,
+            round(len(self.article.split()) * self.config.ratios["Medium"]),
         )
         for stage in result.stages:
             self.assertLess(stage.output_words, stage.input_words)
@@ -126,6 +127,12 @@ class PipelineTests(unittest.TestCase):
         initial = [u for u in updates if u[2] == "Article chunks"]
         self.assertEqual(initial[-1][0], result.source_chunks)
         self.assertEqual(result.model_calls, len(self.backend.calls))
+        expected_tokens = sum(
+            max(1, min(len(prepared.tokens) // 4, budget.max_tokens - 1)) + 1
+            for prepared, budget in self.backend.calls
+        )
+        self.assertEqual(result.total_generated_tokens, expected_tokens)
+        self.assertAlmostEqual(result.generation_seconds, len(self.backend.calls) * 0.1)
 
     def test_preferences_use_full_article_and_model_specific_budgets(self):
         article = " ".join(f"word{i}" for i in range(100)) + "."
@@ -136,10 +143,40 @@ class PipelineTests(unittest.TestCase):
                 full.summarize_article(article, length=label, config=self.config)
             )
             budgets.append(self.backend.calls[-1][1].max_tokens)
-        self.assertEqual([r.requested_words for r in results], [10, 15, 22])
+        self.assertEqual([r.requested_words for r in results], [15, 25, 35])
         self.assertLess(budgets[0], budgets[1])
         self.assertLess(budgets[1], budgets[2])
-        self.assertNotEqual(budgets, [10, 15, 22])
+        self.assertNotEqual(budgets, [15, 25, 35])
+
+    def test_single_fitting_article_is_decoded_once(self):
+        self.backend.source_limit = 400
+        result = full.summarize_article(self.article, config=self.config)
+        self.assertEqual(result.source_chunks, 1)
+        self.assertEqual(result.consolidation_passes, 0)
+        self.assertEqual(result.model_calls, 1)
+        self.assertTrue(result.coverage_complete)
+
+    def test_already_short_chunk_summaries_are_not_compressed_again(self):
+        article = " ".join(f"word{i}" for i in range(80)) + "."
+        result = full.summarize_article(article, config=self.config)
+        self.assertEqual(result.source_chunks, 2)
+        self.assertTrue(result.coverage_complete)
+        self.assertLessEqual(result.actual_words, result.requested_words)
+        self.assertEqual(result.consolidation_passes, 0)
+        self.assertEqual(result.model_calls, result.source_chunks)
+        # Both chunk outputs survive; do not assert a particular generated sentence.
+        self.assertIn("word0", result.summary)
+        self.assertIn("word40", result.summary)
+
+    def test_checkpoint_floor_is_bounded_for_short_inputs(self):
+        self.backend.source_limit = 400
+        self.backend.summary_min_length = 56
+        text = " ".join(f"word{i}" for i in range(20))
+        chunk = full.ChunkPlanner(self.backend).plan(text, 2)[0]
+        budget, _ = full.token_budget(self.backend, chunk, 5, self.config)
+        self.assertEqual(budget.profile, "checkpoint")
+        self.assertLessEqual(budget.min_tokens, len(chunk.prepared.tokens) // 4)
+        self.assertLess(budget.min_tokens, budget.max_tokens)
 
     def test_short_input_is_an_explicit_non_model_result(self):
         with patch.object(engine, "get_model") as loader:
@@ -148,6 +185,7 @@ class PipelineTests(unittest.TestCase):
             )
             loader.assert_not_called()
         self.assertTrue(result.returned_input)
+        self.assertEqual(result.total_generated_tokens, 0)
         self.assertIn("original text", result.warnings[0])
         self.assertLessEqual(result.requested_words, result.source_words)
 
@@ -236,6 +274,7 @@ class PipelineTests(unittest.TestCase):
         self.assertTrue(result.coverage_complete)
         self.assertEqual(result.model_calls, 2)
         self.assertEqual(result.total_input_tokens, 160)
+        self.assertIsNone(result.total_generated_tokens)
         self.assertEqual(result.generation_seconds, 0.25)
         self.backend.to_device.assert_called_once_with("cpu")
         first, second = self.backend.generate.call_args_list
@@ -273,6 +312,7 @@ class PipelineTests(unittest.TestCase):
             " ".join(f"word{i}" for i in range(80)), length="Short", config=self.config
         )
         self.assertEqual(result.model_calls, 2)
+        self.assertGreater(result.total_generated_tokens, len(result.summary.split()))
         self.assertGreater(
             self.backend.calls[1][1].max_tokens, self.backend.calls[0][1].max_tokens
         )

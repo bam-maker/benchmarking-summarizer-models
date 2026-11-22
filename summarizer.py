@@ -8,6 +8,7 @@ import re
 import sys
 import threading
 import time
+from contextlib import contextmanager
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -25,6 +26,8 @@ MODEL_CHOICES = ("LSTM", "Transformer", "BART", "PEGASUS")
 class Budget:
     min_tokens: int
     max_tokens: int
+    # The existing benchmark API keeps its established settings by default.
+    profile: str = "legacy"
 
 
 # These are the kit's tested decoding budgets, not word-count targets.
@@ -65,7 +68,9 @@ class SummaryResult:
     device: str = "cpu"
 
 
-def prepare_article(article: str, allow_truncation: bool = False) -> PreparedArticle:
+def prepare_article(
+    article: str, allow_truncation: bool = False, source_limit: int = SOURCE_LIMIT
+) -> PreparedArticle:
     if not isinstance(article, str) or not article.strip():
         raise InputError("Enter an English news article before summarizing.")
     if "\uffe8" in article:
@@ -93,13 +98,13 @@ def prepare_article(article: str, allow_truncation: bool = False) -> PreparedArt
     ]
     if not tokens:
         raise InputError("The article has no usable tokens.")
-    if len(tokens) > SOURCE_LIMIT and not allow_truncation:
+    if len(tokens) > source_limit and not allow_truncation:
         raise InputError(
-            f"Article has {len(tokens)} model-input tokens; the limit is {SOURCE_LIMIT}. "
-            "No text was summarized. Shorten it or explicitly allow first-400-token "
+            f"Article has {len(tokens)} model-input tokens; the limit is {source_limit}. "
+            f"No text was summarized. Shorten it or explicitly allow first-{source_limit}-token "
             "truncation. Your full article remains in the input textbox."
         )
-    return PreparedArticle(tuple(tokens[:SOURCE_LIMIT]), len(tokens))
+    return PreparedArticle(tuple(tokens[:source_limit]), len(tokens))
 
 
 def clean_summary(raw_tokens: list[str]) -> str:
@@ -205,7 +210,46 @@ class OpenNMTSummarizer:
             self.device = device
 
     def prepare(self, article, allow_truncation=False):
-        return prepare_article(article, allow_truncation)
+        return prepare_article(
+            article, allow_truncation, source_limit=self.source_limit
+        )
+
+    @property
+    def extended_source_limit(self):
+        """Architectural encoder capacity, separate from the 400-token training policy."""
+        positions = [
+            buffer.shape[0]
+            for name, buffer in self.model.encoder.embeddings.named_buffers()
+            if name.split(".")[-1] == "pe"
+        ]
+        return min(positions) if positions else float("inf")
+
+    summary_max_length = 100  # Pinned Translator's documented inference default.
+
+    @contextmanager
+    def decoding_profile(self, budget):
+        """Use the pinned summarization recipe without leaking mutable state."""
+        if budget.profile != "checkpoint":
+            yield
+            return
+        from onmt.translate.beam import GNMTGlobalScorer
+
+        translator = self.translator
+        settings = {
+            "beam_size": 5,
+            "stepwise_penalty": True,
+            "global_scorer": GNMTGlobalScorer(0.9, 5.0, "summary", "wu"),
+            "min_length": budget.min_tokens,
+            "max_length": budget.max_tokens,
+        }
+        previous = {name: getattr(translator, name) for name in settings}
+        try:
+            for name, value in settings.items():
+                setattr(translator, name, value)
+            yield
+        finally:
+            for name, value in previous.items():
+                setattr(translator, name, value)
 
     def generate(
         self, article: PreparedArticle, budget: Budget
@@ -216,7 +260,7 @@ class OpenNMTSummarizer:
 
         # Length settings and legacy decoder state are mutable. Requests for the
         # same resident model must not interleave, even outside the Gradio queue.
-        with self.lock, torch.inference_mode():
+        with self.lock, torch.inference_mode(), self.decoding_profile(budget):
             synchronize(self.device)
             started = time.perf_counter()
             translator = self.translator

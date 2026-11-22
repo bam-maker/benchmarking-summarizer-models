@@ -1,0 +1,41 @@
+{
+  "archive": "application_snapshot.zip",
+  "archive_sha256": "0281c953e38e2e1e506f4d719f3817aae180c4dd3d13c86314b78367d148cece",
+  "files": {
+    "app.py": "9e5ac2279ce0f31c013f4fbf7ad77dd498e38dfd5d1855b0b2c8e598aeaa1096",
+    "article_summarizer.py": "15fdcef499262e6a9481a6f38660f6503ae3f5d61299342d0cbbd97d6ff02084",
+    "summarizer.py": "4346d8bec1e1ee47ecd02c530d9af1c6590fd4612b58437d91d26b544fa73690",
+    "hf_summarizer.py": "035acda0c72afa32a71d4606b0e7ed736a036a692f98bfeb9a0b1ea7152ee07e",
+    "runtime.py": "98508f1e80cfe8345d73fea713415f63fe96cf54f3da3bf323d670579f3d4088",
+    "processing_config.json": "5d6477ac219afb6055c3953d2b7d5abcc195679b9e27ba563e81772e26e8041f",
+    "model_manifest.json": "cbdde95d3f02dbbf995db2cdfdb443ec84ec4ba9fbf3ff8c672104b6147d5ed8",
+    "requirements.txt": "1787a2bf12529adb4f894175462d55f92ca3171d3a529f9eed6fc745729003ef",
+    "OpenNMT_Verified_Setup/checkpoint_manifest.json": "831504cc51c07ac200ea0e49bf36a1b7d3f6f8427fe89f490c39875b392315d4"
+  },
+  "restore": "Extract into a separate review directory first; compare checksums, then deliberately copy selected files into the project after saving intervening work. No weights/environment included. Existing pinned recovery scripts restore those separately.",
+  "preserved_evidence_sha256": {
+    "reports\\cuda_interface_verification.json": "30b4f4660ef6eae942fad7e1cf79c0eb338b0633ae625141323a3bf498891ea0",
+    "reports\\factual_audit_manifest.json": "b4a94247e731672b77a7ff1eba98b9e8c389939ddd3b8d661b8ac4f83fb76d0b",
+    "reports\\factual_audit_results.json": "4c3c4a2054d7e10f9b508fa9b6de82091d8f4ee175a74ead671673d90b52c066",
+    "reports\\factual_audit_review.html": "7dcfa92f6004f2e53ec3b17bccbccd3b8de0028dc3a91cbc3e957f09c0f10dc8",
+    "reports\\factual_audit_summary.csv": "dfc2c874c46c7518363852a22b1f6faa4858a96072bcb0a8b78dee3b45378134",
+    "reports\\full_article_verification.json": "13877af3e3c9cfb04f793579e9b8b726bab772015eb1c5fb7dc386373355026b",
+    "reports\\quality_regression.json": "0eed22fd4150576a257f50e854021046948a30b7c1f6806e641b6c1bb2296b5d",
+    "reports\\speed_cpu.json": "8a8428b2cc6b0b2faed6cc34383991b165e16dd2fb94e5d087885591f5f83502",
+    "reports\\speed_cuda.json": "bf79eff38379b76d3a37a255c21db4ad6f079219d478f69af582f65ce54f3b72",
+    "reports\\validation_40_ai_review.json": "818552397bc27aa167a85b0474b38269c0d1dd270fcf2a662c0abd19b19ad8f2",
+    "reports\\validation_40_manifest.json": "c11eb3a6480cb3b608f827ffa55dea12cf6ff5a9ebae4ed8dbe04330210c4b44",
+    "reports\\validation_40_results.json": "c6dccc353686925a85af232e417f775f2cb697aa0749b94805a95babf84de9bf",
+    "reports\\validation_40_review.csv": "0a3afe0f6406cc138e57c06153fcd0cfa44171754c99c489a41dec04067d270d",
+    "reports\\validation_40_review.html": "fab7f522486f573d232eca7f79bb43ae07f4d99d6afb33ff8cfbc8c0233f6575",
+    "app.py": "9e5ac2279ce0f31c013f4fbf7ad77dd498e38dfd5d1855b0b2c8e598aeaa1096",
+    "article_summarizer.py": "15fdcef499262e6a9481a6f38660f6503ae3f5d61299342d0cbbd97d6ff02084",
+    "summarizer.py": "4346d8bec1e1ee47ecd02c530d9af1c6590fd4612b58437d91d26b544fa73690",
+    "hf_summarizer.py": "035acda0c72afa32a71d4606b0e7ed736a036a692f98bfeb9a0b1ea7152ee07e",
+    "runtime.py": "98508f1e80cfe8345d73fea713415f63fe96cf54f3da3bf323d670579f3d4088",
+    "processing_config.json": "5d6477ac219afb6055c3953d2b7d5abcc195679b9e27ba563e81772e26e8041f",
+    "model_manifest.json": "cbdde95d3f02dbbf995db2cdfdb443ec84ec4ba9fbf3ff8c672104b6147d5ed8",
+    "requirements.txt": "1787a2bf12529adb4f894175462d55f92ca3171d3a529f9eed6fc745729003ef",
+    "OpenNMT_Verified_Setup/checkpoint_manifest.json": "831504cc51c07ac200ea0e49bf36a1b7d3f6f8427fe89f490c39875b392315d4"
+  }
+}

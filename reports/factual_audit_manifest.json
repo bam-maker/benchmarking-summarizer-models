@@ -1,0 +1,126 @@
+{
+  "kind": "Fixed factual-error causal audit; not a benchmark, tuning sweep or human rating",
+  "cases": [
+    {
+      "row_idx": 19,
+      "id": "223f2d2ff1fa774a816c9dbd0253e8d158b6bc7d",
+      "label": "reversed_match",
+      "article_sha256": "191639d2fd3d70ac2d830aad3f057ae374bfa69df4f3b41bbea2db4263773756"
+    },
+    {
+      "row_idx": 21,
+      "id": "64d7ee44a6d3c726d4f5d197c325fd728e02ec53",
+      "label": "missed_bombing",
+      "article_sha256": "24aa3c339a8ba109d742202881760f056b32c0cbe1b105660e56f8ed51a247b5"
+    },
+    {
+      "row_idx": 30,
+      "id": "8569a517d115d140fbf3550ee0c14bc42477b108",
+      "label": "repeated_claim",
+      "article_sha256": "f1d31e995ec3425f9fa2e88a1127f49b91b9941381ba45051777fde028c4ec9e"
+    },
+    {
+      "row_idx": 35,
+      "id": "fee1bf4f253bb464e5efb38197d881adf7f4d82d",
+      "label": "invented_author",
+      "article_sha256": "218565b15678026111d6c856bb0ce4eccc34f1acdd726b5df6f97334e77bb2d9"
+    },
+    {
+      "row_idx": 39,
+      "id": "aa9a164b2f592570b64063546dda4eed22133a0e",
+      "label": "multi_chunk",
+      "article_sha256": "fe8002281e06bfaf744fd9c6e3b31f74d2ef7eaaa9e4f6e23530527e05a82551"
+    }
+  ],
+  "models": [
+    "LSTM",
+    "Transformer",
+    "BART",
+    "PEGASUS"
+  ],
+  "device": "RTX 4090 CUDA float32, same device for all probes",
+  "preserved_sha256": {
+    "app.py": "9e5ac2279ce0f31c013f4fbf7ad77dd498e38dfd5d1855b0b2c8e598aeaa1096",
+    "article_summarizer.py": "15fdcef499262e6a9481a6f38660f6503ae3f5d61299342d0cbbd97d6ff02084",
+    "summarizer.py": "4346d8bec1e1ee47ecd02c530d9af1c6590fd4612b58437d91d26b544fa73690",
+    "hf_summarizer.py": "035acda0c72afa32a71d4606b0e7ed736a036a692f98bfeb9a0b1ea7152ee07e",
+    "runtime.py": "98508f1e80cfe8345d73fea713415f63fe96cf54f3da3bf323d670579f3d4088",
+    "processing_config.json": "5d6477ac219afb6055c3953d2b7d5abcc195679b9e27ba563e81772e26e8041f",
+    "model_manifest.json": "cbdde95d3f02dbbf995db2cdfdb443ec84ec4ba9fbf3ff8c672104b6147d5ed8",
+    "requirements.txt": "1787a2bf12529adb4f894175462d55f92ca3171d3a529f9eed6fc745729003ef",
+    "OpenNMT_Verified_Setup/checkpoint_manifest.json": "831504cc51c07ac200ea0e49bf36a1b7d3f6f8427fe89f490c39875b392315d4",
+    "reports/validation_40_ai_review.json": "818552397bc27aa167a85b0474b38269c0d1dd270fcf2a662c0abd19b19ad8f2",
+    "reports/validation_40_manifest.json": "c11eb3a6480cb3b608f827ffa55dea12cf6ff5a9ebae4ed8dbe04330210c4b44",
+    "reports/validation_40_results.json": "c6dccc353686925a85af232e417f775f2cb697aa0749b94805a95babf84de9bf",
+    "reports/validation_40_review.csv": "0a3afe0f6406cc138e57c06153fcd0cfa44171754c99c489a41dec04067d270d",
+    "reports/validation_40_review.html": "fab7f522486f573d232eca7f79bb43ae07f4d99d6afb33ff8cfbc8c0233f6575",
+    "data/validation_40/sources.json": "338183a0c40cc138e12b47a69fcf472e7e531ef6386996bf177a2736b0d2f194",
+    "reports/quality_regression.json": "0eed22fd4150576a257f50e854021046948a30b7c1f6806e641b6c1bb2296b5d",
+    "test-results/validation_40/cases/019_LSTM.json": "0a30ba1a74f37f7bc5acf13dbebe66a1c75595c0cede2cb7c6781a93101200fa",
+    "test-results/validation_40/cases/019_Transformer.json": "41820f4ea3f6037a8f61601d2d1f8baac136cb0253f93ff075b4a44492e81061",
+    "test-results/validation_40/cases/019_BART.json": "83f8680957016e1dd1d9fbe249bba78ea0cbfcd4cd07232e8bf980eafddfd8c8",
+    "test-results/validation_40/cases/019_PEGASUS.json": "f68013d4a2e4f7f36cedd54c7831e416c5ae47ee5f5988db927b0309ae073f1a",
+    "test-results/validation_40/cases/035_LSTM.json": "6267874aaeacc8ed2c78a89b921eba8ebde94b9915f5319f583446fe95b71bc5",
+    "test-results/validation_40/cases/035_Transformer.json": "e70a0ae1fdfda3d9ca0a1ed617990f00648b7678b4226922fcaf73e6a75fab20",
+    "test-results/validation_40/cases/035_BART.json": "db114ed4951d1ef7868cae3fd6215888923069f073549f9583fe97c1bf5ba9a1",
+    "test-results/validation_40/cases/035_PEGASUS.json": "01bb6a5507178d811155c4818e3aaea928c7bebca020ec981b313666407c9270",
+    "test-results/validation_40/cases/021_LSTM.json": "7e8d4be7d10177a518d09402d35c0060f7bb1fdab1520b37a3711b6cf21f0628",
+    "test-results/validation_40/cases/021_Transformer.json": "e45b2f83ffac32547b03b4329ca6f3b265eb2007c4014ac95e2dae77eaa8009c",
+    "test-results/validation_40/cases/021_BART.json": "576d5285d895a4b4cb12fff0897199b6b75b336d4da21c3fa4f4fcccab6a33cd",
+    "test-results/validation_40/cases/021_PEGASUS.json": "7f88b25278e7eccc940508c6597c0b77c17dafa5778f164d6e70ea96f7f6a3c5",
+    "test-results/validation_40/cases/030_LSTM.json": "e3a9338ef4b5911a51bcde9848b42d62562425a6322e6ce2f373137e39d24bdd",
+    "test-results/validation_40/cases/030_Transformer.json": "bfde63c992a1da78c3d435ae00dcebda850a87ab9c903dfe9a0a118528a99dab",
+    "test-results/validation_40/cases/030_BART.json": "c951ce58fe30b08487923f9ecfeea6266c34db8ed379b2124b51899267568288",
+    "test-results/validation_40/cases/030_PEGASUS.json": "55c9c865768fad69d2637b5c13874d7c470a2863651d5099d7e000963e1f5472",
+    "test-results/validation_40/cases/039_LSTM.json": "22885560c598dbebf776a91dc5c09111c43c95469bcc4ce087ce081df350d246",
+    "test-results/validation_40/cases/039_Transformer.json": "4f96fd672d3b5f33cbde692247d187d1254ef8339c86836e66f60bf6788c7301",
+    "test-results/validation_40/cases/039_BART.json": "7564fb450c0e24134ca454c90e196174efbd26ecca0818612a1a849d9ad32f77",
+    "test-results/validation_40/cases/039_PEGASUS.json": "a58e1af46d696e42a494b290d5ef7b0d496cd9ad5231b7271947753499c5b14c"
+  },
+  "preprocessing": {
+    "scope": "Portable diagnostic tools only; no app dependencies, PATH or system Java installation changed",
+    "java": ".cache\\factual-audit-tools\\jre\\jdk-17.0.21.1+2-jre\\bin\\java.exe",
+    "java_release": "jdk-17.0.21.1+2",
+    "java_source": "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.21.1%2B2/OpenJDK17U-jre_x64_windows_hotspot_17.0.21.1_2.zip",
+    "java_sha256": "739d8f2fd286dc2736d55cc8c9260980baefd275ad48cda242335bb0f08e0795",
+    "jar": ".cache\\factual-audit-tools\\stanford-corenlp-3.7.0.jar",
+    "jar_source": "https://repo.maven.apache.org/maven2/edu/stanford/nlp/stanford-corenlp/3.7.0/stanford-corenlp-3.7.0.jar",
+    "jar_publisher_sha1": "c5bc610f2014ffbd7686f0d97212b846717412b0",
+    "jar_sha256": "e88d2de6175284b8190946741144030a41115cdfcc347bb6a973d954a6adabb8",
+    "preprocessing_source": "https://github.com/abisee/cnn-dailymail/blob/master/make_datafiles.py",
+    "version_source": "https://github.com/abisee/cnn-dailymail/blob/master/README.md"
+  },
+  "opennmt_document": "OpenNMT_Verified_Setup/legacy/docs/source/Summarization.md",
+  "opennmt_document_sha256": "c35386fc3b43c32d0e7be1a188140fb0c1eff1fb79f5ccbe006cd3b71cfe8bda",
+  "opennmt_recipe": {
+    "beam": 5,
+    "min_length": 35,
+    "max_length": 100,
+    "alpha": 0.9,
+    "beta": 5.0,
+    "length_penalty": "wu",
+    "coverage_penalty": "summary",
+    "stepwise_penalty": true,
+    "block_ngram_repeat": 3,
+    "ignore_when_blocking": [
+      ".",
+      "</t>",
+      "<t>"
+    ],
+    "replace_unk": false,
+    "fast": false
+  },
+  "historical_ambiguity": "Pinned prose says alpha .8; explicit CNN/DM command says .9. Use command .9 matching app. Today's website uses beam 10; pinned checkpoint-era document uses 5. OpenNMT has no embedded HF-style generation config; use documented recipe plus pinned translator max_length default 100.",
+  "hf_control_graph": "checkpoint_defaults -> EOS-unforced -> adaptive maximum only -> adaptive minimum too (app settings). Separate minimum-only branch from EOS-unforced. Each edge changes one decoding control; every edge uses identical checkpoint tokenizer IDs and source chunk.",
+  "opennmt_control_graph": "Per exact app source chunk: recipe 35/100 -> adaptive maximum only -> adaptive minimum too. Also recipe -> adaptive minimum only. Independently swap NLTK approximation for Stanford 3.7 with fixed 35/100 and identical source text. Entire-source prefix tokens: 400 versus 1024, with preprocessing and decoding otherwise fixed; these are explicitly partial diagnostics whenever tokens are omitted.",
+  "multi_chunk_policy": "Row39. Preserve app's original complete source chunks; compare each directly then same source-order exact-sentence dedup merge. Never describe a prefix as the full article. No further generative consolidation if app did none.",
+  "tokenizer_limitations": "Original .story line boundaries and original OpenNMT prepared corpus are unavailable. Stanford3.7 reproduces the documented tokenization/lowercasing on this exact flattened HF source, not every historical caption-period repair or corpus packaging step. Source text is unchanged; target <t> tags are not inserted into source.",
+  "no_tuning": "One predeclared matrix; no repeated parameter search. Separate validation rows42-47 are reserved for any evidence-supported proposed production change. No candidate is promoted merely because one failure disappears.",
+  "template_anomalies": {
+    "rows": [
+      10,
+      14
+    ],
+    "policy": "Retain all original 40 results and existing labeled post-hoc sensitivity; preserve their hashes. Inspect contents without regenerating scores or excluding bad model outputs."
+  }
+}

@@ -1,0 +1,812 @@
+{
+  "fingerprint": "dd071ed3cffed23cb5a566d3db9e7aa8c5b435bd87e130e041a619429c18f4de",
+  "settings": {
+    "paired": true,
+    "replicates": 2000,
+    "seed": 42,
+    "confidence": 0.95
+  },
+  "note": "Pointwise percentile intervals; not multiplicity-adjusted. Failures score zero; pending rows excluded, n explicit.",
+  "intervals": [
+    {
+      "track": "common_input",
+      "first": "LSTM",
+      "second": "Transformer",
+      "metric": "rouge1",
+      "paired_articles": 122,
+      "mean_difference": -0.3014304443848473,
+      "ci_low": -2.3909418458729914,
+      "ci_high": 1.913159687647622
+    },
+    {
+      "track": "common_input",
+      "first": "LSTM",
+      "second": "Transformer",
+      "metric": "rouge2",
+      "paired_articles": 122,
+      "mean_difference": -0.19405580007071566,
+      "ci_low": -1.9564701485427298,
+      "ci_high": 1.6337336469195594
+    },
+    {
+      "track": "common_input",
+      "first": "LSTM",
+      "second": "Transformer",
+      "metric": "rougeL",
+      "paired_articles": 122,
+      "mean_difference": -0.40273355050319287,
+      "ci_low": -2.193305489445803,
+      "ci_high": 1.4024142653357488
+    },
+    {
+      "track": "common_input",
+      "first": "LSTM",
+      "second": "Transformer",
+      "metric": "rougeLsum",
+      "paired_articles": 122,
+      "mean_difference": 0.10994637410655426,
+      "ci_low": -1.873995131666765,
+      "ci_high": 2.127728749030209
+    },
+    {
+      "track": "common_input",
+      "first": "LSTM",
+      "second": "BART",
+      "metric": "rouge1",
+      "paired_articles": 5,
+      "mean_difference": -1.3518246719867257,
+      "ci_low": -8.831034483950829,
+      "ci_high": 5.366492981362755
+    },
+    {
+      "track": "common_input",
+      "first": "LSTM",
+      "second": "BART",
+      "metric": "rouge2",
+      "paired_articles": 5,
+      "mean_difference": 1.2564131758031565,
+      "ci_low": -4.032917044748074,
+      "ci_high": 5.956334020741523
+    },
+    {
+      "track": "common_input",
+      "first": "LSTM",
+      "second": "BART",
+      "metric": "rougeL",
+      "paired_articles": 5,
+      "mean_difference": -4.56749106940111,
+      "ci_low": -9.627927131169441,
+      "ci_high": 0.9837527726355496
+    },
+    {
+      "track": "common_input",
+      "first": "LSTM",
+      "second": "BART",
+      "metric": "rougeLsum",
+      "paired_articles": 5,
+      "mean_difference": -1.9646386670521796,
+      "ci_low": -9.971754657380217,
+      "ci_high": 4.6788550967926685
+    },
+    {
+      "track": "common_input",
+      "first": "LSTM",
+      "second": "PEGASUS",
+      "metric": "rouge1",
+      "paired_articles": 5,
+      "mean_difference": 0.6075123810180187,
+      "ci_low": -6.979359114705484,
+      "ci_high": 9.526185018613496
+    },
+    {
+      "track": "common_input",
+      "first": "LSTM",
+      "second": "PEGASUS",
+      "metric": "rouge2",
+      "paired_articles": 5,
+      "mean_difference": -0.9663031997327884,
+      "ci_low": -10.324886859255077,
+      "ci_high": 8.99447862078358
+    },
+    {
+      "track": "common_input",
+      "first": "LSTM",
+      "second": "PEGASUS",
+      "metric": "rougeL",
+      "paired_articles": 5,
+      "mean_difference": -6.6889694433673315,
+      "ci_low": -13.87972462124876,
+      "ci_high": -0.8251055915533684
+    },
+    {
+      "track": "common_input",
+      "first": "LSTM",
+      "second": "PEGASUS",
+      "metric": "rougeLsum",
+      "paired_articles": 5,
+      "mean_difference": 0.686198574144754,
+      "ci_low": -6.313558793321928,
+      "ci_high": 10.236944867839957
+    },
+    {
+      "track": "common_input",
+      "first": "LSTM",
+      "second": "Lead-3",
+      "metric": "rouge1",
+      "paired_articles": 5,
+      "mean_difference": 3.897169863966307,
+      "ci_low": 2.0627138174606587,
+      "ci_high": 5.462128664174705
+    },
+    {
+      "track": "common_input",
+      "first": "LSTM",
+      "second": "Lead-3",
+      "metric": "rouge2",
+      "paired_articles": 5,
+      "mean_difference": 3.45032955465755,
+      "ci_low": 1.8218635596808987,
+      "ci_high": 5.505426196104885
+    },
+    {
+      "track": "common_input",
+      "first": "LSTM",
+      "second": "Lead-3",
+      "metric": "rougeL",
+      "paired_articles": 5,
+      "mean_difference": 1.129177492305566,
+      "ci_low": -6.878312641726292,
+      "ci_high": 5.480324450919667
+    },
+    {
+      "track": "common_input",
+      "first": "LSTM",
+      "second": "Lead-3",
+      "metric": "rougeLsum",
+      "paired_articles": 5,
+      "mean_difference": 5.890592811236558,
+      "ci_low": 1.8349810835008915,
+      "ci_high": 9.93246486965251
+    },
+    {
+      "track": "common_input",
+      "first": "Transformer",
+      "second": "BART",
+      "metric": "rouge1",
+      "paired_articles": 5,
+      "mean_difference": -1.1280409839567482,
+      "ci_low": -7.775390521021589,
+      "ci_high": 5.0300995610047945
+    },
+    {
+      "track": "common_input",
+      "first": "Transformer",
+      "second": "BART",
+      "metric": "rouge2",
+      "paired_articles": 5,
+      "mean_difference": 0.5764933802520791,
+      "ci_low": -4.191189608649961,
+      "ci_high": 5.111835261129655
+    },
+    {
+      "track": "common_input",
+      "first": "Transformer",
+      "second": "BART",
+      "metric": "rougeL",
+      "paired_articles": 5,
+      "mean_difference": -0.9025926366741939,
+      "ci_low": -5.425510482440787,
+      "ci_high": 3.8004460227663097
+    },
+    {
+      "track": "common_input",
+      "first": "Transformer",
+      "second": "BART",
+      "metric": "rougeLsum",
+      "paired_articles": 5,
+      "mean_difference": -1.4286322989526556,
+      "ci_low": -8.311649084464623,
+      "ci_high": 4.802089197157294
+    },
+    {
+      "track": "common_input",
+      "first": "Transformer",
+      "second": "PEGASUS",
+      "metric": "rouge1",
+      "paired_articles": 5,
+      "mean_difference": 0.8312960690479961,
+      "ci_low": -8.549664474854145,
+      "ci_high": 13.834285268952687
+    },
+    {
+      "track": "common_input",
+      "first": "Transformer",
+      "second": "PEGASUS",
+      "metric": "rouge2",
+      "paired_articles": 5,
+      "mean_difference": -1.6462229952838658,
+      "ci_low": -11.500835434298976,
+      "ci_high": 11.589992123539888
+    },
+    {
+      "track": "common_input",
+      "first": "Transformer",
+      "second": "PEGASUS",
+      "metric": "rougeL",
+      "paired_articles": 5,
+      "mean_difference": -3.024071010640415,
+      "ci_low": -13.038839859851773,
+      "ci_high": 8.996746584345718
+    },
+    {
+      "track": "common_input",
+      "first": "Transformer",
+      "second": "PEGASUS",
+      "metric": "rougeLsum",
+      "paired_articles": 5,
+      "mean_difference": 1.222204942244278,
+      "ci_low": -8.574949826440141,
+      "ci_high": 15.32523256604006
+    },
+    {
+      "track": "common_input",
+      "first": "Transformer",
+      "second": "Lead-3",
+      "metric": "rouge1",
+      "paired_articles": 5,
+      "mean_difference": 4.120953551996284,
+      "ci_low": -1.1307318111441844,
+      "ci_high": 8.641272444534383
+    },
+    {
+      "track": "common_input",
+      "first": "Transformer",
+      "second": "Lead-3",
+      "metric": "rouge2",
+      "paired_articles": 5,
+      "mean_difference": 2.7704097591064727,
+      "ci_low": -1.2513915420591526,
+      "ci_high": 6.2912182437906665
+    },
+    {
+      "track": "common_input",
+      "first": "Transformer",
+      "second": "Lead-3",
+      "metric": "rougeL",
+      "paired_articles": 5,
+      "mean_difference": 4.794075925032482,
+      "ci_low": 3.3113553113553102,
+      "ci_high": 6.127220624427856
+    },
+    {
+      "track": "common_input",
+      "first": "Transformer",
+      "second": "Lead-3",
+      "metric": "rougeLsum",
+      "paired_articles": 5,
+      "mean_difference": 6.426599179336082,
+      "ci_low": 3.0820160231924922,
+      "ci_high": 10.212971690996646
+    },
+    {
+      "track": "common_input",
+      "first": "BART",
+      "second": "PEGASUS",
+      "metric": "rouge1",
+      "paired_articles": 5,
+      "mean_difference": 1.9593370530047445,
+      "ci_low": -8.093221661385815,
+      "ci_high": 12.011895767395306
+    },
+    {
+      "track": "common_input",
+      "first": "BART",
+      "second": "PEGASUS",
+      "metric": "rouge2",
+      "paired_articles": 5,
+      "mean_difference": -2.2227163755359456,
+      "ci_low": -12.19475952978468,
+      "ci_high": 7.9093793095811975
+    },
+    {
+      "track": "common_input",
+      "first": "BART",
+      "second": "PEGASUS",
+      "metric": "rougeL",
+      "paired_articles": 5,
+      "mean_difference": -2.121478373966221,
+      "ci_low": -9.764042746729004,
+      "ci_high": 6.495862827725162
+    },
+    {
+      "track": "common_input",
+      "first": "BART",
+      "second": "PEGASUS",
+      "metric": "rougeLsum",
+      "paired_articles": 5,
+      "mean_difference": 2.650837241196934,
+      "ci_low": -8.27411845957771,
+      "ci_high": 13.74237636482052
+    },
+    {
+      "track": "common_input",
+      "first": "BART",
+      "second": "Lead-3",
+      "metric": "rouge1",
+      "paired_articles": 5,
+      "mean_difference": 5.248994535953033,
+      "ci_low": -0.6112854015811096,
+      "ci_high": 12.26661492558941
+    },
+    {
+      "track": "common_input",
+      "first": "BART",
+      "second": "Lead-3",
+      "metric": "rouge2",
+      "paired_articles": 5,
+      "mean_difference": 2.193916378854394,
+      "ci_low": -2.368548364621848,
+      "ci_high": 7.302246396581603
+    },
+    {
+      "track": "common_input",
+      "first": "BART",
+      "second": "Lead-3",
+      "metric": "rougeL",
+      "paired_articles": 5,
+      "mean_difference": 5.696668561706676,
+      "ci_low": 0.46553406603171227,
+      "ci_high": 11.290580779985586
+    },
+    {
+      "track": "common_input",
+      "first": "BART",
+      "second": "Lead-3",
+      "metric": "rougeLsum",
+      "paired_articles": 5,
+      "mean_difference": 7.855231478288738,
+      "ci_low": 2.296302499275113,
+      "ci_high": 13.590737819960108
+    },
+    {
+      "track": "common_input",
+      "first": "PEGASUS",
+      "second": "Lead-3",
+      "metric": "rouge1",
+      "paired_articles": 5,
+      "mean_difference": 3.289657482948288,
+      "ci_low": -6.144967362916522,
+      "ci_high": 11.50453199408659
+    },
+    {
+      "track": "common_input",
+      "first": "PEGASUS",
+      "second": "Lead-3",
+      "metric": "rouge2",
+      "paired_articles": 5,
+      "mean_difference": 4.416632754390339,
+      "ci_low": -7.353306604331874,
+      "ci_high": 14.88737974435018
+    },
+    {
+      "track": "common_input",
+      "first": "PEGASUS",
+      "second": "Lead-3",
+      "metric": "rougeL",
+      "paired_articles": 5,
+      "mean_difference": 7.818146935672897,
+      "ci_low": -4.295546558704457,
+      "ci_high": 18.017690626283457
+    },
+    {
+      "track": "common_input",
+      "first": "PEGASUS",
+      "second": "Lead-3",
+      "metric": "rougeLsum",
+      "paired_articles": 5,
+      "mean_difference": 5.204394237091805,
+      "ci_low": -6.6963056342323055,
+      "ci_high": 15.259288865122533
+    },
+    {
+      "track": "full_article",
+      "first": "LSTM",
+      "second": "Transformer",
+      "metric": "rouge1",
+      "paired_articles": 122,
+      "mean_difference": 0.9700068154663742,
+      "ci_low": -1.0069676505452323,
+      "ci_high": 2.7427343836783478
+    },
+    {
+      "track": "full_article",
+      "first": "LSTM",
+      "second": "Transformer",
+      "metric": "rouge2",
+      "paired_articles": 122,
+      "mean_difference": 1.380077763919982,
+      "ci_low": -0.28463224130481724,
+      "ci_high": 3.0323535627728733
+    },
+    {
+      "track": "full_article",
+      "first": "LSTM",
+      "second": "Transformer",
+      "metric": "rougeL",
+      "paired_articles": 122,
+      "mean_difference": 1.0589954970235347,
+      "ci_low": -0.5842732028304584,
+      "ci_high": 2.668705751321769
+    },
+    {
+      "track": "full_article",
+      "first": "LSTM",
+      "second": "Transformer",
+      "metric": "rougeLsum",
+      "paired_articles": 122,
+      "mean_difference": 0.9847663003409697,
+      "ci_low": -0.8365868267500001,
+      "ci_high": 2.6384264165311024
+    },
+    {
+      "track": "full_article",
+      "first": "LSTM",
+      "second": "BART",
+      "metric": "rouge1",
+      "paired_articles": 5,
+      "mean_difference": 1.6359792073024493,
+      "ci_low": -1.9348094656158081,
+      "ci_high": 4.867055132227705
+    },
+    {
+      "track": "full_article",
+      "first": "LSTM",
+      "second": "BART",
+      "metric": "rouge2",
+      "paired_articles": 5,
+      "mean_difference": 1.905852097450617,
+      "ci_low": 0.7697505791552974,
+      "ci_high": 3.1664568694970354
+    },
+    {
+      "track": "full_article",
+      "first": "LSTM",
+      "second": "BART",
+      "metric": "rougeL",
+      "paired_articles": 5,
+      "mean_difference": -2.5473622680963954,
+      "ci_low": -8.997516722456,
+      "ci_high": 3.902792186263207
+    },
+    {
+      "track": "full_article",
+      "first": "LSTM",
+      "second": "BART",
+      "metric": "rougeLsum",
+      "paired_articles": 5,
+      "mean_difference": 1.7511706896077217,
+      "ci_low": -1.6391874204817016,
+      "ci_high": 4.3921518619114055
+    },
+    {
+      "track": "full_article",
+      "first": "LSTM",
+      "second": "PEGASUS",
+      "metric": "rouge1",
+      "paired_articles": 5,
+      "mean_difference": 2.5851485404133667,
+      "ci_low": -7.358132876688683,
+      "ci_high": 12.528429957515417
+    },
+    {
+      "track": "full_article",
+      "first": "LSTM",
+      "second": "PEGASUS",
+      "metric": "rouge2",
+      "paired_articles": 5,
+      "mean_difference": 0.6998340015120078,
+      "ci_low": -9.878635387226392,
+      "ci_high": 10.296616441420536
+    },
+    {
+      "track": "full_article",
+      "first": "LSTM",
+      "second": "PEGASUS",
+      "metric": "rougeL",
+      "paired_articles": 5,
+      "mean_difference": -4.967608698419747,
+      "ci_low": -13.793388885854423,
+      "ci_high": 3.070869926342193
+    },
+    {
+      "track": "full_article",
+      "first": "LSTM",
+      "second": "PEGASUS",
+      "metric": "rougeLsum",
+      "paired_articles": 5,
+      "mean_difference": 3.1985041711639672,
+      "ci_low": -5.532529103401417,
+      "ci_high": 11.935907835935078
+    },
+    {
+      "track": "full_article",
+      "first": "LSTM",
+      "second": "Lead-3",
+      "metric": "rouge1",
+      "paired_articles": 5,
+      "mean_difference": 2.907126439853074,
+      "ci_low": -0.33354591379742404,
+      "ci_high": 5.128051290762019
+    },
+    {
+      "track": "full_article",
+      "first": "LSTM",
+      "second": "Lead-3",
+      "metric": "rouge2",
+      "paired_articles": 5,
+      "mean_difference": 2.846745577579596,
+      "ci_low": -0.03993080600223529,
+      "ci_high": 5.499042880353777
+    },
+    {
+      "track": "full_article",
+      "first": "LSTM",
+      "second": "Lead-3",
+      "metric": "rougeL",
+      "paired_articles": 5,
+      "mean_difference": 0.1687797564216968,
+      "ci_low": -8.008484531715307,
+      "ci_high": 6.3648879804585015
+    },
+    {
+      "track": "full_article",
+      "first": "LSTM",
+      "second": "Lead-3",
+      "metric": "rougeLsum",
+      "paired_articles": 5,
+      "mean_difference": 5.152748597713801,
+      "ci_low": 1.0356292163958087,
+      "ci_high": 9.26986797903179
+    },
+    {
+      "track": "full_article",
+      "first": "Transformer",
+      "second": "BART",
+      "metric": "rouge1",
+      "paired_articles": 5,
+      "mean_difference": 2.4508885705279133,
+      "ci_low": -1.413394260311951,
+      "ci_high": 6.348372295802055
+    },
+    {
+      "track": "full_article",
+      "first": "Transformer",
+      "second": "BART",
+      "metric": "rouge2",
+      "paired_articles": 5,
+      "mean_difference": 0.8840870721062432,
+      "ci_low": -3.3044281436939755,
+      "ci_high": 5.072602287906463
+    },
+    {
+      "track": "full_article",
+      "first": "Transformer",
+      "second": "BART",
+      "metric": "rougeL",
+      "paired_articles": 5,
+      "mean_difference": 1.9368416594221494,
+      "ci_low": -3.374190688503525,
+      "ci_high": 6.511560920148052
+    },
+    {
+      "track": "full_article",
+      "first": "Transformer",
+      "second": "BART",
+      "metric": "rougeLsum",
+      "paired_articles": 5,
+      "mean_difference": 3.104558400767132,
+      "ci_low": -0.48061173819917186,
+      "ci_high": 6.566942020603344
+    },
+    {
+      "track": "full_article",
+      "first": "Transformer",
+      "second": "PEGASUS",
+      "metric": "rouge1",
+      "paired_articles": 5,
+      "mean_difference": 3.4000579036388308,
+      "ci_low": -4.800549085401746,
+      "ci_high": 15.060373783149748
+    },
+    {
+      "track": "full_article",
+      "first": "Transformer",
+      "second": "PEGASUS",
+      "metric": "rouge2",
+      "paired_articles": 5,
+      "mean_difference": -0.32193102383236544,
+      "ci_low": -10.859431019918954,
+      "ci_high": 13.347690426687725
+    },
+    {
+      "track": "full_article",
+      "first": "Transformer",
+      "second": "PEGASUS",
+      "metric": "rougeL",
+      "paired_articles": 5,
+      "mean_difference": -0.4834047709012019,
+      "ci_low": -10.842519119506113,
+      "ci_high": 11.130119640154867
+    },
+    {
+      "track": "full_article",
+      "first": "Transformer",
+      "second": "PEGASUS",
+      "metric": "rougeLsum",
+      "paired_articles": 5,
+      "mean_difference": 4.551891882323377,
+      "ci_low": -4.028347121204634,
+      "ci_high": 16.643983671927515
+    },
+    {
+      "track": "full_article",
+      "first": "Transformer",
+      "second": "Lead-3",
+      "metric": "rouge1",
+      "paired_articles": 5,
+      "mean_difference": 3.722035803078538,
+      "ci_low": -0.9358935182464606,
+      "ci_high": 8.059721071115533
+    },
+    {
+      "track": "full_article",
+      "first": "Transformer",
+      "second": "Lead-3",
+      "metric": "rouge2",
+      "paired_articles": 5,
+      "mean_difference": 1.8249805522352225,
+      "ci_low": -2.363729930770364,
+      "ci_high": 5.7010761073927085
+    },
+    {
+      "track": "full_article",
+      "first": "Transformer",
+      "second": "Lead-3",
+      "metric": "rougeL",
+      "paired_articles": 5,
+      "mean_difference": 4.652983683940241,
+      "ci_low": 3.553430882842649,
+      "ci_high": 5.752536485037835
+    },
+    {
+      "track": "full_article",
+      "first": "Transformer",
+      "second": "Lead-3",
+      "metric": "rougeLsum",
+      "paired_articles": 5,
+      "mean_difference": 6.506136308873209,
+      "ci_low": 1.6027670987423228,
+      "ci_high": 10.649387463684798
+    },
+    {
+      "track": "full_article",
+      "first": "BART",
+      "second": "PEGASUS",
+      "metric": "rouge1",
+      "paired_articles": 5,
+      "mean_difference": 0.9491693331109176,
+      "ci_low": -7.021266150599319,
+      "ci_high": 10.349538291409024
+    },
+    {
+      "track": "full_article",
+      "first": "BART",
+      "second": "PEGASUS",
+      "metric": "rouge2",
+      "paired_articles": 5,
+      "mean_difference": -1.2060180959386089,
+      "ci_low": -11.242968228804259,
+      "ci_high": 8.684886465102597
+    },
+    {
+      "track": "full_article",
+      "first": "BART",
+      "second": "PEGASUS",
+      "metric": "rougeL",
+      "paired_articles": 5,
+      "mean_difference": -2.420246430323351,
+      "ci_low": -9.333043860037064,
+      "ci_high": 5.258793761274896
+    },
+    {
+      "track": "full_article",
+      "first": "BART",
+      "second": "PEGASUS",
+      "metric": "rougeLsum",
+      "paired_articles": 5,
+      "mean_difference": 1.4473334815562453,
+      "ci_low": -5.292621572575656,
+      "ci_high": 10.591058556917307
+    },
+    {
+      "track": "full_article",
+      "first": "BART",
+      "second": "Lead-3",
+      "metric": "rouge1",
+      "paired_articles": 5,
+      "mean_difference": 1.2711472325506243,
+      "ci_low": -2.547720357884765,
+      "ci_high": 5.849342874428952
+    },
+    {
+      "track": "full_article",
+      "first": "BART",
+      "second": "Lead-3",
+      "metric": "rouge2",
+      "paired_articles": 5,
+      "mean_difference": 0.9408934801289796,
+      "ci_low": -0.8900309401823175,
+      "ci_high": 3.594743313578473
+    },
+    {
+      "track": "full_article",
+      "first": "BART",
+      "second": "Lead-3",
+      "metric": "rougeL",
+      "paired_articles": 5,
+      "mean_difference": 2.7161420245180925,
+      "ci_low": -1.7045938844019173,
+      "ci_high": 9.120362413224031
+    },
+    {
+      "track": "full_article",
+      "first": "BART",
+      "second": "Lead-3",
+      "metric": "rougeLsum",
+      "paired_articles": 5,
+      "mean_difference": 3.4015779081060784,
+      "ci_low": -1.3452967944990704,
+      "ci_high": 9.783427604852356
+    },
+    {
+      "track": "full_article",
+      "first": "PEGASUS",
+      "second": "Lead-3",
+      "metric": "rouge1",
+      "paired_articles": 5,
+      "mean_difference": 0.3219778994397068,
+      "ci_low": -8.407785635713468,
+      "ci_high": 9.391604785354577
+    },
+    {
+      "track": "full_article",
+      "first": "PEGASUS",
+      "second": "Lead-3",
+      "metric": "rouge2",
+      "paired_articles": 5,
+      "mean_difference": 2.1469115760675885,
+      "ci_low": -8.946610192132614,
+      "ci_high": 13.400149236310279
+    },
+    {
+      "track": "full_article",
+      "first": "PEGASUS",
+      "second": "Lead-3",
+      "metric": "rougeL",
+      "paired_articles": 5,
+      "mean_difference": 5.136388454841443,
+      "ci_low": -6.18274432825517,
+      "ci_high": 16.126634377605605
+    },
+    {
+      "track": "full_article",
+      "first": "PEGASUS",
+      "second": "Lead-3",
+      "metric": "rougeLsum",
+      "paired_articles": 5,
+      "mean_difference": 1.9542444265498333,
+      "ci_low": -9.094094653078326,
+      "ci_high": 12.35143520487489
+    }
+  ]
+}

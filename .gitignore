@@ -28,6 +28,8 @@ __pycache__/
 *.py[cod]
 gradio_cached_examples/
 test-results/
+# Bulk export from the interrupted larger study; preserve locally only.
+reports/final_test_1000/predictions_and_scores.csv
 OpenNMT_Verified_Setup/*_output.txt
 
 # Downloaded dependencies, dataset corpora, and local execution artifacts
@@ -73,6 +75,10 @@ temp/
 kaggle.json
 credentials/
 secrets/
+.aws/
+.azure/
+.ssh/
+.config/gcloud/
 *credentials*.json
 *service-account*.json
 *.pem

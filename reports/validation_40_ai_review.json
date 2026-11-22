@@ -1,0 +1,249 @@
+{
+  "2": {
+    "LSTM": "Main collapse and reported recovery covered; venue/score supported. Adds two-goal background but omits conscious departure and hospital precaution. No specific contradiction identified in this reading.",
+    "Transformer": "Main collapse/recovery covered; conscious departure and hospital precaution match source. Recovery is attributed to Gomis. No specific contradiction identified in this reading.",
+    "BART": "Main collapse/recovery covered; Monk's 'fine' attribution is supported. Omits conscious departure and oxygen-mask detail in reference. No specific contradiction identified in this reading.",
+    "PEGASUS": "Main collapse/recovery and Monk's low-pressure explanation covered. Selects an older former-president quote without its 2009 date; that context loss needs review, not an automatic error verdict."
+  },
+  "3": {
+    "LSTM": "Club-throw event covered but secondary score/results dominate. Source itself names 'Ryan Holmes'; reproducing that source text is not independently verified here. No external golf knowledge used.",
+    "Transformer": "Entity/action error: 'four-time major winner Adam Sandler plays' turns a fictional-film analogy into a real golfing participant. Source's major winner is McIlroy; Sandler is the actor analogy.",
+    "BART": "Main event covered: McIlroy's ball enters the lake and he then throws the club. Score and tournament position match source. No specific contradiction identified in this reading.",
+    "PEGASUS": "Main subject/frustration covered, but 'hits 3-iron into lake' ambiguously conflates the errant ball shot with deliberately throwing the club. Quote and eight-shot gap are source-supported."
+  },
+  "4": {
+    "LSTM": "Partial main event: identifies missing child's name/clothes and possible locations, but never explicitly says he is missing or since Wednesday. Preserves 'could/may'; no confirmed-location claim added.",
+    "Transformer": "Partial main event: clues/possible location retained, explicit disappearance/date omitted. 'May have purchased' remains uncertain. Stand-alone context is weak rather than clearly contradictory.",
+    "BART": "Main disappearance, Wednesday date, clothing and volunteer search covered. Possible Radnor-Wayne location remains 'could'. No specific contradiction identified in this reading.",
+    "PEGASUS": "Main disappearance/date and clothing covered. Omits volunteers/search context from reference; no specific relationship or attribution error identified in this reading."
+  },
+  "5": {
+    "LSTM": "Actor/time errors: source narrator votes Schilling Father of the Year, while Feb 25 dates Schilling's tweet. 'Gabby ... sent a tweet congratulating his daughter' wrongly assigns the father's action to his daughter.",
+    "Transformer": "Main topic partial; 'Michael <unk>:' is unsupported speaker attribution plus an unresolved output token. 'Fired off a series of Twitter trolls' corrupts the source metaphor rather than explaining his response.",
+    "BART": "Main response to abusive tweets covered with deletion/blog evidence. Omits suspensions/firing/accountability thesis of opinion-piece reference and adopts source's 'mowed down' rhetoric without explicit narrator attribution.",
+    "PEGASUS": "Unsupported author attribution: inserts Sally Kohn twice, whereas original highlights identify Ruben Navarrette and the source never names Kohn. Captures supportive opinion but misattributes it."
+  },
+  "6": {
+    "LSTM": "Partial main event: ages/initials/fine preserved, but 'the act' is unexplained and arrest/American identity omitted. La Stampa and 'may' fine qualifier retained.",
+    "Transformer": "Nationality error: lead says 'two Australians' although current arrested women are American; Australians belong to an older background incident. Main location/action otherwise identifiable; uncertainty weakened.",
+    "BART": "Main American-women/Colosseum incident and initials covered. Source's reportedly arrested wording becomes an unqualified arrest assertion; review loss of attribution/certainty. Other landmark incidents omitted.",
+    "PEGASUS": "Main incident covered and 'reportedly'/'may face' qualifiers retained. Initials/ages omitted selectively; no specific contradiction identified in this reading."
+  },
+  "7": {
+    "LSTM": "Main US-tour move covered and ticket-sale time supported; omits Louisville and the first-show date, weakening the event location. Leading 'tour,' is a fragment, not a new factual claim.",
+    "Transformer": "Date relationship error: says the Louisville show is March 9; source schedules the show March 14 and ticket sales March 9. Charity donation is supported.",
+    "BART": "Main first-US-tour/Louisville show covered. Correctly attaches March 9 to ticket sales; omits show date rather than changing it. No specific contradiction identified.",
+    "PEGASUS": "Main tour/location and ticket-sale timing covered; March 9 correctly refers to sales, not show. No specific contradiction identified in this reading."
+  },
+  "8": {
+    "LSTM": "Partial attack account; lists Belgian and three Malian victims but omits French victim/total five, venue and location. 'The group' has no named antecedent. Does not explicitly claim only four died.",
+    "Transformer": "Claim-of-responsibility event and Bamako covered. Omits the French victim and total five, leaving a partial casualty account. Keeps claim language rather than confirming the perpetrator.",
+    "BART": "Responsibility claim and authority attribution covered, but misses the bar shooting's five deaths and location in the summary itself. Background warnings take space; no specific false actor identified.",
+    "PEGASUS": "Main casualty composition and claimed responsibility covered. Counts match source; claim remains a claim. Omits venue, wounds and reporting agency, so not exhaustive."
+  },
+  "9": {
+    "LSTM": "Charge partly covered but Evans omitted and quoted rule ends as an incomplete phrase. 'Allegedly' retained. Omits denial and conditional ban; EOS does not make the quotation complete.",
+    "Transformer": "Attribution/entity errors: source calls Paul Scholes an ex-Manchester United player, not Liverpool; 'disgusting' quote is Hamann's. Conditional ban retained, but Cisse-only wording omits Evans.",
+    "BART": "Main charge/allegation, video evidence and response deadline covered. 'Allegedly' retained; denial and conditional punishment omitted. No specific contradiction identified in this reading.",
+    "PEGASUS": "Both charged players, response deadline and conditional six-game ban covered. Omits what conduct prompted the charge and Evans's denial; no clear false conviction asserted."
+  },
+  "10": {
+    "LSTM": "Template-page summary strongly matches original highlights but ignores episode topics. 'Use the transcript ... reading comprehension and vocabulary' is in reference, not explicitly in supplied article; high overlap is not independent faithfulness evidence.",
+    "Transformer": "Template summary closely matches reference, but ends 'CNN student' instead of complete program title. Adds the same reference-only reading-comprehension instruction; review template leakage/generalization, not a proven memorization claim.",
+    "BART": "Template metadata and age-13 rule align with source/reference. Adds reading-comprehension instruction present only in reference. This boilerplate case is weak evidence about main-event/news summarization.",
+    "PEGASUS": "Almost verbatim template reference including a reading-comprehension instruction absent from visible source. Main page purpose plausible, but overlap here cannot certify source-grounded content or absence of memorization."
+  },
+  "11": {
+    "LSTM": "Partial main event: VAOS affiliation retained, but nine abducted workers/oil-field attack omitted. Unclosed 'ISIS militias' sentence and 'one of its citizens' lack clear referent; not a clean factual account.",
+    "Transformer": "Main nine-worker abduction covered with 'believed' uncertainty and government attribution. Adds source-supported Egypt background; countries/oil-field particulars omitted.",
+    "BART": "Main nine-worker/oil-field abduction and VAOS relation covered; 'believed' and government's blame attribution preserved. Does not resolve source's uncertainty over actual kidnappers.",
+    "PEGASUS": "Partial event: reports government blame and employer but omits nine, oil field and clear abduction context. Does not add a confirmed-perpetrator assertion beyond attributed blame."
+  },
+  "12": {
+    "LSTM": "Actor error: says principal Padgett 'showed up and told him' to hold a bucket; source assigns the instruction to a student. Omits payoff of students filling bucket with thanks, so main event is lost.",
+    "Transformer": "Attribution error: 'first year experience in America' is a student's note, not the principal's statement. Omits the gratitude-prank outcome; juxtaposed bucket quote is insufficient main-event coverage.",
+    "BART": "Main surprise/gratitude outcome covered: students put praise/thanks into principal's bucket. Principal's initial reluctance/quote supported. Omits organizer Emily Jones but no specific contradiction identified.",
+    "PEGASUS": "Accurately describes setup and principal's reluctance, but omits the students' notes of thanks—the main payoff. Main-event coverage partial despite supported quoted text."
+  },
+  "13": {
+    "LSTM": "Main missing-artist event/location and search-through-Friday covered. Omits snorkeling/recovery-mission detail but no specific contradiction identified in this reading.",
+    "Transformer": "Missing-person event itself omitted; career titles and snorkeling background do not state what happened. Quote/list punctuation is weak; no clearly invented title identified.",
+    "BART": "Main disappearance and search timing covered; adds supported career list. Repeats source's malformed 'known and for' and lacks final punctuation; EOS flag alone does not establish polished completion.",
+    "PEGASUS": "Main disappearance/search timing covered with supported career list. Copies malformed source wording and lacks final punctuation; omits recovery-mission status and adds no verified recovery."
+  },
+  "14": {
+    "LSTM": "Template-page purpose/roll-call age rule largely covered; changes 'this page' to 'this week'. Reading-comprehension instruction appears in reference, not visible source; episode events omitted.",
+    "Transformer": "Template metadata closely follows the shared reference; episode events absent. Adds reference-only reading-comprehension sentence. High overlap on repeated boilerplate is not proof of source-grounded news understanding.",
+    "BART": "Near-verbatim repeated reference; age rule matches source. Reading-comprehension instruction absent from source and episode specifics omitted, so review template/reference bias rather than treating ROUGE as factuality.",
+    "PEGASUS": "Near-verbatim reference identical in substance to row 10 despite different episode topics. Supported page purpose, but reference-only instruction/template overlap needs human review; not proof of training leakage."
+  },
+  "15": {
+    "LSTM": "Malformed casting lead ('cast in a lead role and Jeff Goldblum') conflates coordinated actors and never clearly names the sequel. Smith background dominates; main casting relationships are not conveyed reliably.",
+    "Transformer": "Release date/director supported, but main new casting actors/roles omitted. Final 'film has been nearly 20 years' is grammatically broken; EOS is not semantic completion.",
+    "BART": "Main casting relationships accurately covered: Usher as Smith character's son, Hemsworth lead, Goldblum returning Levinson; release date supported. No specific contradiction identified.",
+    "PEGASUS": "Usher casting, son-of-Smith-character relationship and release date supported. Omits Goldblum/Hemsworth highlighted in reference; main event still substantially present."
+  },
+  "16": {
+    "LSTM": "Misses Saturday discharge and quotes Friday's 'in bed' comment without its date. This chronology omission may falsely suggest continued hospitalization; quote itself is in source.",
+    "Transformer": "Hospitalization/treatment background supported, but discharge—the main event—is omitted. Condition unspecified; no direct contrary discharge claim, just weak salience.",
+    "BART": "Main discharge/flu treatment covered via hospital spokeswoman with supported age/checkup background. Does not confuse Carter with the spokeswoman. No specific contradiction identified.",
+    "PEGASUS": "Uses only pronoun 'he', never naming Mondale, and juxtaposes discharge with an earlier in-bed quote without dates. Quotes/attribution exist in source but identity and chronology are unclear."
+  },
+  "17": {
+    "LSTM": "Main snow-selling business and six-pound quantity covered; 133-order claim remains attributed to website/accounts. Omits $89 price in reference. No specific contradiction identified.",
+    "Transformer": "Main business/quantity and non-Northeast shipping restriction covered. Omits $89 price and online-order detail. Restriction matches source; no specific contradiction identified.",
+    "BART": "Business, quantity and attributed order count covered; snow-record background is supported. Omits $89 price despite reference emphasis; no specific contradiction identified.",
+    "PEGASUS": "Main transaction precisely covered: $89 for six pounds; business quotation attributed to website. Omits name and shipping exclusions but no specific contradiction identified."
+  },
+  "18": {
+    "LSTM": "Farah's flight/birth and women's NEF program supported; main advocacy/skill-building/men's-role argument in reference is only partial. Does not identify opinion author; no specific added event identified.",
+    "Transformer": "Unsupported speaker/content: invents a psychiatrist and 'malnutrition' statements absent from source, with repetitive 'malnutrition, poverty and malnutrition'. Misses refugee-women empowerment argument.",
+    "BART": "Background statistics present, but 'nearly 6 million ... have no right to work' generalizes a global figure into a universal legal-status claim not established in source. Omits program/advocacy and author attribution.",
+    "PEGASUS": "Captures International Women's Day/refugee advocacy but omits job skills, examples and work with male relatives. Normative 'must advocate' becomes unattributed summary voice; no invented event identified."
+  },
+  "19": {
+    "LSTM": "Main Real Madrid loss and conditional Barcelona opportunity covered. Score/teams correct; omits scorer and Bayern side-story in reference. No specific contradiction identified.",
+    "Transformer": "Multiple concrete errors: reverses winner ('Real Madrid beat Athletic Bilbao'), assigns eighth/Ligue 1 to Real, and makes Gareth Bale header scorer instead of Aritz Aduriz. Source says Real lost in La Liga.",
+    "BART": "Main loss, Aduriz goal, conditional Barcelona lead and Bayern win all match source. No specific contradiction identified in this reading.",
+    "PEGASUS": "Main Madrid loss/scorer and conditional Barcelona opportunity match source. Bayern side-story omitted; no specific contradiction identified."
+  },
+  "20": {
+    "LSTM": "Partial stabbing event: three female victims retained, two male victims/arrest/total five omitted. 'Unclear if they are related' now has ambiguous victim-only antecedent instead of accused-versus-victims context.",
+    "Transformer": "Victim count/ages and proximity supported, but main arrest/location/accused age omitted. No specific contradiction identified; weak stand-alone context.",
+    "BART": "Main arrest, accusation, five victims/ages and residence proximity covered; police attribution retained. 'Admitted' remains reported source content, not independent verification.",
+    "PEGASUS": "Main arrest/accusation/five victims and ages covered with police attribution. Omits same-surname uncertainty rather than asserting a relationship; no specific contradiction identified."
+  },
+  "21": {
+    "LSTM": "Main car-bomb event, seven killed and 23 injured all omitted; only time, injured children and unknown attacker details remain. Uncertainty preserved, but summary is not a stand-alone account.",
+    "Transformer": "Main car-bomb event/casualties omitted; truncates place name to 'Gah'. Deputy-governor attribution present but too little event context.",
+    "BART": "Main car-bomb event and casualty numbers omitted despite their being in the lead. Location/time and unavailable identity/motive match source; this is a clear salience failure, not detected by EOS/coverage checks.",
+    "PEGASUS": "Main car bomb and casualty counts omitted; location/civilian majority supported and attributed. Summary lacks what happened, so main-event coverage fails despite fluent text."
+  },
+  "22": {
+    "LSTM": "Main new court-ordered release is omitted; nonattendance and old death toll dominate. Source/ref support background, but reference itself omits Friday's release, illustrating overlap versus event-salience mismatch.",
+    "Transformer": "Main release/detention ruling omitted; reproduces background similar to LSTM. No specific invented fact identified, but it is not an account of the lead event.",
+    "BART": "Main court-ordered release explicitly covered with correctly named Lakhvi. Background attack toll/date supported. Omits illegal-detention reason and alleged-mastermind descriptor rather than asserting guilt.",
+    "PEGASUS": "Main release/ruling omitted; only court nonattendance and historic attack toll remain. Background supported, but weak main-event coverage despite reference overlap."
+  },
+  "23": {
+    "LSTM": "Partial main event: two shots and location retained with safety-director attribution; death, unarmed status and independent GBI probe omitted. No specific false location identified.",
+    "Transformer": "Geographic conflation: says Chamblee, Wisconsin, whereas current incident is Chamblee near Atlanta; Wisconsin is a different background shooting. 'Was charged at him' also corrupts the reported physical charge.",
+    "BART": "Main fatal shooting/unarmed victim and attributed officer account covered with correct Atlanta/Chamblee location. Omits independent investigation central to reference; not proof that officer's account is verified.",
+    "PEGASUS": "Main fatal shooting/unarmed victim covered; reported charge is attributed to police. GBI independent probe omitted, weakening accountability context but not asserting investigation outcome."
+  },
+  "24": {
+    "LSTM": "Viral woodpecker/weasel photo and Ward-posted/Le-May-credit chain substantially covered; escape outcome supported. No specific contradiction identified in this reading.",
+    "Transformer": "Main viral photo covered, but 'photographer Jason Ward credited to Martin Le-May' and following 'he' blur uploader versus photographer and whose walk is described. Attribution needs human review.",
+    "BART": "Main viral photo, uploader Ward, credited photographer Le-May and hashtag covered correctly. Does not independently authenticate image beyond source; no specific contradiction identified.",
+    "PEGASUS": "Main viral photo and 7,000 retweets supported. Photographer/hashtag/meme context omitted, but no specific contradiction identified."
+  },
+  "25": {
+    "LSTM": "Covers bagged-air gag but misses $60,000 bids and auction removal—the main reference details. Sneaker background consumes space; no demonstrated claim that concert-air provenance is authentic.",
+    "Transformer": "Partial gag covered; changes quoted label to 'bagged air beware' by blending product phrase with 'buyer beware'. Omits $60,000/removal and creates a malformed quotation.",
+    "BART": "Main bagged-air sales covered, but sneaker background dominates and $60,000/removal omitted. Alleged provenance is not explicitly retained; quoted seller label should not be read as authentication.",
+    "PEGASUS": "Main gag and pulled auction covered; $60,000 bid omitted. Quotations from seller/auction labels not proof of origin. No specific new purchase price invented."
+  },
+  "26": {
+    "LSTM": "Crash/location and aircraft damage supported, but new brake-report finding central to article/reference omitted. Does not assert a proven cause; output has a shortened damage list.",
+    "Transformer": "Main Delta runway crash and crew's reported lack of deceleration covered. Keeps 'crew said' attribution; no specific unsupported cause identified.",
+    "BART": "Brake finding and explicit unknown cause preserved with NTSB attribution, but aircraft/operator/location/crash context omitted. Good uncertainty handling does not compensate for all missing event context.",
+    "PEGASUS": "Crash and 23 minor injuries supported, but NTSB brake-report update omitted in favor of departure details. No unsupported cause asserted; main update only partially covered."
+  },
+  "27": {
+    "LSTM": "Main school renaming/children honored covered; school size supported. Omits exact 107, Pakistan province and casualty/time details, but no specific contradiction identified.",
+    "Transformer": "Main renaming and 145 dead/132 children supported; omits location/date and exact 107. Compressed 'some six hours later' lacks siege setup but no new casualty number invented.",
+    "BART": "Renaming, December 16 attack, Army Public School and casualty numbers supported with attribution. Pakistan/Peshawar omitted; no specific contradiction identified.",
+    "PEGASUS": "Renaming and government-spokesman explanation supported, but location/Taliban/siege context omitted. Main memorial action present; no specific contradiction identified."
+  },
+  "28": {
+    "LSTM": "Domestic-violence awareness campaign covered; original dress's true colors supported. Omits South Africa and bruised-model creative detail; no specific contradiction identified.",
+    "Transformer": "Main South African campaign and white/gold ad depiction supported. No specific invented relationship identified; ad's consent/violence message omitted.",
+    "BART": "Campaign and ad/original dress color contrast supported, though 'the dress' antecedent may confuse imitation and original. Omits location/positive reaction, no definite contradiction identified.",
+    "PEGASUS": "Main South African domestic-violence campaign and ad depiction supported. Positive response/message detail omitted; no specific contradiction identified."
+  },
+  "29": {
+    "LSTM": "Main suspension lift/reinstatement reason covered. 'She accused' lacks named antecedent but keeps accusation framing, not guilt assertion. Indefinite probation and no-charge decision omitted.",
+    "Transformer": "Action reversal: source lifts suspension; summary says NASCAR suspends Busch while making him eligible. Removes 'probably' from civil finding, strengthening certainty about alleged abuse. Serious source-faithfulness errors.",
+    "BART": "Main reinstatement rationale, probable civil finding and decision not to file charges covered. Retains 'probably'; omits indefinite probation/denial, but does not equate no charges with innocence.",
+    "PEGASUS": "Background alleged abuse and competition waiver covered with 'probably'/'accused'. Does not clearly say suspension lifted or indefinite probation remains; main update only partial."
+  },
+  "30": {
+    "LSTM": "Attribution error: assigns 'We are not an ATC ... don't have radar' to contributing journalist Chan Kok Leong, whereas source attributes it to airline CEO Ahmad Jauhari Yahya. Unsupported 'new:' styling; main delay timeline weak.",
+    "Transformer": "Main delayed-response/report and 239 aboard covered. Adds 'new:' marker and alters Quest's quoted sentence into a fragment. Does not convey 10-hour search delay; attribution remains Quest.",
+    "BART": "Main delay chronology accurately reflects five hours 13 minutes plus another five hours. Never names MH370, so stand-alone identity is weak; timing itself source-supported.",
+    "PEGASUS": "Main delay/confusion covered, but repeats the Cambodia misinformation event in two near-identical sentences, wasting space. Underlying episode supported; repeated idea is not caught by exact whole-sentence dedup."
+  },
+  "31": {
+    "LSTM": "Current Myanmar death/missing/rescued counts supported. Main rescue/disaster covered; wave/bad-weather cause from reference omitted. No specific contradiction identified.",
+    "Transformer": "Counts/date and government attribution supported; sentence 'capsized ... causing it capsize' is malformed and omits wave cause. Does not invent different casualty counts.",
+    "BART": "Rescue/wave event covered with ministry attribution, but country/current death toll absent. Adds 68-death older Bangladesh disaster without naming its different country, risking conflation with current event.",
+    "PEGASUS": "Rescue count, Myanmar ministry and wave cause supported. Omits 21 dead/21 missing in article lead; matches reference focus but not a complete main-event account."
+  },
+  "32": {
+    "LSTM": "Bombing in China covered but deaths/wounds omitted. 'The jets ... chase away Myanmar planes' lacks introduction of Chinese patrol jets, risking wrong actor antecedent after Myanmar warplanes lead.",
+    "Transformer": "Chinese patrol action covered, but quote runs into unrelated 'Myanmar forces have been battling' clause. Bombing/four deaths/nine wounded omitted, leaving a partial and grammatically corrupted account.",
+    "BART": "Bombing, four deaths, nine wounded and Chinese patrol response match source; Xinhua attribution retained for injuries. No specific contradiction identified in this reading.",
+    "PEGASUS": "Ambassador summons/background conflict covered, but main bombing/casualties and patrol response in reference omitted. 'The incident' is not explained; poor stand-alone event coverage."
+  },
+  "33": {
+    "LSTM": "Main online-health-search risks only partial; long anecdote/quotes crowd out several recommendations. Final uncredited quote is Burgert's after Pho quote and can imply wrong speaker. More words do not guarantee useful coverage.",
+    "Transformer": "Removes key condition from warning: source says persistent ailment won't be solved by checking; output broadly says SymCat/Mayo 'isn't going to help'. Generic 'expert' substitutes Pew attribution; text is fragmented.",
+    "BART": "Main online-health-search risks and physician caution covered, with named Pho quotation. Some practical safeguards omitted. No specific contradiction identified; this is source-summary review, not medical advice validation.",
+    "PEGASUS": "Main risks/statistic and clinician-versus-internet caution covered. Retains 'If your ailment isn't going away' condition on seeking help, avoiding blanket dismissal of symptom checkers; no specific contradiction identified."
+  },
+  "34": {
+    "LSTM": "Charges and attributed shooting allegation present, but 'after the car he was riding' is an incomplete clause. Omits grand-jury indictment detail/defense; EOS plus final period does not mean grammatical completion.",
+    "Transformer": "Charges and victim's death covered with no conviction asserted; link between accused and victim is implicit rather than clearly attributed. Omits self-defense position; no specific new fact identified.",
+    "BART": "Charges, police shooting allegation and attorney's planned self-defense case covered with attribution. Dates/roles supported; no specific contradiction identified in this reading.",
+    "PEGASUS": "Charges and police-attributed shooting allegation covered; preserves accused status rather than conviction. Self-defense/indictment detail omitted; no specific contradiction identified."
+  },
+  "35": {
+    "LSTM": "Quotation attribution error: merges Obama's prayers with Holder's 'damn punk ... sow discord' under a single President Obama quote. Main community-policing argument lost amid Harbin background.",
+    "Transformer": "Invents author/speaker Debbie Wasserman Schultz; reference names Donna Brazile and source does not mention Schultz. Topic partly captured but attribution unsupported.",
+    "BART": "Invents author Frida Ghitis repeatedly; reference identifies Donna Brazile. Community-policing/foot-patrol argument otherwise reflected, but plausible content does not rescue false authorship.",
+    "PEGASUS": "Invents Eric Liu twice although reference names Donna Brazile and source lacks Liu. Broad community-engagement opinion captured, but authorship is unsupported."
+  },
+  "36": {
+    "LSTM": "Gold seizure/weight present, but anonymous 'embassy' has no country/location and ambassador's apology omitted. Main update incomplete; no specific invented weight identified.",
+    "Transformer": "Role/entity error: says North Korean ambassador was caught with gold; source says a different embassy diplomat was caught and ambassador apologized. Final funds line overstates one speculative explanation.",
+    "BART": "Main ambassador apology and separate diplomat/undeclared-gold role distinction preserved; weight and approximate valuation supported. Bangladesh officials' source attribution not explicit, but no specific role contradiction.",
+    "PEGASUS": "Main seizure, weight, Bangladesh location and ambassador apology covered without confusing the two roles. No specific contradiction identified in this reading."
+  },
+  "37": {
+    "LSTM": "Correct father, mother's death and uncertain 14-hour entrapment, but omits the central recovery/doing-well update; incomplete description of where the car landed. No clear invented fact in selected clauses; father out-of-town background dominates.",
+    "Transformer": "Entity-role error: says the toddler was out of town on a job; source says father Deven Trafny was. Omits recovery update and 14-hour survival context. 'Doctors say it's amazing' loses father-as-source attribution; 'new:' is editorial residue.",
+    "BART": "Father's absence and mother's death are source-supported but main update that Lily is recovering/awake is absent. Omits river, rescue and uncertain 14-hour entrapment. No clear invented fact in the selected background; incomplete main-event coverage.",
+    "PEGASUS": "Preserves the main recovery update, identifies father and mother, and attributes the wellbeing account to father. Omits river rescue and uncertain 14-hour entrapment highlighted in reference. No clear entity or unsupported-claim error observed in selected statements."
+  },
+  "38": {
+    "LSTM": "Conflates two accidents: Oklahoma medical-aircraft employees followed immediately by Florida Black Hawk and 11 presumed deaths without explicit separation. Omits main Oklahoma crash location/route; can misleadingly attach military fatalities to medical flight.",
+    "Transformer": "Serious event conflation: Tulsa–McAlester medical helicopter followed by all 11 service members believed dead, a toll from a different Florida military crash. Omits three medical employees and clear main crash description. 'Official says' does not resolve wrong-event relationship.",
+    "BART": "Correct three EagleMed employees and Tulsa–McAlester route; 'Earlier this week' separates the unrelated Florida military crash. Still spends a sentence on background and implies rather than clearly states the main medical helicopter crash. No clear casualty conflation in explicit wording.",
+    "PEGASUS": "Correct employees and local investigation agency, but omits clear statement of Oklahoma crash and route. 'Earlier this week' distinguishes Florida background. Selected facts supported; main-event coverage weak and aircraft referent in first sentence relies on context."
+  },
+  "39": {
+    "LSTM": "Two-chunk output covers circular-device purpose and broader screen-design discussion, but never names Runcible and uses deictic 'this very idea' without explanation. Google headquarters and smartwatch digressions consume space. No clear invented fact; product identity/main purpose underspecified.",
+    "Transformer": "Two-chunk output discusses round-device philosophy but omits Monohm and Runcible entirely. 'Concept could be simply for helping' is malformed; main product/event identity lost while general examples remain. Selected conceptual claims largely source-supported.",
+    "BART": "Two-chunk output identifies Monohm, Runcible and its antidote-to-digital-overload purpose. Later broad framing and Android Wear are supported but repetitive relative to main reference. Opening 'this very idea' is dangling until next sentence. No clear invented entity/relationship observed.",
+    "PEGASUS": "Two-chunk output identifies Monohm and Runcible and core anti-distraction purpose; later circular-frame and smartwatch examples are supported. Final 'real estate is limited' is grammatical but loses source's intended consequence about different design thinking. No clear invented fact observed."
+  },
+  "40": {
+    "LSTM": "Preserves first-gay-character claim and novel but malformed 'feature a capable of Moff Mors' damages subject description. Omits lesbian identity and attribution to editor/news site. Does not add reference's diversity claim absent from supplied article.",
+    "Transformer": "Captures novel and first-gay-character claim but omits Moff Mors's name, lesbian identity and source attribution. No clear invented fact in included clauses; reference's broad diversity claim is absent from source and not reproduced.",
+    "BART": "Captures novel, named Imperial official and first-gay-character claim; omits explicit lesbian identity and attribution to editor/news site. No clear entity/relationship error in included statements. Does not reproduce reference's diversity claim absent from source.",
+    "PEGASUS": "Captures novel, named Imperial official and first-gay-character claim; omits lesbian identity and editor/news-site attribution. No clear invented fact observed. Reference also includes a broad diversity claim unsupported by this short supplied article, which output does not reproduce."
+  },
+  "41": {
+    "LSTM": "Correct Taliban claim and at-least-78 injuries but falsely attributes 'Christian community is a soft target' to Pope Francis; source speaker is researcher Rabia Mehmood. Omits at-least-14 killed and explicit suicide-bombing description; grammatical compression weakens event clarity.",
+    "Transformer": "Correct responsibility claim and injuries, but says 'the attack is one of the loosely governed tribal areas bordering Afghanistan': geographic relation belongs to North Waziristan, not attack. Omits deaths and main Christian-community target; 'new:' editorial residue. Wrong entity relationship despite source coverage.",
+    "BART": "Correct claim and Lahore location but omits main current death/injury toll and Christian target; last sentence focuses on 2013 Peshawar attack with explicit date so chronology is separated. No clear invented fact in selected statements, but background replaces key current-event information.",
+    "PEGASUS": "Captures 14 deaths, responsibility and threat, but 'death toll rises' is unsupported update language and converts 'at least 14' into exact 14. Hospital official explicitly supplies injury figure in source, so attribution of death toll is questionable. Omits Lahore, Christian target and 78 injuries."
+  },
+  "_meta": {
+    "kind": "AI-assisted qualitative source/reference reading; NOT human ratings or factuality certification",
+    "human_ratings_collected": false,
+    "human_review_fields": "Blank/not reviewed for every row",
+    "external_fact_checking": false,
+    "scope": "Notes compare the supplied dataset article and original highlights only; omissions and possible errors require human confirmation."
+  }
+}

@@ -1,6 +1,6 @@
 {
   "processing_mode": "full",
-  "ratios": {"Short": 0.10, "Medium": 0.15, "Detailed": 0.22},
+  "ratios": {"Short": 0.15, "Medium": 0.25, "Detailed": 0.35},
   "tokens_per_word": {"LSTM": 1.6, "Transformer": 1.6, "BART": 1.5, "PEGASUS": 1.6},
   "max_output_tokens": {"LSTM": 256, "Transformer": 256, "BART": 512, "PEGASUS": 512},
   "word_budget_slack": 1.35,
@@ -12,5 +12,6 @@
   "max_total_input_tokens": 64000,
   "max_consolidation_passes": 4,
   "max_runtime_seconds": 180,
-  "concise_input_words": 12
+  "concise_input_words": 12,
+  "opennmt_source_limit": 1024
 }

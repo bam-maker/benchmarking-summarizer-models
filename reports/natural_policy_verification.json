@@ -1,0 +1,514 @@
+{
+  "policy": "natural-checkpoint-v1",
+  "cases": [
+    {
+      "case": "short",
+      "summary": "the attack happened at about 6 p.m, the deputy governor says.",
+      "model": "LSTM",
+      "length": "Natural",
+      "requested_words": null,
+      "source_words": 81,
+      "actual_words": 11,
+      "source_characters": 534,
+      "covered_characters": 534,
+      "source_chunks": 1,
+      "chunk_spans": [
+        [
+          0,
+          534
+        ]
+      ],
+      "consolidation_passes": 0,
+      "model_calls": 1,
+      "total_input_tokens": 99,
+      "generation_seconds": 0.10282010000082664,
+      "load_seconds": 0.00036699999691336416,
+      "device": "cuda",
+      "warnings": [],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 1,
+          "input_words": 81,
+          "output_words": 11,
+          "input_tokens": 99,
+          "output_tokens": 13
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0,
+      "total_generated_tokens": 15,
+      "generation_policy": "natural-checkpoint-v1"
+    },
+    {
+      "case": "multichunk",
+      "summary": "monohm, a startup based in berkeley, california, was founded around this very idea. the round device is meant to be the antidote to our feed-obsessed, notification-saturated digital existence. display technologies have a long and rectangular history. google proposed a new headquarters that would leaves boxy buildings behind in favor of tent-like structures draped in glass. android wear, google's smartwatch operating system, reconsiders what apps should look like on a tiny circular display. apple watch is in some ways another rectangle, but its real estate is limited enough that it will also encourage new, less rectangular thinking.",
+      "model": "LSTM",
+      "length": "Natural",
+      "requested_words": null,
+      "source_words": 1354,
+      "actual_words": 96,
+      "source_characters": 8452,
+      "covered_characters": 8452,
+      "source_chunks": 2,
+      "chunk_spans": [
+        [
+          0,
+          5431
+        ],
+        [
+          5431,
+          8452
+        ]
+      ],
+      "consolidation_passes": 0,
+      "model_calls": 2,
+      "total_input_tokens": 1590,
+      "generation_seconds": 1.2166438000022026,
+      "load_seconds": 0.0006467000021075364,
+      "device": "cuda",
+      "warnings": [],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 2,
+          "input_words": 1354,
+          "output_words": 96,
+          "input_tokens": 1590,
+          "output_tokens": 111
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0,
+      "total_generated_tokens": 123,
+      "generation_policy": "natural-checkpoint-v1"
+    },
+    {
+      "case": "tiny",
+      "summary": "the council approved new buses.",
+      "model": "Transformer",
+      "length": "Natural",
+      "requested_words": null,
+      "source_words": 5,
+      "actual_words": 5,
+      "source_characters": 31,
+      "covered_characters": 31,
+      "source_chunks": 1,
+      "chunk_spans": [
+        [
+          0,
+          31
+        ]
+      ],
+      "consolidation_passes": 0,
+      "model_calls": 1,
+      "total_input_tokens": 6,
+      "generation_seconds": 0.2195745999997598,
+      "load_seconds": 4.3300002289470285e-05,
+      "device": "cuda",
+      "warnings": [],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 1,
+          "input_words": 5,
+          "output_words": 5,
+          "input_tokens": 6,
+          "output_tokens": 6
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0,
+      "total_generated_tokens": 8,
+      "generation_policy": "natural-checkpoint-v1"
+    },
+    {
+      "case": "short",
+      "summary": "the attack happened in the bolan area of gah, the province's deputy governor says.",
+      "model": "Transformer",
+      "length": "Natural",
+      "requested_words": null,
+      "source_words": 81,
+      "actual_words": 14,
+      "source_characters": 534,
+      "covered_characters": 534,
+      "source_chunks": 1,
+      "chunk_spans": [
+        [
+          0,
+          534
+        ]
+      ],
+      "consolidation_passes": 0,
+      "model_calls": 1,
+      "total_input_tokens": 99,
+      "generation_seconds": 0.4079079000002821,
+      "load_seconds": 0.0005941000017628539,
+      "device": "cuda",
+      "warnings": [],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 1,
+          "input_words": 81,
+          "output_words": 14,
+          "input_tokens": 99,
+          "output_tokens": 17
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0,
+      "total_generated_tokens": 19,
+      "generation_policy": "natural-checkpoint-v1"
+    },
+    {
+      "case": "multichunk",
+      "summary": "display technologies have a long and rectangular history. the round device is meant to be the antidote to our feed-obsessed, notification-saturated existence. it's a challenge to the status quo and everything it represents. a circular device would sever the link to the printed page, and invite developers to look elsewhere. the concept could be simply for helping us identify some of the habits that underlie our existing devices. android wear, google's smartwatch operating system, reconsiders what apps should look like on a tiny circular display.",
+      "model": "Transformer",
+      "length": "Natural",
+      "requested_words": null,
+      "source_words": 1354,
+      "actual_words": 85,
+      "source_characters": 8452,
+      "covered_characters": 8452,
+      "source_chunks": 2,
+      "chunk_spans": [
+        [
+          0,
+          5431
+        ],
+        [
+          5431,
+          8452
+        ]
+      ],
+      "consolidation_passes": 0,
+      "model_calls": 2,
+      "total_input_tokens": 1590,
+      "generation_seconds": 1.525064299996302,
+      "load_seconds": 0.0007724999995843973,
+      "device": "cuda",
+      "warnings": [],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 2,
+          "input_words": 1354,
+          "output_words": 85,
+          "input_tokens": 1590,
+          "output_tokens": 97
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0,
+      "total_generated_tokens": 109,
+      "generation_policy": "natural-checkpoint-v1"
+    },
+    {
+      "case": "tiny",
+      "summary": "The council approved new buses.",
+      "model": "BART",
+      "length": "Natural",
+      "requested_words": null,
+      "source_words": 5,
+      "actual_words": 5,
+      "source_characters": 31,
+      "covered_characters": 31,
+      "source_chunks": 1,
+      "chunk_spans": [
+        [
+          0,
+          31
+        ]
+      ],
+      "consolidation_passes": 0,
+      "model_calls": 1,
+      "total_input_tokens": 8,
+      "generation_seconds": 0.6848444000024756,
+      "load_seconds": 3.819999983534217e-05,
+      "device": "cuda",
+      "warnings": [],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 1,
+          "input_words": 5,
+          "output_words": 5,
+          "input_tokens": 8,
+          "output_tokens": 8
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0,
+      "total_generated_tokens": 7,
+      "generation_policy": "natural-checkpoint-v1"
+    },
+    {
+      "case": "short",
+      "summary": "The attack happened at about 6 p.m. in the Bolan area of Lashkar Gah city. Details about the attacker's identity and motive weren't immediately available.",
+      "model": "BART",
+      "length": "Natural",
+      "requested_words": null,
+      "source_words": 81,
+      "actual_words": 25,
+      "source_characters": 534,
+      "covered_characters": 534,
+      "source_chunks": 1,
+      "chunk_spans": [
+        [
+          0,
+          534
+        ]
+      ],
+      "consolidation_passes": 0,
+      "model_calls": 1,
+      "total_input_tokens": 114,
+      "generation_seconds": 0.41087919999699807,
+      "load_seconds": 0.0011403999997128267,
+      "device": "cuda",
+      "warnings": [],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 1,
+          "input_words": 81,
+          "output_words": 25,
+          "input_tokens": 114,
+          "output_tokens": 37
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0,
+      "total_generated_tokens": 36,
+      "generation_policy": "natural-checkpoint-v1"
+    },
+    {
+      "case": "multichunk",
+      "summary": "Monohm, a startup based in Berkeley, California, was founded around this very idea. For the last year, the three-person team has been working a circular, palm-sized device dubbed Runcible. The round device is meant to be the antidote to our feed-obsessed digital existence. Runcible is just one scrappy, literal attempt to abandon the rectangle. But similar thinking is happening elsewhere. Android Wear, Google's smartwatch operating system, reconsiders what apps should look like on a tiny circular display. As new components and manufacturing techniques make it easier to experiment with other forms, we'll likely find people exploring the unique effects they can produce.",
+      "model": "BART",
+      "length": "Natural",
+      "requested_words": null,
+      "source_words": 1354,
+      "actual_words": 102,
+      "source_characters": 8452,
+      "covered_characters": 8452,
+      "source_chunks": 2,
+      "chunk_spans": [
+        [
+          0,
+          4970
+        ],
+        [
+          4970,
+          8452
+        ]
+      ],
+      "consolidation_passes": 0,
+      "model_calls": 2,
+      "total_input_tokens": 1722,
+      "generation_seconds": 1.5572713000001386,
+      "load_seconds": 0.0030747000018891413,
+      "device": "cuda",
+      "warnings": [],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 2,
+          "input_words": 1354,
+          "output_words": 102,
+          "input_tokens": 1720,
+          "output_tokens": 135
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0,
+      "total_generated_tokens": 136,
+      "generation_policy": "natural-checkpoint-v1"
+    },
+    {
+      "case": "tiny",
+      "summary": "The council approved new buses.",
+      "model": "PEGASUS",
+      "length": "Natural",
+      "requested_words": null,
+      "source_words": 5,
+      "actual_words": 5,
+      "source_characters": 31,
+      "covered_characters": 31,
+      "source_chunks": 1,
+      "chunk_spans": [
+        [
+          0,
+          31
+        ]
+      ],
+      "consolidation_passes": 0,
+      "model_calls": 1,
+      "total_input_tokens": 7,
+      "generation_seconds": 0.43443610000031185,
+      "load_seconds": 3.890000152750872e-05,
+      "device": "cuda",
+      "warnings": [],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 1,
+          "input_words": 5,
+          "output_words": 5,
+          "input_tokens": 7,
+          "output_tokens": 7
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0,
+      "total_generated_tokens": 13,
+      "generation_policy": "natural-checkpoint-v1"
+    },
+    {
+      "case": "short",
+      "summary": "The attack happened in the Bolan area of Lashkar Gah city. The majority of casualties were civilians, an official says.",
+      "model": "PEGASUS",
+      "length": "Natural",
+      "requested_words": null,
+      "source_words": 81,
+      "actual_words": 20,
+      "source_characters": 534,
+      "covered_characters": 534,
+      "source_chunks": 1,
+      "chunk_spans": [
+        [
+          0,
+          534
+        ]
+      ],
+      "consolidation_passes": 0,
+      "model_calls": 1,
+      "total_input_tokens": 115,
+      "generation_seconds": 0.5931678000015381,
+      "load_seconds": 0.0058935999986715615,
+      "device": "cuda",
+      "warnings": [],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 1,
+          "input_words": 81,
+          "output_words": 20,
+          "input_tokens": 115,
+          "output_tokens": 27
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0,
+      "total_generated_tokens": 29,
+      "generation_policy": "natural-checkpoint-v1"
+    },
+    {
+      "case": "multichunk",
+      "summary": "Monohm is a startup based in Berkeley, California. The team has been working on a circular, palm-sized device dubbed Runcible. It's meant to be the antidote to our feed-obsessed, notification-saturated digital existence. A circular device would sever the link to the printed page, the TV and the computer. Android Wear, Google's smartwatch operating system, reconsiders what apps should look like on a tiny circular display. Apple Watch is in some ways another rectangle, but its real estate is limited.",
+      "model": "PEGASUS",
+      "length": "Natural",
+      "requested_words": null,
+      "source_words": 1354,
+      "actual_words": 79,
+      "source_characters": 8452,
+      "covered_characters": 8452,
+      "source_chunks": 2,
+      "chunk_spans": [
+        [
+          0,
+          5038
+        ],
+        [
+          5038,
+          8452
+        ]
+      ],
+      "consolidation_passes": 0,
+      "model_calls": 2,
+      "total_input_tokens": 1720,
+      "generation_seconds": 1.8798751999966044,
+      "load_seconds": 0.0071913000028871465,
+      "device": "cuda",
+      "warnings": [],
+      "stages": [
+        {
+          "phase": "Article chunks",
+          "chunks": 2,
+          "input_words": 1354,
+          "output_words": 79,
+          "input_tokens": 1719,
+          "output_tokens": 106
+        }
+      ],
+      "processing_mode": "full",
+      "returned_input": false,
+      "retained_fragments": 0,
+      "total_generated_tokens": 115,
+      "generation_policy": "natural-checkpoint-v1"
+    }
+  ],
+  "explicit_failures": [
+    {
+      "model": "LSTM",
+      "case": "tiny",
+      "input": "The council approved new buses.",
+      "error": "The model returned an empty chunk summary. Full-article processing could not finish; no final summary was returned.",
+      "trace": [
+        {
+          "input": {
+            "text": "The council approved new buses.",
+            "prepared_tokens": [
+              "the",
+              "council",
+              "approved",
+              "new",
+              "buses",
+              "."
+            ],
+            "total_tokens": 6,
+            "truncated": false
+          },
+          "budget": {
+            "min_tokens": 0,
+            "max_tokens": 100,
+            "profile": "checkpoint"
+          },
+          "raw_output_ids": [
+            3
+          ],
+          "model_generation_kwargs": {
+            "beam_size": 5,
+            "min_length": 0,
+            "max_length": 100,
+            "stepwise_penalty": true,
+            "alpha": 0.9,
+            "beta": 5.0,
+            "length_penalty": "length_wu",
+            "coverage_penalty": "coverage_summary",
+            "block_ngram_repeat": 3
+          },
+          "raw_target_tokens": [],
+          "decoded_before_cleanup": "",
+          "postprocessed_output": "",
+          "output_words": 0,
+          "output_tokens": 0,
+          "eos": true,
+          "termination": "eos",
+          "generation_seconds": 0.32561680000071647
+        }
+      ]
+    }
+  ],
+  "checks": "Completed cases have full coverage/EOS and exact token/time accounting; same cached backend and natural UI routing. Tiny-input empty decodes explicitly rejected, no partial UI result. No factuality claim."
+}

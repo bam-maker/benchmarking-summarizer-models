@@ -1,0 +1,12 @@
+{
+  "kind": "Spot check during LSTM benchmark; not continuous telemetry or an isolated hardware study",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "driver": "621.24",
+  "temperature_c": 54.25,
+  "utilization_percent": 70,
+  "memory_used_mib": 9217,
+  "power_watts": 214.84,
+  "sm_clock_mhz": 2850,
+  "nonexclusive_gpu_observation": "FortniteClient-Win64-Shipping.exe and desktop/browser GPU contexts present alongside Python. Per-process utilization/memory unavailable under WDDM. No unrelated process stopped.",
+  "timing_limitation": "Collected latencies may include changing GPU contention; do not infer a controlled model speed ranking."
+}

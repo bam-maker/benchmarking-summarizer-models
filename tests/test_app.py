@@ -165,7 +165,7 @@ class RoutingTests(unittest.TestCase):
         self.assertEqual(len(dependencies), 1)
         dependency = dependencies[0]
         self.assertEqual(len(dependency["inputs"]), 3)
-        self.assertEqual(len(dependency["outputs"]), 1)
+        self.assertEqual(len(dependency["outputs"]), 4)
         self.assertTrue(any(fn.fn is app.generate_summary for fn in demo.fns.values()))
 
 

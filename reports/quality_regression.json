@@ -1,0 +1,1382 @@
+{
+  "verification": {
+    "unit_checks_passed": 54,
+    "final_case_count": 16,
+    "final_cases_complete_source_coverage": true,
+    "final_cases_all_decode_attempts_eos": true,
+    "live_ui_url": "http://127.0.0.1:7860/",
+    "live_medium_models_passed": ["LSTM", "Transformer", "BART", "PEGASUS"],
+    "live_example_calls_per_model": 1,
+    "live_ui_trace": "../test-results/quality_regression/live_ui.json",
+    "no_large_benchmark_or_final_test_split": true
+  },
+  "comparisons": [
+    {
+      "case": "cnndm_validation_0",
+      "model": "BART",
+      "source_sha256": "d4da41aa8a27cb7e591bcef278f16fccecae727bdb6914824595beb00de3c289",
+      "source_words": 748,
+      "source_tokens_including_specials": 931,
+      "before_source_window": 1024,
+      "after_source_window": 1024,
+      "source_chunk_tokenization_unchanged_when_chunking_unchanged": true,
+      "before": {
+        "summary": "Zully Broussard gave one of her kidneys to a stranger. Her generosity paired up with big data. It resulted in six patients receiving transplants. Such long-chain transplanting is rare.",
+        "words": 29,
+        "requested_words": 112,
+        "output_tokens": 42,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 12,
+            "max_tokens": 233
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "min_new_tokens": 11,
+            "max_new_tokens": 233,
+            "num_beams": 4,
+            "do_sample": false,
+            "no_repeat_ngram_size": 3,
+            "early_stopping": true,
+            "forced_eos_token_id": null
+          }
+        ]
+      },
+      "after": {
+        "summary": "Zully Broussard gave one of her kidneys to a stranger. Her generosity paired up with big data. It resulted in six patients receiving transplants. \"I thought I was going to help this one person who I don't know,\" she says. The chain of surgeries is to be wrapped up Friday.",
+        "words": 50,
+        "requested_words": 187,
+        "output_tokens": 64,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 56,
+            "max_tokens": 385,
+            "profile": "checkpoint"
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "min_new_tokens": 55,
+            "max_new_tokens": 385,
+            "do_sample": false,
+            "forced_eos_token_id": null
+          }
+        ]
+      },
+      "before_trace": "../test-results/quality_regression/before/cnndm_validation_0_BART.json",
+      "after_trace": "../test-results/quality_regression/after_capacity/cnndm_validation_0_BART.json",
+      "existing_reference_summary": "Zully Broussard decided to give a kidney to a stranger .\nA new computer program helped her donation spur transplants for six kidney patients ."
+    },
+    {
+      "case": "cnndm_validation_0",
+      "model": "LSTM",
+      "source_sha256": "d4da41aa8a27cb7e591bcef278f16fccecae727bdb6914824595beb00de3c289",
+      "source_words": 748,
+      "source_tokens_including_specials": 878,
+      "before_source_window": 400,
+      "after_source_window": 1024,
+      "source_chunk_tokenization_unchanged_when_chunking_unchanged": false,
+      "before": {
+        "summary": "a computer programmer named david jacobs received a kidney transplant. the last donor will give a kidney to someone who has been biding time.",
+        "words": 24,
+        "requested_words": 112,
+        "output_tokens": 159,
+        "source_chunks": 3,
+        "consolidation_passes": 1,
+        "model_calls": 4,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 12,
+            "max_tokens": 256
+          },
+          {
+            "min_tokens": 12,
+            "max_tokens": 256
+          },
+          {
+            "min_tokens": 8,
+            "max_tokens": 63
+          },
+          {
+            "min_tokens": 12,
+            "max_tokens": 147
+          }
+        ],
+        "actual_generation_settings": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "after": {
+        "summary": "the chain of surgeries is to be wrapped up friday. it is taking five surgeons, a covey of physician assistants, nurses and anesthesiologists. the last donor will give a kidney to someone who has been biding time.",
+        "words": 37,
+        "requested_words": 187,
+        "output_tokens": 48,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 35,
+            "max_tokens": 256,
+            "profile": "checkpoint"
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "beam_size": 5,
+            "min_length": 35,
+            "max_length": 256,
+            "stepwise_penalty": true,
+            "alpha": 0.9,
+            "beta": 5,
+            "length_penalty": "length_wu",
+            "coverage_penalty": "coverage_summary",
+            "block_ngram_repeat": 3
+          }
+        ]
+      },
+      "before_trace": "../test-results/quality_regression/before/cnndm_validation_0_LSTM.json",
+      "after_trace": "../test-results/quality_regression/after_capacity/cnndm_validation_0_LSTM.json",
+      "existing_reference_summary": "Zully Broussard decided to give a kidney to a stranger .\nA new computer program helped her donation spur transplants for six kidney patients ."
+    },
+    {
+      "case": "cnndm_validation_0",
+      "model": "PEGASUS",
+      "source_sha256": "d4da41aa8a27cb7e591bcef278f16fccecae727bdb6914824595beb00de3c289",
+      "source_words": 748,
+      "source_tokens_including_specials": 938,
+      "before_source_window": 1024,
+      "after_source_window": 1024,
+      "source_chunk_tokenization_unchanged_when_chunking_unchanged": true,
+      "before": {
+        "summary": "A San Francisco woman donates one of her kidneys to a stranger. The stranger gets another kidney, and so on, until the chain is complete.",
+        "words": 25,
+        "requested_words": 112,
+        "output_tokens": 32,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 12,
+            "max_tokens": 248
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "min_new_tokens": 11,
+            "max_new_tokens": 248,
+            "num_beams": 4,
+            "do_sample": false,
+            "no_repeat_ngram_size": 3,
+            "early_stopping": true,
+            "forced_eos_token_id": null
+          }
+        ]
+      },
+      "after": {
+        "summary": "A San Francisco woman donates one of her kidneys to a stranger. The stranger's kidney goes to a recipient, and so on. The donor's kidney goes to another recipient, and so on. So high, that it is taking five surgeons, a covey of physician assistants, nurses and anesthesiologists.",
+        "words": 48,
+        "requested_words": 187,
+        "output_tokens": 70,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 3,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 32,
+            "max_tokens": 410,
+            "profile": "checkpoint"
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "min_new_tokens": 31,
+            "max_new_tokens": 410,
+            "do_sample": false,
+            "forced_eos_token_id": null
+          }
+        ]
+      },
+      "before_trace": "../test-results/quality_regression/before/cnndm_validation_0_PEGASUS.json",
+      "after_trace": "../test-results/quality_regression/after_capacity/cnndm_validation_0_PEGASUS.json",
+      "existing_reference_summary": "Zully Broussard decided to give a kidney to a stranger .\nA new computer program helped her donation spur transplants for six kidney patients ."
+    },
+    {
+      "case": "cnndm_validation_0",
+      "model": "Transformer",
+      "source_sha256": "d4da41aa8a27cb7e591bcef278f16fccecae727bdb6914824595beb00de3c289",
+      "source_words": 748,
+      "source_tokens_including_specials": 878,
+      "before_source_window": 400,
+      "after_source_window": 1024,
+      "source_chunk_tokenization_unchanged_when_chunking_unchanged": false,
+      "before": {
+        "summary": "zully broussard's generous move set off a chain reaction, like dominoes. the donor's kidney went to the next recipient, who was paired with a donor. the last donor will give a kidney to someone who has been biding time.",
+        "words": 39,
+        "requested_words": 112,
+        "output_tokens": 171,
+        "source_chunks": 3,
+        "consolidation_passes": 1,
+        "model_calls": 4,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 12,
+            "max_tokens": 256
+          },
+          {
+            "min_tokens": 12,
+            "max_tokens": 256
+          },
+          {
+            "min_tokens": 8,
+            "max_tokens": 63
+          },
+          {
+            "min_tokens": 12,
+            "max_tokens": 132
+          }
+        ],
+        "actual_generation_settings": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "after": {
+        "summary": "zully broussard's gift was data processing of genetic profiles from donors. the chain of surgeries is to be wrapped up friday. the medical center is planning to hold a reception for all 12 patients.",
+        "words": 34,
+        "requested_words": 187,
+        "output_tokens": 44,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 35,
+            "max_tokens": 256,
+            "profile": "checkpoint"
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "beam_size": 5,
+            "min_length": 35,
+            "max_length": 256,
+            "stepwise_penalty": true,
+            "alpha": 0.9,
+            "beta": 5,
+            "length_penalty": "length_wu",
+            "coverage_penalty": "coverage_summary",
+            "block_ngram_repeat": 3
+          }
+        ]
+      },
+      "before_trace": "../test-results/quality_regression/before/cnndm_validation_0_Transformer.json",
+      "after_trace": "../test-results/quality_regression/after_capacity/cnndm_validation_0_Transformer.json",
+      "existing_reference_summary": "Zully Broussard decided to give a kidney to a stranger .\nA new computer program helped her donation spur transplants for six kidney patients ."
+    },
+    {
+      "case": "cnndm_validation_1",
+      "model": "BART",
+      "source_sha256": "2d2cf74fcdd94c28ed81e4ba20196aa978be8a354da5ef8caed491c13c6afbfb",
+      "source_words": 1324,
+      "source_tokens_including_specials": 1583,
+      "before_source_window": 1024,
+      "after_source_window": 1024,
+      "source_chunk_tokenization_unchanged_when_chunking_unchanged": true,
+      "before": {
+        "summary": "MLS has struggled to attract and keep the top players. Agent Paulo Teixeira says the league needs to focus on younger players. Texeira believes this could be achieved by signing DPs at the peak of their careers.",
+        "words": 37,
+        "requested_words": 199,
+        "output_tokens": 146,
+        "source_chunks": 2,
+        "consolidation_passes": 1,
+        "model_calls": 3,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 12,
+            "max_tokens": 512
+          },
+          {
+            "min_tokens": 12,
+            "max_tokens": 345
+          },
+          {
+            "min_tokens": 12,
+            "max_tokens": 110
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "min_new_tokens": 11,
+            "max_new_tokens": 512,
+            "num_beams": 4,
+            "do_sample": false,
+            "no_repeat_ngram_size": 3,
+            "early_stopping": true,
+            "forced_eos_token_id": null
+          },
+          {
+            "min_new_tokens": 11,
+            "max_new_tokens": 345,
+            "num_beams": 4,
+            "do_sample": false,
+            "no_repeat_ngram_size": 3,
+            "early_stopping": true,
+            "forced_eos_token_id": null
+          },
+          {
+            "min_new_tokens": 11,
+            "max_new_tokens": 110,
+            "num_beams": 4,
+            "do_sample": false,
+            "no_repeat_ngram_size": 3,
+            "early_stopping": true,
+            "forced_eos_token_id": null
+          }
+        ]
+      },
+      "after": {
+        "summary": "The first Major League Soccer match was played in San Jose, California on April 6, 1996. The league is celebrating its 20th season this year. The number of teams involved has doubled from 10 in the 1996 campaign to 20 in 2015. The new season is the first of a new domestic TV and media rights deal with FOX, ESPN and Univision worth $700 million. MLS has struggled to attract and keep the top players. Agent Paulo Teixeira says the league needs to focus on younger players. Texeira believes this could be achieved by signing DPs at the peak of their careers. Oriol Rossell moved from Sporting Kansas to Sporting Lisbon last year in a deal brokered by the agent.",
+        "words": 120,
+        "requested_words": 331,
+        "output_tokens": 147,
+        "source_chunks": 2,
+        "consolidation_passes": 0,
+        "model_calls": 2,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 56,
+            "max_tokens": 512,
+            "profile": "checkpoint"
+          },
+          {
+            "min_tokens": 56,
+            "max_tokens": 345,
+            "profile": "checkpoint"
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "min_new_tokens": 55,
+            "max_new_tokens": 512,
+            "do_sample": false,
+            "forced_eos_token_id": null
+          },
+          {
+            "min_new_tokens": 55,
+            "max_new_tokens": 345,
+            "do_sample": false,
+            "forced_eos_token_id": null
+          }
+        ]
+      },
+      "before_trace": "../test-results/quality_regression/before/cnndm_validation_1_BART.json",
+      "after_trace": "../test-results/quality_regression/after_capacity/cnndm_validation_1_BART.json",
+      "existing_reference_summary": "The 20th MLS season begins this weekend .\nLeague has changed dramatically since its inception in 1996 .\nSome question whether rules regarding salary caps and transfers need to change ."
+    },
+    {
+      "case": "cnndm_validation_1",
+      "model": "LSTM",
+      "source_sha256": "2d2cf74fcdd94c28ed81e4ba20196aa978be8a354da5ef8caed491c13c6afbfb",
+      "source_words": 1324,
+      "source_tokens_including_specials": 1490,
+      "before_source_window": 400,
+      "after_source_window": 1024,
+      "source_chunk_tokenization_unchanged_when_chunking_unchanged": false,
+      "before": {
+        "summary": "60,000 fans are expected to witness orlando city's opening weekend fixture against new york city, another new club making their mls bow. oriol rossell moved from sporting kansas to sporting lisbon last year in a deal brokered by teixeira.",
+        "words": 39,
+        "requested_words": 199,
+        "output_tokens": 228,
+        "source_chunks": 4,
+        "consolidation_passes": 1,
+        "model_calls": 5,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 12,
+            "max_tokens": 256
+          },
+          {
+            "min_tokens": 12,
+            "max_tokens": 256
+          },
+          {
+            "min_tokens": 12,
+            "max_tokens": 256
+          },
+          {
+            "min_tokens": 12,
+            "max_tokens": 231
+          },
+          {
+            "min_tokens": 12,
+            "max_tokens": 212
+          }
+        ],
+        "actual_generation_settings": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "after": {
+        "summary": "the new season is the first of a new domestic tv and media rights deal with fox, espn and univision worth $700 million over eight years. this weekend 60,000 fans are expected to witness orlando city's opening weekend fixture against new york city, another new club making their mls bow. mls teams are restricted by rules clubs in other markets are not. \"we're in a place where at times you can't compete with foreign clubs,\" peter vermes says. he describes the importance of placing an emphasis on attracting younger players with european passports.",
+        "words": 93,
+        "requested_words": 331,
+        "output_tokens": 117,
+        "source_chunks": 2,
+        "consolidation_passes": 0,
+        "model_calls": 2,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 35,
+            "max_tokens": 256,
+            "profile": "checkpoint"
+          },
+          {
+            "min_tokens": 35,
+            "max_tokens": 256,
+            "profile": "checkpoint"
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "beam_size": 5,
+            "min_length": 35,
+            "max_length": 256,
+            "stepwise_penalty": true,
+            "alpha": 0.9,
+            "beta": 5,
+            "length_penalty": "length_wu",
+            "coverage_penalty": "coverage_summary",
+            "block_ngram_repeat": 3
+          },
+          {
+            "beam_size": 5,
+            "min_length": 35,
+            "max_length": 256,
+            "stepwise_penalty": true,
+            "alpha": 0.9,
+            "beta": 5,
+            "length_penalty": "length_wu",
+            "coverage_penalty": "coverage_summary",
+            "block_ngram_repeat": 3
+          }
+        ]
+      },
+      "before_trace": "../test-results/quality_regression/before/cnndm_validation_1_LSTM.json",
+      "after_trace": "../test-results/quality_regression/after_capacity/cnndm_validation_1_LSTM.json",
+      "existing_reference_summary": "The 20th MLS season begins this weekend .\nLeague has changed dramatically since its inception in 1996 .\nSome question whether rules regarding salary caps and transfers need to change ."
+    },
+    {
+      "case": "cnndm_validation_1",
+      "model": "PEGASUS",
+      "source_sha256": "2d2cf74fcdd94c28ed81e4ba20196aa978be8a354da5ef8caed491c13c6afbfb",
+      "source_words": 1324,
+      "source_tokens_including_specials": 1542,
+      "before_source_window": 1024,
+      "after_source_window": 1024,
+      "source_chunk_tokenization_unchanged_when_chunking_unchanged": true,
+      "before": {
+        "summary": "Major League Soccer kicks off its 20th season this weekend. Orlando City play New York City in the league's opening match.",
+        "words": 21,
+        "requested_words": 199,
+        "output_tokens": 93,
+        "source_chunks": 2,
+        "consolidation_passes": 1,
+        "model_calls": 3,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 12,
+            "max_tokens": 512
+          },
+          {
+            "min_tokens": 12,
+            "max_tokens": 348
+          },
+          {
+            "min_tokens": 9,
+            "max_tokens": 71
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "min_new_tokens": 11,
+            "max_new_tokens": 512,
+            "num_beams": 4,
+            "do_sample": false,
+            "no_repeat_ngram_size": 3,
+            "early_stopping": true,
+            "forced_eos_token_id": null
+          },
+          {
+            "min_new_tokens": 11,
+            "max_new_tokens": 348,
+            "num_beams": 4,
+            "do_sample": false,
+            "no_repeat_ngram_size": 3,
+            "early_stopping": true,
+            "forced_eos_token_id": null
+          },
+          {
+            "min_new_tokens": 8,
+            "max_new_tokens": 71,
+            "num_beams": 4,
+            "do_sample": false,
+            "no_repeat_ngram_size": 3,
+            "early_stopping": true,
+            "forced_eos_token_id": null
+          }
+        ]
+      },
+      "after": {
+        "summary": "Major League Soccer kicks off its 20th season this weekend. Orlando City play New York City in the league's opening match. Last year's World Cup attracted 25 million viewers in the U.S.\nMLS teams are restricted by rules clubs in other markets are not. Talented individuals will have a sell-on value that can be recouped by the league. Paulo Teixeira is a football agent who has worked to bring in and sell players from the league.",
+        "words": 76,
+        "requested_words": 331,
+        "output_tokens": 103,
+        "source_chunks": 2,
+        "consolidation_passes": 0,
+        "model_calls": 2,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 32,
+            "max_tokens": 512,
+            "profile": "checkpoint"
+          },
+          {
+            "min_tokens": 32,
+            "max_tokens": 348,
+            "profile": "checkpoint"
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "min_new_tokens": 31,
+            "max_new_tokens": 512,
+            "do_sample": false,
+            "forced_eos_token_id": null
+          },
+          {
+            "min_new_tokens": 31,
+            "max_new_tokens": 348,
+            "do_sample": false,
+            "forced_eos_token_id": null
+          }
+        ]
+      },
+      "before_trace": "../test-results/quality_regression/before/cnndm_validation_1_PEGASUS.json",
+      "after_trace": "../test-results/quality_regression/after_capacity/cnndm_validation_1_PEGASUS.json",
+      "existing_reference_summary": "The 20th MLS season begins this weekend .\nLeague has changed dramatically since its inception in 1996 .\nSome question whether rules regarding salary caps and transfers need to change ."
+    },
+    {
+      "case": "cnndm_validation_1",
+      "model": "Transformer",
+      "source_sha256": "2d2cf74fcdd94c28ed81e4ba20196aa978be8a354da5ef8caed491c13c6afbfb",
+      "source_words": 1324,
+      "source_tokens_including_specials": 1490,
+      "before_source_window": 400,
+      "after_source_window": 1024,
+      "source_chunk_tokenization_unchanged_when_chunking_unchanged": false,
+      "before": {
+        "summary": "new season is first of the world's favorite sport in a land its charms had yet to conquer. 60,000 fans are expected to witness orlando city's opening weekend fixture against new york city.",
+        "words": 33,
+        "requested_words": 199,
+        "output_tokens": 205,
+        "source_chunks": 4,
+        "consolidation_passes": 1,
+        "model_calls": 5,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 12,
+            "max_tokens": 256
+          },
+          {
+            "min_tokens": 12,
+            "max_tokens": 256
+          },
+          {
+            "min_tokens": 12,
+            "max_tokens": 256
+          },
+          {
+            "min_tokens": 12,
+            "max_tokens": 231
+          },
+          {
+            "min_tokens": 12,
+            "max_tokens": 194
+          }
+        ],
+        "actual_generation_settings": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "after": {
+        "summary": "san jose clash and dc united strode out in front of 31,683 expectant fans. the historic occasion was the first major league soccer match in a land its charms. espn commentator ty keough describes the \"birth of a new era for american soccer.\" peter vermes says mls teams are restricted by rules in other markets. he says current philosophies with regards to finances may have to be tweaked to finances. new signings could be achieved by signing closer to peak stage of career.",
+        "words": 83,
+        "requested_words": 331,
+        "output_tokens": 102,
+        "source_chunks": 2,
+        "consolidation_passes": 0,
+        "model_calls": 2,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 35,
+            "max_tokens": 256,
+            "profile": "checkpoint"
+          },
+          {
+            "min_tokens": 35,
+            "max_tokens": 256,
+            "profile": "checkpoint"
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "beam_size": 5,
+            "min_length": 35,
+            "max_length": 256,
+            "stepwise_penalty": true,
+            "alpha": 0.9,
+            "beta": 5,
+            "length_penalty": "length_wu",
+            "coverage_penalty": "coverage_summary",
+            "block_ngram_repeat": 3
+          },
+          {
+            "beam_size": 5,
+            "min_length": 35,
+            "max_length": 256,
+            "stepwise_penalty": true,
+            "alpha": 0.9,
+            "beta": 5,
+            "length_penalty": "length_wu",
+            "coverage_penalty": "coverage_summary",
+            "block_ngram_repeat": 3
+          }
+        ]
+      },
+      "before_trace": "../test-results/quality_regression/before/cnndm_validation_1_Transformer.json",
+      "after_trace": "../test-results/quality_regression/after_capacity/cnndm_validation_1_Transformer.json",
+      "existing_reference_summary": "The 20th MLS season begins this weekend .\nLeague has changed dramatically since its inception in 1996 .\nSome question whether rules regarding salary caps and transfers need to change ."
+    },
+    {
+      "case": "huang_unverified",
+      "model": "BART",
+      "source_sha256": "fd48270a2513baf53a5598394b934d8a9d8c4c016f5758373f936bd0bbf926fd",
+      "source_words": 518,
+      "source_tokens_including_specials": 654,
+      "before_source_window": 1024,
+      "after_source_window": 1024,
+      "source_chunk_tokenization_unchanged_when_chunking_unchanged": true,
+      "before": {
+        "summary": "Jensen Huang, 63, has been married to Lori Mills since 1985. The pair have two children, Madison and Spencer, who now work in senior roles at Nvidia. The company is still valued at nearly $4n (£3.02tn) despite recent events. It is at the centre of the AI race between the US and China.",
+        "words": 53,
+        "requested_words": 78,
+        "output_tokens": 70,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 12,
+            "max_tokens": 164
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "min_new_tokens": 11,
+            "max_new_tokens": 164,
+            "num_beams": 4,
+            "do_sample": false,
+            "no_repeat_ngram_size": 3,
+            "early_stopping": true,
+            "forced_eos_token_id": null
+          }
+        ]
+      },
+      "after": {
+        "summary": "Jensen Huang, 63, has been married to Lori Mills since 1985. The pair have two children, Madison and Spencer, who now work in senior roles at Nvidia. The company is still valued at nearly $4n (£3.02tn) despite recent events. Nvidia is a linchpin in the US's race for technology leadership with China.",
+        "words": 52,
+        "requested_words": 130,
+        "output_tokens": 72,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 56,
+            "max_tokens": 270,
+            "profile": "checkpoint"
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "min_new_tokens": 55,
+            "max_new_tokens": 270,
+            "do_sample": false,
+            "forced_eos_token_id": null
+          }
+        ]
+      },
+      "before_trace": "../test-results/quality_regression/before/huang_unverified_BART.json",
+      "after_trace": "../test-results/quality_regression/after_capacity/huang_unverified_BART.json",
+      "existing_reference_summary": null
+    },
+    {
+      "case": "huang_unverified",
+      "model": "LSTM",
+      "source_sha256": "fd48270a2513baf53a5598394b934d8a9d8c4c016f5758373f936bd0bbf926fd",
+      "source_words": 518,
+      "source_tokens_including_specials": 580,
+      "before_source_window": 400,
+      "after_source_window": 1024,
+      "source_chunk_tokenization_unchanged_when_chunking_unchanged": false,
+      "before": {
+        "summary": "jensen huang, known for sporting a black leather jacket to shareholder events, appeared to have it all.",
+        "words": 17,
+        "requested_words": 78,
+        "output_tokens": 94,
+        "source_chunks": 2,
+        "consolidation_passes": 1,
+        "model_calls": 3,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 12,
+            "max_tokens": 255
+          },
+          {
+            "min_tokens": 12,
+            "max_tokens": 153
+          },
+          {
+            "min_tokens": 11,
+            "max_tokens": 86
+          }
+        ],
+        "actual_generation_settings": [
+          null,
+          null,
+          null
+        ]
+      },
+      "after": {
+        "summary": "jensen huang, known for sporting a black leather jacket to shareholder events, appeared to have it all. the 63-year-old has been married since 1985, long before the foundation of nvidia. he is known as a demanding manager, with high standards for those who worked for him.",
+        "words": 46,
+        "requested_words": 130,
+        "output_tokens": 59,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 35,
+            "max_tokens": 256,
+            "profile": "checkpoint"
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "beam_size": 5,
+            "min_length": 35,
+            "max_length": 256,
+            "stepwise_penalty": true,
+            "alpha": 0.9,
+            "beta": 5,
+            "length_penalty": "length_wu",
+            "coverage_penalty": "coverage_summary",
+            "block_ngram_repeat": 3
+          }
+        ]
+      },
+      "before_trace": "../test-results/quality_regression/before/huang_unverified_LSTM.json",
+      "after_trace": "../test-results/quality_regression/after_capacity/huang_unverified_LSTM.json",
+      "existing_reference_summary": null
+    },
+    {
+      "case": "huang_unverified",
+      "model": "PEGASUS",
+      "source_sha256": "fd48270a2513baf53a5598394b934d8a9d8c4c016f5758373f936bd0bbf926fd",
+      "source_words": 518,
+      "source_tokens_including_specials": 608,
+      "before_source_window": 1024,
+      "after_source_window": 1024,
+      "source_chunk_tokenization_unchanged_when_chunking_unchanged": true,
+      "before": {
+        "summary": "Jensen Huang has been married since 1985 and is known as a workaholic. But he has seen his personal reputation go into freefall this week.",
+        "words": 25,
+        "requested_words": 78,
+        "output_tokens": 31,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 12,
+            "max_tokens": 175
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "min_new_tokens": 11,
+            "max_new_tokens": 175,
+            "num_beams": 4,
+            "do_sample": false,
+            "no_repeat_ngram_size": 3,
+            "early_stopping": true,
+            "forced_eos_token_id": null
+          }
+        ]
+      },
+      "after": {
+        "summary": "Jensen Huang was courted by leaders in the US and China alike. But a rockstar approach to his personal life has ultimately led to his resignation. The 63-year-old has been married since 1985, long before Nvidia. He is known as a workaholic and a demanding manager. But he has seen his personal reputation go into freefall this week. On Thursday, he resigned following back-to-back revelations of two affairs.",
+        "words": 68,
+        "requested_words": 130,
+        "output_tokens": 96,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 32,
+            "max_tokens": 287,
+            "profile": "checkpoint"
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "min_new_tokens": 31,
+            "max_new_tokens": 287,
+            "do_sample": false,
+            "forced_eos_token_id": null
+          }
+        ]
+      },
+      "before_trace": "../test-results/quality_regression/before/huang_unverified_PEGASUS.json",
+      "after_trace": "../test-results/quality_regression/after_capacity/huang_unverified_PEGASUS.json",
+      "existing_reference_summary": null
+    },
+    {
+      "case": "huang_unverified",
+      "model": "Transformer",
+      "source_sha256": "fd48270a2513baf53a5598394b934d8a9d8c4c016f5758373f936bd0bbf926fd",
+      "source_words": 518,
+      "source_tokens_including_specials": 580,
+      "before_source_window": 400,
+      "after_source_window": 1024,
+      "source_chunk_tokenization_unchanged_when_chunking_unchanged": false,
+      "before": {
+        "summary": "huang is known for sporting a black leather jacket to shareholder events.",
+        "words": 12,
+        "requested_words": 78,
+        "output_tokens": 100,
+        "source_chunks": 2,
+        "consolidation_passes": 1,
+        "model_calls": 3,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 12,
+            "max_tokens": 255
+          },
+          {
+            "min_tokens": 12,
+            "max_tokens": 153
+          },
+          {
+            "min_tokens": 12,
+            "max_tokens": 99
+          }
+        ],
+        "actual_generation_settings": [
+          null,
+          null,
+          null
+        ]
+      },
+      "after": {
+        "summary": "huang has been married since 1985 long before the foundation of nvidia. he is known as a workaholic and demanding manager, with high standards for those who worked for him. his departure creates uncertainty in the global stock market, which was already knocked-off balance in recent weeks.",
+        "words": 47,
+        "requested_words": 130,
+        "output_tokens": 58,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 35,
+            "max_tokens": 256,
+            "profile": "checkpoint"
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "beam_size": 5,
+            "min_length": 35,
+            "max_length": 256,
+            "stepwise_penalty": true,
+            "alpha": 0.9,
+            "beta": 5,
+            "length_penalty": "length_wu",
+            "coverage_penalty": "coverage_summary",
+            "block_ngram_repeat": 3
+          }
+        ]
+      },
+      "before_trace": "../test-results/quality_regression/before/huang_unverified_Transformer.json",
+      "after_trace": "../test-results/quality_regression/after_capacity/huang_unverified_Transformer.json",
+      "existing_reference_summary": null
+    },
+    {
+      "case": "synthetic_short_uncertainty",
+      "model": "BART",
+      "source_sha256": "92c179256e636445645b2cfe40fe5a5abf98499fad512a7d515fb7022e1f995b",
+      "source_words": 63,
+      "source_tokens_including_specials": 75,
+      "before_source_window": 1024,
+      "after_source_window": 1024,
+      "source_chunk_tokenization_unchanged_when_chunking_unchanged": true,
+      "before": {
+        "summary": "The Riverside footbridge will remain closed for three weeks after inspectors found cracks in its supports. Engineers have not yet determined whether recent flooding caused the damage. Pedestrians can use the station bridge instead.",
+        "words": 34,
+        "requested_words": 9,
+        "output_tokens": 66,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 2,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": false,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 2,
+            "max_tokens": 25
+          },
+          {
+            "min_tokens": 2,
+            "max_tokens": 44
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "min_new_tokens": 1,
+            "max_new_tokens": 25,
+            "num_beams": 4,
+            "do_sample": false,
+            "no_repeat_ngram_size": 3,
+            "early_stopping": true,
+            "forced_eos_token_id": null
+          },
+          {
+            "min_new_tokens": 1,
+            "max_new_tokens": 44,
+            "num_beams": 4,
+            "do_sample": false,
+            "no_repeat_ngram_size": 3,
+            "early_stopping": true,
+            "forced_eos_token_id": null
+          }
+        ]
+      },
+      "after": {
+        "summary": "The Riverside footbridge will remain closed for three weeks after inspectors found cracks in its supports. Engineers have not yet determined whether recent flooding caused the damage. Pedestrians can use the station bridge instead.",
+        "words": 34,
+        "requested_words": 16,
+        "output_tokens": 41,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 18,
+            "max_tokens": 141,
+            "profile": "checkpoint"
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "min_new_tokens": 17,
+            "max_new_tokens": 141,
+            "do_sample": false,
+            "forced_eos_token_id": null
+          }
+        ]
+      },
+      "before_trace": "../test-results/quality_regression/before/synthetic_short_uncertainty_BART.json",
+      "after_trace": "../test-results/quality_regression/after_capacity/synthetic_short_uncertainty_BART.json",
+      "existing_reference_summary": null
+    },
+    {
+      "case": "synthetic_short_uncertainty",
+      "model": "LSTM",
+      "source_sha256": "92c179256e636445645b2cfe40fe5a5abf98499fad512a7d515fb7022e1f995b",
+      "source_words": 63,
+      "source_tokens_including_specials": 69,
+      "before_source_window": 400,
+      "after_source_window": 1024,
+      "source_chunk_tokenization_unchanged_when_chunking_unchanged": true,
+      "before": {
+        "summary": "the riverside footbridge will remain closed for three weeks after inspectors found cracks in its supports.",
+        "words": 16,
+        "requested_words": 9,
+        "output_tokens": 19,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 2,
+            "max_tokens": 26
+          }
+        ],
+        "actual_generation_settings": [
+          null
+        ]
+      },
+      "after": {
+        "summary": "the riverside footbridge will remain closed for three weeks after inspectors found cracks in its supports. pedestrians can use the station bridge instead.",
+        "words": 23,
+        "requested_words": 16,
+        "output_tokens": 29,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 17,
+            "max_tokens": 100,
+            "profile": "checkpoint"
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "beam_size": 5,
+            "min_length": 17,
+            "max_length": 100,
+            "stepwise_penalty": true,
+            "alpha": 0.9,
+            "beta": 5,
+            "length_penalty": "length_wu",
+            "coverage_penalty": "coverage_summary",
+            "block_ngram_repeat": 3
+          }
+        ]
+      },
+      "before_trace": "../test-results/quality_regression/before/synthetic_short_uncertainty_LSTM.json",
+      "after_trace": "../test-results/quality_regression/after_capacity/synthetic_short_uncertainty_LSTM.json",
+      "existing_reference_summary": null
+    },
+    {
+      "case": "synthetic_short_uncertainty",
+      "model": "PEGASUS",
+      "source_sha256": "92c179256e636445645b2cfe40fe5a5abf98499fad512a7d515fb7022e1f995b",
+      "source_words": 63,
+      "source_tokens_including_specials": 72,
+      "before_source_window": 1024,
+      "after_source_window": 1024,
+      "source_chunk_tokenization_unchanged_when_chunking_unchanged": true,
+      "before": {
+        "summary": "The Riverside footbridge will remain closed for three weeks. Pedestrians can use the station bridge instead.",
+        "words": 16,
+        "requested_words": 9,
+        "output_tokens": 24,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 2,
+            "max_tokens": 26
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "min_new_tokens": 1,
+            "max_new_tokens": 26,
+            "num_beams": 4,
+            "do_sample": false,
+            "no_repeat_ngram_size": 3,
+            "early_stopping": true,
+            "forced_eos_token_id": null
+          }
+        ]
+      },
+      "after": {
+        "summary": "The Northbridge council said on Monday that the Riverside footbridge will remain closed for three weeks. Engineers have not yet determined whether recent flooding caused the damage. Pedestrians can use the station bridge instead.",
+        "words": 34,
+        "requested_words": 16,
+        "output_tokens": 47,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 18,
+            "max_tokens": 127,
+            "profile": "checkpoint"
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "min_new_tokens": 17,
+            "max_new_tokens": 127,
+            "do_sample": false,
+            "forced_eos_token_id": null
+          }
+        ]
+      },
+      "before_trace": "../test-results/quality_regression/before/synthetic_short_uncertainty_PEGASUS.json",
+      "after_trace": "../test-results/quality_regression/after_capacity/synthetic_short_uncertainty_PEGASUS.json",
+      "existing_reference_summary": null
+    },
+    {
+      "case": "synthetic_short_uncertainty",
+      "model": "Transformer",
+      "source_sha256": "92c179256e636445645b2cfe40fe5a5abf98499fad512a7d515fb7022e1f995b",
+      "source_words": 63,
+      "source_tokens_including_specials": 69,
+      "before_source_window": 400,
+      "after_source_window": 1024,
+      "source_chunk_tokenization_unchanged_when_chunking_unchanged": true,
+      "before": {
+        "summary": "engineers have not yet determined whether recent flooding caused the damage. pedestrians can use the station bridge instead.",
+        "words": 18,
+        "requested_words": 9,
+        "output_tokens": 24,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 2,
+            "max_tokens": 26
+          }
+        ],
+        "actual_generation_settings": [
+          null
+        ]
+      },
+      "after": {
+        "summary": "the council expects to publish a repair estimate on friday; it has not approved a construction budget. no injuries have been reported.",
+        "words": 22,
+        "requested_words": 16,
+        "output_tokens": 29,
+        "source_chunks": 1,
+        "consolidation_passes": 0,
+        "model_calls": 1,
+        "coverage_complete": true,
+        "all_decode_attempts_eos": true,
+        "repeated_trigram_occurrences": 0,
+        "actual_decode_budgets": [
+          {
+            "min_tokens": 17,
+            "max_tokens": 100,
+            "profile": "checkpoint"
+          }
+        ],
+        "actual_generation_settings": [
+          {
+            "beam_size": 5,
+            "min_length": 17,
+            "max_length": 100,
+            "stepwise_penalty": true,
+            "alpha": 0.9,
+            "beta": 5,
+            "length_penalty": "length_wu",
+            "coverage_penalty": "coverage_summary",
+            "block_ngram_repeat": 3
+          }
+        ]
+      },
+      "before_trace": "../test-results/quality_regression/before/synthetic_short_uncertainty_Transformer.json",
+      "after_trace": "../test-results/quality_regression/after_capacity/synthetic_short_uncertainty_Transformer.json",
+      "existing_reference_summary": null
+    }
+  ],
+  "kind": "Small development regression and qualitative source/reference review; NOT a quality leaderboard, factuality score, or final-test benchmark.",
+  "source_notice": "The user-pasted Huang article is unverified source text. Its allegations and generated versions are not verified news and are not endorsed.",
+  "final_trace_folder": "../test-results/quality_regression/after_capacity/",
+  "other_trace_folders": {
+    "baseline": "../test-results/quality_regression/before/",
+    "intermediate_candidates": [
+      "../test-results/quality_regression/after/",
+      "../test-results/quality_regression/after_final/"
+    ],
+    "exact_user_input": "../test-results/quality_regression/huang_article.txt",
+    "frozen_validation_sources": "../test-results/quality_regression/validation_sources.json"
+  },
+  "validation_scope": {
+    "articles": 4,
+    "models": 4,
+    "final_before_after_cases": 32,
+    "held_out_data": "abisee/cnn_dailymail 3.0.0 validation rows 0 and 1, with their original highlights and frozen IDs/text hashes; no test split accessed.",
+    "additional_sources": "The exact unverified user article and one 63-word synthetic closure/negation fixture without a reference.",
+    "reference_use": "Manual comparison to existing CNN/DailyMail highlights and original source, not an invented reference or automated factuality certification.",
+    "metrics": "Output lengths, termination, coverage and repeated-trigram occurrences are descriptive checks only. No ROUGE packages installed and no quality score claimed."
+  },
+  "root_causes": [
+    "PEGASUS checkpoint search was overridden with BART-style beam/repetition/early-stopping settings. Holding the source and checkpoint constant, restoring the checkpoint search policy recovered the main supplied claim; raising only its minimum length did not.",
+    "The OpenNMT 400-token training/benchmark policy was treated as a hard encoder capacity, forcing an unnecessary source split on the 580-token regression. Both exact checkpoints successfully read all 580 tokens directly. The app now has a bounded 1024-token work window capped by real positional limits; the fixed-budget API remains at 400.",
+    "Unnecessary final decoding shrank already-short OpenNMT intermediate outputs from 57 to 17 and 67 to 12 words. A completed source-order, exact-deduplicated merge within the preference/window no longer receives another lossy decode.",
+    "Overly small percentage-derived maximums forced short BART input to retry at 25 then 44 tokens. Native inference maximums are now minimum headroom (not minimum output length); the final short fixture completes in one call.",
+    "Minimum/length-normalization settings differed from the pinned OpenNMT recipe. The app-only profile restores it and restores cached translator/source settings in finally blocks; it does not modify the fixed-budget benchmark settings."
+  ],
+  "changes": {
+    "ui": "Unchanged",
+    "ratios": {
+      "Short": 0.15,
+      "Medium": 0.25,
+      "Detailed": 0.35
+    },
+    "length_policy": "Preferences, not forced percentages. Bounded native summarization floors are reduced to at most one quarter of short source tokens. Native maximum headroom avoids needless cutoff/retry. EOS is still natural; no filler or sentence clipping.",
+    "legacy_app_source_window": 1024,
+    "legacy_training_and_fixed_api_window": 400,
+    "checkpoint_changes": "None",
+    "environment_changes": "None",
+    "training": "None",
+    "large_benchmark_or_publication": "None"
+  },
+  "preprocessing_review": [
+    "All source chunks reconstruct the exact original string. Before/after use identical frozen original text hashes; changed OpenNMT chunking is explicit.",
+    "BART/PEGASUS use their checkpoint's original tokenizer and preserve source case; source totals include their tokenizer-added special tokens.",
+    "OpenNMT lowercasing/PTB normalization is the required approximation. Source has no added BOS/EOS; target vocab size matches decoder embeddings. Copying/OOV IDs and raw output tokens are saved.",
+    "Decoder-start/EOS/PAD IDs are recorded separately. BART decoder-start EOS is not treated as generated termination; HF forced EOS at a cap remains disabled in the app.",
+    "Raw outputs already contain the missing-event/relationship errors: detokenization/tag cleanup is not removing the main event. Independent official OpenNMT Translator.translate matched the custom backend on identical chunks.",
+    "Models remain cached by selection; actual checkpoints and generation configs are recorded. Request-specific source/scorer settings are restored on success and failure.",
+    "PEGASUS fixed positional-embedding warnings are unchanged; the same loaded checkpoint produced the improved direct-control output. No missing learned weights were supplied or trained."
+  ],
+  "qualitative_review": {
+    "huang_unverified": {
+      "PEGASUS": "25 -> 68 words. Before omits the supplied resignation claim; after states it and the supplied two-affairs explanation. It repeats the resignation idea and does not preserve every attribution/detail; this is not verification of those allegations.",
+      "BART": "53 -> 52 words. Both direct checkpoint inference and the app focus on family/company background and omit the main supplied event. Not solved by pipeline changes.",
+      "LSTM": "17 -> 46 words. More background survives, but the main event is still omitted in direct and app inference. Extra words are not a successful salience fix.",
+      "Transformer": "12 -> 47 words. Mentions departure/market uncertainty but does not clearly state the supplied resignation/reason; family/background still dominate. Native single-pass control has the same limitation."
+    },
+    "cnndm_validation_0": {
+      "BART": "29 -> 50 words; retains donor Zully Broussard and six transplant patients, adds source-supported detail.",
+      "LSTM": "24 -> 37 words; still prioritizes procedure/background and omits the main donor/six-patient event.",
+      "Transformer": "39 -> 34 words; final 'Zully Broussard’s gift was data processing' changes the relationship in the source. Not a faithful account of the donation's main event.",
+      "PEGASUS": "25 -> 48 words; still confuses donor/recipient relations ('stranger’s kidney') and repeats the transplant chain with a weak final fragment. The independent checkpoint-default control reproduces the same error; this is a backend limitation."
+    },
+    "cnndm_validation_1": {
+      "BART": "37 -> 120 words; source-order merging keeps the 20th season, growth from 10 to 20 teams and later transfer-rule discussion that the old final consolidation discarded.",
+      "LSTM": "39 -> 93 words; adds relevant rights-deal and rules context, but the final younger-player statement can be misattributed to Peter Vermes rather than Paulo Teixeira.",
+      "Transformer": "33 -> 83 words; retains history but has grammatical fragments and can conflate Vermes's and Teixeira's statements. The intermediate candidate also reversed the source's 'long gone' negation; final single-pass first-chunk output avoids that specific sentence but does not solve factuality.",
+      "PEGASUS": "21 -> 76 words; retains the 20th-season event and more discussion, but 'World Cup attracted 25 million viewers' overgeneralizes a source number specific to USA-Portugal and conditional economics become more certain."
+    },
+    "synthetic_short_uncertainty": {
+      "BART": "34 -> 34 words; keeps bridge closure and explicitly unconfirmed flooding cause. Completes in one pass/call after removing the too-small maximum.",
+      "PEGASUS": "16 -> 34 words; adds attribution and explicitly preserves uncertainty about flooding.",
+      "LSTM": "16 -> 23 words; keeps the closure/duration and detour, but omits the uncertainty clause rather than asserting its opposite.",
+      "Transformer": "18 -> 22 words; preserves 'not approved' and 'no injuries' but misses the main closure event. No model is certified factually reliable."
+    }
+  }
+}

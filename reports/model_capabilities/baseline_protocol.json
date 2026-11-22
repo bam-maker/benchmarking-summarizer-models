@@ -1,0 +1,87 @@
+{
+  "A": {
+    "method": "Direct single pass; original tokenizer/checkpoint vocabulary; deterministic search. Full source only when it fits. Any truncated reference run labeled prefix diagnostic.",
+    "OpenNMT": {
+      "beam": 5,
+      "min_length": 35,
+      "max_length": 100,
+      "alpha": 0.9,
+      "beta": 5.0,
+      "length_penalty": "wu",
+      "coverage_penalty": "summary",
+      "stepwise_penalty": true,
+      "block_ngram_repeat": 3,
+      "ignore_when_blocking": [
+        ".",
+        "</t>",
+        "<t>"
+      ],
+      "replace_unk": false,
+      "fast": false
+    },
+    "HF_literal_checkpoint_generation_configs": {
+      "BART": {
+        "_from_model_config": true,
+        "bos_token_id": 0,
+        "decoder_start_token_id": 2,
+        "early_stopping": true,
+        "eos_token_id": 2,
+        "forced_bos_token_id": 0,
+        "forced_eos_token_id": 2,
+        "length_penalty": 2.0,
+        "max_length": 142,
+        "min_length": 56,
+        "no_repeat_ngram_size": 3,
+        "num_beams": 4,
+        "pad_token_id": 1,
+        "transformers_version": "4.27.0.dev0"
+      },
+      "PEGASUS": {
+        "_from_model_config": true,
+        "bos_token_id": 0,
+        "decoder_start_token_id": 0,
+        "eos_token_id": 1,
+        "forced_eos_token_id": 1,
+        "length_penalty": 0.8,
+        "max_length": 128,
+        "min_length": 32,
+        "num_beams": 8,
+        "pad_token_id": 0,
+        "transformers_version": "4.27.0.dev0"
+      }
+    },
+    "EOS": "HF literal defaults can force EOS at cap; preserve that reproducibility control. Natural-EOS baseline is the identical configuration with only forced_eos_token_id=None, already tested in factual audit. Report a cap without EOS as unfinished; do not silently append EOS or extend baseline.",
+    "source_window": {
+      "LSTM": 400,
+      "Transformer": 400,
+      "BART": 1024,
+      "PEGASUS": 1024
+    }
+  },
+  "B": {
+    "status": "No calibrated production presets promoted",
+    "Medium": "Candidate starting point is natural-EOS checkpoint A, not an article percentage.",
+    "Short": "Future candidate changes only A minimum downward; hold maximum/search fixed, judge event preservation. Lower ceilings need separate termination checks.",
+    "Detailed": "Future candidate changes only A maximum upward within app/decoder limits; hold minimum/search fixed, accept identical EOS output.",
+    "existing_evidence": "172-call audit varies length/EOS controls independently. Most outputs unchanged; bombing example adds secondary detail at native minimum without restoring event. No separate Short/Medium/Detailed factuality validation supports promotion.",
+    "promotion_gate": "Freeze one numeric candidate per model before inference; use separately saved validation IDs outside inspected0-41 (42-47 reserved but not fetched). Human source review must support fidelity and desired preference without worsened errors; otherwise reject. No repeated tuning on those rows. No candidate run is needed merely to retain existing behavior."
+  },
+  "C": {
+    "method": "Current full-article chunk/merge/consolidation with safeguards, evaluated independently from A/B",
+    "measured": "Rows33/39 need two source chunks per model; no additional generative consolidation in40-case evaluation. Row39 omission occurs before merge. Earlier synthetic deep-loop checks establish execution, not news factuality."
+  },
+  "audit_checks_reused": {
+    "case_model_pairs": 20,
+    "direct_model_calls": 172,
+    "replayed_source_chunks": 24,
+    "matching_raw_ids_chunks": 24,
+    "matching_displayed_chunks": 24,
+    "matching_merged_summaries": 20,
+    "exact_source_reconstructions": 20,
+    "termination": {
+      "eos": 172
+    },
+    "protected_evidence_unchanged": true,
+    "note": "Equality, coverage and EOS are software observations, not factuality ratings."
+  }
+}

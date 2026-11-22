@@ -1,0 +1,16 @@
+{
+  "status": "Large run stopped at user request; small first-50 comparison continues separately",
+  "counts_at_scope_change": {
+    "common_input/BART": 27,
+    "common_input/Lead-3": 5,
+    "common_input/LSTM": 1000,
+    "common_input/PEGASUS": 5,
+    "common_input/Transformer": 407,
+    "full_article/BART": 27,
+    "full_article/Lead-3": 5,
+    "full_article/LSTM": 1000,
+    "full_article/PEGASUS": 5,
+    "full_article/Transformer": 406
+  },
+  "note": "Prior aggregate/report files are partial snapshots, not a completed final benchmark. No automatic completion watcher was launched."
+}

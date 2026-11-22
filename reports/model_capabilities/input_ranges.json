@@ -1,0 +1,1767 @@
+{
+  "population": "Inspected development validation rows2-41; not untouched final test",
+  "groups": "Model-specific source tokens including specials where applicable: short<=400, medium401-800, long801-1024, beyond>1024. Same underlying40 IDs; groups may differ between tokenizers. These are descriptive post-hoc strata, not causal comparisons or safety thresholds.",
+  "memory": "No per-request allocated/reserved/peak memory series exists in the reused reports; do not estimate measured VRAM from parameter counts.",
+  "rows": [
+    {
+      "model": "LSTM",
+      "group": "short",
+      "n": 20,
+      "row_ids": [
+        {
+          "row_idx": 7,
+          "id": "0485e4f199828cd03857391cbe573142193ca953"
+        },
+        {
+          "row_idx": 10,
+          "id": "bdf542b05c1717ae9ef064e5fafa4a2946785d09"
+        },
+        {
+          "row_idx": 12,
+          "id": "14c1b26ea2b78196c2d1cf3a5882aedb2f6558aa"
+        },
+        {
+          "row_idx": 13,
+          "id": "f4a21564e3c65809f110b832138f2a3cf5b019cc"
+        },
+        {
+          "row_idx": 14,
+          "id": "0bcc5c7a3e66e114aaa39dcca83d4656d5978022"
+        },
+        {
+          "row_idx": 15,
+          "id": "43276372450d31aad099a3cfc1f5fe931a419329"
+        },
+        {
+          "row_idx": 16,
+          "id": "10f9d53382cb52d77c1090e9ebf062bf8cb64f59"
+        },
+        {
+          "row_idx": 20,
+          "id": "ae99cbf7b2eff2e7468c3282a992863556b0f3b1"
+        },
+        {
+          "row_idx": 21,
+          "id": "64d7ee44a6d3c726d4f5d197c325fd728e02ec53"
+        },
+        {
+          "row_idx": 22,
+          "id": "e7203d308fc92da3852e54616a1cfe7bc3d2066c"
+        },
+        {
+          "row_idx": 25,
+          "id": "a808527fc922d43981f743e8ef253783205deaf0"
+        },
+        {
+          "row_idx": 26,
+          "id": "08ac0d3791342869695f24bbb18e0e78b0771ff1"
+        },
+        {
+          "row_idx": 27,
+          "id": "03fefc8c93587d4241eb782e25dd7525b0963392"
+        },
+        {
+          "row_idx": 28,
+          "id": "e3e023362d6b02ff98eaa7b9608655a3519a0001"
+        },
+        {
+          "row_idx": 29,
+          "id": "b6d33bd44b3bdb42695474583a168d382ae4ffd5"
+        },
+        {
+          "row_idx": 31,
+          "id": "ed7fb1f13618a418f28ca9af248f9597a1632528"
+        },
+        {
+          "row_idx": 32,
+          "id": "d8e8c223ea7158f4d5f6724c29c14cd8d425ec0b"
+        },
+        {
+          "row_idx": 34,
+          "id": "048b04230002a98f36bc94b37bcde361940ad254"
+        },
+        {
+          "row_idx": 38,
+          "id": "4dd4a5ca12b891bf25bbddd5e8213729cb82f73d"
+        },
+        {
+          "row_idx": 40,
+          "id": "b2eeb57b43f802ec4f4af5c1cc82beba5f512adf"
+        }
+      ],
+      "token_range": [
+        99,
+        387
+      ],
+      "word_range": [
+        81,
+        341
+      ],
+      "mean_rouge_f1_percent": {
+        "rouge1": 41.97523054667309,
+        "rouge2": 21.06242219249819,
+        "rougeL": 30.503618159783016
+      },
+      "mean_output_words": 34.45,
+      "mean_generation_seconds": 0.3991073850002067,
+      "mean_shorter_by_percent": 82.18582273617898,
+      "mean_excess_trigram_percent": 0.0,
+      "failed": 0,
+      "no_final_punctuation": 1,
+      "complete_input_coverage": 20,
+      "experiment": "Application Medium single-pass; not identical to checkpoint A",
+      "ai_notes": [
+        {
+          "row_idx": 7,
+          "note": "Main US-tour move covered and ticket-sale time supported; omits Louisville and the first-show date, weakening the event location. Leading 'tour,' is a fragment, not a new factual claim."
+        },
+        {
+          "row_idx": 10,
+          "note": "Template-page summary strongly matches original highlights but ignores episode topics. 'Use the transcript ... reading comprehension and vocabulary' is in reference, not explicitly in supplied article; high overlap is not independent faithfulness evidence."
+        },
+        {
+          "row_idx": 12,
+          "note": "Actor error: says principal Padgett 'showed up and told him' to hold a bucket; source assigns the instruction to a student. Omits payoff of students filling bucket with thanks, so main event is lost."
+        },
+        {
+          "row_idx": 13,
+          "note": "Main missing-artist event/location and search-through-Friday covered. Omits snorkeling/recovery-mission detail but no specific contradiction identified in this reading."
+        },
+        {
+          "row_idx": 14,
+          "note": "Template-page purpose/roll-call age rule largely covered; changes 'this page' to 'this week'. Reading-comprehension instruction appears in reference, not visible source; episode events omitted."
+        },
+        {
+          "row_idx": 15,
+          "note": "Malformed casting lead ('cast in a lead role and Jeff Goldblum') conflates coordinated actors and never clearly names the sequel. Smith background dominates; main casting relationships are not conveyed reliably."
+        },
+        {
+          "row_idx": 16,
+          "note": "Misses Saturday discharge and quotes Friday's 'in bed' comment without its date. This chronology omission may falsely suggest continued hospitalization; quote itself is in source."
+        },
+        {
+          "row_idx": 20,
+          "note": "Partial stabbing event: three female victims retained, two male victims/arrest/total five omitted. 'Unclear if they are related' now has ambiguous victim-only antecedent instead of accused-versus-victims context."
+        },
+        {
+          "row_idx": 21,
+          "note": "Main car-bomb event, seven killed and 23 injured all omitted; only time, injured children and unknown attacker details remain. Uncertainty preserved, but summary is not a stand-alone account."
+        },
+        {
+          "row_idx": 22,
+          "note": "Main new court-ordered release is omitted; nonattendance and old death toll dominate. Source/ref support background, but reference itself omits Friday's release, illustrating overlap versus event-salience mismatch."
+        },
+        {
+          "row_idx": 25,
+          "note": "Covers bagged-air gag but misses $60,000 bids and auction removal—the main reference details. Sneaker background consumes space; no demonstrated claim that concert-air provenance is authentic."
+        },
+        {
+          "row_idx": 26,
+          "note": "Crash/location and aircraft damage supported, but new brake-report finding central to article/reference omitted. Does not assert a proven cause; output has a shortened damage list."
+        },
+        {
+          "row_idx": 27,
+          "note": "Main school renaming/children honored covered; school size supported. Omits exact 107, Pakistan province and casualty/time details, but no specific contradiction identified."
+        },
+        {
+          "row_idx": 28,
+          "note": "Domestic-violence awareness campaign covered; original dress's true colors supported. Omits South Africa and bruised-model creative detail; no specific contradiction identified."
+        },
+        {
+          "row_idx": 29,
+          "note": "Main suspension lift/reinstatement reason covered. 'She accused' lacks named antecedent but keeps accusation framing, not guilt assertion. Indefinite probation and no-charge decision omitted."
+        },
+        {
+          "row_idx": 31,
+          "note": "Current Myanmar death/missing/rescued counts supported. Main rescue/disaster covered; wave/bad-weather cause from reference omitted. No specific contradiction identified."
+        },
+        {
+          "row_idx": 32,
+          "note": "Bombing in China covered but deaths/wounds omitted. 'The jets ... chase away Myanmar planes' lacks introduction of Chinese patrol jets, risking wrong actor antecedent after Myanmar warplanes lead."
+        },
+        {
+          "row_idx": 34,
+          "note": "Charges and attributed shooting allegation present, but 'after the car he was riding' is an incomplete clause. Omits grand-jury indictment detail/defense; EOS plus final period does not mean grammatical completion."
+        },
+        {
+          "row_idx": 38,
+          "note": "Conflates two accidents: Oklahoma medical-aircraft employees followed immediately by Florida Black Hawk and 11 presumed deaths without explicit separation. Omits main Oklahoma crash location/route; can misleadingly attach military fatalities to medical flight."
+        },
+        {
+          "row_idx": 40,
+          "note": "Preserves first-gay-character claim and novel but malformed 'feature a capable of Moff Mors' damages subject description. Omits lesbian identity and attribution to editor/news site. Does not add reference's diversity claim absent from supplied article."
+        }
+      ]
+    },
+    {
+      "model": "LSTM",
+      "group": "medium",
+      "n": 14,
+      "row_ids": [
+        {
+          "row_idx": 2,
+          "id": "60736693e3b1b32d14337a317190c6606e879a85"
+        },
+        {
+          "row_idx": 3,
+          "id": "8cdf9cc3ed0276b7a7944cc18ba459355b5984ad"
+        },
+        {
+          "row_idx": 4,
+          "id": "2e6613d531843515bf5401286cc3e45c4df530d2"
+        },
+        {
+          "row_idx": 6,
+          "id": "d093aa07380f75e63265793fcaa171772a6f4616"
+        },
+        {
+          "row_idx": 8,
+          "id": "c6df0bbd0b5eaa67e1f2b70892bf0a5dfb761895"
+        },
+        {
+          "row_idx": 9,
+          "id": "4a323dd3a1be975d93e941361082937cd2aafc88"
+        },
+        {
+          "row_idx": 11,
+          "id": "c2be332536700d93414c42c72ae38e21c98dee63"
+        },
+        {
+          "row_idx": 17,
+          "id": "9b040dde80ca3388e9ce9512bb270c2a9e72f1de"
+        },
+        {
+          "row_idx": 19,
+          "id": "223f2d2ff1fa774a816c9dbd0253e8d158b6bc7d"
+        },
+        {
+          "row_idx": 23,
+          "id": "8d730691304ac1b2aa00f033bca162d41a35bb4b"
+        },
+        {
+          "row_idx": 24,
+          "id": "2ccf1b3c6c99f113f51997fa901e13504ca11a49"
+        },
+        {
+          "row_idx": 36,
+          "id": "5d17d709e4ad2b44efd809f03236ec7614d782ab"
+        },
+        {
+          "row_idx": 37,
+          "id": "2db430e31faccedc5ba3806b67d12a1927f12b97"
+        },
+        {
+          "row_idx": 41,
+          "id": "86219a3b1f63b7e2e093aac91c499ceb48eba6bd"
+        }
+      ],
+      "token_range": [
+        406,
+        629
+      ],
+      "word_range": [
+        348,
+        541
+      ],
+      "mean_rouge_f1_percent": {
+        "rouge1": 33.71049913370266,
+        "rouge2": 15.852698403384995,
+        "rougeL": 25.369817751128
+      },
+      "mean_output_words": 38.714285714285715,
+      "mean_generation_seconds": 0.521848857142686,
+      "mean_shorter_by_percent": 91.01830677869225,
+      "mean_excess_trigram_percent": 0.0,
+      "failed": 0,
+      "no_final_punctuation": 1,
+      "complete_input_coverage": 14,
+      "experiment": "Application Medium single-pass; not identical to checkpoint A",
+      "ai_notes": [
+        {
+          "row_idx": 2,
+          "note": "Main collapse and reported recovery covered; venue/score supported. Adds two-goal background but omits conscious departure and hospital precaution. No specific contradiction identified in this reading."
+        },
+        {
+          "row_idx": 3,
+          "note": "Club-throw event covered but secondary score/results dominate. Source itself names 'Ryan Holmes'; reproducing that source text is not independently verified here. No external golf knowledge used."
+        },
+        {
+          "row_idx": 4,
+          "note": "Partial main event: identifies missing child's name/clothes and possible locations, but never explicitly says he is missing or since Wednesday. Preserves 'could/may'; no confirmed-location claim added."
+        },
+        {
+          "row_idx": 6,
+          "note": "Partial main event: ages/initials/fine preserved, but 'the act' is unexplained and arrest/American identity omitted. La Stampa and 'may' fine qualifier retained."
+        },
+        {
+          "row_idx": 8,
+          "note": "Partial attack account; lists Belgian and three Malian victims but omits French victim/total five, venue and location. 'The group' has no named antecedent. Does not explicitly claim only four died."
+        },
+        {
+          "row_idx": 9,
+          "note": "Charge partly covered but Evans omitted and quoted rule ends as an incomplete phrase. 'Allegedly' retained. Omits denial and conditional ban; EOS does not make the quotation complete."
+        },
+        {
+          "row_idx": 11,
+          "note": "Partial main event: VAOS affiliation retained, but nine abducted workers/oil-field attack omitted. Unclosed 'ISIS militias' sentence and 'one of its citizens' lack clear referent; not a clean factual account."
+        },
+        {
+          "row_idx": 17,
+          "note": "Main snow-selling business and six-pound quantity covered; 133-order claim remains attributed to website/accounts. Omits $89 price in reference. No specific contradiction identified."
+        },
+        {
+          "row_idx": 19,
+          "note": "Main Real Madrid loss and conditional Barcelona opportunity covered. Score/teams correct; omits scorer and Bayern side-story in reference. No specific contradiction identified."
+        },
+        {
+          "row_idx": 23,
+          "note": "Partial main event: two shots and location retained with safety-director attribution; death, unarmed status and independent GBI probe omitted. No specific false location identified."
+        },
+        {
+          "row_idx": 24,
+          "note": "Viral woodpecker/weasel photo and Ward-posted/Le-May-credit chain substantially covered; escape outcome supported. No specific contradiction identified in this reading."
+        },
+        {
+          "row_idx": 36,
+          "note": "Gold seizure/weight present, but anonymous 'embassy' has no country/location and ambassador's apology omitted. Main update incomplete; no specific invented weight identified."
+        },
+        {
+          "row_idx": 37,
+          "note": "Correct father, mother's death and uncertain 14-hour entrapment, but omits the central recovery/doing-well update; incomplete description of where the car landed. No clear invented fact in selected clauses; father out-of-town background dominates."
+        },
+        {
+          "row_idx": 41,
+          "note": "Correct Taliban claim and at-least-78 injuries but falsely attributes 'Christian community is a soft target' to Pope Francis; source speaker is researcher Rabia Mehmood. Omits at-least-14 killed and explicit suicide-bombing description; grammatical compression weakens event clarity."
+        }
+      ]
+    },
+    {
+      "model": "LSTM",
+      "group": "long_single_pass",
+      "n": 4,
+      "row_ids": [
+        {
+          "row_idx": 5,
+          "id": "fbc5ac3a3a7bb6c4d628cfbeef92b67bb18562f9"
+        },
+        {
+          "row_idx": 18,
+          "id": "dc0f01376a2e0cfe8dff118a43eae341ac24cf41"
+        },
+        {
+          "row_idx": 30,
+          "id": "8569a517d115d140fbf3550ee0c14bc42477b108"
+        },
+        {
+          "row_idx": 35,
+          "id": "fee1bf4f253bb464e5efb38197d881adf7f4d82d"
+        }
+      ],
+      "token_range": [
+        858,
+        917
+      ],
+      "word_range": [
+        733,
+        831
+      ],
+      "mean_rouge_f1_percent": {
+        "rouge1": 14.844574939215896,
+        "rouge2": 1.1080662456809245,
+        "rougeL": 10.37508119372546
+      },
+      "mean_output_words": 53.75,
+      "mean_generation_seconds": 0.9056153749997975,
+      "mean_shorter_by_percent": 93.17880593289894,
+      "mean_excess_trigram_percent": 0.0,
+      "failed": 0,
+      "no_final_punctuation": 0,
+      "complete_input_coverage": 4,
+      "experiment": "Application Medium single-pass; not identical to checkpoint A",
+      "ai_notes": [
+        {
+          "row_idx": 5,
+          "note": "Actor/time errors: source narrator votes Schilling Father of the Year, while Feb 25 dates Schilling's tweet. 'Gabby ... sent a tweet congratulating his daughter' wrongly assigns the father's action to his daughter."
+        },
+        {
+          "row_idx": 18,
+          "note": "Farah's flight/birth and women's NEF program supported; main advocacy/skill-building/men's-role argument in reference is only partial. Does not identify opinion author; no specific added event identified."
+        },
+        {
+          "row_idx": 30,
+          "note": "Attribution error: assigns 'We are not an ATC ... don't have radar' to contributing journalist Chan Kok Leong, whereas source attributes it to airline CEO Ahmad Jauhari Yahya. Unsupported 'new:' styling; main delay timeline weak."
+        },
+        {
+          "row_idx": 35,
+          "note": "Quotation attribution error: merges Obama's prayers with Holder's 'damn punk ... sow discord' under a single President Obama quote. Main community-policing argument lost amid Harbin background."
+        }
+      ]
+    },
+    {
+      "model": "LSTM",
+      "group": "beyond_window",
+      "n": 2,
+      "row_ids": [
+        {
+          "row_idx": 33,
+          "id": "d83332b67ad10eebe60beba30160869dc942f8ff"
+        },
+        {
+          "row_idx": 39,
+          "id": "aa9a164b2f592570b64063546dda4eed22133a0e"
+        }
+      ],
+      "token_range": [
+        1400,
+        1590
+      ],
+      "word_range": [
+        1188,
+        1354
+      ],
+      "mean_rouge_f1_percent": {
+        "rouge1": 23.633156966490297,
+        "rouge2": 9.03225806451613,
+        "rougeL": 18.783068783068785
+      },
+      "mean_output_words": 111.5,
+      "mean_generation_seconds": 1.5975188500015065,
+      "mean_shorter_by_percent": 91.10983045621154,
+      "mean_excess_trigram_percent": 0.0,
+      "failed": 0,
+      "no_final_punctuation": 1,
+      "complete_input_coverage": 2,
+      "experiment": "C: full-article chunk method",
+      "ai_notes": [
+        {
+          "row_idx": 33,
+          "note": "Main online-health-search risks only partial; long anecdote/quotes crowd out several recommendations. Final uncredited quote is Burgert's after Pho quote and can imply wrong speaker. More words do not guarantee useful coverage."
+        },
+        {
+          "row_idx": 39,
+          "note": "Two-chunk output covers circular-device purpose and broader screen-design discussion, but never names Runcible and uses deictic 'this very idea' without explanation. Google headquarters and smartwatch digressions consume space. No clear invented fact; product identity/main purpose underspecified."
+        }
+      ]
+    },
+    {
+      "model": "Transformer",
+      "group": "short",
+      "n": 20,
+      "row_ids": [
+        {
+          "row_idx": 7,
+          "id": "0485e4f199828cd03857391cbe573142193ca953"
+        },
+        {
+          "row_idx": 10,
+          "id": "bdf542b05c1717ae9ef064e5fafa4a2946785d09"
+        },
+        {
+          "row_idx": 12,
+          "id": "14c1b26ea2b78196c2d1cf3a5882aedb2f6558aa"
+        },
+        {
+          "row_idx": 13,
+          "id": "f4a21564e3c65809f110b832138f2a3cf5b019cc"
+        },
+        {
+          "row_idx": 14,
+          "id": "0bcc5c7a3e66e114aaa39dcca83d4656d5978022"
+        },
+        {
+          "row_idx": 15,
+          "id": "43276372450d31aad099a3cfc1f5fe931a419329"
+        },
+        {
+          "row_idx": 16,
+          "id": "10f9d53382cb52d77c1090e9ebf062bf8cb64f59"
+        },
+        {
+          "row_idx": 20,
+          "id": "ae99cbf7b2eff2e7468c3282a992863556b0f3b1"
+        },
+        {
+          "row_idx": 21,
+          "id": "64d7ee44a6d3c726d4f5d197c325fd728e02ec53"
+        },
+        {
+          "row_idx": 22,
+          "id": "e7203d308fc92da3852e54616a1cfe7bc3d2066c"
+        },
+        {
+          "row_idx": 25,
+          "id": "a808527fc922d43981f743e8ef253783205deaf0"
+        },
+        {
+          "row_idx": 26,
+          "id": "08ac0d3791342869695f24bbb18e0e78b0771ff1"
+        },
+        {
+          "row_idx": 27,
+          "id": "03fefc8c93587d4241eb782e25dd7525b0963392"
+        },
+        {
+          "row_idx": 28,
+          "id": "e3e023362d6b02ff98eaa7b9608655a3519a0001"
+        },
+        {
+          "row_idx": 29,
+          "id": "b6d33bd44b3bdb42695474583a168d382ae4ffd5"
+        },
+        {
+          "row_idx": 31,
+          "id": "ed7fb1f13618a418f28ca9af248f9597a1632528"
+        },
+        {
+          "row_idx": 32,
+          "id": "d8e8c223ea7158f4d5f6724c29c14cd8d425ec0b"
+        },
+        {
+          "row_idx": 34,
+          "id": "048b04230002a98f36bc94b37bcde361940ad254"
+        },
+        {
+          "row_idx": 38,
+          "id": "4dd4a5ca12b891bf25bbddd5e8213729cb82f73d"
+        },
+        {
+          "row_idx": 40,
+          "id": "b2eeb57b43f802ec4f4af5c1cc82beba5f512adf"
+        }
+      ],
+      "token_range": [
+        99,
+        387
+      ],
+      "word_range": [
+        81,
+        341
+      ],
+      "mean_rouge_f1_percent": {
+        "rouge1": 45.699861443706595,
+        "rouge2": 26.406390339175154,
+        "rougeL": 36.68691691552126
+      },
+      "mean_output_words": 32.75,
+      "mean_generation_seconds": 0.5751435299999684,
+      "mean_shorter_by_percent": 82.3035485705835,
+      "mean_excess_trigram_percent": 0.0,
+      "failed": 0,
+      "no_final_punctuation": 0,
+      "complete_input_coverage": 20,
+      "experiment": "Application Medium single-pass; not identical to checkpoint A",
+      "ai_notes": [
+        {
+          "row_idx": 7,
+          "note": "Date relationship error: says the Louisville show is March 9; source schedules the show March 14 and ticket sales March 9. Charity donation is supported."
+        },
+        {
+          "row_idx": 10,
+          "note": "Template summary closely matches reference, but ends 'CNN student' instead of complete program title. Adds the same reference-only reading-comprehension instruction; review template leakage/generalization, not a proven memorization claim."
+        },
+        {
+          "row_idx": 12,
+          "note": "Attribution error: 'first year experience in America' is a student's note, not the principal's statement. Omits the gratitude-prank outcome; juxtaposed bucket quote is insufficient main-event coverage."
+        },
+        {
+          "row_idx": 13,
+          "note": "Missing-person event itself omitted; career titles and snorkeling background do not state what happened. Quote/list punctuation is weak; no clearly invented title identified."
+        },
+        {
+          "row_idx": 14,
+          "note": "Template metadata closely follows the shared reference; episode events absent. Adds reference-only reading-comprehension sentence. High overlap on repeated boilerplate is not proof of source-grounded news understanding."
+        },
+        {
+          "row_idx": 15,
+          "note": "Release date/director supported, but main new casting actors/roles omitted. Final 'film has been nearly 20 years' is grammatically broken; EOS is not semantic completion."
+        },
+        {
+          "row_idx": 16,
+          "note": "Hospitalization/treatment background supported, but discharge—the main event—is omitted. Condition unspecified; no direct contrary discharge claim, just weak salience."
+        },
+        {
+          "row_idx": 20,
+          "note": "Victim count/ages and proximity supported, but main arrest/location/accused age omitted. No specific contradiction identified; weak stand-alone context."
+        },
+        {
+          "row_idx": 21,
+          "note": "Main car-bomb event/casualties omitted; truncates place name to 'Gah'. Deputy-governor attribution present but too little event context."
+        },
+        {
+          "row_idx": 22,
+          "note": "Main release/detention ruling omitted; reproduces background similar to LSTM. No specific invented fact identified, but it is not an account of the lead event."
+        },
+        {
+          "row_idx": 25,
+          "note": "Partial gag covered; changes quoted label to 'bagged air beware' by blending product phrase with 'buyer beware'. Omits $60,000/removal and creates a malformed quotation."
+        },
+        {
+          "row_idx": 26,
+          "note": "Main Delta runway crash and crew's reported lack of deceleration covered. Keeps 'crew said' attribution; no specific unsupported cause identified."
+        },
+        {
+          "row_idx": 27,
+          "note": "Main renaming and 145 dead/132 children supported; omits location/date and exact 107. Compressed 'some six hours later' lacks siege setup but no new casualty number invented."
+        },
+        {
+          "row_idx": 28,
+          "note": "Main South African campaign and white/gold ad depiction supported. No specific invented relationship identified; ad's consent/violence message omitted."
+        },
+        {
+          "row_idx": 29,
+          "note": "Action reversal: source lifts suspension; summary says NASCAR suspends Busch while making him eligible. Removes 'probably' from civil finding, strengthening certainty about alleged abuse. Serious source-faithfulness errors."
+        },
+        {
+          "row_idx": 31,
+          "note": "Counts/date and government attribution supported; sentence 'capsized ... causing it capsize' is malformed and omits wave cause. Does not invent different casualty counts."
+        },
+        {
+          "row_idx": 32,
+          "note": "Chinese patrol action covered, but quote runs into unrelated 'Myanmar forces have been battling' clause. Bombing/four deaths/nine wounded omitted, leaving a partial and grammatically corrupted account."
+        },
+        {
+          "row_idx": 34,
+          "note": "Charges and victim's death covered with no conviction asserted; link between accused and victim is implicit rather than clearly attributed. Omits self-defense position; no specific new fact identified."
+        },
+        {
+          "row_idx": 38,
+          "note": "Serious event conflation: Tulsa–McAlester medical helicopter followed by all 11 service members believed dead, a toll from a different Florida military crash. Omits three medical employees and clear main crash description. 'Official says' does not resolve wrong-event relationship."
+        },
+        {
+          "row_idx": 40,
+          "note": "Captures novel and first-gay-character claim but omits Moff Mors's name, lesbian identity and source attribution. No clear invented fact in included clauses; reference's broad diversity claim is absent from source and not reproduced."
+        }
+      ]
+    },
+    {
+      "model": "Transformer",
+      "group": "medium",
+      "n": 14,
+      "row_ids": [
+        {
+          "row_idx": 2,
+          "id": "60736693e3b1b32d14337a317190c6606e879a85"
+        },
+        {
+          "row_idx": 3,
+          "id": "8cdf9cc3ed0276b7a7944cc18ba459355b5984ad"
+        },
+        {
+          "row_idx": 4,
+          "id": "2e6613d531843515bf5401286cc3e45c4df530d2"
+        },
+        {
+          "row_idx": 6,
+          "id": "d093aa07380f75e63265793fcaa171772a6f4616"
+        },
+        {
+          "row_idx": 8,
+          "id": "c6df0bbd0b5eaa67e1f2b70892bf0a5dfb761895"
+        },
+        {
+          "row_idx": 9,
+          "id": "4a323dd3a1be975d93e941361082937cd2aafc88"
+        },
+        {
+          "row_idx": 11,
+          "id": "c2be332536700d93414c42c72ae38e21c98dee63"
+        },
+        {
+          "row_idx": 17,
+          "id": "9b040dde80ca3388e9ce9512bb270c2a9e72f1de"
+        },
+        {
+          "row_idx": 19,
+          "id": "223f2d2ff1fa774a816c9dbd0253e8d158b6bc7d"
+        },
+        {
+          "row_idx": 23,
+          "id": "8d730691304ac1b2aa00f033bca162d41a35bb4b"
+        },
+        {
+          "row_idx": 24,
+          "id": "2ccf1b3c6c99f113f51997fa901e13504ca11a49"
+        },
+        {
+          "row_idx": 36,
+          "id": "5d17d709e4ad2b44efd809f03236ec7614d782ab"
+        },
+        {
+          "row_idx": 37,
+          "id": "2db430e31faccedc5ba3806b67d12a1927f12b97"
+        },
+        {
+          "row_idx": 41,
+          "id": "86219a3b1f63b7e2e093aac91c499ceb48eba6bd"
+        }
+      ],
+      "token_range": [
+        406,
+        629
+      ],
+      "word_range": [
+        348,
+        541
+      ],
+      "mean_rouge_f1_percent": {
+        "rouge1": 38.151112950891424,
+        "rouge2": 17.536943725501597,
+        "rougeL": 29.393156389721526
+      },
+      "mean_output_words": 34.857142857142854,
+      "mean_generation_seconds": 0.6492374785711945,
+      "mean_shorter_by_percent": 91.92288869336976,
+      "mean_excess_trigram_percent": 0.0,
+      "failed": 0,
+      "no_final_punctuation": 0,
+      "complete_input_coverage": 14,
+      "experiment": "Application Medium single-pass; not identical to checkpoint A",
+      "ai_notes": [
+        {
+          "row_idx": 2,
+          "note": "Main collapse/recovery covered; conscious departure and hospital precaution match source. Recovery is attributed to Gomis. No specific contradiction identified in this reading."
+        },
+        {
+          "row_idx": 3,
+          "note": "Entity/action error: 'four-time major winner Adam Sandler plays' turns a fictional-film analogy into a real golfing participant. Source's major winner is McIlroy; Sandler is the actor analogy."
+        },
+        {
+          "row_idx": 4,
+          "note": "Partial main event: clues/possible location retained, explicit disappearance/date omitted. 'May have purchased' remains uncertain. Stand-alone context is weak rather than clearly contradictory."
+        },
+        {
+          "row_idx": 6,
+          "note": "Nationality error: lead says 'two Australians' although current arrested women are American; Australians belong to an older background incident. Main location/action otherwise identifiable; uncertainty weakened."
+        },
+        {
+          "row_idx": 8,
+          "note": "Claim-of-responsibility event and Bamako covered. Omits the French victim and total five, leaving a partial casualty account. Keeps claim language rather than confirming the perpetrator."
+        },
+        {
+          "row_idx": 9,
+          "note": "Attribution/entity errors: source calls Paul Scholes an ex-Manchester United player, not Liverpool; 'disgusting' quote is Hamann's. Conditional ban retained, but Cisse-only wording omits Evans."
+        },
+        {
+          "row_idx": 11,
+          "note": "Main nine-worker abduction covered with 'believed' uncertainty and government attribution. Adds source-supported Egypt background; countries/oil-field particulars omitted."
+        },
+        {
+          "row_idx": 17,
+          "note": "Main business/quantity and non-Northeast shipping restriction covered. Omits $89 price and online-order detail. Restriction matches source; no specific contradiction identified."
+        },
+        {
+          "row_idx": 19,
+          "note": "Multiple concrete errors: reverses winner ('Real Madrid beat Athletic Bilbao'), assigns eighth/Ligue 1 to Real, and makes Gareth Bale header scorer instead of Aritz Aduriz. Source says Real lost in La Liga."
+        },
+        {
+          "row_idx": 23,
+          "note": "Geographic conflation: says Chamblee, Wisconsin, whereas current incident is Chamblee near Atlanta; Wisconsin is a different background shooting. 'Was charged at him' also corrupts the reported physical charge."
+        },
+        {
+          "row_idx": 24,
+          "note": "Main viral photo covered, but 'photographer Jason Ward credited to Martin Le-May' and following 'he' blur uploader versus photographer and whose walk is described. Attribution needs human review."
+        },
+        {
+          "row_idx": 36,
+          "note": "Role/entity error: says North Korean ambassador was caught with gold; source says a different embassy diplomat was caught and ambassador apologized. Final funds line overstates one speculative explanation."
+        },
+        {
+          "row_idx": 37,
+          "note": "Entity-role error: says the toddler was out of town on a job; source says father Deven Trafny was. Omits recovery update and 14-hour survival context. 'Doctors say it's amazing' loses father-as-source attribution; 'new:' is editorial residue."
+        },
+        {
+          "row_idx": 41,
+          "note": "Correct responsibility claim and injuries, but says 'the attack is one of the loosely governed tribal areas bordering Afghanistan': geographic relation belongs to North Waziristan, not attack. Omits deaths and main Christian-community target; 'new:' editorial residue. Wrong entity relationship despite source coverage."
+        }
+      ]
+    },
+    {
+      "model": "Transformer",
+      "group": "long_single_pass",
+      "n": 4,
+      "row_ids": [
+        {
+          "row_idx": 5,
+          "id": "fbc5ac3a3a7bb6c4d628cfbeef92b67bb18562f9"
+        },
+        {
+          "row_idx": 18,
+          "id": "dc0f01376a2e0cfe8dff118a43eae341ac24cf41"
+        },
+        {
+          "row_idx": 30,
+          "id": "8569a517d115d140fbf3550ee0c14bc42477b108"
+        },
+        {
+          "row_idx": 35,
+          "id": "fee1bf4f253bb464e5efb38197d881adf7f4d82d"
+        }
+      ],
+      "token_range": [
+        858,
+        917
+      ],
+      "word_range": [
+        733,
+        831
+      ],
+      "mean_rouge_f1_percent": {
+        "rouge1": 20.38400363340616,
+        "rouge2": 3.103386809269162,
+        "rougeL": 15.965680027646568
+      },
+      "mean_output_words": 40.5,
+      "mean_generation_seconds": 0.925850724999691,
+      "mean_shorter_by_percent": 94.88371362222752,
+      "mean_excess_trigram_percent": 0.0,
+      "failed": 0,
+      "no_final_punctuation": 0,
+      "complete_input_coverage": 4,
+      "experiment": "Application Medium single-pass; not identical to checkpoint A",
+      "ai_notes": [
+        {
+          "row_idx": 5,
+          "note": "Main topic partial; 'Michael <unk>:' is unsupported speaker attribution plus an unresolved output token. 'Fired off a series of Twitter trolls' corrupts the source metaphor rather than explaining his response."
+        },
+        {
+          "row_idx": 18,
+          "note": "Unsupported speaker/content: invents a psychiatrist and 'malnutrition' statements absent from source, with repetitive 'malnutrition, poverty and malnutrition'. Misses refugee-women empowerment argument."
+        },
+        {
+          "row_idx": 30,
+          "note": "Main delayed-response/report and 239 aboard covered. Adds 'new:' marker and alters Quest's quoted sentence into a fragment. Does not convey 10-hour search delay; attribution remains Quest."
+        },
+        {
+          "row_idx": 35,
+          "note": "Invents author/speaker Debbie Wasserman Schultz; reference names Donna Brazile and source does not mention Schultz. Topic partly captured but attribution unsupported."
+        }
+      ]
+    },
+    {
+      "model": "Transformer",
+      "group": "beyond_window",
+      "n": 2,
+      "row_ids": [
+        {
+          "row_idx": 33,
+          "id": "d83332b67ad10eebe60beba30160869dc942f8ff"
+        },
+        {
+          "row_idx": 39,
+          "id": "aa9a164b2f592570b64063546dda4eed22133a0e"
+        }
+      ],
+      "token_range": [
+        1400,
+        1590
+      ],
+      "word_range": [
+        1188,
+        1354
+      ],
+      "mean_rouge_f1_percent": {
+        "rouge1": 28.66847826086957,
+        "rouge2": 13.820372811146676,
+        "rougeL": 21.893115942028984
+      },
+      "mean_output_words": 74,
+      "mean_generation_seconds": 1.3132221500018204,
+      "mean_shorter_by_percent": 94.20963699028692,
+      "mean_excess_trigram_percent": 0.0,
+      "failed": 0,
+      "no_final_punctuation": 0,
+      "complete_input_coverage": 2,
+      "experiment": "C: full-article chunk method",
+      "ai_notes": [
+        {
+          "row_idx": 33,
+          "note": "Removes key condition from warning: source says persistent ailment won't be solved by checking; output broadly says SymCat/Mayo 'isn't going to help'. Generic 'expert' substitutes Pew attribution; text is fragmented."
+        },
+        {
+          "row_idx": 39,
+          "note": "Two-chunk output discusses round-device philosophy but omits Monohm and Runcible entirely. 'Concept could be simply for helping' is malformed; main product/event identity lost while general examples remain. Selected conceptual claims largely source-supported."
+        }
+      ]
+    },
+    {
+      "model": "BART",
+      "group": "short",
+      "n": 19,
+      "row_ids": [
+        {
+          "row_idx": 7,
+          "id": "0485e4f199828cd03857391cbe573142193ca953"
+        },
+        {
+          "row_idx": 10,
+          "id": "bdf542b05c1717ae9ef064e5fafa4a2946785d09"
+        },
+        {
+          "row_idx": 12,
+          "id": "14c1b26ea2b78196c2d1cf3a5882aedb2f6558aa"
+        },
+        {
+          "row_idx": 13,
+          "id": "f4a21564e3c65809f110b832138f2a3cf5b019cc"
+        },
+        {
+          "row_idx": 14,
+          "id": "0bcc5c7a3e66e114aaa39dcca83d4656d5978022"
+        },
+        {
+          "row_idx": 15,
+          "id": "43276372450d31aad099a3cfc1f5fe931a419329"
+        },
+        {
+          "row_idx": 16,
+          "id": "10f9d53382cb52d77c1090e9ebf062bf8cb64f59"
+        },
+        {
+          "row_idx": 20,
+          "id": "ae99cbf7b2eff2e7468c3282a992863556b0f3b1"
+        },
+        {
+          "row_idx": 21,
+          "id": "64d7ee44a6d3c726d4f5d197c325fd728e02ec53"
+        },
+        {
+          "row_idx": 22,
+          "id": "e7203d308fc92da3852e54616a1cfe7bc3d2066c"
+        },
+        {
+          "row_idx": 25,
+          "id": "a808527fc922d43981f743e8ef253783205deaf0"
+        },
+        {
+          "row_idx": 26,
+          "id": "08ac0d3791342869695f24bbb18e0e78b0771ff1"
+        },
+        {
+          "row_idx": 27,
+          "id": "03fefc8c93587d4241eb782e25dd7525b0963392"
+        },
+        {
+          "row_idx": 28,
+          "id": "e3e023362d6b02ff98eaa7b9608655a3519a0001"
+        },
+        {
+          "row_idx": 31,
+          "id": "ed7fb1f13618a418f28ca9af248f9597a1632528"
+        },
+        {
+          "row_idx": 32,
+          "id": "d8e8c223ea7158f4d5f6724c29c14cd8d425ec0b"
+        },
+        {
+          "row_idx": 34,
+          "id": "048b04230002a98f36bc94b37bcde361940ad254"
+        },
+        {
+          "row_idx": 38,
+          "id": "4dd4a5ca12b891bf25bbddd5e8213729cb82f73d"
+        },
+        {
+          "row_idx": 40,
+          "id": "b2eeb57b43f802ec4f4af5c1cc82beba5f512adf"
+        }
+      ],
+      "token_range": [
+        114,
+        393
+      ],
+      "word_range": [
+        81,
+        303
+      ],
+      "mean_rouge_f1_percent": {
+        "rouge1": 46.346996788263304,
+        "rouge2": 27.656707822308217,
+        "rougeL": 34.68076207906641
+      },
+      "mean_output_words": 46,
+      "mean_generation_seconds": 0.6834121999997335,
+      "mean_shorter_by_percent": 74.84505200424401,
+      "mean_excess_trigram_percent": 0.19138755980861244,
+      "failed": 0,
+      "no_final_punctuation": 2,
+      "complete_input_coverage": 19,
+      "experiment": "Application Medium single-pass; not identical to checkpoint A",
+      "ai_notes": [
+        {
+          "row_idx": 7,
+          "note": "Main first-US-tour/Louisville show covered. Correctly attaches March 9 to ticket sales; omits show date rather than changing it. No specific contradiction identified."
+        },
+        {
+          "row_idx": 10,
+          "note": "Template metadata and age-13 rule align with source/reference. Adds reading-comprehension instruction present only in reference. This boilerplate case is weak evidence about main-event/news summarization."
+        },
+        {
+          "row_idx": 12,
+          "note": "Main surprise/gratitude outcome covered: students put praise/thanks into principal's bucket. Principal's initial reluctance/quote supported. Omits organizer Emily Jones but no specific contradiction identified."
+        },
+        {
+          "row_idx": 13,
+          "note": "Main disappearance and search timing covered; adds supported career list. Repeats source's malformed 'known and for' and lacks final punctuation; EOS flag alone does not establish polished completion."
+        },
+        {
+          "row_idx": 14,
+          "note": "Near-verbatim repeated reference; age rule matches source. Reading-comprehension instruction absent from source and episode specifics omitted, so review template/reference bias rather than treating ROUGE as factuality."
+        },
+        {
+          "row_idx": 15,
+          "note": "Main casting relationships accurately covered: Usher as Smith character's son, Hemsworth lead, Goldblum returning Levinson; release date supported. No specific contradiction identified."
+        },
+        {
+          "row_idx": 16,
+          "note": "Main discharge/flu treatment covered via hospital spokeswoman with supported age/checkup background. Does not confuse Carter with the spokeswoman. No specific contradiction identified."
+        },
+        {
+          "row_idx": 20,
+          "note": "Main arrest, accusation, five victims/ages and residence proximity covered; police attribution retained. 'Admitted' remains reported source content, not independent verification."
+        },
+        {
+          "row_idx": 21,
+          "note": "Main car-bomb event and casualty numbers omitted despite their being in the lead. Location/time and unavailable identity/motive match source; this is a clear salience failure, not detected by EOS/coverage checks."
+        },
+        {
+          "row_idx": 22,
+          "note": "Main court-ordered release explicitly covered with correctly named Lakhvi. Background attack toll/date supported. Omits illegal-detention reason and alleged-mastermind descriptor rather than asserting guilt."
+        },
+        {
+          "row_idx": 25,
+          "note": "Main bagged-air sales covered, but sneaker background dominates and $60,000/removal omitted. Alleged provenance is not explicitly retained; quoted seller label should not be read as authentication."
+        },
+        {
+          "row_idx": 26,
+          "note": "Brake finding and explicit unknown cause preserved with NTSB attribution, but aircraft/operator/location/crash context omitted. Good uncertainty handling does not compensate for all missing event context."
+        },
+        {
+          "row_idx": 27,
+          "note": "Renaming, December 16 attack, Army Public School and casualty numbers supported with attribution. Pakistan/Peshawar omitted; no specific contradiction identified."
+        },
+        {
+          "row_idx": 28,
+          "note": "Campaign and ad/original dress color contrast supported, though 'the dress' antecedent may confuse imitation and original. Omits location/positive reaction, no definite contradiction identified."
+        },
+        {
+          "row_idx": 31,
+          "note": "Rescue/wave event covered with ministry attribution, but country/current death toll absent. Adds 68-death older Bangladesh disaster without naming its different country, risking conflation with current event."
+        },
+        {
+          "row_idx": 32,
+          "note": "Bombing, four deaths, nine wounded and Chinese patrol response match source; Xinhua attribution retained for injuries. No specific contradiction identified in this reading."
+        },
+        {
+          "row_idx": 34,
+          "note": "Charges, police shooting allegation and attorney's planned self-defense case covered with attribution. Dates/roles supported; no specific contradiction identified in this reading."
+        },
+        {
+          "row_idx": 38,
+          "note": "Correct three EagleMed employees and Tulsa–McAlester route; 'Earlier this week' separates the unrelated Florida military crash. Still spends a sentence on background and implies rather than clearly states the main medical helicopter crash. No clear casualty conflation in explicit wording."
+        },
+        {
+          "row_idx": 40,
+          "note": "Captures novel, named Imperial official and first-gay-character claim; omits explicit lesbian identity and attribution to editor/news site. No clear entity/relationship error in included statements. Does not reproduce reference's diversity claim absent from source."
+        }
+      ]
+    },
+    {
+      "model": "BART",
+      "group": "medium",
+      "n": 15,
+      "row_ids": [
+        {
+          "row_idx": 2,
+          "id": "60736693e3b1b32d14337a317190c6606e879a85"
+        },
+        {
+          "row_idx": 3,
+          "id": "8cdf9cc3ed0276b7a7944cc18ba459355b5984ad"
+        },
+        {
+          "row_idx": 4,
+          "id": "2e6613d531843515bf5401286cc3e45c4df530d2"
+        },
+        {
+          "row_idx": 6,
+          "id": "d093aa07380f75e63265793fcaa171772a6f4616"
+        },
+        {
+          "row_idx": 8,
+          "id": "c6df0bbd0b5eaa67e1f2b70892bf0a5dfb761895"
+        },
+        {
+          "row_idx": 9,
+          "id": "4a323dd3a1be975d93e941361082937cd2aafc88"
+        },
+        {
+          "row_idx": 11,
+          "id": "c2be332536700d93414c42c72ae38e21c98dee63"
+        },
+        {
+          "row_idx": 17,
+          "id": "9b040dde80ca3388e9ce9512bb270c2a9e72f1de"
+        },
+        {
+          "row_idx": 19,
+          "id": "223f2d2ff1fa774a816c9dbd0253e8d158b6bc7d"
+        },
+        {
+          "row_idx": 23,
+          "id": "8d730691304ac1b2aa00f033bca162d41a35bb4b"
+        },
+        {
+          "row_idx": 24,
+          "id": "2ccf1b3c6c99f113f51997fa901e13504ca11a49"
+        },
+        {
+          "row_idx": 29,
+          "id": "b6d33bd44b3bdb42695474583a168d382ae4ffd5"
+        },
+        {
+          "row_idx": 36,
+          "id": "5d17d709e4ad2b44efd809f03236ec7614d782ab"
+        },
+        {
+          "row_idx": 37,
+          "id": "2db430e31faccedc5ba3806b67d12a1927f12b97"
+        },
+        {
+          "row_idx": 41,
+          "id": "86219a3b1f63b7e2e093aac91c499ceb48eba6bd"
+        }
+      ],
+      "token_range": [
+        413,
+        688
+      ],
+      "word_range": [
+        341,
+        541
+      ],
+      "mean_rouge_f1_percent": {
+        "rouge1": 36.66106580815843,
+        "rouge2": 15.213355615257615,
+        "rougeL": 28.004468411167476
+      },
+      "mean_output_words": 49.266666666666666,
+      "mean_generation_seconds": 0.8177660600000914,
+      "mean_shorter_by_percent": 88.2579096107755,
+      "mean_excess_trigram_percent": 0.0,
+      "failed": 0,
+      "no_final_punctuation": 0,
+      "complete_input_coverage": 15,
+      "experiment": "Application Medium single-pass; not identical to checkpoint A",
+      "ai_notes": [
+        {
+          "row_idx": 2,
+          "note": "Main collapse/recovery covered; Monk's 'fine' attribution is supported. Omits conscious departure and oxygen-mask detail in reference. No specific contradiction identified in this reading."
+        },
+        {
+          "row_idx": 3,
+          "note": "Main event covered: McIlroy's ball enters the lake and he then throws the club. Score and tournament position match source. No specific contradiction identified in this reading."
+        },
+        {
+          "row_idx": 4,
+          "note": "Main disappearance, Wednesday date, clothing and volunteer search covered. Possible Radnor-Wayne location remains 'could'. No specific contradiction identified in this reading."
+        },
+        {
+          "row_idx": 6,
+          "note": "Main American-women/Colosseum incident and initials covered. Source's reportedly arrested wording becomes an unqualified arrest assertion; review loss of attribution/certainty. Other landmark incidents omitted."
+        },
+        {
+          "row_idx": 8,
+          "note": "Responsibility claim and authority attribution covered, but misses the bar shooting's five deaths and location in the summary itself. Background warnings take space; no specific false actor identified."
+        },
+        {
+          "row_idx": 9,
+          "note": "Main charge/allegation, video evidence and response deadline covered. 'Allegedly' retained; denial and conditional punishment omitted. No specific contradiction identified in this reading."
+        },
+        {
+          "row_idx": 11,
+          "note": "Main nine-worker/oil-field abduction and VAOS relation covered; 'believed' and government's blame attribution preserved. Does not resolve source's uncertainty over actual kidnappers."
+        },
+        {
+          "row_idx": 17,
+          "note": "Business, quantity and attributed order count covered; snow-record background is supported. Omits $89 price despite reference emphasis; no specific contradiction identified."
+        },
+        {
+          "row_idx": 19,
+          "note": "Main loss, Aduriz goal, conditional Barcelona lead and Bayern win all match source. No specific contradiction identified in this reading."
+        },
+        {
+          "row_idx": 23,
+          "note": "Main fatal shooting/unarmed victim and attributed officer account covered with correct Atlanta/Chamblee location. Omits independent investigation central to reference; not proof that officer's account is verified."
+        },
+        {
+          "row_idx": 24,
+          "note": "Main viral photo, uploader Ward, credited photographer Le-May and hashtag covered correctly. Does not independently authenticate image beyond source; no specific contradiction identified."
+        },
+        {
+          "row_idx": 29,
+          "note": "Main reinstatement rationale, probable civil finding and decision not to file charges covered. Retains 'probably'; omits indefinite probation/denial, but does not equate no charges with innocence."
+        },
+        {
+          "row_idx": 36,
+          "note": "Main ambassador apology and separate diplomat/undeclared-gold role distinction preserved; weight and approximate valuation supported. Bangladesh officials' source attribution not explicit, but no specific role contradiction."
+        },
+        {
+          "row_idx": 37,
+          "note": "Father's absence and mother's death are source-supported but main update that Lily is recovering/awake is absent. Omits river, rescue and uncertain 14-hour entrapment. No clear invented fact in the selected background; incomplete main-event coverage."
+        },
+        {
+          "row_idx": 41,
+          "note": "Correct claim and Lahore location but omits main current death/injury toll and Christian target; last sentence focuses on 2013 Peshawar attack with explicit date so chronology is separated. No clear invented fact in selected statements, but background replaces key current-event information."
+        }
+      ]
+    },
+    {
+      "model": "BART",
+      "group": "long_single_pass",
+      "n": 4,
+      "row_ids": [
+        {
+          "row_idx": 5,
+          "id": "fbc5ac3a3a7bb6c4d628cfbeef92b67bb18562f9"
+        },
+        {
+          "row_idx": 18,
+          "id": "dc0f01376a2e0cfe8dff118a43eae341ac24cf41"
+        },
+        {
+          "row_idx": 30,
+          "id": "8569a517d115d140fbf3550ee0c14bc42477b108"
+        },
+        {
+          "row_idx": 35,
+          "id": "fee1bf4f253bb464e5efb38197d881adf7f4d82d"
+        }
+      ],
+      "token_range": [
+        916,
+        989
+      ],
+      "word_range": [
+        733,
+        831
+      ],
+      "mean_rouge_f1_percent": {
+        "rouge1": 22.88030028048177,
+        "rouge2": 5.640875866770348,
+        "rougeL": 17.365625401015603
+      },
+      "mean_output_words": 57.5,
+      "mean_generation_seconds": 0.7719597249997605,
+      "mean_shorter_by_percent": 92.69510552591895,
+      "mean_excess_trigram_percent": 0.0,
+      "failed": 0,
+      "no_final_punctuation": 0,
+      "complete_input_coverage": 4,
+      "experiment": "Application Medium single-pass; not identical to checkpoint A",
+      "ai_notes": [
+        {
+          "row_idx": 5,
+          "note": "Main response to abusive tweets covered with deletion/blog evidence. Omits suspensions/firing/accountability thesis of opinion-piece reference and adopts source's 'mowed down' rhetoric without explicit narrator attribution."
+        },
+        {
+          "row_idx": 18,
+          "note": "Background statistics present, but 'nearly 6 million ... have no right to work' generalizes a global figure into a universal legal-status claim not established in source. Omits program/advocacy and author attribution."
+        },
+        {
+          "row_idx": 30,
+          "note": "Main delay chronology accurately reflects five hours 13 minutes plus another five hours. Never names MH370, so stand-alone identity is weak; timing itself source-supported."
+        },
+        {
+          "row_idx": 35,
+          "note": "Invents author Frida Ghitis repeatedly; reference identifies Donna Brazile. Community-policing/foot-patrol argument otherwise reflected, but plausible content does not rescue false authorship."
+        }
+      ]
+    },
+    {
+      "model": "BART",
+      "group": "beyond_window",
+      "n": 2,
+      "row_ids": [
+        {
+          "row_idx": 33,
+          "id": "d83332b67ad10eebe60beba30160869dc942f8ff"
+        },
+        {
+          "row_idx": 39,
+          "id": "aa9a164b2f592570b64063546dda4eed22133a0e"
+        }
+      ],
+      "token_range": [
+        1486,
+        1720
+      ],
+      "word_range": [
+        1188,
+        1354
+      ],
+      "mean_rouge_f1_percent": {
+        "rouge1": 27.37998843262001,
+        "rouge2": 12.374761450381676,
+        "rougeL": 23.56853672643146
+      },
+      "mean_output_words": 97.5,
+      "mean_generation_seconds": 1.5256263000001127,
+      "mean_shorter_by_percent": 92.31924115602106,
+      "mean_excess_trigram_percent": 0.0,
+      "failed": 0,
+      "no_final_punctuation": 0,
+      "complete_input_coverage": 2,
+      "experiment": "C: full-article chunk method",
+      "ai_notes": [
+        {
+          "row_idx": 33,
+          "note": "Main online-health-search risks and physician caution covered, with named Pho quotation. Some practical safeguards omitted. No specific contradiction identified; this is source-summary review, not medical advice validation."
+        },
+        {
+          "row_idx": 39,
+          "note": "Two-chunk output identifies Monohm, Runcible and its antidote-to-digital-overload purpose. Later broad framing and Android Wear are supported but repetitive relative to main reference. Opening 'this very idea' is dangling until next sentence. No clear invented entity/relationship observed."
+        }
+      ]
+    },
+    {
+      "model": "PEGASUS",
+      "group": "short",
+      "n": 19,
+      "row_ids": [
+        {
+          "row_idx": 7,
+          "id": "0485e4f199828cd03857391cbe573142193ca953"
+        },
+        {
+          "row_idx": 10,
+          "id": "bdf542b05c1717ae9ef064e5fafa4a2946785d09"
+        },
+        {
+          "row_idx": 12,
+          "id": "14c1b26ea2b78196c2d1cf3a5882aedb2f6558aa"
+        },
+        {
+          "row_idx": 13,
+          "id": "f4a21564e3c65809f110b832138f2a3cf5b019cc"
+        },
+        {
+          "row_idx": 14,
+          "id": "0bcc5c7a3e66e114aaa39dcca83d4656d5978022"
+        },
+        {
+          "row_idx": 15,
+          "id": "43276372450d31aad099a3cfc1f5fe931a419329"
+        },
+        {
+          "row_idx": 16,
+          "id": "10f9d53382cb52d77c1090e9ebf062bf8cb64f59"
+        },
+        {
+          "row_idx": 20,
+          "id": "ae99cbf7b2eff2e7468c3282a992863556b0f3b1"
+        },
+        {
+          "row_idx": 21,
+          "id": "64d7ee44a6d3c726d4f5d197c325fd728e02ec53"
+        },
+        {
+          "row_idx": 22,
+          "id": "e7203d308fc92da3852e54616a1cfe7bc3d2066c"
+        },
+        {
+          "row_idx": 25,
+          "id": "a808527fc922d43981f743e8ef253783205deaf0"
+        },
+        {
+          "row_idx": 26,
+          "id": "08ac0d3791342869695f24bbb18e0e78b0771ff1"
+        },
+        {
+          "row_idx": 27,
+          "id": "03fefc8c93587d4241eb782e25dd7525b0963392"
+        },
+        {
+          "row_idx": 28,
+          "id": "e3e023362d6b02ff98eaa7b9608655a3519a0001"
+        },
+        {
+          "row_idx": 31,
+          "id": "ed7fb1f13618a418f28ca9af248f9597a1632528"
+        },
+        {
+          "row_idx": 32,
+          "id": "d8e8c223ea7158f4d5f6724c29c14cd8d425ec0b"
+        },
+        {
+          "row_idx": 34,
+          "id": "048b04230002a98f36bc94b37bcde361940ad254"
+        },
+        {
+          "row_idx": 38,
+          "id": "4dd4a5ca12b891bf25bbddd5e8213729cb82f73d"
+        },
+        {
+          "row_idx": 40,
+          "id": "b2eeb57b43f802ec4f4af5c1cc82beba5f512adf"
+        }
+      ],
+      "token_range": [
+        115,
+        378
+      ],
+      "word_range": [
+        81,
+        303
+      ],
+      "mean_rouge_f1_percent": {
+        "rouge1": 44.70667048432638,
+        "rouge2": 25.192453078255266,
+        "rougeL": 34.72061161633194
+      },
+      "mean_output_words": 37.68421052631579,
+      "mean_generation_seconds": 0.9201880052629636,
+      "mean_shorter_by_percent": 79.36697941397577,
+      "mean_excess_trigram_percent": 0.19138755980861244,
+      "failed": 0,
+      "no_final_punctuation": 1,
+      "complete_input_coverage": 19,
+      "experiment": "Application Medium single-pass; not identical to checkpoint A",
+      "ai_notes": [
+        {
+          "row_idx": 7,
+          "note": "Main tour/location and ticket-sale timing covered; March 9 correctly refers to sales, not show. No specific contradiction identified in this reading."
+        },
+        {
+          "row_idx": 10,
+          "note": "Almost verbatim template reference including a reading-comprehension instruction absent from visible source. Main page purpose plausible, but overlap here cannot certify source-grounded content or absence of memorization."
+        },
+        {
+          "row_idx": 12,
+          "note": "Accurately describes setup and principal's reluctance, but omits the students' notes of thanks—the main payoff. Main-event coverage partial despite supported quoted text."
+        },
+        {
+          "row_idx": 13,
+          "note": "Main disappearance/search timing covered with supported career list. Copies malformed source wording and lacks final punctuation; omits recovery-mission status and adds no verified recovery."
+        },
+        {
+          "row_idx": 14,
+          "note": "Near-verbatim reference identical in substance to row 10 despite different episode topics. Supported page purpose, but reference-only instruction/template overlap needs human review; not proof of training leakage."
+        },
+        {
+          "row_idx": 15,
+          "note": "Usher casting, son-of-Smith-character relationship and release date supported. Omits Goldblum/Hemsworth highlighted in reference; main event still substantially present."
+        },
+        {
+          "row_idx": 16,
+          "note": "Uses only pronoun 'he', never naming Mondale, and juxtaposes discharge with an earlier in-bed quote without dates. Quotes/attribution exist in source but identity and chronology are unclear."
+        },
+        {
+          "row_idx": 20,
+          "note": "Main arrest/accusation/five victims and ages covered with police attribution. Omits same-surname uncertainty rather than asserting a relationship; no specific contradiction identified."
+        },
+        {
+          "row_idx": 21,
+          "note": "Main car bomb and casualty counts omitted; location/civilian majority supported and attributed. Summary lacks what happened, so main-event coverage fails despite fluent text."
+        },
+        {
+          "row_idx": 22,
+          "note": "Main release/ruling omitted; only court nonattendance and historic attack toll remain. Background supported, but weak main-event coverage despite reference overlap."
+        },
+        {
+          "row_idx": 25,
+          "note": "Main gag and pulled auction covered; $60,000 bid omitted. Quotations from seller/auction labels not proof of origin. No specific new purchase price invented."
+        },
+        {
+          "row_idx": 26,
+          "note": "Crash and 23 minor injuries supported, but NTSB brake-report update omitted in favor of departure details. No unsupported cause asserted; main update only partially covered."
+        },
+        {
+          "row_idx": 27,
+          "note": "Renaming and government-spokesman explanation supported, but location/Taliban/siege context omitted. Main memorial action present; no specific contradiction identified."
+        },
+        {
+          "row_idx": 28,
+          "note": "Main South African domestic-violence campaign and ad depiction supported. Positive response/message detail omitted; no specific contradiction identified."
+        },
+        {
+          "row_idx": 31,
+          "note": "Rescue count, Myanmar ministry and wave cause supported. Omits 21 dead/21 missing in article lead; matches reference focus but not a complete main-event account."
+        },
+        {
+          "row_idx": 32,
+          "note": "Ambassador summons/background conflict covered, but main bombing/casualties and patrol response in reference omitted. 'The incident' is not explained; poor stand-alone event coverage."
+        },
+        {
+          "row_idx": 34,
+          "note": "Charges and police-attributed shooting allegation covered; preserves accused status rather than conviction. Self-defense/indictment detail omitted; no specific contradiction identified."
+        },
+        {
+          "row_idx": 38,
+          "note": "Correct employees and local investigation agency, but omits clear statement of Oklahoma crash and route. 'Earlier this week' distinguishes Florida background. Selected facts supported; main-event coverage weak and aircraft referent in first sentence relies on context."
+        },
+        {
+          "row_idx": 40,
+          "note": "Captures novel, named Imperial official and first-gay-character claim; omits lesbian identity and editor/news-site attribution. No clear invented fact observed. Reference also includes a broad diversity claim unsupported by this short supplied article, which output does not reproduce."
+        }
+      ]
+    },
+    {
+      "model": "PEGASUS",
+      "group": "medium",
+      "n": 15,
+      "row_ids": [
+        {
+          "row_idx": 2,
+          "id": "60736693e3b1b32d14337a317190c6606e879a85"
+        },
+        {
+          "row_idx": 3,
+          "id": "8cdf9cc3ed0276b7a7944cc18ba459355b5984ad"
+        },
+        {
+          "row_idx": 4,
+          "id": "2e6613d531843515bf5401286cc3e45c4df530d2"
+        },
+        {
+          "row_idx": 6,
+          "id": "d093aa07380f75e63265793fcaa171772a6f4616"
+        },
+        {
+          "row_idx": 8,
+          "id": "c6df0bbd0b5eaa67e1f2b70892bf0a5dfb761895"
+        },
+        {
+          "row_idx": 9,
+          "id": "4a323dd3a1be975d93e941361082937cd2aafc88"
+        },
+        {
+          "row_idx": 11,
+          "id": "c2be332536700d93414c42c72ae38e21c98dee63"
+        },
+        {
+          "row_idx": 17,
+          "id": "9b040dde80ca3388e9ce9512bb270c2a9e72f1de"
+        },
+        {
+          "row_idx": 19,
+          "id": "223f2d2ff1fa774a816c9dbd0253e8d158b6bc7d"
+        },
+        {
+          "row_idx": 23,
+          "id": "8d730691304ac1b2aa00f033bca162d41a35bb4b"
+        },
+        {
+          "row_idx": 24,
+          "id": "2ccf1b3c6c99f113f51997fa901e13504ca11a49"
+        },
+        {
+          "row_idx": 29,
+          "id": "b6d33bd44b3bdb42695474583a168d382ae4ffd5"
+        },
+        {
+          "row_idx": 36,
+          "id": "5d17d709e4ad2b44efd809f03236ec7614d782ab"
+        },
+        {
+          "row_idx": 37,
+          "id": "2db430e31faccedc5ba3806b67d12a1927f12b97"
+        },
+        {
+          "row_idx": 41,
+          "id": "86219a3b1f63b7e2e093aac91c499ceb48eba6bd"
+        }
+      ],
+      "token_range": [
+        403,
+        642
+      ],
+      "word_range": [
+        341,
+        541
+      ],
+      "mean_rouge_f1_percent": {
+        "rouge1": 38.85862978989357,
+        "rouge2": 19.681448876307503,
+        "rougeL": 29.38651368989856
+      },
+      "mean_output_words": 34.13333333333333,
+      "mean_generation_seconds": 0.9068288866666989,
+      "mean_shorter_by_percent": 91.8748105574817,
+      "mean_excess_trigram_percent": 0.0,
+      "failed": 0,
+      "no_final_punctuation": 1,
+      "complete_input_coverage": 15,
+      "experiment": "Application Medium single-pass; not identical to checkpoint A",
+      "ai_notes": [
+        {
+          "row_idx": 2,
+          "note": "Main collapse/recovery and Monk's low-pressure explanation covered. Selects an older former-president quote without its 2009 date; that context loss needs review, not an automatic error verdict."
+        },
+        {
+          "row_idx": 3,
+          "note": "Main subject/frustration covered, but 'hits 3-iron into lake' ambiguously conflates the errant ball shot with deliberately throwing the club. Quote and eight-shot gap are source-supported."
+        },
+        {
+          "row_idx": 4,
+          "note": "Main disappearance/date and clothing covered. Omits volunteers/search context from reference; no specific relationship or attribution error identified in this reading."
+        },
+        {
+          "row_idx": 6,
+          "note": "Main incident covered and 'reportedly'/'may face' qualifiers retained. Initials/ages omitted selectively; no specific contradiction identified in this reading."
+        },
+        {
+          "row_idx": 8,
+          "note": "Main casualty composition and claimed responsibility covered. Counts match source; claim remains a claim. Omits venue, wounds and reporting agency, so not exhaustive."
+        },
+        {
+          "row_idx": 9,
+          "note": "Both charged players, response deadline and conditional six-game ban covered. Omits what conduct prompted the charge and Evans's denial; no clear false conviction asserted."
+        },
+        {
+          "row_idx": 11,
+          "note": "Partial event: reports government blame and employer but omits nine, oil field and clear abduction context. Does not add a confirmed-perpetrator assertion beyond attributed blame."
+        },
+        {
+          "row_idx": 17,
+          "note": "Main transaction precisely covered: $89 for six pounds; business quotation attributed to website. Omits name and shipping exclusions but no specific contradiction identified."
+        },
+        {
+          "row_idx": 19,
+          "note": "Main Madrid loss/scorer and conditional Barcelona opportunity match source. Bayern side-story omitted; no specific contradiction identified."
+        },
+        {
+          "row_idx": 23,
+          "note": "Main fatal shooting/unarmed victim covered; reported charge is attributed to police. GBI independent probe omitted, weakening accountability context but not asserting investigation outcome."
+        },
+        {
+          "row_idx": 24,
+          "note": "Main viral photo and 7,000 retweets supported. Photographer/hashtag/meme context omitted, but no specific contradiction identified."
+        },
+        {
+          "row_idx": 29,
+          "note": "Background alleged abuse and competition waiver covered with 'probably'/'accused'. Does not clearly say suspension lifted or indefinite probation remains; main update only partial."
+        },
+        {
+          "row_idx": 36,
+          "note": "Main seizure, weight, Bangladesh location and ambassador apology covered without confusing the two roles. No specific contradiction identified in this reading."
+        },
+        {
+          "row_idx": 37,
+          "note": "Preserves the main recovery update, identifies father and mother, and attributes the wellbeing account to father. Omits river rescue and uncertain 14-hour entrapment highlighted in reference. No clear entity or unsupported-claim error observed in selected statements."
+        },
+        {
+          "row_idx": 41,
+          "note": "Captures 14 deaths, responsibility and threat, but 'death toll rises' is unsupported update language and converts 'at least 14' into exact 14. Hospital official explicitly supplies injury figure in source, so attribution of death toll is questionable. Omits Lahore, Christian target and 78 injuries."
+        }
+      ]
+    },
+    {
+      "model": "PEGASUS",
+      "group": "long_single_pass",
+      "n": 4,
+      "row_ids": [
+        {
+          "row_idx": 5,
+          "id": "fbc5ac3a3a7bb6c4d628cfbeef92b67bb18562f9"
+        },
+        {
+          "row_idx": 18,
+          "id": "dc0f01376a2e0cfe8dff118a43eae341ac24cf41"
+        },
+        {
+          "row_idx": 30,
+          "id": "8569a517d115d140fbf3550ee0c14bc42477b108"
+        },
+        {
+          "row_idx": 35,
+          "id": "fee1bf4f253bb464e5efb38197d881adf7f4d82d"
+        }
+      ],
+      "token_range": [
+        887,
+        967
+      ],
+      "word_range": [
+        733,
+        831
+      ],
+      "mean_rouge_f1_percent": {
+        "rouge1": 17.14883583849101,
+        "rouge2": 2.993139284699387,
+        "rougeL": 12.518715001473621
+      },
+      "mean_output_words": 44.5,
+      "mean_generation_seconds": 0.947150375000092,
+      "mean_shorter_by_percent": 94.39171694605213,
+      "mean_excess_trigram_percent": 5.063291139240507,
+      "failed": 0,
+      "no_final_punctuation": 0,
+      "complete_input_coverage": 4,
+      "experiment": "Application Medium single-pass; not identical to checkpoint A",
+      "ai_notes": [
+        {
+          "row_idx": 5,
+          "note": "Unsupported author attribution: inserts Sally Kohn twice, whereas original highlights identify Ruben Navarrette and the source never names Kohn. Captures supportive opinion but misattributes it."
+        },
+        {
+          "row_idx": 18,
+          "note": "Captures International Women's Day/refugee advocacy but omits job skills, examples and work with male relatives. Normative 'must advocate' becomes unattributed summary voice; no invented event identified."
+        },
+        {
+          "row_idx": 30,
+          "note": "Main delay/confusion covered, but repeats the Cambodia misinformation event in two near-identical sentences, wasting space. Underlying episode supported; repeated idea is not caught by exact whole-sentence dedup."
+        },
+        {
+          "row_idx": 35,
+          "note": "Invents Eric Liu twice although reference names Donna Brazile and source lacks Liu. Broad community-engagement opinion captured, but authorship is unsupported."
+        }
+      ]
+    },
+    {
+      "model": "PEGASUS",
+      "group": "beyond_window",
+      "n": 2,
+      "row_ids": [
+        {
+          "row_idx": 33,
+          "id": "d83332b67ad10eebe60beba30160869dc942f8ff"
+        },
+        {
+          "row_idx": 39,
+          "id": "aa9a164b2f592570b64063546dda4eed22133a0e"
+        }
+      ],
+      "token_range": [
+        1493,
+        1719
+      ],
+      "word_range": [
+        1188,
+        1354
+      ],
+      "mean_rouge_f1_percent": {
+        "rouge1": 31.38374899436846,
+        "rouge2": 12.737737737737739,
+        "rougeL": 27.795655671761864
+      },
+      "mean_output_words": 77.5,
+      "mean_generation_seconds": 2.1297760000006747,
+      "mean_shorter_by_percent": 93.88406467431578,
+      "mean_excess_trigram_percent": 0.6097560975609756,
+      "failed": 0,
+      "no_final_punctuation": 0,
+      "complete_input_coverage": 2,
+      "experiment": "C: full-article chunk method",
+      "ai_notes": [
+        {
+          "row_idx": 33,
+          "note": "Main risks/statistic and clinician-versus-internet caution covered. Retains 'If your ailment isn't going away' condition on seeking help, avoiding blanket dismissal of symptom checkers; no specific contradiction identified."
+        },
+        {
+          "row_idx": 39,
+          "note": "Two-chunk output identifies Monohm and Runcible and core anti-distraction purpose; later circular-frame and smartwatch examples are supported. Final 'real estate is limited' is grammatical but loses source's intended consequence about different design thinking. No clear invented fact observed."
+        }
+      ]
+    }
+  ]
+}

@@ -9,13 +9,73 @@ are supported. See [GPU setup, four-model verification and speed results](./GPU_
 for the current GPU workflow, exact HF revisions, device/memory policy, and
 separate loading/generation measurements. The original OpenNMT setup is retained.
 
-The current demo automatically summarizes full articles with adaptive Short /
-Medium / Detailed preferences. Only Article, a segmented model selector, a
-three-position length slider, Summarize and Summary are shown. See
+The current demo automatically summarizes full articles with the named
+`natural-checkpoint-v1` policy. The News Summarizer interface uses a model
+dropdown, balanced Article/Summary panels, Clear/Copy actions, a live
+input word count and compact result statistics. See
 [full-article behavior, limits and checks](./FULL_ARTICLE.md).
 The existing environment is ready; no dependencies or checkpoints need reinstalling.
 
+The previous adaptive-length implementation remains available for experiments
+through `summarize_article(article, model, "Short"/"Medium"/"Detailed")`; the demo
+instead explicitly selects `generation_policy="natural-checkpoint-v1"` and has
+no length selection or percentage output target. Keep its results separate from
+all previous adaptive-length results. The earlier
+[quality diagnosis](./FULL_ARTICLE.md#focused-quality-diagnosis-november-21)
+removes unnecessary compression and restores model-specific summarization search.
+Experimental length preferences start at 15% / 25% / 35%, without forcing those counts.
+OpenNMT's app input window is 1024 tokens (position/work bounded); its original
+400-token training/fixed-benchmark policy is retained separately. Read the
+[before/after review](./reports/quality_regression.json): known model salience and
+factual-relationship failures remain; successful execution is not faithful-summary
+certification. A frozen 40-article validation evaluation now has
+[results and a source/reference review sheet](./reports/validation_40_review.html).
+All four models completed all inputs, but substantive factual errors remain;
+no default quality winner is established. See the
+[protocol and limitations](./FULL_ARTICLE.md#frozen-40-article-validation-evaluation).
+The completed 50-article test comparison is in [BENCHMARK_RESULTS.md](BENCHMARK_RESULTS.md).
+The larger 1,000-article run was interrupted and remains incomplete.
+
 ## CPU installation on Windows (PowerShell)
+
+### Current production policy and launch
+
+Reuse the existing environment:
+
+```powershell
+.\.venv\Scripts\python.exe app.py --processing-mode full
+```
+
+Open http://127.0.0.1:7860/. Auto prefers the existing CUDA GPU with the existing
+CPU fallback. Stop the prior app terminal before restarting on the same port.
+
+Natural policy uses checkpoint search settings and EOS. Initial output ceilings
+are100 tokens for OpenNMT,141 new tokens for BART,127 for PEGASUS. Minimums are
+bounded by source tokens divided by8 and the native floor (35/56/32 respectively;
+HF converts its minimum to new tokens by subtracting the start token). These are
+decoding limits, not word targets. Cap-without-EOS retries retain the bounded
+256 legacy/512 HF hard limits and existing workload checks. Nothing is padded or
+cut to meet an article percentage. Very tiny inputs may yield empty model output;
+the app reports that explicitly rather than returning a fabricated summary.
+
+Fitting articles use one source pass. Long articles retain sentence-aware chunks,
+complete source coverage, ordered exact-sentence deduplication, and strict shrinking
+consolidation if the merge exceeds the per-pass window. Native chunk budgets
+retain model-specific headroom. Existing character/word/token/call/time/depth limits
+and GPU memory handling remain; no new article cutoff was added. Processing failures
+return no partial final summary. Processing all text does not guarantee factual
+coverage. This UI simplification does not fix known model factuality limitations.
+
+Statistics retain actual output words, compression against the complete input,
+server processing time, and actual summed decoded tokens divided by measured
+generation time (excluding loading/start/EOS). Separate verification:
+[natural policy checks](reports/natural_policy_verification.json). The preceding
+adaptive app/configuration is recoverable from
+`reports/model_capabilities/application_snapshot.zip`; frozen historical evaluation
+drivers intentionally reject changed generation hashes until that snapshot is
+restored in a separate checkout. Original results/configurations are unchanged.
+
+### Fresh CPU environment only
 
 Run these commands from the repository root. Python 3.11 must be installed; the
 existing project environment can be reused. No activation-policy changes or WSL
@@ -58,14 +118,27 @@ the downloaded OpenNMT checkout, caches, and virtual environments are Git-ignore
 
 Open <http://127.0.0.1:7860>. Stop with Ctrl+C. The app binds to localhost and does
 not create a public sharing link. Paste an English news article, select one of
-the four models, choose Short / Medium / Detailed on the slider, and click
+the four models, choose Short / Medium / Detailed in the length dropdown, and click
 **Summarize**. Medium is the default. GPU is preferred automatically; the current
-demo has no device, truncation, timing or technical-settings controls.
+demo has no device, truncation or technical-settings controls. Input and output
+appear side by side on desktop and stack on mobile. Clear resets the article and
+results; Copy is enabled only for a completed result. Editing the article or either
+selection clears stale results. Controls are disabled while processing.
 
 Each model is loaded lazily once per process and reused for later requests. The
 first request for each model includes loading delay. Only the active model stays
 on GPU; other cached models are offloaded to CPU RAM. Loading/device-transfer time
-is logged separately rather than displayed in the simple demo. Generation time measures
+is logged separately; it is included in total request processing time but excluded
+from generation throughput. The compact statistics show output words, "Shorter by"
+(`100 * (1 - summary_words / article_words)`), processing time, and measured
+generation tokens/second when available. Hover/focus the labels for measurement
+definitions. Multi-pass requests use **Pipeline generation tok/s**: all actual
+decoded output-token IDs across chunks, consolidation and completion retries,
+divided by summed generation time. Decoder-start/EOS IDs are excluded. Missing
+measurements, no generation or a failed CUDA attempt produce an unavailable rate,
+not an estimate. Model tokenizers differ, so rates are not directly equivalent.
+
+Generation time measures
 dataset construction, CPU/CUDA decoding, and output cleanup, excluding model loading,
 input tokenization, queue waiting, and browser/network latency. Requests are
 queued one at a time; process and per-model locks also protect direct calls.
@@ -204,3 +277,31 @@ Generation took about 0.46-1.95 seconds on that run, excluding model loading.
 Transformer Short and Medium were identical; length presets are not guarantees.
 Legacy PyTorch/torchtext warnings can appear in the terminal; the checks above
 completed successfully without changing the kit's inference behavior.
+## Small ROUGE comparison (latest scope)
+
+The user reduced the scope to a rough comparison. See
+[BENCHMARK_RESULTS.md](BENCHMARK_RESULTS.md) for **50 fixed CNN/DailyMail test
+articles**, the four models and Lead-3, with ROUGE scores. Shared-prefix and
+full-article results remain separate. The 1,000-article run was stopped; its saved
+partial results and historical development results are preserved, not presented
+as a completed final benchmark.
+
+[Riverton diagnosis](reports/RIVERTON_DIAGNOSIS.md) and
+[model integrity evidence](reports/final_model_verification.json) distinguish
+verified source delivery from model factual quality. The synthetic advisory
+omission persists in direct PEGASUS inference; no generation change was justified.
+The UI and existing environment are preserved.
+
+Reproduce the small comparison from this repository in Windows PowerShell:
+
+```powershell
+.\.venv\Scripts\python.exe tests\final_benchmark.py run --limit 50
+.\.venv\Scripts\python.exe tests\report_pilot50.py
+```
+
+The runner rejects incompatible code, dependencies, weights or inputs instead of
+pooling results. Small-comparison metrics, IDs, outputs and references are under
+`reports/pilot50/`. Local exact inputs/traces remain under ignored `data/` and
+`test-results/`; the interrupted larger study remains under `reports/final_test_1000/`.
+Do not resume the larger study without a new request. No human factuality rate or
+factual-quality winner is established by ROUGE. GPU contention limits timing comparisons.

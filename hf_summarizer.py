@@ -71,6 +71,15 @@ class HFSummarizer:
     def generation_limit(self):
         return self.model.config.max_position_embeddings - 1
 
+    @property
+    def summary_min_length(self):
+        return self.model.generation_config.min_length
+
+    @property
+    def summary_max_length(self):
+        # HF max_length includes the decoder-start token; Budget uses new tokens.
+        return self.model.generation_config.max_length - 1
+
     def prepare(self, article, allow_truncation=False):
         from summarizer import InputError, PreparedArticle
 
@@ -98,17 +107,23 @@ class HFSummarizer:
             synchronize(self.device)
             started = time.perf_counter()
             ids = torch.tensor([article.tokens], dtype=torch.long, device=self.device)
+            # Keep the fixed-budget benchmark API unchanged. The app profile
+            # inherits each checkpoint's beam size, repetition policy, length
+            # penalty and early-stopping rule instead of imposing BART's on PEGASUS.
+            settings = (
+                {}
+                if budget.profile == "checkpoint"
+                else {"num_beams": 4, "no_repeat_ngram_size": 3, "early_stopping": True}
+            )
             generated = self.model.generate(
                 input_ids=ids,
                 attention_mask=torch.ones_like(ids),
                 min_new_tokens=max(0, budget.min_tokens - 1),
                 max_new_tokens=budget.max_tokens,
-                num_beams=4,
                 do_sample=False,
-                no_repeat_ngram_size=3,
-                early_stopping=True,
                 # Otherwise HF can manufacture EOS at the cap, hiding truncation.
                 forced_eos_token_id=None,
+                **settings,
             )[0, 1:].tolist()  # Exclude the decoder-start token (BART uses EOS).
             ended = bool(generated) and generated[-1] == self.tokenizer.eos_token_id
             summary = (

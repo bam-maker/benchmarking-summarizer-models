@@ -1,0 +1,1002 @@
+[
+  {
+    "review_id": "01-common_input-A",
+    "article_id": "405ce3a1dce0314a4c967b3ee991276f8f7fa1b7",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "01-common_input-B",
+    "article_id": "405ce3a1dce0314a4c967b3ee991276f8f7fa1b7",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "01-common_input-C",
+    "article_id": "405ce3a1dce0314a4c967b3ee991276f8f7fa1b7",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "01-common_input-D",
+    "article_id": "405ce3a1dce0314a4c967b3ee991276f8f7fa1b7",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "01-common_input-E",
+    "article_id": "405ce3a1dce0314a4c967b3ee991276f8f7fa1b7",
+    "model": "BART"
+  },
+  {
+    "review_id": "01-full_article-A",
+    "article_id": "405ce3a1dce0314a4c967b3ee991276f8f7fa1b7",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "01-full_article-B",
+    "article_id": "405ce3a1dce0314a4c967b3ee991276f8f7fa1b7",
+    "model": "BART"
+  },
+  {
+    "review_id": "01-full_article-C",
+    "article_id": "405ce3a1dce0314a4c967b3ee991276f8f7fa1b7",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "01-full_article-D",
+    "article_id": "405ce3a1dce0314a4c967b3ee991276f8f7fa1b7",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "01-full_article-E",
+    "article_id": "405ce3a1dce0314a4c967b3ee991276f8f7fa1b7",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "02-common_input-A",
+    "article_id": "d5e3add9f887075a83c369474811874d0abe37dc",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "02-common_input-B",
+    "article_id": "d5e3add9f887075a83c369474811874d0abe37dc",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "02-common_input-C",
+    "article_id": "d5e3add9f887075a83c369474811874d0abe37dc",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "02-common_input-D",
+    "article_id": "d5e3add9f887075a83c369474811874d0abe37dc",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "02-common_input-E",
+    "article_id": "d5e3add9f887075a83c369474811874d0abe37dc",
+    "model": "BART"
+  },
+  {
+    "review_id": "02-full_article-A",
+    "article_id": "d5e3add9f887075a83c369474811874d0abe37dc",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "02-full_article-B",
+    "article_id": "d5e3add9f887075a83c369474811874d0abe37dc",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "02-full_article-C",
+    "article_id": "d5e3add9f887075a83c369474811874d0abe37dc",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "02-full_article-D",
+    "article_id": "d5e3add9f887075a83c369474811874d0abe37dc",
+    "model": "BART"
+  },
+  {
+    "review_id": "02-full_article-E",
+    "article_id": "d5e3add9f887075a83c369474811874d0abe37dc",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "03-common_input-A",
+    "article_id": "2ff43eefe807026df9e78e88a081d41c5b653fa5",
+    "model": "BART"
+  },
+  {
+    "review_id": "03-common_input-B",
+    "article_id": "2ff43eefe807026df9e78e88a081d41c5b653fa5",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "03-common_input-C",
+    "article_id": "2ff43eefe807026df9e78e88a081d41c5b653fa5",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "03-common_input-D",
+    "article_id": "2ff43eefe807026df9e78e88a081d41c5b653fa5",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "03-common_input-E",
+    "article_id": "2ff43eefe807026df9e78e88a081d41c5b653fa5",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "03-full_article-A",
+    "article_id": "2ff43eefe807026df9e78e88a081d41c5b653fa5",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "03-full_article-B",
+    "article_id": "2ff43eefe807026df9e78e88a081d41c5b653fa5",
+    "model": "BART"
+  },
+  {
+    "review_id": "03-full_article-C",
+    "article_id": "2ff43eefe807026df9e78e88a081d41c5b653fa5",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "03-full_article-D",
+    "article_id": "2ff43eefe807026df9e78e88a081d41c5b653fa5",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "03-full_article-E",
+    "article_id": "2ff43eefe807026df9e78e88a081d41c5b653fa5",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "04-common_input-A",
+    "article_id": "71ba864996fd42c4d206f1374dbf8964ac215c1a",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "04-common_input-B",
+    "article_id": "71ba864996fd42c4d206f1374dbf8964ac215c1a",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "04-common_input-C",
+    "article_id": "71ba864996fd42c4d206f1374dbf8964ac215c1a",
+    "model": "BART"
+  },
+  {
+    "review_id": "04-common_input-D",
+    "article_id": "71ba864996fd42c4d206f1374dbf8964ac215c1a",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "04-common_input-E",
+    "article_id": "71ba864996fd42c4d206f1374dbf8964ac215c1a",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "04-full_article-A",
+    "article_id": "71ba864996fd42c4d206f1374dbf8964ac215c1a",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "04-full_article-B",
+    "article_id": "71ba864996fd42c4d206f1374dbf8964ac215c1a",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "04-full_article-C",
+    "article_id": "71ba864996fd42c4d206f1374dbf8964ac215c1a",
+    "model": "BART"
+  },
+  {
+    "review_id": "04-full_article-D",
+    "article_id": "71ba864996fd42c4d206f1374dbf8964ac215c1a",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "04-full_article-E",
+    "article_id": "71ba864996fd42c4d206f1374dbf8964ac215c1a",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "05-common_input-A",
+    "article_id": "ed5970220a39bae9aee00f754198e6257322bec4",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "05-common_input-B",
+    "article_id": "ed5970220a39bae9aee00f754198e6257322bec4",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "05-common_input-C",
+    "article_id": "ed5970220a39bae9aee00f754198e6257322bec4",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "05-common_input-D",
+    "article_id": "ed5970220a39bae9aee00f754198e6257322bec4",
+    "model": "BART"
+  },
+  {
+    "review_id": "05-common_input-E",
+    "article_id": "ed5970220a39bae9aee00f754198e6257322bec4",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "05-full_article-A",
+    "article_id": "ed5970220a39bae9aee00f754198e6257322bec4",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "05-full_article-B",
+    "article_id": "ed5970220a39bae9aee00f754198e6257322bec4",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "05-full_article-C",
+    "article_id": "ed5970220a39bae9aee00f754198e6257322bec4",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "05-full_article-D",
+    "article_id": "ed5970220a39bae9aee00f754198e6257322bec4",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "05-full_article-E",
+    "article_id": "ed5970220a39bae9aee00f754198e6257322bec4",
+    "model": "BART"
+  },
+  {
+    "review_id": "06-common_input-A",
+    "article_id": "862bbd27abe6fce06b404f9feb3ba6e4f5c122af",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "06-common_input-B",
+    "article_id": "862bbd27abe6fce06b404f9feb3ba6e4f5c122af",
+    "model": "BART"
+  },
+  {
+    "review_id": "06-common_input-C",
+    "article_id": "862bbd27abe6fce06b404f9feb3ba6e4f5c122af",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "06-common_input-D",
+    "article_id": "862bbd27abe6fce06b404f9feb3ba6e4f5c122af",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "06-common_input-E",
+    "article_id": "862bbd27abe6fce06b404f9feb3ba6e4f5c122af",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "06-full_article-A",
+    "article_id": "862bbd27abe6fce06b404f9feb3ba6e4f5c122af",
+    "model": "BART"
+  },
+  {
+    "review_id": "06-full_article-B",
+    "article_id": "862bbd27abe6fce06b404f9feb3ba6e4f5c122af",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "06-full_article-C",
+    "article_id": "862bbd27abe6fce06b404f9feb3ba6e4f5c122af",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "06-full_article-D",
+    "article_id": "862bbd27abe6fce06b404f9feb3ba6e4f5c122af",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "06-full_article-E",
+    "article_id": "862bbd27abe6fce06b404f9feb3ba6e4f5c122af",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "07-common_input-A",
+    "article_id": "b127b08b58301db699fd96438e91b419d480bec0",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "07-common_input-B",
+    "article_id": "b127b08b58301db699fd96438e91b419d480bec0",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "07-common_input-C",
+    "article_id": "b127b08b58301db699fd96438e91b419d480bec0",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "07-common_input-D",
+    "article_id": "b127b08b58301db699fd96438e91b419d480bec0",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "07-common_input-E",
+    "article_id": "b127b08b58301db699fd96438e91b419d480bec0",
+    "model": "BART"
+  },
+  {
+    "review_id": "07-full_article-A",
+    "article_id": "b127b08b58301db699fd96438e91b419d480bec0",
+    "model": "BART"
+  },
+  {
+    "review_id": "07-full_article-B",
+    "article_id": "b127b08b58301db699fd96438e91b419d480bec0",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "07-full_article-C",
+    "article_id": "b127b08b58301db699fd96438e91b419d480bec0",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "07-full_article-D",
+    "article_id": "b127b08b58301db699fd96438e91b419d480bec0",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "07-full_article-E",
+    "article_id": "b127b08b58301db699fd96438e91b419d480bec0",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "08-common_input-A",
+    "article_id": "e54896748589a653f949ebf275d97c7f07218242",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "08-common_input-B",
+    "article_id": "e54896748589a653f949ebf275d97c7f07218242",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "08-common_input-C",
+    "article_id": "e54896748589a653f949ebf275d97c7f07218242",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "08-common_input-D",
+    "article_id": "e54896748589a653f949ebf275d97c7f07218242",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "08-common_input-E",
+    "article_id": "e54896748589a653f949ebf275d97c7f07218242",
+    "model": "BART"
+  },
+  {
+    "review_id": "08-full_article-A",
+    "article_id": "e54896748589a653f949ebf275d97c7f07218242",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "08-full_article-B",
+    "article_id": "e54896748589a653f949ebf275d97c7f07218242",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "08-full_article-C",
+    "article_id": "e54896748589a653f949ebf275d97c7f07218242",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "08-full_article-D",
+    "article_id": "e54896748589a653f949ebf275d97c7f07218242",
+    "model": "BART"
+  },
+  {
+    "review_id": "08-full_article-E",
+    "article_id": "e54896748589a653f949ebf275d97c7f07218242",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "09-common_input-A",
+    "article_id": "006c9e9a7ab29b3107aea76f381905cac642ac0c",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "09-common_input-B",
+    "article_id": "006c9e9a7ab29b3107aea76f381905cac642ac0c",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "09-common_input-C",
+    "article_id": "006c9e9a7ab29b3107aea76f381905cac642ac0c",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "09-common_input-D",
+    "article_id": "006c9e9a7ab29b3107aea76f381905cac642ac0c",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "09-common_input-E",
+    "article_id": "006c9e9a7ab29b3107aea76f381905cac642ac0c",
+    "model": "BART"
+  },
+  {
+    "review_id": "09-full_article-A",
+    "article_id": "006c9e9a7ab29b3107aea76f381905cac642ac0c",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "09-full_article-B",
+    "article_id": "006c9e9a7ab29b3107aea76f381905cac642ac0c",
+    "model": "BART"
+  },
+  {
+    "review_id": "09-full_article-C",
+    "article_id": "006c9e9a7ab29b3107aea76f381905cac642ac0c",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "09-full_article-D",
+    "article_id": "006c9e9a7ab29b3107aea76f381905cac642ac0c",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "09-full_article-E",
+    "article_id": "006c9e9a7ab29b3107aea76f381905cac642ac0c",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "10-common_input-A",
+    "article_id": "480ec36433b3cab49ed491192b5f3fc22236edb4",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "10-common_input-B",
+    "article_id": "480ec36433b3cab49ed491192b5f3fc22236edb4",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "10-common_input-C",
+    "article_id": "480ec36433b3cab49ed491192b5f3fc22236edb4",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "10-common_input-D",
+    "article_id": "480ec36433b3cab49ed491192b5f3fc22236edb4",
+    "model": "BART"
+  },
+  {
+    "review_id": "10-common_input-E",
+    "article_id": "480ec36433b3cab49ed491192b5f3fc22236edb4",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "10-full_article-A",
+    "article_id": "480ec36433b3cab49ed491192b5f3fc22236edb4",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "10-full_article-B",
+    "article_id": "480ec36433b3cab49ed491192b5f3fc22236edb4",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "10-full_article-C",
+    "article_id": "480ec36433b3cab49ed491192b5f3fc22236edb4",
+    "model": "BART"
+  },
+  {
+    "review_id": "10-full_article-D",
+    "article_id": "480ec36433b3cab49ed491192b5f3fc22236edb4",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "10-full_article-E",
+    "article_id": "480ec36433b3cab49ed491192b5f3fc22236edb4",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "11-common_input-A",
+    "article_id": "45207c5e9a93b98dbbb5097427bbdb59c9a6a5f7",
+    "model": "BART"
+  },
+  {
+    "review_id": "11-common_input-B",
+    "article_id": "45207c5e9a93b98dbbb5097427bbdb59c9a6a5f7",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "11-common_input-C",
+    "article_id": "45207c5e9a93b98dbbb5097427bbdb59c9a6a5f7",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "11-common_input-D",
+    "article_id": "45207c5e9a93b98dbbb5097427bbdb59c9a6a5f7",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "11-common_input-E",
+    "article_id": "45207c5e9a93b98dbbb5097427bbdb59c9a6a5f7",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "11-full_article-A",
+    "article_id": "45207c5e9a93b98dbbb5097427bbdb59c9a6a5f7",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "11-full_article-B",
+    "article_id": "45207c5e9a93b98dbbb5097427bbdb59c9a6a5f7",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "11-full_article-C",
+    "article_id": "45207c5e9a93b98dbbb5097427bbdb59c9a6a5f7",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "11-full_article-D",
+    "article_id": "45207c5e9a93b98dbbb5097427bbdb59c9a6a5f7",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "11-full_article-E",
+    "article_id": "45207c5e9a93b98dbbb5097427bbdb59c9a6a5f7",
+    "model": "BART"
+  },
+  {
+    "review_id": "12-common_input-A",
+    "article_id": "28d940e270c4faaadcc18258904f4a7a5dc35cfd",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "12-common_input-B",
+    "article_id": "28d940e270c4faaadcc18258904f4a7a5dc35cfd",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "12-common_input-C",
+    "article_id": "28d940e270c4faaadcc18258904f4a7a5dc35cfd",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "12-common_input-D",
+    "article_id": "28d940e270c4faaadcc18258904f4a7a5dc35cfd",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "12-common_input-E",
+    "article_id": "28d940e270c4faaadcc18258904f4a7a5dc35cfd",
+    "model": "BART"
+  },
+  {
+    "review_id": "12-full_article-A",
+    "article_id": "28d940e270c4faaadcc18258904f4a7a5dc35cfd",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "12-full_article-B",
+    "article_id": "28d940e270c4faaadcc18258904f4a7a5dc35cfd",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "12-full_article-C",
+    "article_id": "28d940e270c4faaadcc18258904f4a7a5dc35cfd",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "12-full_article-D",
+    "article_id": "28d940e270c4faaadcc18258904f4a7a5dc35cfd",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "12-full_article-E",
+    "article_id": "28d940e270c4faaadcc18258904f4a7a5dc35cfd",
+    "model": "BART"
+  },
+  {
+    "review_id": "13-common_input-A",
+    "article_id": "1335fcb213f450f7906c40dfae10cc91d5feb2d0",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "13-common_input-B",
+    "article_id": "1335fcb213f450f7906c40dfae10cc91d5feb2d0",
+    "model": "BART"
+  },
+  {
+    "review_id": "13-common_input-C",
+    "article_id": "1335fcb213f450f7906c40dfae10cc91d5feb2d0",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "13-common_input-D",
+    "article_id": "1335fcb213f450f7906c40dfae10cc91d5feb2d0",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "13-common_input-E",
+    "article_id": "1335fcb213f450f7906c40dfae10cc91d5feb2d0",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "13-full_article-A",
+    "article_id": "1335fcb213f450f7906c40dfae10cc91d5feb2d0",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "13-full_article-B",
+    "article_id": "1335fcb213f450f7906c40dfae10cc91d5feb2d0",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "13-full_article-C",
+    "article_id": "1335fcb213f450f7906c40dfae10cc91d5feb2d0",
+    "model": "BART"
+  },
+  {
+    "review_id": "13-full_article-D",
+    "article_id": "1335fcb213f450f7906c40dfae10cc91d5feb2d0",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "13-full_article-E",
+    "article_id": "1335fcb213f450f7906c40dfae10cc91d5feb2d0",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "14-common_input-A",
+    "article_id": "0e5130d172cdaaa2afcb51585f4aa0580b049431",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "14-common_input-B",
+    "article_id": "0e5130d172cdaaa2afcb51585f4aa0580b049431",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "14-common_input-C",
+    "article_id": "0e5130d172cdaaa2afcb51585f4aa0580b049431",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "14-common_input-D",
+    "article_id": "0e5130d172cdaaa2afcb51585f4aa0580b049431",
+    "model": "BART"
+  },
+  {
+    "review_id": "14-common_input-E",
+    "article_id": "0e5130d172cdaaa2afcb51585f4aa0580b049431",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "14-full_article-A",
+    "article_id": "0e5130d172cdaaa2afcb51585f4aa0580b049431",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "14-full_article-B",
+    "article_id": "0e5130d172cdaaa2afcb51585f4aa0580b049431",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "14-full_article-C",
+    "article_id": "0e5130d172cdaaa2afcb51585f4aa0580b049431",
+    "model": "BART"
+  },
+  {
+    "review_id": "14-full_article-D",
+    "article_id": "0e5130d172cdaaa2afcb51585f4aa0580b049431",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "14-full_article-E",
+    "article_id": "0e5130d172cdaaa2afcb51585f4aa0580b049431",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "15-common_input-A",
+    "article_id": "4f1d5e7423551c2f906fca57a5a718fbd8cf39d0",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "15-common_input-B",
+    "article_id": "4f1d5e7423551c2f906fca57a5a718fbd8cf39d0",
+    "model": "BART"
+  },
+  {
+    "review_id": "15-common_input-C",
+    "article_id": "4f1d5e7423551c2f906fca57a5a718fbd8cf39d0",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "15-common_input-D",
+    "article_id": "4f1d5e7423551c2f906fca57a5a718fbd8cf39d0",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "15-common_input-E",
+    "article_id": "4f1d5e7423551c2f906fca57a5a718fbd8cf39d0",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "15-full_article-A",
+    "article_id": "4f1d5e7423551c2f906fca57a5a718fbd8cf39d0",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "15-full_article-B",
+    "article_id": "4f1d5e7423551c2f906fca57a5a718fbd8cf39d0",
+    "model": "BART"
+  },
+  {
+    "review_id": "15-full_article-C",
+    "article_id": "4f1d5e7423551c2f906fca57a5a718fbd8cf39d0",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "15-full_article-D",
+    "article_id": "4f1d5e7423551c2f906fca57a5a718fbd8cf39d0",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "15-full_article-E",
+    "article_id": "4f1d5e7423551c2f906fca57a5a718fbd8cf39d0",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "16-common_input-A",
+    "article_id": "b71a16e0e5d95e530f59e7aeaeb5c18904b87d9b",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "16-common_input-B",
+    "article_id": "b71a16e0e5d95e530f59e7aeaeb5c18904b87d9b",
+    "model": "BART"
+  },
+  {
+    "review_id": "16-common_input-C",
+    "article_id": "b71a16e0e5d95e530f59e7aeaeb5c18904b87d9b",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "16-common_input-D",
+    "article_id": "b71a16e0e5d95e530f59e7aeaeb5c18904b87d9b",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "16-common_input-E",
+    "article_id": "b71a16e0e5d95e530f59e7aeaeb5c18904b87d9b",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "16-full_article-A",
+    "article_id": "b71a16e0e5d95e530f59e7aeaeb5c18904b87d9b",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "16-full_article-B",
+    "article_id": "b71a16e0e5d95e530f59e7aeaeb5c18904b87d9b",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "16-full_article-C",
+    "article_id": "b71a16e0e5d95e530f59e7aeaeb5c18904b87d9b",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "16-full_article-D",
+    "article_id": "b71a16e0e5d95e530f59e7aeaeb5c18904b87d9b",
+    "model": "BART"
+  },
+  {
+    "review_id": "16-full_article-E",
+    "article_id": "b71a16e0e5d95e530f59e7aeaeb5c18904b87d9b",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "17-common_input-A",
+    "article_id": "e4964ce46ff1725549512e88870f1a03ce1f7cad",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "17-common_input-B",
+    "article_id": "e4964ce46ff1725549512e88870f1a03ce1f7cad",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "17-common_input-C",
+    "article_id": "e4964ce46ff1725549512e88870f1a03ce1f7cad",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "17-common_input-D",
+    "article_id": "e4964ce46ff1725549512e88870f1a03ce1f7cad",
+    "model": "BART"
+  },
+  {
+    "review_id": "17-common_input-E",
+    "article_id": "e4964ce46ff1725549512e88870f1a03ce1f7cad",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "17-full_article-A",
+    "article_id": "e4964ce46ff1725549512e88870f1a03ce1f7cad",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "17-full_article-B",
+    "article_id": "e4964ce46ff1725549512e88870f1a03ce1f7cad",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "17-full_article-C",
+    "article_id": "e4964ce46ff1725549512e88870f1a03ce1f7cad",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "17-full_article-D",
+    "article_id": "e4964ce46ff1725549512e88870f1a03ce1f7cad",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "17-full_article-E",
+    "article_id": "e4964ce46ff1725549512e88870f1a03ce1f7cad",
+    "model": "BART"
+  },
+  {
+    "review_id": "18-common_input-A",
+    "article_id": "e65404fa6c74fce20c555a718747c08a50385260",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "18-common_input-B",
+    "article_id": "e65404fa6c74fce20c555a718747c08a50385260",
+    "model": "BART"
+  },
+  {
+    "review_id": "18-common_input-C",
+    "article_id": "e65404fa6c74fce20c555a718747c08a50385260",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "18-common_input-D",
+    "article_id": "e65404fa6c74fce20c555a718747c08a50385260",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "18-common_input-E",
+    "article_id": "e65404fa6c74fce20c555a718747c08a50385260",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "18-full_article-A",
+    "article_id": "e65404fa6c74fce20c555a718747c08a50385260",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "18-full_article-B",
+    "article_id": "e65404fa6c74fce20c555a718747c08a50385260",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "18-full_article-C",
+    "article_id": "e65404fa6c74fce20c555a718747c08a50385260",
+    "model": "BART"
+  },
+  {
+    "review_id": "18-full_article-D",
+    "article_id": "e65404fa6c74fce20c555a718747c08a50385260",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "18-full_article-E",
+    "article_id": "e65404fa6c74fce20c555a718747c08a50385260",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "19-common_input-A",
+    "article_id": "6435a2011b44e57382d9baa8b1f98a2b3e377d7a",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "19-common_input-B",
+    "article_id": "6435a2011b44e57382d9baa8b1f98a2b3e377d7a",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "19-common_input-C",
+    "article_id": "6435a2011b44e57382d9baa8b1f98a2b3e377d7a",
+    "model": "BART"
+  },
+  {
+    "review_id": "19-common_input-D",
+    "article_id": "6435a2011b44e57382d9baa8b1f98a2b3e377d7a",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "19-common_input-E",
+    "article_id": "6435a2011b44e57382d9baa8b1f98a2b3e377d7a",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "19-full_article-A",
+    "article_id": "6435a2011b44e57382d9baa8b1f98a2b3e377d7a",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "19-full_article-B",
+    "article_id": "6435a2011b44e57382d9baa8b1f98a2b3e377d7a",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "19-full_article-C",
+    "article_id": "6435a2011b44e57382d9baa8b1f98a2b3e377d7a",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "19-full_article-D",
+    "article_id": "6435a2011b44e57382d9baa8b1f98a2b3e377d7a",
+    "model": "BART"
+  },
+  {
+    "review_id": "19-full_article-E",
+    "article_id": "6435a2011b44e57382d9baa8b1f98a2b3e377d7a",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "20-common_input-A",
+    "article_id": "ca3ed0691af054a8b3ab95593b8ec81e5ebfdeab",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "20-common_input-B",
+    "article_id": "ca3ed0691af054a8b3ab95593b8ec81e5ebfdeab",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "20-common_input-C",
+    "article_id": "ca3ed0691af054a8b3ab95593b8ec81e5ebfdeab",
+    "model": "BART"
+  },
+  {
+    "review_id": "20-common_input-D",
+    "article_id": "ca3ed0691af054a8b3ab95593b8ec81e5ebfdeab",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "20-common_input-E",
+    "article_id": "ca3ed0691af054a8b3ab95593b8ec81e5ebfdeab",
+    "model": "Transformer"
+  },
+  {
+    "review_id": "20-full_article-A",
+    "article_id": "ca3ed0691af054a8b3ab95593b8ec81e5ebfdeab",
+    "model": "LSTM"
+  },
+  {
+    "review_id": "20-full_article-B",
+    "article_id": "ca3ed0691af054a8b3ab95593b8ec81e5ebfdeab",
+    "model": "PEGASUS"
+  },
+  {
+    "review_id": "20-full_article-C",
+    "article_id": "ca3ed0691af054a8b3ab95593b8ec81e5ebfdeab",
+    "model": "BART"
+  },
+  {
+    "review_id": "20-full_article-D",
+    "article_id": "ca3ed0691af054a8b3ab95593b8ec81e5ebfdeab",
+    "model": "Lead-3"
+  },
+  {
+    "review_id": "20-full_article-E",
+    "article_id": "ca3ed0691af054a8b3ab95593b8ec81e5ebfdeab",
+    "model": "Transformer"
+  }
+]
