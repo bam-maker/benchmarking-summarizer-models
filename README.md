@@ -1,12 +1,14 @@
 # CNN/DailyMail summarizer comparison
 
-A native Windows, Python 3.11 class project comparing four existing summarizers:
+A Python 3.11 class project, now prepared on Windows and Ubuntu, comparing four
+existing summarizers:
 OpenNMT's attention/copying LSTM and copying Transformer, plus BART-large-CNN
 and PEGASUS-CNN/DailyMail as stronger candidates (not assumed quality winners).
 This is integration of pretrained CNN/DailyMail systems, not training, fine-tuning,
 or a controlled architecture-only experiment. CPU and RTX 4090 CUDA execution
-are supported. See [GPU setup, four-model verification and speed results](./GPU_SETUP.md)
-for the current GPU workflow, exact HF revisions, device/memory policy, and
+are supported where compatible hardware is available. See the historical
+[GPU setup, four-model verification and speed results](./GPU_SETUP.md)
+for the desktop GPU workflow, exact HF revisions, device/memory policy, and
 separate loading/generation measurements. The original OpenNMT setup is retained.
 
 The current demo automatically summarizes full articles with the named
@@ -14,7 +16,9 @@ The current demo automatically summarizes full articles with the named
 dropdown, balanced Article/Summary panels, Clear/Copy actions, a live
 input word count and compact result statistics. See
 [full-article behavior, limits and checks](./FULL_ARTICLE.md).
-The existing environment is ready; no dependencies or checkpoints need reinstalling.
+On the prepared Ubuntu laptop, the existing environment and checkpoints are ready;
+see the offline launch command below. A fresh clone needs its own ignored environment
+and downloaded checkpoints.
 
 The previous adaptive-length implementation remains available for experiments
 through `summarize_article(article, model, "Short"/"Medium"/"Detailed")`; the demo
@@ -35,6 +39,47 @@ no default quality winner is established. See the
 [protocol and limitations](./FULL_ARTICLE.md#frozen-40-article-validation-evaluation).
 The completed 50-article test comparison is in [BENCHMARK_RESULTS.md](BENCHMARK_RESULTS.md).
 The larger 1,000-article run was interrupted and remains incomplete.
+
+## Ubuntu laptop: CPU setup and offline launch
+
+The prepared laptop uses Python 3.11, PyTorch 2.5.1 CPU, and the exact pins in
+[requirements.txt](requirements.txt), including `sentencepiece==0.2.3` for
+PEGASUS. Its Intel graphics do not provide CUDA to PyTorch, so Auto uses CPU.
+The existing `.venv`, verified weights, pinned Hugging Face snapshots, and
+OpenNMT legacy checkout are local and Git-ignored. **Do not reinstall them just
+to launch the prepared laptop.** From the repository root:
+
+```bash
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python app.py --port 7860
+```
+
+Open <http://127.0.0.1:7860/>. Stop a previous app on that port before
+relaunching. All four models completed real inference with the cached resources
+and offline flags on this laptop. The first request for each model loads it into
+RAM; BART and PEGASUS are larger and take longer on CPU. No internet is needed
+for this prepared setup's app startup or inference. A fresh clone or a machine
+without the ignored cache needs internet to obtain Python packages, the pinned
+third-party checkout, and weights.
+
+For a **fresh Ubuntu CPU environment only**, with Git and `uv` installed, run
+the following from the repository root while online. Allow roughly 20 GB for
+dependencies, original checkpoints, inference copies, and model caches. The
+scripts reuse cached files, verify the documented OpenNMT SHA-256 hashes, and
+fetch the exact Hugging Face revisions from [model_manifest.json](model_manifest.json):
+
+```bash
+UV_CACHE_DIR=.cache/uv uv venv --python 3.11 .venv
+UV_CACHE_DIR=.cache/uv uv pip install --python .venv/bin/python torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
+UV_CACHE_DIR=.cache/uv uv pip install --python .venv/bin/python -r requirements.txt
+.venv/bin/python OpenNMT_Verified_Setup/prepare.py
+.venv/bin/python download_models.py BART PEGASUS
+UV_CACHE_DIR=.cache/uv uv pip check --python .venv/bin/python
+```
+
+Keep `.venv`, `.cache`, `OpenNMT_Verified_Setup/legacy`, weights, datasets, and
+credentials local. The older Windows and RTX 4090 instructions below describe
+that separate environment. See the [laptop diagnosis](reports/LAPTOP_MODEL_DIAGNOSIS.md)
+for the exact Riverton example and the unresolved duplicate-display observation.
 
 ## CPU installation on Windows (PowerShell)
 
@@ -118,12 +163,11 @@ the downloaded OpenNMT checkout, caches, and virtual environments are Git-ignore
 
 Open <http://127.0.0.1:7860>. Stop with Ctrl+C. The app binds to localhost and does
 not create a public sharing link. Paste an English news article, select one of
-the four models, choose Short / Medium / Detailed in the length dropdown, and click
-**Summarize**. Medium is the default. GPU is preferred automatically; the current
-demo has no device, truncation or technical-settings controls. Input and output
-appear side by side on desktop and stack on mobile. Clear resets the article and
-results; Copy is enabled only for a completed result. Editing the article or either
-selection clears stale results. Controls are disabled while processing.
+the four models, and click **Summarize**. The current demo has no length, device,
+truncation or technical-settings controls. Input and output appear side by side
+on desktop and stack on mobile. Clear resets the article and results; Copy is
+enabled only for a completed result. Editing the article or model selection
+clears stale results. Controls are disabled while processing.
 
 Each model is loaded lazily once per process and reused for later requests. The
 first request for each model includes loading delay. Only the active model stays

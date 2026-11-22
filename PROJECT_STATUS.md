@@ -1,10 +1,12 @@
 # Project status: development paused and saved
 
 Current status: November 22, 2026 (America/Chicago). The natural-length demo and
-50-article comparison are complete. This save contains the working source,
-tests, documentation and selected measured reports. No features or benchmarks
-were changed or rerun during the save. Earlier development/audit reports retain
-their historical configurations; they are not current production results.
+50-article comparison are complete. The Ubuntu CPU setup and focused laptop
+diagnosis have now been documented. This save contains the working source, tests,
+documentation and selected measured reports. No application features, generation
+settings or benchmarks were changed or rerun during this save. Earlier
+development/audit reports retain their historical configurations; they are not
+current production results.
 
 ## Current application
 
@@ -28,7 +30,39 @@ coverage tracking, source-order merging, exact-sentence deduplication and bounde
 consolidation with progress checks. Workload/depth/memory/time safeguards remain.
 A failed full-article request returns a clear error, not a partial final summary.
 Models load lazily and are cached; inactive models move off GPU. Auto prefers the
-existing RTX 4090 CUDA configuration, with explicitly reported CPU fallback.
+existing RTX 4090 CUDA configuration on the desktop, with explicitly reported CPU
+fallback. The Ubuntu laptop has no supported CUDA GPU and uses the existing CPU path.
+
+## Ubuntu laptop CPU setup and offline class demo
+
+The Ubuntu laptop has an Intel Core i7-1195G7, about 15 GiB RAM and Intel Iris Xe
+graphics; PyTorch reports no CUDA device. A fresh Linux `.venv` uses Python 3.11.16
+and PyTorch 2.5.1+cpu. The verified dependency pins were reused, including
+`sentencepiece==0.2.3` for PEGASUS. The pinned OpenNMT checkout and exact original
+checkpoints were recovered, with original SHA-256 hashes verified; Linux inference
+copies were checked against their original tensors and vocabularies. Both Hugging
+Face models use the revisions in [model_manifest.json](model_manifest.json), with
+their cached snapshot hashes checked against the saved verification report.
+Environments, weights, caches, downloaded dependencies, datasets and credentials
+remain Git-ignored.
+
+The Gradio app started on localhost, and all four models completed real CPU
+inference using cached resources. Subsequent direct checks on the supplied
+Riverton article ran with Hugging Face offline mode enabled and all four ended
+normally. For an offline classroom relaunch from the repository root, after
+stopping any existing process on port 7860, use exactly:
+
+```bash
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python app.py --port 7860
+```
+
+Open <http://127.0.0.1:7860/>. The first request per model includes loading time;
+the larger BART and PEGASUS models require more CPU RAM and patience. A fresh clone
+still needs internet once for dependencies, the pinned third-party checkout and
+weights; the prepared laptop's cached resources support offline inference. See
+the [Ubuntu setup instructions](README.md#ubuntu-laptop-cpu-setup-and-offline-launch)
+for fresh-environment recovery. No install or inference was run while preparing
+this Git save.
 
 ## Completed measured 50-article benchmark
 
@@ -96,11 +130,25 @@ and passing software tests do not verify factual accuracy. No human factuality
 ratings or population factual-error rates have been measured. Blank review sheets
 and AI-assisted observations are labeled separately in the saved reports.
 
-The exact fictional Riverton fixture is separate from CNN/DailyMail. PEGASUS
-omits lifting the advisory in raw direct inference and the app despite complete
-one-pass input delivery; BART retains it. No implementation fix was supported.
-See [Riverton diagnosis](reports/RIVERTON_DIAGNOSIS.md). OpenNMT still uses an NLTK
-Treebank approximation of historical Stanford preprocessing; its 1024-token app
+The earlier fictional Riverton fixture is separate from CNN/DailyMail. In that
+older case, PEGASUS omits lifting the advisory in raw direct inference and the app
+despite complete one-pass input delivery; BART retains it. No implementation fix
+was supported. See [earlier Riverton diagnosis](reports/RIVERTON_DIAGNOSIS.md).
+
+The **latest, different Riverton classroom article** is recorded verbatim in the
+[laptop model diagnosis](reports/LAPTOP_MODEL_DIAGNOSIS.md). The supplied LSTM and
+Transformer display strings were exactly identical, but direct inference and a
+fresh live Gradio LSTM request produced a distinct LSTM summary. Its raw output
+differs from Transformer's, and each selection resolved to its intended model;
+the original duplicate display's browser-level cause remains unresolved because
+that response and selected value were not captured. On this article BART's raw
+summary omitted the lifted advisory, while PEGASUS included it but omitted the
+repair/testing evidence. This single example does not establish a general model
+ranking or justify a production change. The completed **50-article benchmark and
+its saved predictions remain unchanged**.
+
+OpenNMT still uses an NLTK Treebank approximation of historical Stanford
+preprocessing; its 1024-token app
 window exceeds the 400-token training convention. Chunk merging can lose global
 relationships and repeat paraphrases. Tiny inputs can yield empty decodes.
 The time guard is cooperative; it cannot interrupt an in-flight model call.
