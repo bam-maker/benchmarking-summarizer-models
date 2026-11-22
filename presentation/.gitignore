@@ -1,0 +1,3 @@
+# Office lock files are local to an open editing session.
+.~lock.*#
+~$*

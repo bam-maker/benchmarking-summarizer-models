@@ -1,0 +1,2458 @@
+[
+  {
+    "slide": 1,
+    "text": "CIS 634 \u2022 PROJECT OVERVIEW",
+    "font_pt": 14,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 1,
+    "text": "Comparing Neural Models\nfor News Summarization",
+    "font_pt": 34,
+    "height_inches": 1.1,
+    "estimated_text_height": 1.039,
+    "fits_estimate": true
+  },
+  {
+    "slide": 1,
+    "text": "Biruk Anley  \u2022  Daniela Ortega",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 1,
+    "text": "NEWS ARTICLE",
+    "font_pt": 22,
+    "height_inches": 0.42,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 1,
+    "text": "\u2192",
+    "font_pt": 36,
+    "height_inches": 0.68,
+    "estimated_text_height": 0.55,
+    "fits_estimate": true
+  },
+  {
+    "slide": 1,
+    "text": "SHORT SUMMARY",
+    "font_pt": 22,
+    "height_inches": 0.42,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 1,
+    "text": "Keep the main event.\nKeep the facts connected.",
+    "font_pt": 29,
+    "height_inches": 1.0,
+    "estimated_text_height": 0.886,
+    "fits_estimate": true
+  },
+  {
+    "slide": 1,
+    "text": "OUR GOAL",
+    "font_pt": 16,
+    "height_inches": 0.35,
+    "estimated_text_height": 0.244,
+    "fits_estimate": true
+  },
+  {
+    "slide": 1,
+    "text": "Compare models + build a usable local demo",
+    "font_pt": 26,
+    "height_inches": 0.5,
+    "estimated_text_height": 0.397,
+    "fits_estimate": true
+  },
+  {
+    "slide": 2,
+    "text": "CORE MODELS + DATA",
+    "font_pt": 14,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 2,
+    "text": "Two core models learn from article\u2013summary pairs",
+    "font_pt": 34,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.519,
+    "fits_estimate": true
+  },
+  {
+    "slide": 2,
+    "text": "LSTM",
+    "font_pt": 25,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.382,
+    "fits_estimate": true
+  },
+  {
+    "slide": 2,
+    "text": "43M",
+    "font_pt": 29,
+    "height_inches": 0.51,
+    "estimated_text_height": 0.443,
+    "fits_estimate": true
+  },
+  {
+    "slide": 2,
+    "text": "Recurrent encoder\u2013decoder\nwith attention and copying",
+    "font_pt": 20,
+    "height_inches": 0.7,
+    "estimated_text_height": 0.611,
+    "fits_estimate": true
+  },
+  {
+    "slide": 2,
+    "text": "Transformer",
+    "font_pt": 25,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.382,
+    "fits_estimate": true
+  },
+  {
+    "slide": 2,
+    "text": "81M",
+    "font_pt": 29,
+    "height_inches": 0.51,
+    "estimated_text_height": 0.443,
+    "fits_estimate": true
+  },
+  {
+    "slide": 2,
+    "text": "Encoder\u2013decoder attention\nwith copying",
+    "font_pt": 20,
+    "height_inches": 0.7,
+    "estimated_text_height": 0.611,
+    "fits_estimate": true
+  },
+  {
+    "slide": 2,
+    "text": "CNN/DAILYMAIL",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 2,
+    "text": "ILLUSTRATIVE PAIR \u2022 not a dataset row",
+    "font_pt": 15,
+    "height_inches": 0.30000000000000004,
+    "estimated_text_height": 0.229,
+    "fits_estimate": true
+  },
+  {
+    "slide": 2,
+    "text": "Article: The valve was repaired.\nTwo clear tests followed.\nOfficials l",
+    "font_pt": 22,
+    "height_inches": 1.15,
+    "estimated_text_height": 1.008,
+    "fits_estimate": true
+  },
+  {
+    "slide": 2,
+    "text": "Reference: Officials lifted the advisory\nafter repairs and clear tests",
+    "font_pt": 22,
+    "height_inches": 0.83,
+    "estimated_text_height": 0.672,
+    "fits_estimate": true
+  },
+  {
+    "slide": 2,
+    "text": "Released model training",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 2,
+    "text": "CNN/DM summarization provenance",
+    "font_pt": 21,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 2,
+    "text": "Our evaluation",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 2,
+    "text": "50 held-out test articles \u2022 version 3.0.0",
+    "font_pt": 21,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "ACTUAL OPENNMT CHECKPOINTS",
+    "font_pt": 14,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "Two routes from article to summary",
+    "font_pt": 34,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.519,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "LSTM",
+    "font_pt": 24,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.367,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "\u224843M parameters",
+    "font_pt": 20,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.306,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "Words",
+    "font_pt": 17.5,
+    "height_inches": 0.73,
+    "estimated_text_height": 0.267,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "Word\nembeddings",
+    "font_pt": 17.5,
+    "height_inches": 0.73,
+    "estimated_text_height": 0.535,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "Bidirectional\nLSTM encoder",
+    "font_pt": 17.5,
+    "height_inches": 0.73,
+    "estimated_text_height": 0.535,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "Attention",
+    "font_pt": 17.5,
+    "height_inches": 0.73,
+    "estimated_text_height": 0.267,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "Recurrent\nLSTM decoder",
+    "font_pt": 17.5,
+    "height_inches": 0.73,
+    "estimated_text_height": 0.535,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "Vocabulary /\ncopy mixture",
+    "font_pt": 17.5,
+    "height_inches": 0.73,
+    "estimated_text_height": 0.535,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "Summary",
+    "font_pt": 17.5,
+    "height_inches": 0.73,
+    "estimated_text_height": 0.267,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "decoder query",
+    "font_pt": 13,
+    "height_inches": 0.25,
+    "estimated_text_height": 0.199,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "state",
+    "font_pt": 13,
+    "height_inches": 0.28,
+    "estimated_text_height": 0.199,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "attention weights \u2192 source copying",
+    "font_pt": 15,
+    "height_inches": 0.3,
+    "estimated_text_height": 0.229,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "Transformer",
+    "font_pt": 24,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.367,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "\u224881M parameters",
+    "font_pt": 20,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.306,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "Words",
+    "font_pt": 18,
+    "height_inches": 0.82,
+    "estimated_text_height": 0.275,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "Embeddings\n+ positions",
+    "font_pt": 18,
+    "height_inches": 0.82,
+    "estimated_text_height": 0.55,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "Encoder\nself-attention",
+    "font_pt": 18,
+    "height_inches": 0.82,
+    "estimated_text_height": 0.55,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "Vocabulary /\ncopy mixture",
+    "font_pt": 18,
+    "height_inches": 0.82,
+    "estimated_text_height": 0.55,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "Summary",
+    "font_pt": 18,
+    "height_inches": 0.82,
+    "estimated_text_height": 0.275,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "DECODER",
+    "font_pt": 13,
+    "height_inches": 0.27,
+    "estimated_text_height": 0.199,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "Masked self-attn\nCross-attention",
+    "font_pt": 18.5,
+    "height_inches": 0.77,
+    "estimated_text_height": 0.565,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "cross-attention weights \u2192 copy",
+    "font_pt": 14.5,
+    "height_inches": 0.3,
+    "estimated_text_height": 0.222,
+    "fits_estimate": true
+  },
+  {
+    "slide": 3,
+    "text": "previous summary tokens",
+    "font_pt": 13.5,
+    "height_inches": 0.3,
+    "estimated_text_height": 0.206,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "APPLICATION",
+    "font_pt": 14,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "A local app handles short and long articles",
+    "font_pt": 34,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.519,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "INTERFACE SCHEMATIC \u2022 based on current app",
+    "font_pt": 15,
+    "height_inches": 0.30000000000000004,
+    "estimated_text_height": 0.229,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "News Summarizer",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "Model:  LSTM   \u25be",
+    "font_pt": 17,
+    "height_inches": 0.31,
+    "estimated_text_height": 0.26,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "Article",
+    "font_pt": 19,
+    "height_inches": 0.33,
+    "estimated_text_height": 0.29,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "Summary",
+    "font_pt": 19,
+    "height_inches": 0.33,
+    "estimated_text_height": 0.29,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "Summarize",
+    "font_pt": 16,
+    "height_inches": 0.29,
+    "estimated_text_height": 0.244,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "Clear",
+    "font_pt": 16,
+    "height_inches": 0.3,
+    "estimated_text_height": 0.244,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "Copy",
+    "font_pt": 16,
+    "height_inches": 0.3,
+    "estimated_text_height": 0.244,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "No length selector",
+    "font_pt": 24,
+    "height_inches": 0.44,
+    "estimated_text_height": 0.367,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "Fits the input window?",
+    "font_pt": 21,
+    "height_inches": 0.36,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "YES",
+    "font_pt": 14,
+    "height_inches": 0.3,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "Direct\nmodel pass",
+    "font_pt": 20,
+    "height_inches": 0.61,
+    "estimated_text_height": 0.611,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "NO",
+    "font_pt": 14,
+    "height_inches": 0.3,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "Sentence-aware\nchunks",
+    "font_pt": 18.5,
+    "height_inches": 0.61,
+    "estimated_text_height": 0.565,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "Merge +\nconsolidation",
+    "font_pt": 17.5,
+    "height_inches": 0.67,
+    "estimated_text_height": 0.535,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "Completed summary",
+    "font_pt": 22,
+    "height_inches": 0.39,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "Bounded consolidation if needed",
+    "font_pt": 15,
+    "height_inches": 0.3,
+    "estimated_text_height": 0.229,
+    "fits_estimate": true
+  },
+  {
+    "slide": 4,
+    "text": "Offline CPU checks passed \u2022 Complete input \u2260 complete facts",
+    "font_pt": 22,
+    "height_inches": 0.39,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "EVALUATION DESIGN",
+    "font_pt": 14,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "Five systems, two evaluation tracks",
+    "font_pt": 34,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.519,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "50 CNN/DailyMail 3.0.0 test articles  \u2022  fixed seed 42",
+    "font_pt": 24,
+    "height_inches": 0.43,
+    "estimated_text_height": 0.367,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "BART",
+    "font_pt": 24,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.367,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "406M learned parameters",
+    "font_pt": 18,
+    "height_inches": 0.33,
+    "estimated_text_height": 0.275,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "Broad denoising pretraining\n\u2192 CNN/DM fine-tuning",
+    "font_pt": 18.5,
+    "height_inches": 0.59,
+    "estimated_text_height": 0.565,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "PEGASUS",
+    "font_pt": 24,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.367,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "569M learned parameters",
+    "font_pt": 18,
+    "height_inches": 0.33,
+    "estimated_text_height": 0.275,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "Gap-sentence pretraining\n\u2192 CNN/DM fine-tuning",
+    "font_pt": 18.5,
+    "height_inches": 0.59,
+    "estimated_text_height": 0.565,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "Lead-3",
+    "font_pt": 24,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.367,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "Extractive baseline",
+    "font_pt": 18,
+    "height_inches": 0.33,
+    "estimated_text_height": 0.275,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "First three source sentences\n\u2192 no model generation",
+    "font_pt": 18.5,
+    "height_inches": 0.59,
+    "estimated_text_height": 0.565,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "FULL ARTICLE",
+    "font_pt": 22,
+    "height_inches": 0.42,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "Each app processes the full source.",
+    "font_pt": 23,
+    "height_inches": 0.67,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "SHARED PREFIX",
+    "font_pt": 22,
+    "height_inches": 0.42,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "Same bounded text; original full references.",
+    "font_pt": 21,
+    "height_inches": 0.5,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "ROUGE-1",
+    "font_pt": 21,
+    "height_inches": 0.35,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "Shared words",
+    "font_pt": 18.5,
+    "height_inches": 0.35,
+    "estimated_text_height": 0.283,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "ROUGE-2",
+    "font_pt": 21,
+    "height_inches": 0.35,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "Word pairs",
+    "font_pt": 18.5,
+    "height_inches": 0.35,
+    "estimated_text_height": 0.283,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "ROUGE-L",
+    "font_pt": 21,
+    "height_inches": 0.35,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "Ordered sequence",
+    "font_pt": 18.5,
+    "height_inches": 0.35,
+    "estimated_text_height": 0.283,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "ROUGE-Lsum",
+    "font_pt": 21,
+    "height_inches": 0.35,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "Sentence-aware LCS",
+    "font_pt": 18.5,
+    "height_inches": 0.35,
+    "estimated_text_height": 0.283,
+    "fits_estimate": true
+  },
+  {
+    "slide": 5,
+    "text": "Overlap \u2260 factual accuracy",
+    "font_pt": 21,
+    "height_inches": 0.35,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 6,
+    "text": "SAVED BENCHMARK \u2022 FULL-ARTICLE TRACK",
+    "font_pt": 14,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 6,
+    "text": "BART leads most overlap metrics in this sample",
+    "font_pt": 34,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.519,
+    "fits_estimate": true
+  },
+  {
+    "slide": 6,
+    "text": "Full-article track \u2022 higher reference overlap is better",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 6,
+    "text": "LSTM",
+    "font_pt": 20,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.306,
+    "fits_estimate": true
+  },
+  {
+    "slide": 6,
+    "text": "Transformer",
+    "font_pt": 20,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.306,
+    "fits_estimate": true
+  },
+  {
+    "slide": 6,
+    "text": "BART",
+    "font_pt": 20,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.306,
+    "fits_estimate": true
+  },
+  {
+    "slide": 6,
+    "text": "PEGASUS",
+    "font_pt": 20,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.306,
+    "fits_estimate": true
+  },
+  {
+    "slide": 6,
+    "text": "Lead-3",
+    "font_pt": 20,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.306,
+    "fits_estimate": true
+  },
+  {
+    "slide": 6,
+    "text": "ROUGE-1",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 6,
+    "text": "ROUGE-2",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 6,
+    "text": "ROUGE-Lsum",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 6,
+    "text": "Small sample. No significance claim or factual-quality winner.",
+    "font_pt": 22,
+    "height_inches": 0.35,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 7,
+    "text": "FICTIONAL RIVERTON DIAGNOSTIC + LIVE DEMO",
+    "font_pt": 14,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 7,
+    "text": "A good score can still miss the headline",
+    "font_pt": 34,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.519,
+    "fits_estimate": true
+  },
+  {
+    "slide": 7,
+    "text": "SOURCE MAIN EVENT",
+    "font_pt": 14,
+    "height_inches": 0.25,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 7,
+    "text": "\u201cRiverton officials lifted a boil-water advisory Friday morning\u201d",
+    "font_pt": 23,
+    "height_inches": 0.42,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 7,
+    "text": "BART",
+    "font_pt": 25,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.382,
+    "fits_estimate": true
+  },
+  {
+    "slide": 7,
+    "text": "EXACT SAVED OUTPUT EXCERPT",
+    "font_pt": 14,
+    "height_inches": 0.29,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 7,
+    "text": "Officials said the advisory was precautionary; contamination had not b",
+    "font_pt": 22,
+    "height_inches": 1.8,
+    "estimated_text_height": 1.681,
+    "fits_estimate": true
+  },
+  {
+    "slide": 7,
+    "text": "PEGASUS",
+    "font_pt": 25,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.382,
+    "fits_estimate": true
+  },
+  {
+    "slide": 7,
+    "text": "EXACT SAVED OUTPUT EXCERPT",
+    "font_pt": 14,
+    "height_inches": 0.29,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 7,
+    "text": "Riverton officials lifted a boil-water advisory Friday morning. The ad",
+    "font_pt": 22,
+    "height_inches": 1.8,
+    "estimated_text_height": 1.344,
+    "fits_estimate": true
+  },
+  {
+    "slide": 7,
+    "text": "Supported facts; resolution omitted",
+    "font_pt": 21,
+    "height_inches": 0.45,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 7,
+    "text": "Lifting captured; repairs/tests omitted",
+    "font_pt": 21,
+    "height_inches": 0.45,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 7,
+    "text": "\u201cAll the details\u2026 except the headline.\u201d",
+    "font_pt": 19,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.29,
+    "fits_estimate": true
+  },
+  {
+    "slide": 7,
+    "text": "LIVE \u2022 ONE MODEL",
+    "font_pt": 14,
+    "height_inches": 0.30000000000000004,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 8,
+    "text": "LIMITATIONS + CONCLUSION",
+    "font_pt": 14,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 8,
+    "text": "We built a usable demo; factual review comes next",
+    "font_pt": 34,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.519,
+    "fits_estimate": true
+  },
+  {
+    "slide": 8,
+    "text": "01",
+    "font_pt": 35,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.535,
+    "fits_estimate": true
+  },
+  {
+    "slide": 8,
+    "text": "Content selection",
+    "font_pt": 26,
+    "height_inches": 0.45,
+    "estimated_text_height": 0.397,
+    "fits_estimate": true
+  },
+  {
+    "slide": 8,
+    "text": "LSTM and Transformer can omit\nthe main event or confuse relationships.",
+    "font_pt": 23,
+    "height_inches": 1.08,
+    "estimated_text_height": 1.054,
+    "fits_estimate": true
+  },
+  {
+    "slide": 8,
+    "text": "02",
+    "font_pt": 35,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.535,
+    "fits_estimate": true
+  },
+  {
+    "slide": 8,
+    "text": "Long articles",
+    "font_pt": 26,
+    "height_inches": 0.45,
+    "estimated_text_height": 0.397,
+    "fits_estimate": true
+  },
+  {
+    "slide": 8,
+    "text": "400-token training convention;\nlong chunks can lose connections.",
+    "font_pt": 23,
+    "height_inches": 1.08,
+    "estimated_text_height": 0.703,
+    "fits_estimate": true
+  },
+  {
+    "slide": 8,
+    "text": "WHAT WE DELIVERED",
+    "font_pt": 22,
+    "height_inches": 0.42,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 8,
+    "text": "A four-model local app\nA reproducible 50-article comparison\nAn offline",
+    "font_pt": 25,
+    "height_inches": 1.72,
+    "estimated_text_height": 1.528,
+    "fits_estimate": true
+  },
+  {
+    "slide": 8,
+    "text": "NEXT: HUMAN REVIEW",
+    "font_pt": 22,
+    "height_inches": 0.42,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 8,
+    "text": "Check main events, support and\nrelationships against each source.",
+    "font_pt": 22,
+    "height_inches": 0.85,
+    "estimated_text_height": 0.672,
+    "fits_estimate": true
+  },
+  {
+    "slide": 8,
+    "text": "All four can miss facts. Different complete systems \u2192 no architecture-",
+    "font_pt": 18.5,
+    "height_inches": 0.31,
+    "estimated_text_height": 0.283,
+    "fits_estimate": true
+  },
+  {
+    "slide": 9,
+    "text": "REFERENCES \u2022 OUTSIDE TIMED DECK",
+    "font_pt": 14,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 9,
+    "text": "References \u2022 model foundations",
+    "font_pt": 34,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.519,
+    "fits_estimate": true
+  },
+  {
+    "slide": 9,
+    "text": "LSTM",
+    "font_pt": 14,
+    "height_inches": 0.30000000000000004,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 9,
+    "text": "Hochreiter & Schmidhuber (1997)\nLong Short-Term Memory \u00b7 Neural Comput",
+    "font_pt": 20.5,
+    "height_inches": 0.76,
+    "estimated_text_height": 0.626,
+    "fits_estimate": true
+  },
+  {
+    "slide": 9,
+    "text": "TRANSFORMER",
+    "font_pt": 14,
+    "height_inches": 0.30000000000000004,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 9,
+    "text": "Vaswani et al. (2017)\nAttention Is All You Need \u00b7 NeurIPS 30",
+    "font_pt": 20.5,
+    "height_inches": 0.76,
+    "estimated_text_height": 0.626,
+    "fits_estimate": true
+  },
+  {
+    "slide": 9,
+    "text": "COPY MIXTURE",
+    "font_pt": 14,
+    "height_inches": 0.30000000000000004,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 9,
+    "text": "See, Liu & Manning (2017)\nGet To The Point \u00b7 ACL, 1073\u20131083",
+    "font_pt": 20.5,
+    "height_inches": 0.76,
+    "estimated_text_height": 0.626,
+    "fits_estimate": true
+  },
+  {
+    "slide": 9,
+    "text": "BART",
+    "font_pt": 14,
+    "height_inches": 0.30000000000000004,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 9,
+    "text": "Lewis et al. (2020)\nBART: Denoising Sequence-to-Sequence Pre-training ",
+    "font_pt": 20.5,
+    "height_inches": 0.76,
+    "estimated_text_height": 0.626,
+    "fits_estimate": true
+  },
+  {
+    "slide": 9,
+    "text": "PEGASUS",
+    "font_pt": 14,
+    "height_inches": 0.30000000000000004,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 9,
+    "text": "Zhang et al. (2020)\nPEGASUS: Pre-training with Extracted Gap-sentences",
+    "font_pt": 20.5,
+    "height_inches": 0.76,
+    "estimated_text_height": 0.626,
+    "fits_estimate": true
+  },
+  {
+    "slide": 10,
+    "text": "REFERENCES \u2022 OUTSIDE TIMED DECK",
+    "font_pt": 14,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 10,
+    "text": "References \u2022 data, metrics and project evidence",
+    "font_pt": 34,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.519,
+    "fits_estimate": true
+  },
+  {
+    "slide": 10,
+    "text": "DATASET",
+    "font_pt": 14,
+    "height_inches": 0.30000000000000004,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 10,
+    "text": "Hermann et al. (2015) \u00b7 Nallapati et al. (2016)\nDataset origins, summa",
+    "font_pt": 21,
+    "height_inches": 1.03,
+    "estimated_text_height": 0.642,
+    "fits_estimate": true
+  },
+  {
+    "slide": 10,
+    "text": "METRICS",
+    "font_pt": 14,
+    "height_inches": 0.30000000000000004,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 10,
+    "text": "Lin (2004) \u00b7 ROUGE\nGoogle Research implementation: flat L vs sentence-",
+    "font_pt": 21,
+    "height_inches": 1.03,
+    "estimated_text_height": 0.642,
+    "fits_estimate": true
+  },
+  {
+    "slide": 10,
+    "text": "CHECKPOINTS",
+    "font_pt": 14,
+    "height_inches": 0.30000000000000004,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 10,
+    "text": "Official OpenNMT summarization releases\nfacebook/bart-large-cnn \u00b7 goog",
+    "font_pt": 21,
+    "height_inches": 1.03,
+    "estimated_text_height": 0.642,
+    "fits_estimate": true
+  },
+  {
+    "slide": 10,
+    "text": "OUR EVIDENCE",
+    "font_pt": 14,
+    "height_inches": 0.30000000000000004,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 10,
+    "text": "PROJECT_STATUS.md \u00b7 reports/pilot50/results.json\nreports/LAPTOP_MODEL_",
+    "font_pt": 21,
+    "height_inches": 1.03,
+    "estimated_text_height": 0.642,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "BACKUP \u2022 COMPLETE METRICS",
+    "font_pt": 14,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "Full-article benchmark \u2022 all four metrics",
+    "font_pt": 34,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.519,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "System",
+    "font_pt": 21,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "R-1",
+    "font_pt": 21,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "R-2",
+    "font_pt": 21,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "R-L",
+    "font_pt": 21,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "R-Lsum",
+    "font_pt": 21,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "Mean words",
+    "font_pt": 21,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "LSTM",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "40.95",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "20.34",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "28.71",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "38.22",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "55.0",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "Transformer",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "38.75",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "17.35",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "26.99",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "36.09",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "47.4",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "BART",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "45.21",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "22.50",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "30.88",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "42.73",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "77.4",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "PEGASUS",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "43.81",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "22.43",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "30.92",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "40.91",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "68.9",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "Lead-3",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "40.36",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "18.28",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "24.91",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "36.30",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "74.4",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 11,
+    "text": "PEGASUS narrowly leads flat R-L; BART leads R-1, R-2 and R-Lsum.",
+    "font_pt": 21,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "BACKUP \u2022 COMPLETE METRICS",
+    "font_pt": 14,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "Shared-prefix benchmark \u2022 separate track",
+    "font_pt": 34,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.519,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "System",
+    "font_pt": 21,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "R-1",
+    "font_pt": 21,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "R-2",
+    "font_pt": 21,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "R-L",
+    "font_pt": 21,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "R-Lsum",
+    "font_pt": 21,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "Mean words",
+    "font_pt": 21,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "LSTM",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "38.14",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "18.33",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "26.82",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "35.53",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "50.2",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "Transformer",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "39.09",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "18.61",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "28.18",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "35.95",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "46.7",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "BART",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "43.83",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "20.71",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "30.37",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "40.73",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "62.5",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "PEGASUS",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "42.59",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "21.34",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "30.24",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "39.88",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "53.9",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "Lead-3",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "40.36",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "18.28",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "24.91",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "36.30",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "74.4",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 12,
+    "text": "Full references remain the target; some reference facts can lie beyond",
+    "font_pt": 21,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.321,
+    "fits_estimate": true
+  },
+  {
+    "slide": 13,
+    "text": "BACKUP \u2022 PROVENANCE",
+    "font_pt": 14,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 13,
+    "text": "Which released checkpoints did we integrate?",
+    "font_pt": 34,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.519,
+    "fits_estimate": true
+  },
+  {
+    "slide": 13,
+    "text": "LSTM",
+    "font_pt": 25,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.382,
+    "fits_estimate": true
+  },
+  {
+    "slide": 13,
+    "text": "42,789,205 learned",
+    "font_pt": 20,
+    "height_inches": 0.36,
+    "estimated_text_height": 0.306,
+    "fits_estimate": true
+  },
+  {
+    "slide": 13,
+    "text": "ada6_bridge_oldcopy_tagged_\nacc_54.17_ppl_11.17_e20",
+    "font_pt": 19,
+    "height_inches": 0.7,
+    "estimated_text_height": 0.581,
+    "fits_estimate": true
+  },
+  {
+    "slide": 13,
+    "text": "Transformer",
+    "font_pt": 25,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.382,
+    "fits_estimate": true
+  },
+  {
+    "slide": 13,
+    "text": "81,468,757 learned",
+    "font_pt": 20,
+    "height_inches": 0.36,
+    "estimated_text_height": 0.306,
+    "fits_estimate": true
+  },
+  {
+    "slide": 13,
+    "text": "sum_transformer_model_\nacc_57.25_ppl_9.22_e16",
+    "font_pt": 19,
+    "height_inches": 0.7,
+    "estimated_text_height": 0.581,
+    "fits_estimate": true
+  },
+  {
+    "slide": 13,
+    "text": "BART",
+    "font_pt": 25,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.382,
+    "fits_estimate": true
+  },
+  {
+    "slide": 13,
+    "text": "406,290,432 learned",
+    "font_pt": 20,
+    "height_inches": 0.36,
+    "estimated_text_height": 0.306,
+    "fits_estimate": true
+  },
+  {
+    "slide": 13,
+    "text": "facebook/bart-large-cnn",
+    "font_pt": 19,
+    "height_inches": 0.7,
+    "estimated_text_height": 0.29,
+    "fits_estimate": true
+  },
+  {
+    "slide": 13,
+    "text": "PEGASUS",
+    "font_pt": 25,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.382,
+    "fits_estimate": true
+  },
+  {
+    "slide": 13,
+    "text": "568,699,904 learned",
+    "font_pt": 20,
+    "height_inches": 0.36,
+    "estimated_text_height": 0.306,
+    "fits_estimate": true
+  },
+  {
+    "slide": 13,
+    "text": "google/pegasus-cnn_dailymail",
+    "font_pt": 19,
+    "height_inches": 0.7,
+    "estimated_text_height": 0.29,
+    "fits_estimate": true
+  },
+  {
+    "slide": 13,
+    "text": "PEGASUS: 570,797,056 instantiated; 2,097,152 fixed positional paramete",
+    "font_pt": 17,
+    "height_inches": 0.24,
+    "estimated_text_height": 0.26,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "BACKUP \u2022 DECODING AND INPUT WINDOWS",
+    "font_pt": 14,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "The demo preserves each checkpoint's search policy",
+    "font_pt": 34,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.519,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "System",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "Beam",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "Initial cap",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "Search details",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "LSTM",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "5",
+    "font_pt": 20.5,
+    "height_inches": 0.47,
+    "estimated_text_height": 0.313,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "100",
+    "font_pt": 20.5,
+    "height_inches": 0.47,
+    "estimated_text_height": 0.313,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "\u03b1=.9; coverage \u03b2=5; trigram block",
+    "font_pt": 20.5,
+    "height_inches": 0.47,
+    "estimated_text_height": 0.313,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "Transformer",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "5",
+    "font_pt": 20.5,
+    "height_inches": 0.47,
+    "estimated_text_height": 0.313,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "100",
+    "font_pt": 20.5,
+    "height_inches": 0.47,
+    "estimated_text_height": 0.313,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "Same OpenNMT search recipe",
+    "font_pt": 20.5,
+    "height_inches": 0.47,
+    "estimated_text_height": 0.313,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "BART",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "4",
+    "font_pt": 20.5,
+    "height_inches": 0.47,
+    "estimated_text_height": 0.313,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "141 new",
+    "font_pt": 20.5,
+    "height_inches": 0.47,
+    "estimated_text_height": 0.313,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "Length penalty 2; no-repeat 3",
+    "font_pt": 20.5,
+    "height_inches": 0.47,
+    "estimated_text_height": 0.313,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "PEGASUS",
+    "font_pt": 22,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "8",
+    "font_pt": 20.5,
+    "height_inches": 0.47,
+    "estimated_text_height": 0.313,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "127 new",
+    "font_pt": 20.5,
+    "height_inches": 0.47,
+    "estimated_text_height": 0.313,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "Length penalty .8; no-repeat 0",
+    "font_pt": 20.5,
+    "height_inches": 0.47,
+    "estimated_text_height": 0.313,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "Natural EOS \u2022 deterministic search \u2022 bounded retries if capped",
+    "font_pt": 23,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 14,
+    "text": "App work window: 1,024 tokens per chunk; historical OpenNMT training: ",
+    "font_pt": 20,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.306,
+    "fits_estimate": true
+  },
+  {
+    "slide": 15,
+    "text": "BACKUP \u2022 EXACT LATEST RIVERTON OUTPUTS",
+    "font_pt": 14,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 15,
+    "text": "Saved fallback \u2022 distinct core-model outputs",
+    "font_pt": 34,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.519,
+    "fits_estimate": true
+  },
+  {
+    "slide": 15,
+    "text": "LSTM",
+    "font_pt": 25,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.382,
+    "fits_estimate": true
+  },
+  {
+    "slide": 15,
+    "text": "the advisory had affected 18,000 residents since tuesday. water pressu",
+    "font_pt": 22,
+    "height_inches": 3.55,
+    "estimated_text_height": 3.025,
+    "fits_estimate": true
+  },
+  {
+    "slide": 15,
+    "text": "Transformer",
+    "font_pt": 25,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.382,
+    "fits_estimate": true
+  },
+  {
+    "slide": 15,
+    "text": "the advisory had affected approximately 18,000 residents since tuesday",
+    "font_pt": 22,
+    "height_inches": 3.55,
+    "estimated_text_height": 2.689,
+    "fits_estimate": true
+  },
+  {
+    "slide": 15,
+    "text": "Original duplicate display: unresolved. Fresh direct and Gradio LSTM d",
+    "font_pt": 22,
+    "height_inches": 0.55,
+    "estimated_text_height": 0.336,
+    "fits_estimate": true
+  },
+  {
+    "slide": 16,
+    "text": "BACKUP \u2022 EXACT LATEST RIVERTON OUTPUTS",
+    "font_pt": 14,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 16,
+    "text": "Saved fallback \u2022 BART and PEGASUS",
+    "font_pt": 34,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.519,
+    "fits_estimate": true
+  },
+  {
+    "slide": 16,
+    "text": "BART",
+    "font_pt": 25,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.382,
+    "fits_estimate": true
+  },
+  {
+    "slide": 16,
+    "text": "A control valve failed during maintenance at the town\u2019s main pumping s",
+    "font_pt": 21,
+    "height_inches": 3.66,
+    "estimated_text_height": 2.888,
+    "fits_estimate": true
+  },
+  {
+    "slide": 16,
+    "text": "PEGASUS",
+    "font_pt": 25,
+    "height_inches": 0.4,
+    "estimated_text_height": 0.382,
+    "fits_estimate": true
+  },
+  {
+    "slide": 16,
+    "text": "Riverton officials lifted a boil-water advisory Friday morning. The ad",
+    "font_pt": 21,
+    "height_inches": 3.66,
+    "estimated_text_height": 1.925,
+    "fits_estimate": true
+  },
+  {
+    "slide": 16,
+    "text": "Raw BART omits lifting; PEGASUS includes it. One example does not rank",
+    "font_pt": 19,
+    "height_inches": 0.3,
+    "estimated_text_height": 0.29,
+    "fits_estimate": true
+  },
+  {
+    "slide": 17,
+    "text": "BACKUP \u2022 SOURCE FACTS FOR THE DEMO",
+    "font_pt": 14,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 17,
+    "text": "The source resolves the advisory explicitly",
+    "font_pt": 34,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.519,
+    "fits_estimate": true
+  },
+  {
+    "slide": 17,
+    "text": "MAIN EVENT",
+    "font_pt": 14,
+    "height_inches": 0.30000000000000004,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 17,
+    "text": "Riverton officials lifted a boil-water advisory Friday morning after l",
+    "font_pt": 25,
+    "height_inches": 1.22,
+    "estimated_text_height": 1.146,
+    "fits_estimate": true
+  },
+  {
+    "slide": 17,
+    "text": "REPAIR",
+    "font_pt": 14,
+    "height_inches": 0.30000000000000004,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 17,
+    "text": "Repair crews replaced the damaged valve Tuesday evening.",
+    "font_pt": 25,
+    "height_inches": 1.22,
+    "estimated_text_height": 0.382,
+    "fits_estimate": true
+  },
+  {
+    "slide": 17,
+    "text": "TESTING",
+    "font_pt": 14,
+    "height_inches": 0.30000000000000004,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 17,
+    "text": "Two consecutive rounds of testing found no harmful bacteria, allowing ",
+    "font_pt": 25,
+    "height_inches": 1.22,
+    "estimated_text_height": 0.764,
+    "fits_estimate": true
+  },
+  {
+    "slide": 17,
+    "text": "315-word body \u2022 title inclusion originally uncertain; log counts match",
+    "font_pt": 19,
+    "height_inches": 0.3,
+    "estimated_text_height": 0.29,
+    "fits_estimate": true
+  },
+  {
+    "slide": 18,
+    "text": "BACKUP \u2022 UBUNTU OFFLINE DEMO",
+    "font_pt": 14,
+    "height_inches": 0.32,
+    "estimated_text_height": 0.214,
+    "fits_estimate": true
+  },
+  {
+    "slide": 18,
+    "text": "Live-demo checklist \u2022 stay within the time box",
+    "font_pt": 34,
+    "height_inches": 0.6,
+    "estimated_text_height": 0.519,
+    "fits_estimate": true
+  },
+  {
+    "slide": 18,
+    "text": "From the repository root, with the cached setup:",
+    "font_pt": 24,
+    "height_inches": 0.47,
+    "estimated_text_height": 0.367,
+    "fits_estimate": true
+  },
+  {
+    "slide": 18,
+    "text": "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1\n.venv/bin/python app.py --port",
+    "font_pt": 21,
+    "height_inches": 0.72,
+    "estimated_text_height": 0.642,
+    "fits_estimate": true
+  },
+  {
+    "slide": 18,
+    "text": "One shell line; open http://127.0.0.1:7860/",
+    "font_pt": 23,
+    "height_inches": 0.46,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 18,
+    "text": "1",
+    "font_pt": 25,
+    "height_inches": 0.41,
+    "estimated_text_height": 0.382,
+    "fits_estimate": true
+  },
+  {
+    "slide": 18,
+    "text": "Paste the saved body; identify the lifted-advisory sentence.",
+    "font_pt": 23,
+    "height_inches": 0.46,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 18,
+    "text": "2",
+    "font_pt": 25,
+    "height_inches": 0.41,
+    "estimated_text_height": 0.382,
+    "fits_estimate": true
+  },
+  {
+    "slide": 18,
+    "text": "Submit at most one model; narrate while the CPU works.",
+    "font_pt": 23,
+    "height_inches": 0.46,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  },
+  {
+    "slide": 18,
+    "text": "3",
+    "font_pt": 25,
+    "height_inches": 0.41,
+    "estimated_text_height": 0.382,
+    "fits_estimate": true
+  },
+  {
+    "slide": 18,
+    "text": "After ~30 seconds, use B5/B6 saved outputs and continue.",
+    "font_pt": 23,
+    "height_inches": 0.46,
+    "estimated_text_height": 0.351,
+    "fits_estimate": true
+  }
+]
