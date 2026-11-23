@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An offline visual comparison of neural news summarizers.">
+    <link rel="icon" href="data:,">
+    <title>Comparing Neural Models for News Summarization</title>
+    <link rel="stylesheet" href="vendor/reveal.css">
+    <link rel="stylesheet" href="deck.css">
+  </head>
+  <body>
+    <main class="reveal">
+      <div class="slides">
+        <section id="title" data-background-color="#112d34" aria-label="Comparing Neural Models for News Summarization">
+          <div class="slide dark cover">
+            <svg class="network" viewBox="0 0 1280 720" aria-hidden="true">
+              <g stroke="#537c77" stroke-width="1" fill="none" opacity=".46">
+                <path d="M925 38 L1100 70"/>
+                <path d="M925 38 L1005 168"/>
+                <path d="M1100 70 L1210 37"/>
+                <path d="M1100 70 L1005 168"/>
+                <path d="M1100 70 L1170 212"/>
+                <path d="M1100 70 L1260 175"/>
+                <path d="M1210 37 L1170 212"/>
+                <path d="M1210 37 L1260 175"/>
+                <path d="M1005 168 L1170 212"/>
+                <path d="M1005 168 L1035 304"/>
+                <path d="M1170 212 L1260 175"/>
+                <path d="M1170 212 L1035 304"/>
+                <path d="M1170 212 L1175 390"/>
+                <path d="M1170 212 L1270 325"/>
+                <path d="M1260 175 L1270 325"/>
+                <path d="M1035 304 L1175 390"/>
+                <path d="M1035 304 L975 465"/>
+                <path d="M1175 390 L1270 325"/>
+                <path d="M1175 390 L975 465"/>
+                <path d="M1175 390 L1120 520"/>
+                <path d="M1175 390 L1260 600"/>
+                <path d="M975 465 L1120 520"/>
+                <path d="M975 465 L860 609"/>
+                <path d="M975 465 L1010 680"/>
+                <path d="M1120 520 L1260 600"/>
+                <path d="M1120 520 L1010 680"/>
+                <path d="M860 609 L1010 680"/>
+              </g>
+              <circle class="pulse" style="animation-delay:-0s" cx="925" cy="38" r="3" fill="#9bbfab"/>
+              <circle class="pulse" style="animation-delay:-1s" cx="1100" cy="70" r="4" fill="#9bbfab"/>
+              <circle class="pulse" style="animation-delay:-2s" cx="1210" cy="37" r="5" fill="#9bbfab"/>
+              <circle class="pulse" style="animation-delay:-3s" cx="1005" cy="168" r="3" fill="#9bbfab"/>
+              <circle class="pulse" style="animation-delay:-0s" cx="1170" cy="212" r="4" fill="#9bbfab"/>
+              <circle class="pulse" style="animation-delay:-1s" cx="1260" cy="175" r="5" fill="#9bbfab"/>
+              <circle class="pulse" style="animation-delay:-2s" cx="1035" cy="304" r="3" fill="#9bbfab"/>
+              <circle class="pulse" style="animation-delay:-3s" cx="1175" cy="390" r="4" fill="#9bbfab"/>
+              <circle class="pulse" style="animation-delay:-0s" cx="1270" cy="325" r="5" fill="#9bbfab"/>
+              <circle class="pulse" style="animation-delay:-1s" cx="975" cy="465" r="3" fill="#9bbfab"/>
+              <circle class="pulse" style="animation-delay:-2s" cx="1120" cy="520" r="4" fill="#9bbfab"/>
+              <circle class="pulse" style="animation-delay:-3s" cx="1260" cy="600" r="5" fill="#9bbfab"/>
+              <circle class="pulse" style="animation-delay:-0s" cx="860" cy="609" r="3" fill="#9bbfab"/>
+              <circle class="pulse" style="animation-delay:-1s" cx="1010" cy="680" r="4" fill="#9bbfab"/>
+            </svg>
+            <div class="foreground">
+              <div class="kicker">CIS 634</div>
+              <h1>Comparing Neural Models<br>for News Summarization</h1>
+              <p class="byline">Biruk Anley and Daniela Ortega</p>
+            </div>
+            <div class="tokenstrip"><i>repairs</i><i>tests</i><i>Friday</i><span>→</span><strong>Advisory lifted.</strong></div>
+            <footer><span>Fictional Riverton article · Illustrative compression</span><b>01</b></footer>
+          </div>
+        </section>
+        <section id="goals" data-background-color="#f8f7ef" aria-label="What survives compression?">
+          <div class="slide">
+            <div class="kicker">Research question</div>
+            <h2>What survives compression?</h2>
+            <p class="lead">Can a short summary preserve the news a reader came for?</p>
+            <div class="goals">
+              <div><strong>Compare</strong><span>Recurrent and attention-based encoder–decoders.</span></div>
+              <div><strong>Build</strong><span>One local interface for complete news articles.</span></div>
+              <div><strong>Evaluate</strong><span>Reference overlap, a Lead-3 baseline and a close reading.</span></div>
+            </div>
+            <footer><span>Project scope · released checkpoints</span><b>02</b></footer>
+          </div>
+        </section>
+        <section id="data" data-background-color="#f8f7ef" aria-label="One article, one set of highlights">
+          <div class="slide">
+            <div class="kicker">Corpus / CNN–DailyMail 3.0.0</div>
+            <h2>One article, one set of highlights</h2>
+            <div class="metrics">
+              <div><strong>287,113</strong><span class="tag">training</span></div>
+              <div><strong>13,368</strong><span class="tag">validation</span></div>
+              <div><strong>11,490</strong><span class="tag">test</span></div>
+            </div>
+            <div class="cols pair">
+              <div class="ruled">
+                <div class="label">Article excerpt</div>
+                <blockquote>“A spokesman for the team cited &#x27;prior family commitments&#x27; as the reason Brady, 37, didn&#x27;t attend the ceremony.”</blockquote>
+              </div>
+              <div class="ruled">
+                <div class="label">Reference highlight</div>
+                <blockquote>“Brady cited &#x27;prior family commitments&#x27; in bowing out of meeting with Obama .”</blockquote>
+              </div>
+            </div>
+            <footer><span>[1] CNN/DailyMail · test row 10,476 · exact excerpts</span><b>03</b></footer>
+          </div>
+        </section>
+        <section id="preparation" data-background-color="#f8f7ef" aria-label="From article to model-ready input">
+          <div class="slide">
+            <div class="kicker">Input representation</div>
+            <h2>From article to model-ready input</h2>
+            <div class="prep"><strong>Release recipe</strong><span>OpenNMT training: Stanford PTB tokens, lowercase, first 400 source tokens and up to 100 target tokens.</span><strong>App inference</strong><span>NLTK Treebank + checkpoint word vocabulary, or the released case-preserving BPE / SentencePiece tokenizer.</span><strong>Evaluation</strong><span>Seed-42 test IDs + original highlights. Porter stemming applies during ROUGE scoring.</span></div>
+            <div class="example">
+              <div class="label">Earlier Riverton fixture · two tokenizer paths</div>
+              <p>Article &nbsp; “Riverton officials lifted a three-day boil-water advisory…”</p>
+              <div class="fragment" data-fragment-index="0">
+                <p>OpenNMT words &nbsp; <span class="mono">riverton · officials · lifted · a · three-day …</span></p>
+              </div>
+              <div class="fragment" data-fragment-index="1">
+                <p>→ Checkpoint word IDs + article-specific copy map → encoder input</p>
+              </div>
+              <div class="fragment" data-fragment-index="2">
+                <p>BART byte-level BPE → <span class="mono">[0, 32960, 1054, 503, 4639, 10, …]</span> + attention mask</p>
+              </div>
+            </div>
+            <footer><span>[2, 6, 7] OpenNMT recipe · app adapters · saved token and ID prefixes</span><b>04</b></footer>
+          </div>
+        </section>
+        <section id="lstm" data-background-color="#f8f7ef" aria-label="Memory moves one token at a time">
+          <div class="slide lstm">
+            <div class="kicker">Architecture / LSTM</div>
+            <h2>Memory moves one token at a time</h2>
+            <svg class="schema" viewBox="0 0 1144 430" role="img" aria-label="Two encoder directions, one decoder direction, source attention and copy">
+              <text x="0" y="21" class="svlabel" text-anchor="start">SOURCE  /  BIDIRECTIONAL ENCODER</text>
+              <text x="650" y="21" class="svlabel" text-anchor="start">SUMMARY  /  ONE-WAY DECODER</text>
+              <g class="fragment" data-fragment-index="0">
+                <g class="travel">
+                  <rect x="0" y="44" width="150" height="45" rx="4" class="chip"/>
+                  <text x="75.0" y="74.5" class="inverse" text-anchor="middle">Riverton</text>
+                </g>
+                <path d="M75 89 L75 123 M79.4 114.0 L75 123 L70.6 114.0" class="wire"/>
+                <rect x="0" y="125" width="150" height="66" rx="4" class="node tint"/>
+                <text x="75.0" y="156.0" class="heavy" text-anchor="middle">h₁</text>
+                <text x="75.0" y="181.0" class="hint" text-anchor="middle">encoder output</text>
+              </g>
+              <g class="fragment" data-fragment-index="1">
+                <g class="travel">
+                  <rect x="178" y="44" width="150" height="45" rx="4" class="chip"/>
+                  <text x="253.0" y="74.5" class="inverse" text-anchor="middle">officials</text>
+                </g>
+                <path d="M253 89 L253 123 M257.4 114.0 L253 123 L248.6 114.0" class="wire"/>
+                <rect x="178" y="125" width="150" height="66" rx="4" class="node tint"/>
+                <text x="253.0" y="156.0" class="heavy" text-anchor="middle">h₂</text>
+                <text x="253.0" y="181.0" class="hint" text-anchor="middle">encoder output</text>
+                <path d="M152 145 L176 145 M167.0 140.6 L176 145 L167.0 149.4" class="wire"/>
+                <path d="M176 174 L152 174 M161.0 178.4 L152 174 L161.0 169.6" class="wire"/>
+              </g>
+              <g class="fragment" data-fragment-index="2">
+                <g class="travel">
+                  <rect x="356" y="44" width="150" height="45" rx="4" class="chip"/>
+                  <text x="431.0" y="74.5" class="inverse" text-anchor="middle">lifted</text>
+                </g>
+                <path d="M431 89 L431 123 M435.4 114.0 L431 123 L426.6 114.0" class="wire"/>
+                <rect x="356" y="125" width="150" height="66" rx="4" class="node tint"/>
+                <text x="431.0" y="156.0" class="heavy" text-anchor="middle">h₃</text>
+                <text x="431.0" y="181.0" class="hint" text-anchor="middle">encoder output</text>
+                <path d="M330 145 L354 145 M345.0 140.6 L354 145 L345.0 149.4" class="wire"/>
+                <path d="M354 174 L330 174 M339.0 178.4 L330 174 L339.0 169.6" class="wire"/>
+              </g>
+              <g class="fragment" data-fragment-index="2">
+                <text x="0" y="320" class="heavy" text-anchor="start">hₜ  hidden output</text>
+                <text x="0" y="354" class="hint" text-anchor="start">cₜ  cell memory carried through recurrence</text>
+              </g>
+              <g class="fragment" data-fragment-index="3">
+                <rect x="650" y="44" width="430" height="70" rx="4" class="node tint"/>
+                <text x="865.0" y="77.0" class="heavy" text-anchor="middle">Previous token + recurrent state</text>
+                <text x="865.0" y="102.0" class="hint" text-anchor="middle">input-feeding LSTM decoder</text>
+                <path d="M865 115 L865 155 M869.4 146.0 L865 155 L860.6 146.0" class="wire"/>
+                <rect x="650" y="157" width="430" height="68" rx="4" class="node"/>
+                <text x="865.0" y="189.0" class="heavy" text-anchor="middle">Decoder query → attention</text>
+                <text x="865.0" y="214.0" class="hint" text-anchor="middle">weighted source context</text>
+                <path d="M75 192 Q100 325 649 195" class="attn"/>
+                <path d="M253 192 Q278 325 649 195" class="attn"/>
+                <path d="M431 192 Q456 325 649 195" class="attn"/>
+              </g>
+              <g class="fragment" data-fragment-index="4">
+                <path d="M865 226 L865 270 M869.4 261.0 L865 270 L860.6 261.0" class="wire"/>
+                <rect x="650" y="272" width="430" height="66" rx="4" class="node tint"/>
+                <text x="865.0" y="303.0" class="heavy" text-anchor="middle">Learned gate</text>
+                <text x="865.0" y="328.0" class="hint" text-anchor="middle">vocabulary prediction + source copy</text>
+                <path d="M865 340 L865 371 M869.4 362.0 L865 371 L860.6 362.0" class="wire"/>
+                <g class="travel">
+                  <rect x="743" y="374" width="245" height="45" rx="4" class="chip"/>
+                  <text x="865.5" y="404.5" class="inverse" text-anchor="middle">Next summary token</text>
+                </g>
+              </g>
+            </svg>
+            <p class="fine">43M parameters · 128-d embeddings · 512-d hidden state · 1 encoder + 1 decoder layer</p>
+            <footer><span>[2, 3] Verified OpenNMT checkpoint · Illustrative token activity and attention</span><b>05</b></footer>
+          </div>
+        </section>
+        <section id="lstm-tradeoffs" data-background-color="#f8f7ef" aria-label="LSTM in practice">
+          <div class="slide lstm">
+            <div class="kicker">Architecture / LSTM</div>
+            <h2>LSTM in practice</h2>
+            <div class="contrast">
+              <div class="underline">
+                <div class="bigtype">43M</div>
+                <div class="label">parameters</div>
+                <p class="small spaced">Our smallest checkpoint. The encoder reads in both directions; the summary grows in one.</p>
+              </div>
+              <div>
+                <article>
+                  <h3>A route back to names</h3>
+                  <p>Attention and copying let the decoder reuse words from the article.</p>
+                </article>
+                <article>
+                  <h3>A supported detail can still miss the story</h3>
+                  <p>The saved summary kept the schools reopening. It omitted the lifting of the advisory.</p>
+                </article>
+              </div>
+            </div>
+            <footer><span>[2, 3] OpenNMT release · latest Riverton diagnosis</span><b>06</b></footer>
+          </div>
+        </section>
+        <section id="transformer" data-background-color="#f8f7ef" aria-label="Source words can attend in parallel">
+          <div class="slide transformer">
+            <div class="kicker">Architecture / Transformer</div>
+            <h2>Source words can attend in parallel</h2>
+            <svg class="schema" viewBox="0 0 1144 437" role="img" aria-label="Parallel source, causal decoder, cross-attention and next token">
+              <text x="0" y="21" class="svlabel" text-anchor="start">ARTICLE POSITIONS  /  PARALLEL</text>
+              <text x="650" y="21" class="svlabel" text-anchor="start">SUMMARY POSITIONS  /  AUTOREGRESSIVE</text>
+              <g class="fragment" data-fragment-index="0">
+                <g class="travel">
+                  <rect x="0" y="44" width="155" height="45" rx="4" class="chip"/>
+                  <text x="77.5" y="74.5" class="inverse" text-anchor="middle">Riverton</text>
+                </g>
+                <g class="travel">
+                  <rect x="174" y="44" width="155" height="45" rx="4" class="chip"/>
+                  <text x="251.5" y="74.5" class="inverse" text-anchor="middle">officials</text>
+                </g>
+                <g class="travel">
+                  <rect x="348" y="44" width="155" height="45" rx="4" class="chip"/>
+                  <text x="425.5" y="74.5" class="inverse" text-anchor="middle">lifted</text>
+                </g>
+                <text x="0" y="122" class="hint" text-anchor="start">Token embedding + position at each location</text>
+              </g>
+              <g class="fragment" data-fragment-index="1">
+                <path d="M78 142 Q161 207 245 142" class="attn"/>
+                <path d="M78 142 Q251 237 425 142" class="attn"/>
+                <path d="M245 142 Q335 198 425 142" class="attn"/>
+                <rect x="0" y="205" width="503" height="70" rx="4" class="node tint"/>
+                <text x="251.5" y="238.0" class="heavy" text-anchor="middle">Encoder self-attention + feed-forward</text>
+                <text x="251.5" y="263.0" class="hint" text-anchor="middle">4 encoder layers</text>
+              </g>
+              <g class="fragment" data-fragment-index="2">
+                <rect x="650" y="44" width="455" height="76" rx="4" class="node tint"/>
+                <text x="877.5" y="80.0" class="heavy" text-anchor="middle">Masked decoder self-attention</text>
+                <text x="877.5" y="105.0" class="hint" text-anchor="middle">available summary prefix + positions</text>
+                <path d="M878 121 L878 162 M882.4 153.0 L878 162 L873.6 153.0" class="wire"/>
+              </g>
+              <g class="fragment" data-fragment-index="3">
+                <rect x="650" y="165" width="455" height="80" rx="4" class="node"/>
+                <text x="877.5" y="203.0" class="heavy" text-anchor="middle">Cross-attention + feed-forward</text>
+                <text x="877.5" y="228.0" class="hint" text-anchor="middle">decoder queries encoded source · 4 layers</text>
+                <path d="M506 238 L646 204 M636.2 201.8 L646 204 L638.3 210.4" class="attn"/>
+              </g>
+              <g class="fragment" data-fragment-index="4">
+                <path d="M878 247 L878 280 M882.4 271.0 L878 280 L873.6 271.0" class="wire"/>
+                <rect x="650" y="283" width="455" height="72" rx="4" class="node tint"/>
+                <text x="877.5" y="317.0" class="heavy" text-anchor="middle">Learned vocabulary / copy gate</text>
+                <text x="877.5" y="342.0" class="hint" text-anchor="middle">final cross-attention supplies copy weights</text>
+                <path d="M878 357 L878 383 M882.4 374.0 L878 383 L873.6 374.0" class="wire"/>
+                <g class="travel">
+                  <rect x="750" y="385" width="255" height="45" rx="4" class="chip"/>
+                  <text x="877.5" y="415.5" class="inverse" text-anchor="middle">Next summary token</text>
+                </g>
+              </g>
+            </svg>
+            <p class="fine">81M parameters · 8 heads · 512-d states · 2,048-d feed-forward layers</p>
+            <footer><span>[2, 4] Verified OpenNMT checkpoint · Illustrative token activity and attention</span><b>07</b></footer>
+          </div>
+        </section>
+        <section id="transformer-tradeoffs" data-background-color="#f8f7ef" aria-label="Transformer in practice">
+          <div class="slide transformer">
+            <div class="kicker">Architecture / Transformer</div>
+            <h2>Transformer in practice</h2>
+            <div class="contrast">
+              <div class="underline">
+                <div class="bigtype">81M</div>
+                <div class="label">parameters</div>
+                <p class="small spaced">Source positions share information within each encoder layer.</p>
+              </div>
+              <div>
+                <article>
+                  <h3>Reach across a sentence</h3>
+                  <p>Self-attention can connect a name with a distant action. All source positions in a layer can run together.</p>
+                </article>
+                <article>
+                  <h3>Long articles still cost more</h3>
+                  <p>Dense attention grows quadratically with source length. Each new summary token still depends on its prefix.</p>
+                </article>
+              </div>
+            </div>
+            <footer><span>[2, 4] OpenNMT release · Vaswani et al. (2017)</span><b>08</b></footer>
+          </div>
+        </section>
+        <section id="pipeline" data-background-color="#f8f7ef" aria-label="Where a long article goes">
+          <div class="slide">
+            <div class="kicker">Application / full-article mode</div>
+            <h2>Where a long article goes</h2>
+            <svg class="schema" viewBox="0 0 1144 458" role="img" aria-label="Capacity check with direct and chunked paths, generation, merge and bounded consolidation">
+              <rect x="0" y="42" width="249" height="76" rx="4" class="node"/>
+              <text x="124.5" y="78.0" class="heavy" text-anchor="middle">Article + model</text>
+              <text x="124.5" y="103.0" class="hint" text-anchor="middle">app input</text>
+              <path d="M252 80 L297 80 M288.0 75.6 L297 80 L288.0 84.4" class="wire"/>
+              <rect x="300" y="42" width="258" height="76" rx="4" class="node tint"/>
+              <text x="429.0" y="78.0" class="heavy" text-anchor="middle">Count input tokens</text>
+              <text x="429.0" y="103.0" class="hint" text-anchor="middle">selected tokenizer</text>
+              <g class="fragment" data-fragment-index="0">
+                <path d="M558 69 L646 45 M636.2 43.1 L646 45 L638.5 51.6" class="wire"/>
+                <path d="M558 88 L646 160 M641.9 150.9 L646 160 L636.3 157.8" class="wire"/>
+                <rect x="650" y="4" width="440" height="80" rx="4" class="node"/>
+                <text x="870.0" y="42.0" class="heavy" text-anchor="middle">Fits → one pass</text>
+                <text x="870.0" y="67.0" class="hint" text-anchor="middle">entire article</text>
+                <rect x="650" y="128" width="440" height="76" rx="4" class="node"/>
+                <text x="870.0" y="164.0" class="heavy" text-anchor="middle">Long → sentence-aware chunks</text>
+                <text x="870.0" y="189.0" class="hint" text-anchor="middle">split oversized sentences safely</text>
+              </g>
+              <g class="fragment" data-fragment-index="1">
+                <path d="M1093 44 L1124 44 M1115.0 39.6 L1124 44 L1115.0 48.4" class="wire"/>
+                <path d="M1124 44 V238 H870" class="wire"/>
+                <path d="M870 238 L870 262 M874.4 253.0 L870 262 L865.6 253.0" class="wire"/>
+                <path d="M870 205 L870 237 M874.4 228.0 L870 237 L865.6 228.0" class="wire"/>
+                <rect x="650" y="265" width="440" height="76" rx="4" class="node tint"/>
+                <text x="870.0" y="301.0" class="heavy" text-anchor="middle">Generate for each input</text>
+                <text x="870.0" y="326.0" class="hint" text-anchor="middle">model-specific deterministic search</text>
+              </g>
+              <g class="fragment" data-fragment-index="2">
+                <path d="M647 303 L565 303 M574.0 307.4 L565 303 L574.0 298.6" class="wire"/>
+                <rect x="300" y="265" width="260" height="76" rx="4" class="node"/>
+                <text x="430.0" y="301.0" class="heavy" text-anchor="middle">Merge in order</text>
+                <text x="430.0" y="326.0" class="hint" text-anchor="middle">deduplicate sentences</text>
+                <path d="M298 303 L253 303 M262.0 307.4 L253 303 L262.0 298.6" class="wire"/>
+                <rect x="0" y="265" width="249" height="76" rx="4" class="node tint"/>
+                <text x="124.5" y="301.0" class="heavy" text-anchor="middle">Summary + stats</text>
+                <text x="124.5" y="326.0" class="hint" text-anchor="middle">displayed in Gradio</text>
+                <path d="M430 342 V375 H870" class="wire"/>
+                <path d="M870 375 L870 343 M865.6 352.0 L870 343 L874.4 352.0" class="wire"/>
+                <text x="430" y="402" class="hint" text-anchor="start">Oversized merge → bounded consolidation</text>
+                <text x="0" y="448" class="heavy" text-anchor="start">Source spans are checked. What the summary preserves still needs a reader.</text>
+              </g>
+            </svg>
+            <footer><span>Application implementation · natural-checkpoint-v1</span><b>09</b></footer>
+          </div>
+        </section>
+        <section id="protocol" data-background-color="#f8f7ef" aria-label="Two ways to hold the input fixed">
+          <div class="slide">
+            <div class="kicker">Evaluation / frozen sample</div>
+            <h2>Two ways to hold the input fixed</h2>
+            <div class="contrast">
+              <div class="underline">
+                <div class="bigtype">50</div>
+                <div class="label">fixed test articles</div>
+                <p class="small spaced">Same IDs, highlights and systems on both tracks.</p>
+              </div>
+              <div>
+                <article>
+                  <h3>Full article</h3>
+                  <p>Each system receives the original article. The app handles model-specific capacity.</p>
+                </article>
+                <article>
+                  <h3>Shared prefix</h3>
+                  <p>Each system receives the same bounded start of the article. References stay complete.</p>
+                </article>
+              </div>
+            </div>
+            <div class="callout">ROUGE F1 × 100 measures reference overlap. Lead-3 extracts the first three sentences.</div>
+            <footer><span>[1, 5] Seed 42 · saved pilot50 protocol</span><b>10</b></footer>
+          </div>
+        </section>
+        <section id="core" data-background-color="#f8f7ef" aria-label="A simple lead is hard to beat">
+          <div class="slide">
+            <div class="kicker">Results / full article</div>
+            <h2>A simple lead is hard to beat</h2>
+            <div class="label">Bars show unigram overlap (R-1) · all scores are ROUGE F1 × 100</div>
+            <div class="chart">
+              <div class="axis"><span class="tag">System</span>
+                <div><span>0</span><span>10</span><span>20</span><span>30</span><span>40</span><span>50</span></div>
+                <span class="metric-head">R-1</span>
+                <span class="metric-head">R-2</span>
+                <span class="metric-head">R-L</span>
+                <span class="metric-head">R-Lsum</span>
+              </div>
+              <div class="chartline lstm"><strong>LSTM</strong>
+                <div class="rail">
+                  <div class="bar" style="width:81.903504%"></div>
+                </div>
+                <output>40.95</output>
+                <span class="score">20.34</span>
+                <span class="score">28.71</span>
+                <span class="score">38.22</span>
+              </div>
+              <div class="chartline transformer fragment" data-fragment-index="0"><strong>Transformer</strong>
+                <div class="rail">
+                  <div class="bar" style="width:77.501074%"></div>
+                </div>
+                <output>38.75</output>
+                <span class="score">17.35</span>
+                <span class="score">26.99</span>
+                <span class="score">36.09</span>
+              </div>
+              <div class="chartline lead-3 fragment" data-fragment-index="1"><strong>Lead-3</strong>
+                <div class="rail">
+                  <div class="bar" style="width:80.726233%"></div>
+                </div>
+                <output>40.36</output>
+                <span class="score">18.28</span>
+                <span class="score">24.91</span>
+                <span class="score">36.30</span>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <div class="callout">Lead-3 scored 40.36, between the LSTM and Transformer on unigram overlap.</div>
+            </div>
+            <footer><span>[5] Frozen full-article sample · 50 articles per system</span><b>11</b></footer>
+          </div>
+        </section>
+        <section id="pretraining" data-background-color="#f8f7ef" aria-label="What did the larger models learn first?">
+          <div class="slide">
+            <div class="kicker">Context / pretrained systems</div>
+            <h2>What did the larger models learn first?</h2>
+            <div class="cols compare">
+              <div class="bart underline">
+                <h3>BART</h3>
+                <div class="label">406M learned parameters</div>
+                <p class="lead">Reconstruct damaged text.</p>
+                <p class="small">Broad denoising pretraining, followed by CNN/DailyMail fine-tuning.</p>
+              </div>
+              <div class="pegasus underline">
+                <h3>PEGASUS</h3>
+                <div class="label">569M learned parameters</div>
+                <p class="lead">Predict missing sentences.</p>
+                <p class="small">Gap-sentence pretraining on C4 and HugeNews, then CNN/DailyMail fine-tuning.</p>
+              </div>
+            </div>
+            <div class="callout">These released systems differ in size, pretraining, tokenization and decoding.</div>
+            <footer><span>[6, 7] Lewis et al. (2020) · Zhang et al. (2020) · released checkpoint cards</span><b>12</b></footer>
+          </div>
+        </section>
+        <section id="expanded" data-background-color="#f8f7ef" aria-label="The same articles, two more systems">
+          <div class="slide">
+            <div class="kicker">Results / full article</div>
+            <h2>The same articles, two more systems</h2>
+            <div class="label">Bars show unigram overlap (R-1) · all scores are ROUGE F1 × 100</div>
+            <div class="chart">
+              <div class="axis"><span class="tag">System</span>
+                <div><span>0</span><span>10</span><span>20</span><span>30</span><span>40</span><span>50</span></div>
+                <span class="metric-head">R-1</span>
+                <span class="metric-head">R-2</span>
+                <span class="metric-head">R-L</span>
+                <span class="metric-head">R-Lsum</span>
+              </div>
+              <div class="chartline lstm"><strong>LSTM</strong>
+                <div class="rail">
+                  <div class="bar" style="width:81.903504%"></div>
+                </div>
+                <output>40.95</output>
+                <span class="score">20.34</span>
+                <span class="score">28.71</span>
+                <span class="score">38.22</span>
+              </div>
+              <div class="chartline transformer"><strong>Transformer</strong>
+                <div class="rail">
+                  <div class="bar" style="width:77.501074%"></div>
+                </div>
+                <output>38.75</output>
+                <span class="score">17.35</span>
+                <span class="score">26.99</span>
+                <span class="score">36.09</span>
+              </div>
+              <div class="chartline lead-3"><strong>Lead-3</strong>
+                <div class="rail">
+                  <div class="bar" style="width:80.726233%"></div>
+                </div>
+                <output>40.36</output>
+                <span class="score">18.28</span>
+                <span class="score">24.91</span>
+                <span class="score">36.30</span>
+              </div>
+              <div class="chartline bart fragment" data-fragment-index="0"><strong>BART</strong>
+                <div class="rail">
+                  <div class="bar" style="width:90.416844%"></div>
+                </div>
+                <output>45.21</output>
+                <span class="score">22.50</span>
+                <span class="score">30.88</span>
+                <span class="score">42.73</span>
+              </div>
+              <div class="chartline pegasus fragment" data-fragment-index="1"><strong>PEGASUS</strong>
+                <div class="rail">
+                  <div class="bar" style="width:87.615003%"></div>
+                </div>
+                <output>43.81</output>
+                <span class="score">22.43</span>
+                <span class="score">30.92</span>
+                <span class="score">40.91</span>
+              </div>
+            </div>
+            <div class="fragment" data-fragment-index="2">
+              <p class="readout">BART led ROUGE-1, ROUGE-2 and ROUGE-Lsum. PEGASUS led ROUGE-L.</p>
+            </div>
+            <footer><span>[5] Frozen full-article sample · same axis and references</span><b>13</b></footer>
+          </div>
+        </section>
+        <section id="reading" data-background-color="#f8f7ef" aria-label="What overlap leaves open">
+          <div class="slide">
+            <div class="kicker">Close reading / Riverton</div>
+            <h2>What overlap leaves open</h2>
+            <p class="lead">Did residents still need to boil their water?</p>
+            <div class="cols compare spaced">
+              <div class="bart underline">
+                <h3>BART</h3>
+                <blockquote>“Two consecutive rounds of testing found no harmful bacteria.”</blockquote>
+                <p class="small">Includes the tests. Omits the lifting.</p>
+              </div>
+              <div class="pegasus underline">
+                <h3>PEGASUS</h3>
+                <blockquote>“Riverton officials lifted a boil-water advisory Friday morning.”</blockquote>
+                <p class="small">Includes the lifting. Omits the repair and test evidence.</p>
+              </div>
+            </div>
+            <div class="callout">Both processed the same 315-word fictional article in one pass.</div>
+            <footer><span>Latest reproduced laptop outputs · exact excerpts · fictional article</span><b>14</b></footer>
+          </div>
+        </section>
+        <section id="demo" data-background-color="#112d34" aria-label="Live Demo">
+          <div class="slide dark demo">
+            <h2>Live Demo</h2>
+            <footer><span></span><b>15</b></footer>
+          </div>
+        </section>
+        <section id="conclusion" data-background-color="#f8f7ef" aria-label="Read the summary against the story">
+          <div class="slide">
+            <div class="kicker">Conclusion</div>
+            <h2>Read the summary against the story</h2>
+            <p class="bigquote">A useful summary tells the reader <strong>what changed</strong> and <strong>what supports it.</strong></p>
+            <div class="cols">
+              <div class="ruled">
+                <div class="label">What we measured</div>
+                <p>Four released systems and Lead-3 on the same 50 articles. BART led three of four full-article overlap metrics.</p>
+              </div>
+              <div class="ruled">
+                <div class="label">What to check next</div>
+                <p>Have readers verify events, relationships and evidence against the source on fresh articles.</p>
+              </div>
+            </div>
+            <footer><span>Frozen benchmark · Riverton close reading</span><b>16</b></footer>
+          </div>
+        </section>
+        <section id="full_article" data-background-color="#f8f7ef" aria-label="Full-article results">
+          <div class="slide">
+            <div class="kicker">Appendix / benchmark</div>
+            <h2>Full-article results</h2>
+            <p class="small">Original articles, model-specific processing windows.</p>
+            <table class="">
+              <thead>
+                <tr>
+                  <th>System</th>
+                  <th>R-1</th>
+                  <th>R-2</th>
+                  <th>R-L</th>
+                  <th>R-Lsum</th>
+                  <th>Mean words</th>
+                  <th>N / failed</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="lstm">
+                  <td>LSTM</td>
+                  <td>40.95</td>
+                  <td>20.34</td>
+                  <td>28.71</td>
+                  <td>38.22</td>
+                  <td>54.98</td>
+                  <td>50 / 0</td>
+                </tr>
+                <tr class="transformer">
+                  <td>Transformer</td>
+                  <td>38.75</td>
+                  <td>17.35</td>
+                  <td>26.99</td>
+                  <td>36.09</td>
+                  <td>47.42</td>
+                  <td>50 / 0</td>
+                </tr>
+                <tr class="lead-3">
+                  <td>Lead-3</td>
+                  <td>40.36</td>
+                  <td>18.28</td>
+                  <td>24.91</td>
+                  <td>36.30</td>
+                  <td>74.44</td>
+                  <td>50 / 0</td>
+                </tr>
+                <tr class="bart">
+                  <td>BART</td>
+                  <td>45.21</td>
+                  <td>22.50</td>
+                  <td>30.88</td>
+                  <td>42.73</td>
+                  <td>77.36</td>
+                  <td>50 / 0</td>
+                </tr>
+                <tr class="pegasus">
+                  <td>PEGASUS</td>
+                  <td>43.81</td>
+                  <td>22.43</td>
+                  <td>30.92</td>
+                  <td>40.91</td>
+                  <td>68.86</td>
+                  <td>50 / 0</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="fine">R-1 / R-2: unigram / bigram overlap. R-L: longest common subsequence. R-Lsum: sentence-aware union of subsequences. All scores are F1 × 100.</p>
+            <footer><span>[5] Frozen pilot50 results · original highlights · Porter stemming</span><b>17</b></footer>
+          </div>
+        </section>
+        <section id="common_input" data-background-color="#f8f7ef" aria-label="Shared-prefix results">
+          <div class="slide">
+            <div class="kicker">Appendix / benchmark</div>
+            <h2>Shared-prefix results</h2>
+            <p class="small">Same prefix for every system: ≤400 OpenNMT tokens and within both HF tokenizers’ capacities.</p>
+            <table class="">
+              <thead>
+                <tr>
+                  <th>System</th>
+                  <th>R-1</th>
+                  <th>R-2</th>
+                  <th>R-L</th>
+                  <th>R-Lsum</th>
+                  <th>Mean words</th>
+                  <th>N / failed</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="lstm">
+                  <td>LSTM</td>
+                  <td>38.14</td>
+                  <td>18.33</td>
+                  <td>26.82</td>
+                  <td>35.53</td>
+                  <td>50.20</td>
+                  <td>50 / 0</td>
+                </tr>
+                <tr class="transformer">
+                  <td>Transformer</td>
+                  <td>39.09</td>
+                  <td>18.61</td>
+                  <td>28.18</td>
+                  <td>35.95</td>
+                  <td>46.70</td>
+                  <td>50 / 0</td>
+                </tr>
+                <tr class="lead-3">
+                  <td>Lead-3</td>
+                  <td>40.36</td>
+                  <td>18.28</td>
+                  <td>24.91</td>
+                  <td>36.30</td>
+                  <td>74.44</td>
+                  <td>50 / 0</td>
+                </tr>
+                <tr class="bart">
+                  <td>BART</td>
+                  <td>43.83</td>
+                  <td>20.71</td>
+                  <td>30.37</td>
+                  <td>40.73</td>
+                  <td>62.48</td>
+                  <td>50 / 0</td>
+                </tr>
+                <tr class="pegasus">
+                  <td>PEGASUS</td>
+                  <td>42.59</td>
+                  <td>21.34</td>
+                  <td>30.24</td>
+                  <td>39.88</td>
+                  <td>53.86</td>
+                  <td>50 / 0</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="fine">R-1 / R-2: unigram / bigram overlap. R-L: longest common subsequence. R-Lsum: sentence-aware union of subsequences. All scores are F1 × 100.</p>
+            <footer><span>[5] Frozen pilot50 results · original highlights · Porter stemming</span><b>18</b></footer>
+          </div>
+        </section>
+        <section id="open-config" data-background-color="#f8f7ef" aria-label="Released OpenNMT checkpoints">
+          <div class="slide">
+            <div class="kicker">Appendix / provenance</div>
+            <h2>Released OpenNMT checkpoints</h2>
+            <table class="tight">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>LSTM</th>
+                  <th>Transformer</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="learned parameters">
+                  <td>Learned parameters</td>
+                  <td>42,789,205</td>
+                  <td>81,468,757</td>
+                </tr>
+                <tr class="encoder / decoder">
+                  <td>Encoder / decoder</td>
+                  <td>1 bidirectional / 1 input-feeding</td>
+                  <td>4 / 4 Transformer layers</td>
+                </tr>
+                <tr class="representation">
+                  <td>Representation</td>
+                  <td>128-d embeddings; 512-d state</td>
+                  <td>512-d model; 8 heads; FFN 2,048</td>
+                </tr>
+                <tr class="copy weights">
+                  <td>Copy weights</td>
+                  <td>MLP global attention</td>
+                  <td>Final decoder cross-attention</td>
+                </tr>
+                <tr class="official release">
+                  <td>Official release</td>
+                  <td>ada6_bridge_oldcopy · epoch 20</td>
+                  <td>sum_transformer · epoch 16</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="small">OpenNMT-py 0.2.1 · original download hashes recorded; inference-copy tensors and vocabularies verified.</p>
+            <footer><span>[2] OpenNMT release · checkpoint manifest · model verification</span><b>19</b></footer>
+          </div>
+        </section>
+        <section id="hf-config" data-background-color="#f8f7ef" aria-label="Released pretrained checkpoints">
+          <div class="slide">
+            <div class="kicker">Appendix / provenance</div>
+            <h2>Released pretrained checkpoints</h2>
+            <table class="tight">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>BART</th>
+                  <th>PEGASUS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="checkpoint">
+                  <td>Checkpoint</td>
+                  <td>facebook/bart-large-cnn</td>
+                  <td>google/pegasus-cnn_dailymail</td>
+                </tr>
+                <tr class="pinned revision">
+                  <td>Pinned revision</td>
+                  <td>37f520fa929c</td>
+                  <td>40d588fdab0c</td>
+                </tr>
+                <tr class="learned parameters">
+                  <td>Learned parameters</td>
+                  <td>406,290,432</td>
+                  <td>568,699,904</td>
+                </tr>
+                <tr class="layers / heads">
+                  <td>Layers / heads</td>
+                  <td>12 + 12 layers / 16 heads</td>
+                  <td>16 + 16 layers / 16 heads</td>
+                </tr>
+                <tr class="positions / input">
+                  <td>Positions / input</td>
+                  <td>Learned / byte-level BPE</td>
+                  <td>Fixed sinusoidal / SentencePiece</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="small">Both use 1,024-d states and a 1,024-position input limit including special tokens. PEGASUS learned count excludes fixed tables.</p>
+            <footer><span>[6, 7] Release cards · pinned HF manifest · model verification</span><b>20</b></footer>
+          </div>
+        </section>
+        <section id="search" data-background-color="#f8f7ef" aria-label="How decoding stops">
+          <div class="slide">
+            <div class="kicker">Appendix / generation</div>
+            <h2>How decoding stops</h2>
+            <table class="tight">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Beam</th>
+                  <th>Length penalty</th>
+                  <th>Repeat handling</th>
+                  <th>Initial / hard cap</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="lstm">
+                  <td>LSTM</td>
+                  <td>5</td>
+                  <td>Wu 0.9</td>
+                  <td>Block trigrams¹</td>
+                  <td>100 / 256</td>
+                </tr>
+                <tr class="transformer">
+                  <td>Transformer</td>
+                  <td>5</td>
+                  <td>Wu 0.9</td>
+                  <td>Block trigrams¹</td>
+                  <td>100 / 256</td>
+                </tr>
+                <tr class="bart">
+                  <td>BART</td>
+                  <td>4</td>
+                  <td>2.0</td>
+                  <td>Block trigrams</td>
+                  <td>141 / 512 new</td>
+                </tr>
+                <tr class="pegasus">
+                  <td>PEGASUS</td>
+                  <td>8</td>
+                  <td>0.8</td>
+                  <td>Native setting: off</td>
+                  <td>127 / 512 new</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="fine">Natural EOS, deterministic search. Short inputs lower the minimum. Missing EOS permits bounded retries. ¹ OpenNMT exempts the period and sentence tags; summary coverage penalty β = 5 is a beam-search setting.</p>
+            <footer><span>natural-checkpoint-v1 · current adapters and pinned OpenNMT recipe</span><b>21</b></footer>
+          </div>
+        </section>
+        <section id="history" data-background-color="#f8f7ef" aria-label="Why the length selector disappeared">
+          <div class="slide">
+            <div class="kicker">Appendix / experiments</div>
+            <h2>Why the length selector disappeared</h2>
+            <div class="goals">
+              <div><strong>Length targets</strong><span>Short / Medium / Detailed and percentage goals were implementable. Early stopping and similar outputs made the targets unreliable.</span></div>
+              <div><strong>Natural EOS</strong><span>The demo uses each checkpoint’s search profile. The older length API remains experimental.</span></div>
+              <div><strong>Consolidation</strong><span>Fitting articles take one pass. A fitting merge avoids another lossy compression step.</span></div>
+            </div>
+            <footer><span>Development records · quality regression · current processing policy</span><b>22</b></footer>
+          </div>
+        </section>
+        <section id="chunk-policy" data-background-color="#f8f7ef" aria-label="When a merge still exceeds capacity">
+          <div class="slide">
+            <div class="kicker">Appendix / application</div>
+            <h2>When a merge still exceeds capacity</h2>
+            <div class="goals">
+              <div><strong>Split</strong><span>Pack sentence spans within the selected tokenizer’s window. Split oversized sentences and track all original spans.</span></div>
+              <div><strong>Reduce</strong><span>Generate, merge in source order and remove exact repeated sentences. Re-plan an oversized merge.</span></div>
+              <div><strong>Bound</strong><span>Require progress in words and tokens. Work and depth guards stop an unsuccessful request with a clear error.</span></div>
+            </div>
+            <footer><span>Full-article implementation · up to 4 consolidation passes · 96 model calls per request</span><b>23</b></footer>
+          </div>
+        </section>
+        <section id="saved-lstm" data-background-color="#f8f7ef" aria-label="LSTM on Riverton">
+          <div class="slide lstm">
+            <div class="kicker">Appendix / saved Riverton output</div>
+            <h2>LSTM on Riverton</h2>
+            <div class="label">359 input · 54 output tokens · one pass · EOS</div>
+            <blockquote class="fullquote">the advisory had affected 18,000 residents since tuesday. water pressure dropped across several neighborhoods, creating a risk that contaminants could enter the distribution system. two schools closed wednesday because they could not provide sufficient drinking water, but reopened thursday after bottled supplies arrived.</blockquote>
+            <footer><span>Latest fictional article · complete reproduced display text</span><b>24</b></footer>
+          </div>
+        </section>
+        <section id="saved-transformer" data-background-color="#f8f7ef" aria-label="Transformer on Riverton">
+          <div class="slide transformer">
+            <div class="kicker">Appendix / saved Riverton output</div>
+            <h2>Transformer on Riverton</h2>
+            <div class="label">359 input · 45 output tokens · one pass · EOS</div>
+            <blockquote class="fullquote">the advisory had affected approximately 18,000 residents since tuesday. water pressure dropped across several neighborhoods, creating a risk that contaminants could enter the distribution system. the town will cover the expense through its emergency reserve.</blockquote>
+            <footer><span>Latest fictional article · complete reproduced display text</span><b>25</b></footer>
+          </div>
+        </section>
+        <section id="saved-bart" data-background-color="#f8f7ef" aria-label="BART on Riverton">
+          <div class="slide bart">
+            <div class="kicker">Appendix / saved Riverton output</div>
+            <h2>BART on Riverton</h2>
+            <div class="label">405 input · 59 output tokens · one pass · EOS</div>
+            <blockquote class="fullquote">A control valve failed during maintenance at the town’s main pumping station. Water pressure dropped across several neighborhoods, creating a risk that contaminants could enter the distribution system. Officials said the advisory was precautionary; contamination had not been confirmed. Two consecutive rounds of testing found no harmful bacteria.</blockquote>
+            <footer><span>Latest fictional article · complete reproduced display text</span><b>26</b></footer>
+          </div>
+        </section>
+        <section id="saved-pegasus" data-background-color="#f8f7ef" aria-label="PEGASUS on Riverton">
+          <div class="slide pegasus">
+            <div class="kicker">Appendix / saved Riverton output</div>
+            <h2>PEGASUS on Riverton</h2>
+            <div class="label">368 input · 46 output tokens · one pass · EOS</div>
+            <blockquote class="fullquote">Riverton officials lifted a boil-water advisory Friday morning. The advisory had affected approximately 18,000 residents since Tuesday. The disruption began when a control valve failed during maintenance at the town’s main pumping station.</blockquote>
+            <footer><span>Latest fictional article · complete reproduced display text</span><b>27</b></footer>
+          </div>
+        </section>
+        <section id="incident" data-background-color="#f8f7ef" aria-label="The duplicate display remains unresolved">
+          <div class="slide">
+            <div class="kicker">Appendix / diagnosis</div>
+            <h2>The duplicate display remains unresolved</h2>
+            <div class="goals">
+              <div><strong>Reported</strong><span>The original LSTM and Transformer display strings were identical. Both matched the reproduced Transformer text.</span></div>
+              <div><strong>Reproduced</strong><span>Direct, pipeline and fresh Gradio checks returned a distinct LSTM summary about the schools.</span></div>
+              <div><strong>Unknown</strong><span>The original selected value and response were never captured together. The cause remains open.</span></div>
+            </div>
+            <footer><span>Laptop model diagnosis · latest Riverton article</span><b>28</b></footer>
+          </div>
+        </section>
+        <section id="references" data-background-color="#f8f7ef" aria-label="Data, models and the overlap measure">
+          <div class="slide">
+            <div class="kicker">References / data and methods</div>
+            <h2>Data, models and the overlap measure</h2>
+            <div class="refs">
+              <p>[1] Hermann et al. (2015), <i>Teaching Machines to Read and Comprehend.</i> NeurIPS. CNN/DailyMail 3.0.0 dataset card and Nallapati et al. (2016), CoNLL.</p>
+              <p>[2] OpenNMT-py 0.2.1, <i>Summarization</i> recipe and released CNN/DailyMail LSTM and Transformer checkpoints.</p>
+              <p>[3] Hochreiter &amp; Schmidhuber (1997), <i>Long Short-Term Memory.</i> Neural Computation 9(8). Bahdanau et al. (2015), ICLR, on attention.</p>
+              <p>[4] Vaswani et al. (2017), <i>Attention Is All You Need.</i> NeurIPS.</p>
+              <p>[5] Lin (2004), <i>ROUGE: A Package for Automatic Evaluation of Summaries.</i> ACL workshop. Google Research rouge-score implementation.</p>
+            </div>
+            <footer><span>Primary publications · release documentation</span><b>29</b></footer>
+          </div>
+        </section>
+        <section id="references-pretraining" data-background-color="#f8f7ef" aria-label="Pretraining and project evidence">
+          <div class="slide">
+            <div class="kicker">References / pretraining and evidence</div>
+            <h2>Pretraining and project evidence</h2>
+            <div class="refs">
+              <p>[6] Lewis et al. (2020), <i>BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension.</i> ACL. Released bart-large-cnn checkpoint.</p>
+              <p>[7] Zhang et al. (2020), <i>PEGASUS: Pre-training with Extracted Gap-sentences for Abstractive Summarization.</i> ICML. Released Mixed &amp; Stochastic CNN/DailyMail checkpoint.</p>
+              <p>Frozen pilot50 results supply both score tables. Checkpoint manifests, adapter code and the latest laptop diagnosis supply model settings and reproduced outputs.</p>
+            </div>
+            <footer><span>Full citations, identifiers and evidence links in the accompanying references</span><b>30</b></footer>
+          </div>
+        </section>
+      </div>
+    </main>
+    <nav class="controlbar" aria-label="Presentation controls">
+      <button id="pause-motion" type="button" aria-pressed="false">Pause motion</button>
+      <button id="replay" type="button">Replay</button>
+      <button id="overview" type="button">Overview</button>
+      <button id="fullscreen" type="button">Fullscreen</button>
+    </nav>
+    <div id="print-deck" aria-hidden="true"></div>
+    <script src="vendor/reveal.js"></script>
+    <script src="deck.js"></script>
+  </body>
+</html>

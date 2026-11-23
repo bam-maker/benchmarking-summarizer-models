@@ -1,5 +1,19 @@
 # Project status: development paused and saved
 
+## Offline animated presentation, November 22, 2026
+
+The [browser deck](presentation/web/README.md) contains 16 main slides and 14
+appendix slides. Its [15-minute speaking script](presentation/web/SPEAKING_SCRIPT.md)
+includes the live-demo switch and an offline fallback. The deck runs from a
+loopback static server on port 8008, independently of Gradio on port 7860.
+Reveal.js, fonts, diagrams and reproduced Riverton outputs are included locally.
+
+The main charts and backup tables use the saved 50-article results. The
+[static PDF](presentation/web/News_Summarization.pdf) shows the final state of
+each slide. Windows Chrome testing covered 52 slide and fragment states,
+reduced motion, presenter controls and offline navigation.
+[Preview](presentation/web/contact-sheet.jpg) · [Validation](presentation/web/VALIDATION.md)
+
 ## Redesigned presentation, November 22, 2026
 
 The [revised editable PowerPoint](presentation/Comparing_Neural_Models_for_News_Summarization.pptx)
