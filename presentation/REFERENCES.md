@@ -1,8 +1,20 @@
 # References and evidence
 
-Prepared for CIS 634, Biruk Anley and Daniela Ortega. Primary publication and
-checkpoint metadata were checked on November 22, 2026. The slides use the saved
-repository state at commit `0a549a7197fab099b7ef8711e28e358c4b62a4b1`.
+Prepared for Biruk Anley and Daniela Ortega. The redesign uses the repository
+evidence present at commit `e016c88`, with byte-level source hashes recorded in
+[the evidence manifest](assets/evidence_manifest.json). Dataset counts, the pinned
+BART card, the PEGASUS release card and the ROUGE implementation were checked
+against primary sources on November 22, 2026.
+
+Slide citation numbers map to the dataset card [1], OpenNMT release [2], LSTM
+paper [3], Transformer paper [4], ROUGE [5], BART [6] and PEGASUS [7].
+
+The CNN/DailyMail card's configuration 3.0.0 lists 287,113 training, 13,368
+validation and 11,490 test rows. The actual saved example on slide 3 belongs to
+the fixed test sample. Its ID, exact excerpts and original hashes are preserved
+in [dataset_example.json](assets/dataset_example.json). The display uses excerpts.
+The complete original article and reference remain in the local saved corpus.
+[Dataset configuration source](https://huggingface.co/datasets/abisee/cnn_dailymail/blob/main/README.md)
 
 ## Architecture and pretraining
 
@@ -80,6 +92,8 @@ repository state at commit `0a549a7197fab099b7ef8711e28e358c4b62a4b1`.
 |---|---|
 | Current policy, offline Ubuntu status, no length selector | [PROJECT_STATUS.md](../PROJECT_STATUS.md), [README.md](../README.md), [app.py](../app.py) |
 | Actual OpenNMT architecture, copy mechanism, parameter counts and limits | [MODEL_CAPABILITIES.md](../MODEL_CAPABILITIES.md), [laptop diagnosis](../reports/LAPTOP_MODEL_DIAGNOSIS.md), [summarizer.py](../summarizer.py) |
+| Saved word-token example from the earlier fictional fixture | [model verification](../reports/final_model_verification.json), `models.LSTM.chunks[0].prepared_tokens` |
+| Length-control experiments and subsequent policy | [FULL_ARTICLE.md](../FULL_ARTICLE.md), [quality regression](../reports/quality_regression.json), [current policy checks](../reports/natural_policy_verification.json) |
 | Full and shared-prefix ROUGE values | [saved JSON](../reports/pilot50/results.json), [benchmark report](../BENCHMARK_RESULTS.md) |
 | Latest exact fictional article and saved outputs | [laptop diagnosis](../reports/LAPTOP_MODEL_DIAGNOSIS.md) |
 | HF checkpoint identity and adapters | [model_manifest.json](../model_manifest.json), [hf_summarizer.py](../hf_summarizer.py) |

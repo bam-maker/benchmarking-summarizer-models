@@ -3,108 +3,186 @@
     "slide": 1,
     "title": "Comparing Neural Models for News Summarization",
     "main": true,
-    "source": "Biruk Anley + Daniela Ortega \u2022 Repository: PROJECT_STATUS.md"
+    "source": "Fictional Riverton diagnostic • condensed teaching example"
   },
   {
     "slide": 2,
-    "title": "Two core models learn from article\u2013summary pairs",
+    "title": "Our target and goals",
     "main": true,
-    "source": "Sources: OpenNMT summarization recipe; Nallapati et al. (2016); dataset card; manifests"
+    "source": "Project documentation • released checkpoint manifests"
   },
   {
     "slide": 3,
-    "title": "Two routes from article to summary",
+    "title": "CNN/DailyMail pairs articles with highlights",
     "main": true,
-    "source": "Sources: checkpoint metadata; legacy/onmt encoders, decoders and CopyGenerator; LSTM / Transformer papers"
+    "source": "[1] Dataset card, configuration 3.0.0 • exact saved test-row excerpts"
   },
   {
     "slide": 4,
-    "title": "A local app handles short and long articles",
+    "title": "From article text to model input",
     "main": true,
-    "source": "Sources: app.py; article_summarizer.py; PROJECT_STATUS.md \u2022 Interface is an editable schematic"
+    "source": "Inspected OpenNMT adapter and article planner • [2] original recipe"
   },
   {
     "slide": 5,
-    "title": "Five systems, two evaluation tracks",
+    "title": "LSTM encoder–decoder with attention",
     "main": true,
-    "source": "Sources: reports/pilot50/results.json; BENCHMARK_RESULTS.md; BART / PEGASUS cards; Lin (2004)"
+    "source": "[2,3] OpenNMT release and verified architecture • approximately 43M parameters"
   },
   {
     "slide": 6,
-    "title": "BART leads most overlap metrics in this sample",
+    "title": "What the LSTM gives us",
     "main": true,
-    "source": "Source: reports/pilot50/results.json \u2022 F1 \u00d7 100, Porter stemming \u2022 n=50 per system"
+    "source": "Architecture tendencies and separate saved observations • latest Riverton diagnostic"
   },
   {
     "slide": 7,
-    "title": "A good score can still miss the headline",
+    "title": "Our encoder–decoder Transformer",
     "main": true,
-    "source": "Source: reports/LAPTOP_MODEL_DIAGNOSIS.md \u2022 separate from the benchmark \u2022 saved outputs"
+    "source": "[2,4] Four encoder and four decoder layers • approximately 81M parameters"
   },
   {
     "slide": 8,
-    "title": "We built a usable demo; factual review comes next",
+    "title": "Connections help, but selection still matters",
     "main": true,
-    "source": "Sources: MODEL_CAPABILITIES.md; PROJECT_STATUS.md; BENCHMARK_RESULTS.md; laptop diagnosis"
+    "source": "[4] Transformer architecture • saved checkpoint observations"
   },
   {
     "slide": 9,
-    "title": "References \u2022 model foundations",
-    "main": false,
-    "source": "Primary publications \u2022 complete URLs in speaker notes and REFERENCES.md"
+    "title": "How the complete application works",
+    "main": true,
+    "source": "Current app screenshot • implementation inspected without generation"
   },
   {
     "slide": 10,
-    "title": "References \u2022 data, metrics and project evidence",
-    "main": false,
-    "source": "Original sources and frozen repository evidence \u2022 details in REFERENCES.md"
+    "title": "How we measured reference overlap",
+    "main": true,
+    "source": "[5] ROUGE and Google Research implementation • frozen 50-article protocol"
   },
   {
     "slide": 11,
-    "title": "Full-article benchmark \u2022 all four metrics",
-    "main": false,
-    "source": "Source: reports/pilot50/results.json \u2022 F1 \u00d7 100, Porter stemming \u2022 each n=50, failed=0"
+    "title": "Core models and a simple baseline",
+    "main": true,
+    "source": "Saved full-article results • ROUGE F1 × 100 • n = 50 per system"
   },
   {
     "slide": 12,
-    "title": "Shared-prefix benchmark \u2022 separate track",
-    "main": false,
-    "source": "Source: reports/pilot50/results.json \u2022 F1 \u00d7 100, Porter stemming \u2022 each n=50, failed=0"
+    "title": "Larger released comparison systems",
+    "main": true,
+    "source": "[6,7] Papers and released checkpoint cards • learned parameter counts"
   },
   {
     "slide": 13,
-    "title": "Which released checkpoints did we integrate?",
-    "main": false,
-    "source": "Sources: checkpoint_manifest.json; model_manifest.json; MODEL_CAPABILITIES.md"
+    "title": "The expanded comparison",
+    "main": true,
+    "source": "Same saved full-article benchmark • ROUGE F1 × 100 • n = 50 per system"
   },
   {
     "slide": 14,
-    "title": "The demo preserves each checkpoint's search policy",
-    "main": false,
-    "source": "Sources: current summarizer.py; hf_summarizer.py; article_summarizer.py; processing_config.json"
+    "title": "What did the summary leave out?",
+    "main": true,
+    "source": "Exact saved excerpts • latest fictional Riverton diagnostic • separate from benchmark"
   },
   {
     "slide": 15,
-    "title": "Saved fallback \u2022 distinct core-model outputs",
-    "main": false,
-    "source": "Source: reports/LAPTOP_MODEL_DIAGNOSIS.md \u2022 body-only input \u2022 no new generation"
+    "title": "Experiments and lessons",
+    "main": true,
+    "source": "Saved development evidence • current policy and earlier experiments"
   },
   {
     "slide": 16,
-    "title": "Saved fallback \u2022 BART and PEGASUS",
-    "main": false,
-    "source": "Source: reports/LAPTOP_MODEL_DIAGNOSIS.md \u2022 fictional diagnostic; separate from benchmark"
+    "title": "What we learned",
+    "main": true,
+    "source": "Completed integration and frozen comparison • proposed next step"
   },
   {
     "slide": 17,
-    "title": "The source resolves the advisory explicitly",
+    "title": "References for models",
     "main": false,
-    "source": "Source: exact latest article in reports/LAPTOP_MODEL_DIAGNOSIS.md; full body in assets/riverton_article.txt"
+    "source": "Primary sources • full links and evidence mapping in REFERENCES.md"
   },
   {
     "slide": 18,
-    "title": "Live-demo checklist \u2022 stay within the time box",
+    "title": "References for data and comparison",
     "main": false,
-    "source": "Sources: README.md; PROJECT_STATUS.md; laptop diagnosis \u2022 all preparation below is for the later class demo"
+    "source": "Primary sources • full links and evidence mapping in REFERENCES.md"
+  },
+  {
+    "slide": 19,
+    "title": "Full-article results",
+    "main": false,
+    "source": "Frozen 50-article comparison • each system n = 50, failed = 0 • ROUGE F1 × 100"
+  },
+  {
+    "slide": 20,
+    "title": "Shared-prefix results",
+    "main": false,
+    "source": "Frozen 50-article comparison • each system n = 50, failed = 0 • ROUGE F1 × 100"
+  },
+  {
+    "slide": 21,
+    "title": "The two OpenNMT checkpoints",
+    "main": false,
+    "source": "[2] Official releases • verified metadata and tensor/vocabulary equivalence"
+  },
+  {
+    "slide": 22,
+    "title": "BART and PEGASUS checkpoint details",
+    "main": false,
+    "source": "[6,7] Released cards, pinned revisions and local verification"
+  },
+  {
+    "slide": 23,
+    "title": "Current decoding settings",
+    "main": false,
+    "source": "Inspected natural-checkpoint-v1 policy • deterministic search and natural EOS"
+  },
+  {
+    "slide": 24,
+    "title": "Training conventions and input windows",
+    "main": false,
+    "source": "Checkpoint provenance and inspected application capacity guards"
+  },
+  {
+    "slide": 25,
+    "title": "Saved Riverton output · LSTM",
+    "main": false,
+    "source": "Exact reproduced display text • latest fictional diagnostic • no new generation"
+  },
+  {
+    "slide": 26,
+    "title": "Saved Riverton output · Transformer",
+    "main": false,
+    "source": "Exact reproduced display text • latest fictional diagnostic • no new generation"
+  },
+  {
+    "slide": 27,
+    "title": "Saved Riverton output · BART",
+    "main": false,
+    "source": "Exact reproduced display text • latest fictional diagnostic • no new generation"
+  },
+  {
+    "slide": 28,
+    "title": "Saved Riverton output · PEGASUS",
+    "main": false,
+    "source": "Exact reproduced display text • latest fictional diagnostic • no new generation"
+  },
+  {
+    "slide": 29,
+    "title": "The source event and its evidence",
+    "main": false,
+    "source": "Exact latest Riverton sentences • body-only input preserved in demo asset"
+  },
+  {
+    "slide": 30,
+    "title": "Offline demo and fallback checklist",
+    "main": false,
+    "source": "Documented Ubuntu command • prepared cached environment"
+  },
+  {
+    "slide": 31,
+    "title": "Attention and the copy mixture",
+    "main": false,
+    "source": "Local OpenNMT CopyGenerator and decoder implementation"
   }
 ]

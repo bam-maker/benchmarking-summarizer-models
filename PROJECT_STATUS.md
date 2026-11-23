@@ -1,5 +1,30 @@
 # Project status: development paused and saved
 
+## Redesigned presentation, November 22, 2026
+
+The [revised editable PowerPoint](presentation/Comparing_Neural_Models_for_News_Summarization.pptx)
+and [PDF](presentation/Comparing_Neural_Models_for_News_Summarization.pdf) contain
+31 slides, with 16 main slides, two references slides and 13 backups. The
+[two-presenter script](presentation/SPEAKING_SCRIPT.md) totals 15 minutes including
+the brief demo. Original PowerPoint and PDF files are preserved with `_v1`
+filenames in the same folder.
+
+The redesign uses warm-white slides, separate model architecture diagrams,
+actual saved dataset and tokenizer examples, a current app screenshot captured
+without submission, and native editable benchmark charts. The full-article and
+shared-prefix tables use the existing frozen 50-article values. Exact saved
+Riverton outputs and the documented Ubuntu launch checklist remain in backups.
+No course guideline was found in the available files, so the supplied redesign
+brief governs the structure.
+
+All 31 slides were rendered with PowerPoint and visually reviewed. Source,
+assets, previews, validation notes and an evidence-hash manifest are in
+[presentation/](presentation/README.md). This work ran no inference, training or
+benchmark and preserved application code, settings, models and the application
+environment. The older development status below remains historical context.
+
+## Application and evaluation status
+
 Current status: November 22, 2026 (America/Chicago). The natural-length demo and
 50-article comparison are complete. The Ubuntu CPU setup and focused laptop
 diagnosis have now been documented. This save contains the working source, tests,

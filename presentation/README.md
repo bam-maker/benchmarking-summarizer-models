@@ -1,68 +1,75 @@
 # Presentation package
 
-**Comparing Neural Models for News Summarization** — Biruk Anley and Daniela
-Ortega, CIS 634. The deck has eight main slides, two references slides, and eight
-backup slides. Main-slide notes total 15:00, including the short demo and CPU wait.
+**Comparing Neural Models for News Summarization** by Biruk Anley and Daniela
+Ortega. The redesigned deck contains 31 slides. Slides 1–16 form the 15-minute
+talk, slides 17–18 provide references, and slides 19–31 provide backups.
+The talk includes 100 seconds for the diagnostic and brief demo on slide 14.
 
-## Deliverables
-
-- [Editable PowerPoint](Comparing_Neural_Models_for_News_Summarization.pptx)
+- [Revised editable PowerPoint](Comparing_Neural_Models_for_News_Summarization.pptx)
 - [PDF export](Comparing_Neural_Models_for_News_Summarization.pdf)
-- [Speaking script and demo checklist](SPEAKING_SCRIPT.md)
-- [Primary references and evidence mapping](REFERENCES.md)
-- [Exact demo body](assets/riverton_article.txt) and [saved fallback outputs](assets/saved_demo_outputs.md)
-- [Rendered slide images](rendered/) and [visual contact sheet](rendered/contact_sheet.png)
-- [Validation record](VALIDATION.md)
+- [Original v1 PowerPoint](Comparing_Neural_Models_for_News_Summarization_v1.pptx)
+- [Original v1 PDF](Comparing_Neural_Models_for_News_Summarization_v1.pdf)
+- [Speaking script and Ubuntu demo checklist](SPEAKING_SCRIPT.md)
+- [Rendered slides](rendered/) and [contact sheet](rendered/contact_sheet.png)
+- [Validation notes](VALIDATION.md) and [primary references](REFERENCES.md)
 
-The PowerPoint includes speaker notes for all slides. Diagrams, interface
-schematic, text and benchmark charts are editable native PowerPoint objects.
-The charts contain embedded data sheets populated directly from the saved
-benchmark JSON. Slide 4 is explicitly a **schematic**, because no current saved
-screenshot was located. Slide 7 quotes exact saved output excerpts; full outputs
-are in backups B5/B6 and the script. The source is the latest Riverton diagnostic,
-not the older fixture. The original duplicate display remains unresolved.
+The warm-white design uses Calibri, restrained model colors, editable shapes,
+connectors and six native charts with embedded data workbooks. Body text is
+generally 24–32 pt. Diagram annotations, table headings, numeric chart labels,
+citations and page numbers use smaller type. The app screenshot is a raster
+capture of the current interface, taken without submitting a request. Its
+onscreen controls retain their original text. No generated output is pictured.
 
-Use only slides 1–8 for the timed talk. References and B1–B8 are for questions
-and fallback. Run the demo checklist before class, reuse the cached environment,
-and allow a maximum visible wait of about 30 seconds before using saved outputs.
-No inference was run during presentation creation.
+The teaching order places preprocessing before separate architecture slides.
+Core results appear before BART and PEGASUS are introduced. All chart and table
+values come from the existing frozen 50-article comparison. The latest fictional
+Riverton example is separate. Saved fallback outputs occupy slides 25–28.
+The earlier duplicate display remains unresolved, as explained in backup notes.
 
-## Rebuild without using the app environment
+No course guideline was located in the repository, supplied attachment, or
+top-level Documents PDF search. The supplied redesign brief governs this deck.
+The metric explanation and core results use separate slides for readability,
+giving 16 main slides within the requested approximate count.
 
-The builder is [build_presentation.py](build_presentation.py), with editable
-speaker notes in [speaker_notes.json](speaker_notes.json). It reads repository
-evidence and writes only into this folder. Dependencies used were Python 3.12,
-`python-pptx==1.0.2`, and `Pillow==11.3.0`, installed in an isolated temporary
-environment. The app `.venv` and dependency pins were not altered.
+## Rebuilding
 
-For a later rebuild with `uv` and internet available, create isolated tooling:
+Use a separate tooling environment. The application environment and dependency
+pins were preserved. The build reads saved repository evidence and writes into
+this folder. The source includes the spoken script and detailed notes.
 
-```bash
-UV_CACHE_DIR=/tmp/summarizer-presentation-uv uv venv --python 3.12 /tmp/summarizer-presentation-tools
-UV_CACHE_DIR=/tmp/summarizer-presentation-uv uv pip install --python /tmp/summarizer-presentation-tools/bin/python python-pptx==1.0.2 pillow==11.3.0
-/tmp/summarizer-presentation-tools/bin/python presentation/build_presentation.py
+```powershell
+python -m venv .cache/presentation-tools
+.cache/presentation-tools/Scripts/python.exe -m pip install python-pptx==1.0.2 Pillow==11.3.0 pymupdf==1.26.6 pywin32==311
+.cache/presentation-tools/Scripts/python.exe presentation/build_presentation.py
+.cache/presentation-tools/Scripts/python.exe presentation/export_presentation.py
+.cache/presentation-tools/Scripts/python.exe presentation/validate_presentation.py
 ```
 
-The layout uses the installed open-source **Lato** font. PDF export preserves the
-rendered appearance; another machine's PowerPoint may substitute fonts if Lato
-is unavailable. Font size is mostly 22–26 pt body / 34 pt title; diagram labels,
-citations and dense backup metadata are smaller. No animations are needed.
+[build_presentation.py](build_presentation.py) uses the committed screenshot and
+saved dataset example, plus repository reports and manifests. It produces the
+PowerPoint, script, speaker-note JSON, slide manifest, CSV values and estimated
+text audit. The script and note JSON are generated artifacts. Edit the readable
+content in the builder before rebuilding them.
 
-Export the real PowerPoint with installed LibreOffice (the actual PDF was made
-with LibreOffice 26.8.2.2), then render every PDF page using Poppler:
+[export_presentation.py](export_presentation.py) uses installed Windows PowerPoint
+via COM, opens the PPTX read-only, exports the PDF and all 1600 × 900 PNG previews,
+and records actual text bounds. It also creates the contact sheet. PowerPoint
+requires an interactive Windows logon session with Office access. In this session
+COM export required execution outside the restricted sandbox. It succeeded.
 
-```bash
-libreoffice -env:UserInstallation=file:///tmp/summarizer-presentation-lo --headless --convert-to pdf --outdir presentation presentation/Comparing_Neural_Models_for_News_Summarization.pptx
-pdftoppm -scale-to 1600 -png presentation/Comparing_Neural_Models_for_News_Summarization.pdf presentation/rendered/slide
-```
+Calibri is installed on this PC. Linux builds can use the compatible Carlito
+fonts if present. Export on the target PowerPoint setup and inspect the result
+when fonts or renderers change. The PDF supplies a fixed visual copy.
 
-The exact app command for the **later classroom demo**, from the repository root:
+The [evidence manifest](assets/evidence_manifest.json) records source hashes and
+the byte-exact v1 archives. [validate_presentation.py](validate_presentation.py)
+checks all chart caches, embedded workbook values, tables, exact fallback text,
+note durations, text bounds, preview counts and preserved evidence.
 
-```bash
-HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python app.py --port 7860
-```
+## Demo assets
 
-Open <http://127.0.0.1:7860/>. Stop any existing app on that port before relaunch.
-This slide-generation task did not start an app or submit a summarization request.
-No presentation guideline PDF was located, so this package follows the supplied
-brief. There are no content placeholders requiring replacement.
+The [exact latest article body](assets/riverton_article.txt) and
+[saved model outputs](assets/saved_demo_outputs.md) support the classroom demo.
+Use the documented Ubuntu launch command in the speaking script. Submit at most
+one live request during the timed talk, with a roughly 30-second visible wait.
+The redesign ran no inference, training or benchmark.

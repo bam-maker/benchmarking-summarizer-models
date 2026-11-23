@@ -1,216 +1,133 @@
-# Speaking script — Comparing Neural Models for News Summarization
+# Speaking script
 
-**Presenters:** Biruk Anley and Daniela Ortega · **Course:** CIS 634
+Biruk Anley and Daniela Ortega. Sixteen main slides, 15:00 including transitions and the brief demo.
 
-**Run time:** 15:00, including transitions and a short live demonstration. References and backups are outside the eight main slides. The stage directions are not spoken. The presentation guideline PDF was not found in the repository or available evidence; the supplied brief governs this presentation.
+References and backups follow the timed talk. Slide 14 receives 100 seconds, including up to about 30 seconds of CPU wait.
 
-| Slide | Presenter | Duration | Clock |
-|---|---|---:|---|
-| 1 | Biruk Anley | 60 s | 0:00–1:00 |
-| 2 | Daniela Ortega | 100 s | 1:00–2:40 |
-| 3 | Biruk Anley | 130 s | 2:40–4:50 |
-| 4 | Daniela Ortega | 100 s | 4:50–6:30 |
-| 5 | Biruk Anley | 100 s | 6:30–8:10 |
-| 6 | Daniela Ortega | 130 s | 8:10–10:20 |
-| 7 | Biruk Anley with Daniela Ortega operating the demo | 190 s | 10:20–13:30 |
-| 8 | Daniela Ortega | 90 s | 13:30–15:00 |
+## Slide 1 · Comparing Neural Models for News Summarization
 
-## 1. Comparing Neural Models for News Summarization
+Biruk Anley · 00:00–00:45 · 45 seconds
 
-**Biruk Anley · 60 seconds**
+Imagine opening a news summary to find out whether you can use your tap water again. A summary might correctly mention a broken valve and testing, yet leave you unsure whether the warning ended. Our example compresses a fictional Riverton article into its main event and the evidence behind it. That is the problem we explored. We are Biruk Anley and Daniela Ortega, and our project compares neural news summarizers while building a working interface for complete articles. We will look at how two smaller models work, how we evaluated them, and why reading the source still matters.
 
-A useful news summary should let a reader understand what happened without reading the entire article. Making text shorter is easy to describe. Deciding which facts must survive is the difficult part.
+**Stage direction**
 
-We are Biruk Anley and Daniela Ortega, and this is our CIS 634 project. We integrated four released summarization checkpoints, built a local application, and evaluated saved outputs against reference summaries. We did not train these released models.
+Point to the lifted advisory before introducing model names.
 
-Our two core models are LSTM and Transformer. Later, we add BART and PEGASUS as larger comparison systems. We will explain the application, show our measured results, and finish with an example where a fluent summary misses the headline.
+## Slide 2 · Our target and goals
 
-*Stage directions: Show the article-to-summary visual. Pause after “which facts must survive.” Transition at 1:00. The presentation guideline PDF was not found in the repository or available evidence; this deck follows the supplied presentation brief.*
+Biruk Anley · 00:45–01:25 · 40 seconds
 
-**Evidence for notes:** Repository: README.md; PROJECT_STATUS.md; MODEL_CAPABILITIES.md.
+We had three goals. First, compare an LSTM system with an encoder–decoder Transformer. Second, make them usable through an article-summarization interface. Third, evaluate returned summaries against saved reference highlights and a simple baseline. Lead-3 takes the first three sentences of an article, which is a useful standard for news. We integrated released pretrained checkpoints. We did the application engineering and evaluation, and we did not train or fine-tune these checkpoint weights. Later we will introduce two larger released systems to put the core comparison in context.
 
-## 2. Two core models learn from article–summary pairs
+## Slide 3 · CNN/DailyMail pairs articles with highlights
 
-**Daniela Ortega · 100 seconds**
+Biruk Anley · 01:25–02:20 · 55 seconds
 
-Our core checkpoints are two ways of learning the same kind of task: read an article and predict a short summary. The training material pairs a news article with reference highlights. During summarization training, the system learns to predict reference tokens from the article and the preceding summary tokens.
+CNN/DailyMail pairs a news article with short reference highlights. The card for version 3.0.0 lists these training, validation and test splits. Training is used to fit a model, validation helps development, and the test split supports evaluation. The example below is an actual saved row from our fixed test sample. The article reports why Brady missed the White House visit, and the reference captures that point. We evaluated the same 50 test articles for every system, using the frozen seed-42 selection. The released checkpoints have different histories. The OpenNMT releases were trained for CNN/DailyMail summarization. BART and PEGASUS also had broad pretraining before task fine-tuning. These counts describe our dataset version. They do not establish identical historical training data or preprocessing for all checkpoints.
 
-CNN/DailyMail supplies news articles and their associated highlights. The small pair on this slide is illustrative: it explains the format rather than claiming to be a retrieved dataset record.
+## Slide 4 · From article text to model input
 
-The released OpenNMT LSTM and Transformer checkpoints were trained for CNN/DailyMail summarization. Their documented recipe uses lowercased word tokens, copying, and a historical convention of the first 400 source tokens and up to 100 target tokens. We used the released checkpoints and compatibility adapters; we did not perform their training.
+Biruk Anley · 02:20–03:20 · 60 seconds
 
-Our evaluation is a separate decision. We used CNN/DailyMail version 3.0.0, selecting 50 test articles from a frozen seed-42 sample. That does not prove that all four released checkpoints used identical historical data preparation or training splits. Keeping model provenance separate from our test selection makes the comparison more honest.
+Before either architecture runs, the software checks that the input is usable and within application workload limits. For OpenNMT, our adapter normalizes curly quotes, splits simple sentence segments, applies a Treebank-style word tokenizer and lowercases its tokens. The line shown contains actual saved tokens from an earlier fictional Riverton fixture. The source starts with Riverton officials lifted a three-day boil-water advisory. The saved vocabulary maps words to model IDs. A source-specific dictionary also lets the generator copy words from the article. Summary decoding starts with a beginning token and can end with an end-of-sequence token. Training used an older Stanford preprocessing convention. Our current NLTK approximation is a documented difference. Sentence boundaries also help plan chunks for long articles. BART and PEGASUS later use their own case-preserving subword tokenizers. Porter stemming will appear in ROUGE scoring.
 
-*Stage directions: Point from article to reference highlights. Identify the example as illustrative aloud. Hand off to Biruk at 2:40.*
+## Slide 5 · LSTM encoder–decoder with attention
 
-**Evidence for notes:** Repository: MODEL_CAPABILITIES.md; OpenNMT_Verified_Setup/checkpoint_manifest.json; tests/final_benchmark.py; reports/pilot50/results.json. OpenNMT original summarization recipe: https://opennmt.net/OpenNMT-py/examples/summary/Summarization.html . CNN/DailyMail source/preparation: https://github.com/abisee/cnn-dailymail ; dataset card: https://huggingface.co/datasets/abisee/cnn_dailymail . Exact saved article/reference hashes are authoritative; the retrieval API did not pin a dataset revision.
+Daniela Ortega · 03:20–04:25 · 65 seconds
 
-## 3. Two routes from article to summary
+An LSTM carries a memory state as it reads or writes a sequence. Here word embeddings turn input words into vectors. The bidirectional encoder reads the article in both directions, so each encoded word can include left and right context. The decoder writes the summary in one direction, carrying its recurrent state from one generated word to the next. Its state queries attention over encoder outputs. Attention supplies a weighted source context. The generator combines vocabulary prediction with copying, using source attention and a learned gate. For example, it may generate lifted from its vocabulary and copy Riverton from the article. Copying can help reproduce names, while deciding which event matters remains the model’s task. This released checkpoint has about 43 million parameters. The arrows show dependencies within a decoding step, and the recurrent loop carries information into the next step.
 
-**Biruk Anley · 130 seconds**
+**Stage direction**
 
-Both models turn words into numerical embeddings, encode the article, and generate the summary one token at a time. The diagrams show the actual kinds of components our checkpoints use.
+Trace source memory, decoder query, context and copy weights.
 
-The LSTM encoder reads the article in both directions. Its recurrent state carries information along the sequence. The decoder also maintains a state as it generates each word. Attention lets it consult different encoded article positions instead of relying only on one final article vector. The decoder also receives its previous attention context, which is called input feeding.
+## Slide 6 · What the LSTM gives us
 
-Our LSTM has one encoder layer and one decoder layer, 128-dimensional embeddings, and a 512-dimensional combined encoder representation: 256 in each direction. It has about 43 million parameters. The recurrent path is compact, but remembering and selecting relationships across a long article remains difficult.
+Daniela Ortega · 04:25–05:05 · 40 seconds
 
-The Transformer uses position information and self-attention to relate article positions. Its decoder uses masked self-attention over the summary so far, then cross-attention to the encoded article. It has four encoder and four decoder layers, eight attention heads, 512-dimensional states, and about 81 million parameters.
+The LSTM is our smallest checkpoint, making its weight storage relatively modest. Its attention and copy mechanism give it a direct route back to source words, useful for names and numbers. Recurrent computation still proceeds step by step, and carrying context across a long article can be difficult. Those are architectural tendencies. Our saved Riverton observation is more specific. The reproduced LSTM summary retained the population, pressure risk and school details, while omitting that the advisory ended. Copying supported words did not guarantee selecting the important event. One diagnostic example cannot tell us how often that failure occurs.
 
-Both checkpoints have an explicit copying mechanism. A learned gate mixes the probability of choosing a vocabulary word with the probability of copying a word from the article. In this Transformer implementation, copying uses the final decoder cross-attention map. Copying helps reproduce source names and wording, but it cannot guarantee that the chosen sentence is the important one. Attention is access to evidence; it is not a fact checker.
+## Slide 7 · Our encoder–decoder Transformer
 
-*Stage directions: Trace the LSTM route, then Transformer route. Point to both encoder-to-decoder attention connections and both vocabulary/copy mixtures. Do not imply bidirectional generation: only the LSTM encoder reads both ways. Transition at 4:50.*
+Daniela Ortega · 05:05–06:10 · 65 seconds
 
-**Evidence for notes:** Repository: reports/LAPTOP_MODEL_DIAGNOSIS.md; MODEL_CAPABILITIES.md; summarizer.py; OpenNMT_Verified_Setup/legacy/onmt/encoders/rnn_encoder.py; legacy/onmt/decoders/decoder.py; legacy/onmt/decoders/transformer.py; legacy/onmt/modules/copy_generator.py. LSTM: Hochreiter & Schmidhuber (1997), https://doi.org/10.1162/neco.1997.9.8.1735 . Attention: Bahdanau et al., https://arxiv.org/abs/1409.0473 . Transformer: Vaswani et al. (2017), https://papers.nips.cc/paper/7181-attention-is-all-you-need . Copying: See et al. (2017), https://aclanthology.org/P17-1099/ . Our checkpoints have no learned coverage-attention component; a decoding coverage penalty is a separate mechanism.
+Our Transformer also has an encoder and a decoder, with four layers in each. Embeddings represent tokens, and positions provide order information. Encoder self-attention lets source tokens consult other source tokens, followed by a feed-forward transformation. In the decoder, masked self-attention sees only the summary words available so far. Cross-attention connects that decoder representation to the encoded article. Think of a query as what the decoder needs, keys as source addresses to compare it with, and values as the information it retrieves. The large horizontal arrow is that source-to-decoder connection. This particular OpenNMT checkpoint also has a vocabulary and copy mixture. It uses its final cross-attention weights for copying. The resulting distribution chooses the next summary word, then generation continues. It has about 81 million parameters.
 
-## 4. A local app handles short and long articles
+**Stage direction**
 
-**Daniela Ortega · 100 seconds**
+Emphasize the source arrow entering cross-attention.
 
-Our integration makes these models usable through a local Gradio application. Select a model, paste an article, and press Summarize. The result panel shows the summary and compact statistics. There is no summary-length selector in the current interface. This slide is a labeled schematic of the current interface, because we did not have a saved screenshot.
+## Slide 8 · Connections help, but selection still matters
 
-The application first checks whether the article fits the selected model’s token window. A fitting article uses one source pass. A longer article is divided near sentence boundaries, with oversized sentences split safely. The system summarizes each chunk, merges results in source order, removes exact duplicate sentences, and uses bounded consolidation when necessary.
+Daniela Ortega · 06:10–06:55 · 45 seconds
 
-The important distinction is that every source character can be processed while important facts still disappear from the summary. Input coverage is a software property; factual coverage requires reading the output against the source.
+Self-attention gives words a way to connect across the source. That helps represent context, and during training many token positions can be computed in parallel. The cost is attention memory that grows with input length. Summary inference still generates one new token after another. These are general architectural properties. Our particular released checkpoint still omitted the lifting in Riverton, and separate saved development reviews found relationship and entity errors. A connection mechanism gives the model access to information. It does not ensure that it selects the central event or preserves who did what. Our comparisons also differ in training, tokenizer and decoding, so they do not isolate architecture alone.
 
-We prepared the Ubuntu laptop using its existing CPU path and cached checkpoints. All four models completed offline checks. The first request for a model includes loading time, and the larger comparison models require more memory and patience on this laptop.
+## Slide 9 · How the complete application works
 
-*Stage directions: Call out “schematic” visibly and aloud. Trace the fits/long-article branches. Do not launch inference while preparing this presentation. Hand off at 6:30.*
+Biruk Anley · 06:55–08:05 · 70 seconds
 
-**Evidence for notes:** Repository: app.py; article_summarizer.py; summarizer.py; hf_summarizer.py; PROJECT_STATUS.md; README.md. Current policy: natural-checkpoint-v1, model-specific deterministic search and natural EOS; application work windows are 1024 model tokens, including HF special tokens. CPU laptop: Intel Core i7-1195G7, about 15 GiB RAM, no supported CUDA device.
+This is a screenshot of our current local interface. The user supplies an article and chooses a model. The system checks the article using that model’s tokenizer. If the input fits, it gets one direct source pass. Otherwise the planner groups text near sentence boundaries, splitting an oversized sentence safely when needed. Each chunk is summarized. The app joins those outputs in source order and removes exact complete-sentence duplicates. If the merged result fits the model window, it can be returned directly. If further reduction is necessary, the app uses bounded consolidation with limits on passes and total work. These choices try to avoid preventable information loss from unnecessary chunking or repeated compression. Statistics describe the request, including output words and time. Complete input processing leaves a separate question. Did the summary preserve the main event and its evidence? The current interface uses natural checkpoint generation and has a model selector without a summary-length selector.
 
-## 5. Five systems, two evaluation tracks
+## Slide 10 · How we measured reference overlap
 
-**Biruk Anley · 100 seconds**
+Biruk Anley · 08:05–09:00 · 55 seconds
 
-We added two larger released comparison models: BART-large-CNN, with about 406 million learned parameters, and PEGASUS-CNN/DailyMail, with about 569 million. Both were broadly pretrained and then fine-tuned for summarization. BART learns to reconstruct corrupted text; PEGASUS pretraining removes important sentences and learns to generate them. We also include Lead-3, which simply extracts the first three article sentences.
+We used the same frozen 50 test articles and original highlights for every system. ROUGE compares the model summary with a reference. In this illustrative sentence pair, lifted the advisory appears in both texts. ROUGE-1 counts individual word overlap, while ROUGE-2 compares adjacent pairs. ROUGE-L looks for a matching sequence in order, allowing gaps. ROUGE-Lsum uses sentence-aware matching across the summary. We report F1, which balances precision and recall, multiplied by 100. Porter stemming reduces words to related forms during evaluation. A summary can earn overlap while missing the main event, and a valid paraphrase can receive less overlap. We therefore use ROUGE as one measured comparison, alongside source-grounded reading. The full-article track is our main narrative because it evaluates the application’s handling of complete source articles.
 
-Every system uses the same fixed 50 test articles. The full-article track evaluates our application’s handling of the complete article. The shared-prefix track gives every system identical original text that fits within 400 OpenNMT tokens and both other tokenizers’ capacities. The shared-prefix track still uses the full original reference highlights, which may mention facts beyond that prefix.
+## Slide 11 · Core models and a simple baseline
 
-We measure ROUGE F1 overlap. ROUGE-1 compares individual words; ROUGE-2 compares word pairs. ROUGE-L uses the longest matching word sequences in order, while ROUGE-Lsum makes a sentence-aware summary-level comparison. Scores are scaled to 100 and use Porter stemming.
+Biruk Anley · 09:00–09:45 · 45 seconds
 
-These metrics are useful reference comparisons. They do not verify factual accuracy. The larger 1,000-article run was interrupted; the completed study presented here is the 50-article comparison.
+Here are the core results from the saved full-article track. LSTM scored 40.95 on ROUGE-1, Transformer 38.75, and Lead-3 40.36. LSTM led this Transformer checkpoint on the three measures shown. Lead-3 is a serious comparison because news often puts central facts early. It exceeded Transformer on these measures while requiring no generated summary. This describes whole systems on a small sample. It does not show that recurrent models are generally better than Transformers. The full four-metric table is in backup, including the separate ROUGE-L values. These are the existing benchmark results, with no new evaluation for this presentation.
 
-*Stage directions: Introduce BART and PEGASUS here, after the core-model explanation. Show separate track cards. Transition at 8:10.*
+## Slide 12 · Larger released comparison systems
 
-**Evidence for notes:** Repository: reports/pilot50/results.json; BENCHMARK_RESULTS.md; tests/final_benchmark.py; model_manifest.json; MODEL_CAPABILITIES.md. BART: Lewis et al. (2020), https://aclanthology.org/2020.acl-main.703/ ; checkpoint https://huggingface.co/facebook/bart-large-cnn . PEGASUS: Zhang et al. (2020), https://proceedings.mlr.press/v119/zhang20ae.html ; checkpoint https://huggingface.co/google/pegasus-cnn_dailymail . ROUGE: Lin (2004), https://aclanthology.org/W04-1013/ ; implementation https://github.com/google-research/google-research/tree/master/rouge . PEGASUS 568,699,904 learned parameters; 570,797,056 instantiated includes fixed sinusoidal position tables.
+Biruk Anley · 09:45–10:40 · 55 seconds
 
-## 6. BART leads most overlap metrics in this sample
+We also integrated two larger released comparison systems. BART-large-CNN has about 406 million learned parameters. Its denoising pretraining teaches it to reconstruct corrupted text, followed by fine-tuning for CNN/DailyMail summarization. PEGASUS-CNN/DailyMail has about 569 million learned parameters. Its gap-sentence objective removes selected sentences and asks the model to generate them. The released card documents mixed pretraining on C4 and HugeNews before task fine-tuning. The size bars use a common scale. These systems bring different training histories as well as more parameters. BART uses byte-level subwords and PEGASUS uses SentencePiece. Both preserve case. They generate through vocabulary distributions, while the OpenNMT checkpoints have an explicit copy gate. We are adding comparison systems to the story using results already saved.
 
-**Daniela Ortega · 130 seconds**
+## Slide 13 · The expanded comparison
 
-This chart shows the full-article track, with the same model order and model colors throughout. We show three metrics here for readability; the complete four-metric tables and shared-prefix results are in the backup slides.
+Daniela Ortega · 10:40–11:35 · 55 seconds
 
-BART has the highest ROUGE-1, ROUGE-2, and ROUGE-Lsum on these 50 articles. Its ROUGE-1 is 45.21, compared with 43.81 for PEGASUS, 40.95 for LSTM, 38.75 for Transformer, and 40.36 for Lead-3. PEGASUS narrowly has the highest flat ROUGE-L: 30.92 versus BART’s 30.88.
+This reveals the remaining systems from the same frozen comparison. We used the same 50 articles, references and saved results. BART led ROUGE-1, ROUGE-2 and ROUGE-Lsum on this sample. Its ROUGE-1 was 45.21, followed by PEGASUS at 43.81. PEGASUS narrowly led the separate flat ROUGE-L metric, 30.92 to BART’s 30.88. All five systems completed 50 requests in each of the two tracks, giving 500 completed evaluations and zero failed requests. Completion means an output was returned under the protocol. These measurements do not establish a general factual-quality winner or statistical significance. We also leave speed out because desktop and game activity contaminated the saved GPU timing context. Next, a diagnostic example shows why an aggregate overlap score cannot answer every useful question.
 
-Lead-3 is a useful reminder that news articles often place important information early. A learned system needs to be compared with a simple baseline, rather than being impressive only because it generates new text. LSTM and Transformer also change relative order between the two tracks, so the application’s input treatment matters.
+## Slide 14 · What did the summary leave out?
 
-All five systems completed all 50 requests in both tracks: 500 evaluations with no failed requests. Successful completion means a summary was returned under the protocol; it does not mean the summary preserved every fact.
+Daniela Ortega · 11:35–13:15 · 100 seconds
 
-We do not claim statistical significance, a general factual-quality winner, or a controlled speed ranking. The recorded desktop GPU timing context included competing activity, so those numbers cannot support a fair speed comparison. Our conclusion is narrower: BART led most reference-overlap metrics in this small, frozen sample. Now we will look at something an aggregate score cannot explain by itself.
+The main event in our latest fictional Riverton article is that officials lifted the boil-water advisory. Repairs, flushing and two clear testing rounds support that decision. The saved BART output includes supported background, including the testing sentence shown, but its full summary omits that the advisory ended. PEGASUS clearly captures the lifting, while omitting the repair and testing evidence. BART gives us a small all-the-details-except-the-headline moment. More precisely, it selected true secondary facts and missed the resolution. Both outputs ended naturally after processing the entire article in one pass. Cleanup or chunking did not remove the lifting from BART. For the brief demo, we will paste the saved article body, check the selected model and submit at most one request. While it runs, compare the returned summary with the source event. If the CPU takes about 30 seconds, we will continue with the complete saved outputs in backup. Check event, resolution and evidence separately. This example does not establish a general model ranking.
 
-*Stage directions: Use full-article results only in the main chart. Read the key pattern, not every bar. Note the narrow PEGASUS ROUGE-L lead, and avoid calling BART the best model overall. Hand off at 10:20.*
+**Stage direction**
 
-**Evidence for notes:** Repository: reports/pilot50/results.json (results.full_article and results.common_input); BENCHMARK_RESULTS.md; PROJECT_STATUS.md. Exact rounded full-article R1/R2/RL/RLsum: LSTM40.95/20.34/28.71/38.22; Transformer38.75/17.35/26.99/36.09; BART45.21/22.50/30.88/42.73; PEGASUS43.81/22.43/30.92/40.91; Lead-3 40.36/18.28/24.91/36.30. No new benchmark was run for the presentation.
+Reserve about 30 seconds for CPU wait within this 100-second allocation. Submit at most one live request in class. If it is slow, use the saved output slides.
 
-## 7. A good score can still miss the headline
+## Slide 15 · Experiments and lessons
 
-**Biruk Anley with Daniela Ortega operating the demo · 190 seconds**
+Daniela Ortega · 13:15–14:20 · 65 seconds
 
-Riverton is a fictional diagnostic article, separate from the CNN/DailyMail benchmark. Its main event is clear: officials lifted the boil-water advisory Friday after completed repairs and two clear testing rounds.
+We tried several engineering choices before settling on the current demo. Short, Medium and Detailed preferences, including percentage targets, were technically implementable. Actual lengths were unreliable. Models could stop early, different choices could produce similar summaries, and forcing more words did not reliably improve useful content. We removed the selector for a simpler, more predictable interface. The older API remains available for experiments. We also changed chunking and consolidation so a fitting article takes one source pass and a fitting merge avoids another compression step. Restoring model-specific search settings recovered the main claim in one saved development case, while other errors remained. Finally, we revisited an input-window assumption. The OpenNMT recipe’s 400 tokens was a training convention. The current application uses a guarded 1024-token work window, with no claim that this extends a learned quality boundary. These are documented decisions and observations, rather than a measured improvement on the frozen test sample.
 
-BART’s saved summary includes supported background facts and ends, “Two consecutive rounds of testing found no harmful bacteria.” But it never says the advisory was lifted. All the details… except the headline. It does not explicitly claim the warning is still active; it leaves the current status unclear.
+## Slide 16 · What we learned
 
-PEGASUS begins, “Riverton officials lifted a boil-water advisory Friday morning.” That better captures this example’s main event, although it also omits the completed repairs and testing evidence.
+Daniela Ortega · 14:20–15:00 · 40 seconds
 
-Let us open the prepared local app and use this exact article body. We will submit at most one model if the laptop is responsive, and compare the result with these saved outputs. While it runs, look for the current advisory status, the repair, and both testing rounds.
+We built an article interface and compared four released summarizers with Lead-3 on the same fixed articles. BART led most overlap metrics in this small sample. The diagnostic showed that supported details can survive while the main event disappears. Full input processing and fluent output still leave factual coverage to check. Our next useful step is structured human review of events, relationships and evidence on a separate set of articles. That remains proposed work. Thank you. The backups contain full results, checkpoint details and saved demo outputs.
 
-The earlier displayed LSTM and Transformer texts were identical. Direct checks and a fresh LSTM app request returned a distinct LSTM result. The original browser mismatch remains unresolved; current routing did not reproduce a swap. This example illustrates content selection failures, rather than proving a general model ranking.
+## Demo checklist for Ubuntu
 
-*Stage directions: Allocate about90 seconds of this slide to opening the app, pasting the exact315-word body, one optional submission, CPU wait, and inspecting status/repair/testing. Do not generate all four models live. If the visible wait reaches about 30 seconds, preserve the time box and use the saved complete summaries in the backup slides/Markdown appendix. Do not change production decoding. Say when using a saved output. Use body only; log word/character counts support title omission but original request text was not captured. Transition at 13:30.*
-
-**Evidence for notes:** Repository: reports/LAPTOP_MODEL_DIAGNOSIS.md, latest case only. All four direct and pipeline checks used one chunk/one call, full2202-character body, natural EOS before cap. BART omission is present in raw generation, not introduced by UI cleanup. Reported LSTM/Transformer duplicate is an unresolved original-display mismatch; do not call it a confirmed routing bug. Exact body SHA-256648c2a202c8912f6d1fc5bbe468162d2670be52508916bbbf4ac7fd7e5457fa8.
-
-## 8. We built a usable demo; factual review comes next
-
-**Daniela Ortega · 90 seconds**
-
-We built a working local application, integrated four verified released checkpoints, prepared an offline Ubuntu demonstration, and completed a reproducible 50-article comparison with two clearly separated tracks.
-
-Our core LSTM and Transformer models can copy source wording and still miss the main event or confuse relationships. The historical 400-token OpenNMT training convention also differs from the application’s expanded window. Longer articles add chunk-boundary and merging challenges, and attention does not remove those limitations. All four models can omit important facts.
-
-This compares complete systems with different sizes, tokenizers, training histories, and decoding. It cannot isolate architecture alone as the reason for a score difference.
-
-The next useful step is structured human factuality review: check the main event, resolution, entities, relationships, and unsupported claims, ideally with independent reviewers. We should also capture the original request and response if the display mismatch recurs before choosing a fix. The frozen benchmark remains our reference. Our demo is usable; judging its summaries still requires a reader.
-
-*Stage directions: Leave the three conclusions visible. Finish by15:00; references and backups are outside the eight main slides. Invite questions only after the timed talk.*
-
-**Evidence for notes:** Repository: PROJECT_STATUS.md; MODEL_CAPABILITIES.md; BENCHMARK_RESULTS.md; reports/LAPTOP_MODEL_DIAGNOSIS.md. Human rating fields in the saved review packet remain blank; no population factual-error rates or human preference scores have been measured.
-
-## Demo checklist — prepare before class
-
-1. Open a terminal at the repository root. Stop any previous app on port 7860 before relaunching. Reuse the prepared environment and cached checkpoints.
-2. Launch with the exact documented offline command:
+Use the existing cached setup. Stop an existing app on port 7860 before relaunching. From the repository root, run this as one shell line.
 
 ```bash
 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python app.py --port 7860
 ```
 
-3. Open <http://127.0.0.1:7860/>. Leave the app ready before the talk. The first request for a model includes loading, and CPU waits depend on available memory and other activity.
-4. Copy the exact article **body** below. Its title is for identification and should not be pasted into the demo input. The saved diagnosis inferred body-only input from the matching 315-word/2,202-character console counts.
-5. On slide 7, select at most one model, read the model name aloud, press Summarize once, and wait for completion. PEGASUS is a useful choice for discussing the main-event sentence. Keep the complete saved outputs available and identify them as saved evidence when used.
-6. If the model is still loading or generating after the allotted wait, continue with the saved evidence. Do not depend on four live generations within the talk. Check the advisory status, completed repairs, and two testing rounds; technical success does not certify those facts.
+Open http://127.0.0.1:7860/. Paste [the saved body](assets/riverton_article.txt), without the title. Read the model name with its result. Submit at most one live request during the talk. After about 30 seconds, use the complete saved outputs on slides 25–28 and continue. Exact fallback text is also in [saved outputs](assets/saved_demo_outputs.md).
 
-No model inference, training, benchmark, or application environment change was performed to write these notes.
+The earlier duplicate LSTM/Transformer display remains unresolved. Fresh direct, pipeline and Gradio checks produced a distinct LSTM output. Describe the saved reproduced outputs. Detailed evidence is in slide notes and [references](REFERENCES.md).
 
-## Exact latest fictional diagnostic article — demo input
+## Guideline and preparation scope
 
-**Identification title, not part of the reproduced body:** Riverton Restores Water Service After Repairs
-
-Riverton officials lifted a boil-water advisory Friday morning after laboratory tests confirmed that the town’s drinking water met safety standards. The advisory had affected approximately 18,000 residents since Tuesday.
-
-The disruption began when a control valve failed during maintenance at the town’s main pumping station. Water pressure dropped across several neighborhoods, creating a risk that contaminants could enter the distribution system. Officials said the advisory was precautionary; contamination had not been confirmed.
-
-Repair crews replaced the damaged valve Tuesday evening. Workers then flushed the affected pipelines and collected water samples from 12 locations. Two consecutive rounds of testing found no harmful bacteria, allowing the town to lift the advisory.
-
-“We understand how disruptive this has been, especially for families and small businesses,” said water department manager Elena Torres. “The repairs are complete, and the test results show that residents can use their tap water normally again.”
-
-During the advisory, residents were instructed to boil water before drinking it, cooking, brushing their teeth, or making ice. Two schools closed Wednesday because they could not provide sufficient drinking water, but reopened Thursday after bottled supplies arrived. The local hospital remained open throughout the disruption.
-
-The emergency response cost approximately $86,000, including repairs, laboratory testing, and bottled-water distribution. The town will cover the expense through its emergency reserve. Officials said no immediate water-rate increase is planned.
-
-Mayor Priya Shah ordered a review of the town’s notification procedures after some residents reported receiving the warning several hours after the pressure loss. The review will examine whether text alerts and coordination with schools can be improved.
-
-A separate proposal to modernize the pumping station remains under consideration. The proposed $3.2 million project has not received funding or final approval.
-
-Health officials said no illnesses had been linked to the incident as of Friday. Residents were advised to run cold taps for five minutes and discard ice made during the advisory.
-
-## Saved outputs — fallback, not a new run
-
-These are exact latest saved displayed summaries from [the laptop diagnosis](../reports/LAPTOP_MODEL_DIAGNOSIS.md). The LSTM text below is the distinct reproduced result, rather than the originally duplicated display.
-
-### LSTM — reproduced direct, pipeline, and fresh Gradio route
-
-> the advisory had affected 18,000 residents since tuesday. water pressure dropped across several neighborhoods, creating a risk that contaminants could enter the distribution system. two schools closed wednesday because they could not provide sufficient drinking water, but reopened thursday after bottled supplies arrived.
-
-### Transformer — reported and reproduced
-
-> the advisory had affected approximately 18,000 residents since tuesday. water pressure dropped across several neighborhoods, creating a risk that contaminants could enter the distribution system. the town will cover the expense through its emergency reserve.
-
-### BART — reported and reproduced
-
-> A control valve failed during maintenance at the town’s main pumping station. Water pressure dropped across several neighborhoods, creating a risk that contaminants could enter the distribution system. Officials said the advisory was precautionary; contamination had not been confirmed. Two consecutive rounds of testing found no harmful bacteria.
-
-### PEGASUS — reported and reproduced display
-
-> Riverton officials lifted a boil-water advisory Friday morning. The advisory had affected approximately 18,000 residents since Tuesday. The disruption began when a control valve failed during maintenance at the town’s main pumping station.
-
-## Backup talking points
-
-- **Full tables:** keep full-article and shared-prefix metrics separate. Every value is ROUGE F1 ×100; sample size is50 per system per track. Lead-3 is extraction of the first three sentences. No statistical-significance or controlled-speed claim is supported.
-- **Checkpoint details:** OpenNMT model identities, original SHA-256 hashes, and pinned legacy commit are in [the checkpoint manifest](../OpenNMT_Verified_Setup/checkpoint_manifest.json). BART and PEGASUS IDs/revisions are in [the HF manifest](../model_manifest.json). We integrated released checkpoints; we did not train them.
-- **Decoding:** current app uses natural-checkpoint-v1. OpenNMT beam5 with length/coverage penalties and trigram blocking; BART beam4, length penalty2, trigram blocking; PEGASUS beam8, length penalty0.8, no n-gram blocking. Native minimums are bounded for the source, forced HF EOS is disabled, and retries are bounded. See [current status](../PROJECT_STATUS.md) and [latest diagnosis](../reports/LAPTOP_MODEL_DIAGNOSIS.md) for exact case settings.
-- **Input windows:**1024 model tokens per application pass, with model-specific tokenizers; this differs from the historical OpenNMT first400-token convention. More input processed is not proof of better factual coverage.
-- **Duplicate display question:** the original two displayed strings matched exactly. Direct LSTM raw tokens differed, pipeline cleanup did not collapse them, and a fresh live LSTM route returned the distinct LSTM result. Original browser selection/response was not captured; the cause remains unresolved.
-- **Provenance warning:** the older Riverton fixture in reports/RIVERTON_DIAGNOSIS.md is a different article. Its PEGASUS omission is not the latest classroom example. Do not mix them.
-- **Human review:** no completed human factuality ratings, training curves, epochs from our work, training losses, or population error rates are available. Future work is proposed rather than completed.
+No course guideline was located in the repository or supplied attachment. The deck follows the supplied redesign brief. This redesign captured the current app page without submitting an article. It ran no inference, training or benchmark.

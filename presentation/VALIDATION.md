@@ -1,64 +1,60 @@
-# Validation record
+# Presentation validation
 
-Prepared November 22, 2026 for the presentation deliverables. No model inference,
-training, benchmark run or app environment change was performed for this package.
+The revised presentation contains 31 slides, with 16 main slides timed to 900
+seconds, two references slides and 13 backups. Biruk Anley and Daniela Ortega
+share the talk. Slide 14 includes the brief demo and CPU wait.
 
-## Artifact checks
+## Evidence and scope
 
-- PowerPoint opens with 18 slides in 16:9 format: **eight main slides**, two
-  references slides and eight backups.
-- Main-slide speaker notes are embedded and match `speaker_notes.json`; the
-  allocations sum to **900 seconds (15:00)**, including the short demo, transitions
-  and CPU wait. The separate Markdown script includes the offline command and
-  complete saved fallback evidence.
-- Three **native editable PowerPoint charts**, with three embedded XLSX data
-  sheets, show full-article ROUGE-1, ROUGE-2 and ROUGE-Lsum. Every raw chart value
-  matches `reports/pilot50/results.json`. All three axes run from zero to 50.
-  Full and shared-prefix backup values are read from the same saved JSON.
-- Native editable shapes/text implement the two architecture diagrams, app
-  schematic, pipeline diagram, model cards and tables.
-- The latest demo article body is **315 words / 2,202 characters** and has SHA-256
-  `648c2a202c8912f6d1fc5bbe468162d2670be52508916bbbf4ac7fd7e5457fa8`.
-  Complete saved outputs in the PDF match the diagnosis. The LSTM fallback is
-  the distinct reproduced summary, not the originally duplicated display.
-- Every slide has notes, and shape bounds fall within the slide. Local Markdown
-  links resolve. No tracked application or saved benchmark file changed.
+- Reviewed the original 18-slide PowerPoint and PDF, script and notes, project
+  documentation, preprocessing and full-article pipeline, Hugging Face adapter,
+  pinned OpenNMT encoder/decoder/copy code, manifests, saved model verification,
+  diagnosis reports and frozen 50-article results.
+- Archived the original PPTX and PDF byte-for-byte with `_v1` filenames. Their
+  hashes appear in [the evidence manifest](assets/evidence_manifest.json).
+- Used exact full-article and shared-prefix values from the saved results JSON.
+  Six native charts contain embedded workbooks. Both complete tables preserve
+  ROUGE-L and ROUGE-Lsum as separate metrics. Timing results are omitted.
+- Used an actual saved CNN/DailyMail test-row excerpt with ID and source hashes.
+  Dataset counts were checked against configuration 3.0.0 of the primary dataset
+  card. The preprocessing slide uses exact saved OpenNMT tokens from the earlier
+  fictional Riverton fixture, identified on the slide and in notes.
+- Captured the current running app page with Chrome without submitting a model
+  request. The screenshot shows the current controls and empty output field.
+- The latest Riverton body and all four complete reproduced display outputs
+  match the saved diagnosis. The original duplicate display remains unresolved.
+- No application, model, decoding, benchmark or application-environment changes
+  were made. No inference, training or benchmark ran during the redesign.
 
 ## Rendering and visual inspection
 
-The actual `.pptx` was exported with **LibreOffice 26.8.2.2** to an 18-page PDF.
-Every page was rendered to a 1,600 × 900 PNG with Poppler. The contact sheet and
-individual dense pages were inspected for text overflow, alignment, diagram
-connections, legibility and chart accuracy. Corrections included chart-label
-alignment, reference colors/wrapping, the LSTM decoder query connection, and
-space for the full BART fallback. The final deck needs no animations to explain
-its figures, and the PDF preserves the visible slide content.
+Exported the actual PPTX with installed Microsoft PowerPoint 16.0 to a 31-page
+PDF and 31 PNG previews at 1600 × 900. Reviewed every main, reference and backup
+slide using large four-slide review sheets, with individual architecture and
+chart checks. The [contact sheet](rendered/contact_sheet.png) covers the full deck.
 
-The final export includes the corrected illustrative data example, explicit
-bounded-consolidation label and sufficient panel space for the complete saved
-LSTM fallback. Its visible content is covered by the final page renders.
+The review corrected wrapping in native chart values, increased room for text
+in the introduction and conclusion, clarified architecture arrows, and adjusted
+source text and full-output boxes. Word embeddings stays on one line. Transformer
+model labels stay on one line. Source-event text stays within its banner, and
+conclusion text stays within its assigned space.
 
-Run only these lightweight artifact checks with the isolated presentation tools:
+The automated validator checks estimated text heights and actual PowerPoint text
+bounds. It also checks shape bounds, notes, exact chart/workbook values, both
+tables, preserved evidence hashes, full saved outputs in the PDF, local links,
+slide counts and unwrapped chart values. The final export passed all artifact
+checks. All 94 protected source/archive hashes matched. No estimated or measured
+text-bound violations remained, and all six charts and embedded workbooks matched
+the saved values. Git whitespace checks also passed.
 
-```bash
-/tmp/summarizer-presentation-tools/bin/python presentation/validate_presentation.py
-```
+## Limitations
 
-This checks package structure, native charts/data, notes/timings, exact source
-hash, full saved outputs in PDF, rendered-page count, bounds and relative links.
-It reads saved results; it does not recalculate ROUGE or load any summarizer.
+No course guideline was located in the available repository, supplied attachment
+or top-level Documents PDF search. Compliance with an unavailable course guideline
+has not been assessed. The supplied redesign brief was used.
 
-## Limits and unresolved evidence
-
-- No presentation-specific guideline PDF was located. The supplied presentation
-  brief was used. No required content placeholders remain.
-- No current app screenshot was available. Slide 4 is explicitly labeled as an
-  editable **interface schematic**, based on the actual current implementation.
-- The original duplicate-display cause remains unresolved, as the diagnosis
-  states; fresh direct and Gradio LSTM requests had a distinct output. No confirmed
-  UI or routing bug is asserted.
-- The font is Lato, installed on this laptop. Other computers may substitute a
-  font in the editable PowerPoint; use the PDF for a stable visual fallback.
-- Presentation software versions can render native charts slightly differently.
-  The inspected PDF is the export from this laptop, not a Microsoft PowerPoint
-  rendering on a different machine.
+PowerPoint export succeeded on this PC after using Office through the Windows
+user session outside the restricted sandbox. Re-exporting on another machine
+requires PowerPoint or another renderer and installed compatible fonts. Native
+objects remain editable, while the app screenshot is a raster image. Preview
+images and the PDF preserve the rendered appearance for review.

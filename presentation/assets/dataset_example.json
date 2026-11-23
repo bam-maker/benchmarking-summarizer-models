@@ -1,0 +1,12 @@
+{
+  "id": "ebd2dd309bbe226bd2a6af82cc2829256eeb0fe3",
+  "row_idx": 10476,
+  "article_sha256": "5d7fdbdbf513c7e6fa85bffca61ff17edf4a77efe98b1513ff386337c15323a3",
+  "reference_sha256": "ccb0d6eba892f3f43066275a47e1584bcfe3489410d0733c73609a8aeb0f7178",
+  "retrieved_from": "https://datasets-server.huggingface.co/rows?dataset=abisee%2Fcnn_dailymail&config=3.0.0&split=test&offset=10400&length=100",
+  "article_excerpt": "A spokesman for the team cited 'prior family commitments' as the reason Brady, 37, didn't attend the ceremony.",
+  "reference_excerpt": "Brady cited 'prior family commitments' in bowing out of meeting with Obama .",
+  "dataset": "CNN/DailyMail 3.0.0",
+  "split": "test",
+  "display": "Exact excerpts from a saved evaluation row"
+}

@@ -1,15 +1,14 @@
-"""Build the editable deck from saved repository evidence; performs no inference.
+"""Build an editable deck from saved evidence. Never imports a model backend.
 
-Tooling: isolated Python with python-pptx==1.0.2 and Pillow==11.3.0.
-Run from any directory. See README.md for export and validation.
+Tooling dependencies are python-pptx 1.0.2 and Pillow 11.3.0, installed separately
+from the application. See README.md for rendering and validation.
 """
 from __future__ import annotations
 
 import csv
 import hashlib
 import json
-import math
-import re
+import os
 from pathlib import Path
 
 from PIL import ImageFont
@@ -24,572 +23,602 @@ from pptx.util import Inches, Pt
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
+STEM = 'Comparing_Neural_Models_for_News_Summarization'
 W, H = 13.333333, 7.5
-BG = "0B1528"
-PANEL = "14253D"
-PANEL2 = "1B304B"
-WHITE = "F5F8FD"
-MUTED = "B5C5DA"
-TEAL = "45D6BD"
-AMBER = "FFC465"
-BLUE = "81B2FF"
-PURPLE = "C2ABFF"
-GRAY = "A6B5C8"
-MODEL_COLORS = {"LSTM": TEAL, "Transformer": BLUE, "BART": AMBER, "PEGASUS": PURPLE, "Lead-3": GRAY}
-FONT = "Lato"
-FONT_FILE = "/usr/share/fonts/truetype/lato/Lato-Regular.ttf"
-BOLD_FILE = "/usr/share/fonts/truetype/lato/Lato-Bold.ttf"
-metrics = json.loads((ROOT / "reports/pilot50/results.json").read_text())
-manifest = json.loads((ROOT / "model_manifest.json").read_text())
-diagnosis = (ROOT / "reports/LAPTOP_MODEL_DIAGNOSIS.md").read_text()
-ORDER = ["LSTM", "Transformer", "BART", "PEGASUS", "Lead-3"]
+BG, INK, MUTED, RULE = 'FAF7F1', '25312F', '626D68', 'D8DDD6'
+TEAL, BLUE, ORANGE, PLUM, GRAY = '246B5C', '3C648F', 'AE612F', '79587E', '7B8076'
+PALE, PALEBLUE = 'E7EEE6', 'E6ECF2'
+COLORS = dict(zip(['LSTM', 'Transformer', 'BART', 'PEGASUS', 'Lead-3'], [TEAL, BLUE, ORANGE, PLUM, GRAY]))
+FONT = 'Calibri'
+FONT_DIR = Path(os.environ.get('WINDIR', 'C:/Windows')) / 'Fonts'
+REGULAR, BOLD = FONT_DIR / 'calibri.ttf', FONT_DIR / 'calibrib.ttf'
+if not REGULAR.exists():
+    REGULAR = Path('/usr/share/fonts/truetype/crosextra/Carlito-Regular.ttf')
+    BOLD = Path('/usr/share/fonts/truetype/crosextra/Carlito-Bold.ttf')
+METRICS = json.loads((ROOT / 'reports/pilot50/results.json').read_text(encoding='utf-8'))
+DATASET = json.loads((HERE / 'assets/dataset_example.json').read_text(encoding='utf-8'))
+DIAGNOSIS = (ROOT / 'reports/LAPTOP_MODEL_DIAGNOSIS.md').read_text(encoding='utf-8')
+VERIFICATION = json.loads((ROOT / 'reports/final_model_verification.json').read_text(encoding='utf-8'))
+SAVED_TOKENS = VERIFICATION['models']['LSTM']['chunks'][0]['prepared_tokens'][:7]
+assert SAVED_TOKENS == ['riverton', 'officials', 'lifted', 'a', 'three-day', 'boil-water', 'advisory']
+ORDER = list(COLORS)
 
 
-def report_quote(label, next_label=None):
-    chunk = diagnosis.split(label, 1)[1]
-    if next_label:
-        chunk = chunk.split(next_label, 1)[0]
-    else:
-        chunk = chunk.split("\n\nThe raw OpenNMT", 1)[0]
-    return "\n\n".join(line[2:] for line in chunk.splitlines() if line.startswith("> "))
+def quote_between(label, end):
+    section = DIAGNOSIS.split(label, 1)[1].split(end, 1)[0]
+    return '\n\n'.join(line[2:] for line in section.splitlines() if line.startswith('> '))
 
 
-full_article = report_quote("**Supplied article**", "**Reported displayed LSTM")
-body = full_article.split("\n\n", 1)[1]
-outputs = {
-    "LSTM": report_quote("**Reproduced LSTM direct, pipeline and fresh Gradio route:**", "**Reported and reproduced BART:**"),
-    "Transformer": report_quote("**Reported displayed LSTM and Transformer, exactly identical:**", "**Reproduced LSTM direct"),
-    "BART": report_quote("**Reported and reproduced BART:**", "**Reported and reproduced PEGASUS display:**"),
-    "PEGASUS": report_quote("**Reported and reproduced PEGASUS display:**"),
+ARTICLE = quote_between('**Supplied article**', '**Reported displayed LSTM')
+BODY = ARTICLE.split('\n\n', 1)[1]
+OUTPUTS = {
+    'LSTM': quote_between('**Reproduced LSTM direct, pipeline and fresh Gradio route:**', '**Reported and reproduced BART:**'),
+    'Transformer': quote_between('**Reported displayed LSTM and Transformer, exactly identical:**', '**Reproduced LSTM direct'),
+    'BART': quote_between('**Reported and reproduced BART:**', '**Reported and reproduced PEGASUS display:**'),
+    'PEGASUS': quote_between('**Reported and reproduced PEGASUS display:**', '\n\nThe raw OpenNMT'),
 }
-assert len(body) == 2202 and len(body.split()) == 315
-assert hashlib.sha256(body.encode()).hexdigest() == "648c2a202c8912f6d1fc5bbe468162d2670be52508916bbbf4ac7fd7e5457fa8"
-
+assert hashlib.sha256(BODY.encode()).hexdigest() == '648c2a202c8912f6d1fc5bbe468162d2670be52508916bbbf4ac7fd7e5457fa8'
 prs = Presentation()
-prs.slide_width = Inches(W)
-prs.slide_height = Inches(H)
-prs.core_properties.title = "Comparing Neural Models for News Summarization"
-prs.core_properties.subject = "CIS 634 • saved model integration and evaluation evidence"
-prs.core_properties.author = "Biruk Anley and Daniela Ortega"
-prs.core_properties.keywords = "news summarization, LSTM, Transformer, CNN/DailyMail, BART, PEGASUS"
-text_audit = []
-slide_meta = []
+prs.slide_width, prs.slide_height = Inches(W), Inches(H)
+prs.core_properties.title = 'Comparing Neural Models for News Summarization'
+prs.core_properties.author = 'Biruk Anley and Daniela Ortega'
+prs.core_properties.subject = 'Released checkpoint integration and frozen 50-article evaluation'
+slides, audit, talks = [], [], []
 
 
-def rgb(v):
-    return RGBColor.from_string(v)
+def rgb(value):
+    return RGBColor.from_string(value)
 
 
-def shape(slide, x, y, w, h, fill=PANEL, line=None, radius=True):
-    kind = MSO_SHAPE.ROUNDED_RECTANGLE if radius else MSO_SHAPE.RECTANGLE
-    s = slide.shapes.add_shape(kind, Inches(x), Inches(y), Inches(w), Inches(h))
-    s.fill.solid()
-    s.fill.fore_color.rgb = rgb(fill)
-    if line:
-        s.line.color.rgb = rgb(line)
-        s.line.width = Pt(1.3)
-    else:
-        s.line.fill.background()
-    if radius:
-        s.adjustments[0] = 0.12
-    return s
+def rect(s, x, y, w, h, fill=PALE):
+    item = s.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(x), Inches(y), Inches(w), Inches(h))
+    item.fill.solid()
+    item.fill.fore_color.rgb = rgb(fill)
+    item.line.fill.background()
+    item._element.spPr.append(OxmlElement('a:effectLst'))
+    return item
 
 
-def text(slide, value, x, y, w, h, size=24, color=WHITE, bold=False, align=None,
-         margin=0, valign=MSO_ANCHOR.TOP, font=FONT, check=True, spacing=1.08):
-    box = slide.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h))
+def text(s, value, x, y, w, h, size=24, color=INK, bold=False, align=None, font=FONT):
+    box = s.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h))
     tf = box.text_frame
-    tf.clear()
     tf.word_wrap = True
-    tf.margin_left = tf.margin_right = Inches(margin)
-    tf.margin_top = tf.margin_bottom = Inches(margin)
-    tf.vertical_anchor = valign
-    for idx, line in enumerate(value.split("\n")):
-        p = tf.paragraphs[0] if idx == 0 else tf.add_paragraph()
-        p.text = line
-        p.font.name = font
-        p.font.size = Pt(size)
-        p.font.bold = bold
+    tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0
+    for i, paragraph in enumerate(value.split('\n')):
+        p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+        p.text = paragraph
+        p.font.name, p.font.size, p.font.bold = font, Pt(size), bold
         p.font.color.rgb = rgb(color)
-        p.space_before = Pt(0)
-        p.space_after = Pt(0)
-        p.line_spacing = spacing
+        p.line_spacing = 1.06
+        p.space_after = p.space_before = Pt(0)
         if align is not None:
             p.alignment = align
-    if check:
-        # Conservative line wrapping estimate; exported PDF is inspected too.
-        ft = ImageFont.truetype(BOLD_FILE if bold else FONT_FILE, size=max(1, round(size * 2)))
-        maxpx = max(1, (w - 2 * margin) * 72 * 2)
-        count = 0
-        for para in value.split("\n"):
-            words = para.split()
-            line = ""
-            n = 1
-            for word in words:
-                candidate = (line + " " + word).strip()
-                if ft.getlength(candidate) > maxpx and line:
-                    n += 1
-                    line = word
-                else:
-                    line = candidate
-            count += n
-        estimated = count * size * 1.10 / 72
-        text_audit.append({"slide": len(prs.slides), "text": value[:70], "font_pt": size,
-                           "height_inches": h, "estimated_text_height": round(estimated, 3),
-                           "fits_estimate": estimated <= h + 0.05})
+    ft = ImageFont.truetype(str(BOLD if bold else REGULAR), size=round(size * 2))
+    lines = 0
+    for paragraph in value.split('\n'):
+        current = ''
+        lines += 1
+        for word in paragraph.split():
+            candidate = (current + ' ' + word).strip()
+            if ft.getlength(candidate) > w * 144 and current:
+                lines += 1
+                current = word
+            else:
+                current = candidate
+    estimate = lines * size * 1.09 / 72
+    audit.append(dict(slide=len(prs.slides), text=value, font_pt=size, height=h,
+                      estimated_height=round(estimate, 3), fits_estimate=estimate <= h + .04))
     return box
 
 
-def line(slide, x1, y1, x2, y2, color=MUTED, width=1.8, arrow=False, dash=False):
-    s = slide.shapes.add_connector(MSO_CONNECTOR.STRAIGHT, Inches(x1), Inches(y1), Inches(x2), Inches(y2))
-    s.line.color.rgb = rgb(color)
-    s.line.width = Pt(width)
+def line(s, x1, y1, x2, y2, color=RULE, width=1.6, arrow=False, dashed=False):
+    item = s.shapes.add_connector(MSO_CONNECTOR.STRAIGHT, Inches(x1), Inches(y1), Inches(x2), Inches(y2))
+    item.line.color.rgb, item.line.width = rgb(color), Pt(width)
+    item._element.spPr.append(OxmlElement('a:effectLst'))
     if arrow:
-        ln = s._element.spPr.get_or_add_ln()
-        end = OxmlElement("a:tailEnd")
-        end.set("type", "triangle")
-        ln.append(end)
-    if dash:
+        end = OxmlElement('a:tailEnd')
+        end.set('type', 'triangle')
+        item._element.spPr.get_or_add_ln().append(end)
+    if dashed:
         from pptx.enum.dml import MSO_LINE_DASH_STYLE
-        s.line.dash_style = MSO_LINE_DASH_STYLE.DASH
+        item.line.dash_style = MSO_LINE_DASH_STYLE.DASH
+    return item
+
+
+def route(s, points, color=TEAL, dashed=False):
+    for i, (start, end) in enumerate(zip(points, points[1:])):
+        line(s, *start, *end, color=color, arrow=i == len(points) - 2, dashed=dashed)
+
+
+def base(title, citation='', main=True):
+    s = prs.slides.add_slide(prs.slide_layouts[6])
+    s.background.fill.solid()
+    s.background.fill.fore_color.rgb = rgb(BG)
+    text(s, title, .65, .55, 12.05, 1.34 if '\n' in title else .70, 36, bold=True)
+    text(s, citation, .67, 7.09, 11.4, .26, 12, MUTED)
+    text(s, str(len(prs.slides)), 12.1, 7.07, .55, .28, 14, MUTED, align=PP_ALIGN.RIGHT)
+    slides.append(dict(slide=len(prs.slides), title=title.replace('\n', ' '), main=main, source=citation))
     return s
 
 
-def route(slide, points, color=MUTED, width=1.8, dash=False):
-    for i, (a, b) in enumerate(zip(points, points[1:])):
-        line(slide, *a, *b, color=color, width=width, arrow=i == len(points) - 2, dash=dash)
+def label(s, name, x, y, width=3, size=26):
+    text(s, name, x, y, width, .48, size, COLORS[name], True)
 
 
-def pill(slide, value, x, y, w, color=TEAL, size=16, h=.34):
-    shape(slide, x, y, w, h, fill=PANEL2)
-    text(slide, value, x + .10, y + .035, w - .20, h - .04, size, color, bold=True)
+def node(s, value, x, y, w, h=.85, color=TEAL, fill=PALE, size=24):
+    rect(s, x, y, w, h, fill)
+    rect(s, x, y, .055, h, color)
+    box = text(s, value, x + .16, y + .12, w - .30, h - .15, size, color, True, PP_ALIGN.CENTER)
+    box.text_frame.vertical_anchor = MSO_ANCHOR.MIDDLE
 
 
-def add_notes(slide, value):
-    slide.notes_slide.notes_text_frame.text = value
+def talk(s, seconds, presenter, speech, detail='', cue=''):
+    entry = dict(slide=len(prs.slides), title=slides[-1]['title'], duration_seconds=seconds,
+                 presenter=presenter, speech=speech, detail=detail, stage_directions=cue)
+    talks.append(entry)
+    s.notes_slide.notes_text_frame.text = (
+        f'{presenter}\n{seconds} seconds including transitions and demo\n\n{speech}\n\n'
+        f'Stage directions\n{cue}\n\nEvidence and technical detail\n{detail}')
 
 
-def base(title, section, n, source, main=True, subtitle=None):
-    slide = prs.slides.add_slide(prs.slide_layouts[6])
-    slide.background.fill.solid()
-    slide.background.fill.fore_color.rgb = rgb(BG)
-    shape(slide, .56, .35, .10, .33, TEAL, radius=False)
-    text(slide, section.upper(), .79, .35, 11.8, .32, 14, TEAL, bold=True)
-    title_h = 1.10 if "\n" in title else .60
-    text(slide, title, .58, .86, 12.15, title_h, 34, bold=True)
-    if subtitle:
-        text(slide, subtitle, .60, 1.53 if title_h == .60 else 1.99, 12.1, .4, 20, MUTED)
-    line(slide, .6, 7.02, 12.73, 7.02, color=PANEL2, width=1)
-    text(slide, source, .6, 7.12, 11.6, .23, 11.5, MUTED, check=False)
-    text(slide, f"{n:02d}" if main else str(n), 12.12, 7.10, .6, .25, 13, TEAL,
-         align=PP_ALIGN.RIGHT, check=False)
-    slide_meta.append({"slide": len(prs.slides), "title": title.replace("\n", " "), "main": main, "source": source})
-    return slide
+def backup_notes(s, value):
+    s.notes_slide.notes_text_frame.text = value
 
 
-def model_label(slide, name, x, y, size=21, w=2):
-    shape(slide, x, y+.05, .10, .28, MODEL_COLORS[name], radius=False)
-    text(slide, name, x+.20, y, w-.2, .4, size, MODEL_COLORS[name], bold=True)
+def results_chart(s, models, y=2.35, h=3.45):
+    """Three editable charts, common zero-based axes, aligned model rows."""
+    for i, name in enumerate(models):
+        yy = y + h * .18 + h * .80 * (i + .5) / len(models) - .19
+        label(s, name, .70, yy, 2.35, 24)
+    for j, (metric, heading) in enumerate([('rouge1', 'ROUGE-1'), ('rouge2', 'ROUGE-2'), ('rougeLsum', 'ROUGE-Lsum')]):
+        x = 3.05 + j * 3.12
+        text(s, heading, x, y - .52, 2.9, .43, 24, bold=True, align=PP_ALIGN.CENTER)
+        data = CategoryChartData()
+        data.categories = models
+        data.add_series(heading, [METRICS['results']['full_article'][m][metric] for m in models])
+        chart = s.shapes.add_chart(XL_CHART_TYPE.BAR_CLUSTERED, Inches(x), Inches(y), Inches(2.92), Inches(h), data).chart
+        chart.has_legend = chart.has_title = False
+        chart.font.name, chart.font.size = FONT, Pt(18)
+        chart.font.color.rgb = rgb(MUTED)
+        layout = chart._chartSpace.chart.plotArea.find('{http://schemas.openxmlformats.org/drawingml/2006/chart}layout')
+        if layout is None:
+            layout = OxmlElement('c:layout')
+            chart._chartSpace.chart.plotArea.insert(0, layout)
+        manual = OxmlElement('c:manualLayout')
+        for tag, value in [('layoutTarget', 'inner'), ('xMode', 'factor'), ('yMode', 'factor'), ('wMode', 'factor'), ('hMode', 'factor'), ('x', '.02'), ('y', '.08'), ('w', '.70'), ('h', '.80')]:
+            child = OxmlElement('c:' + tag)
+            child.set('val', value)
+            manual.append(child)
+        layout.append(manual)
+        for parent in [chart._chartSpace, chart._chartSpace.chart.plotArea]:
+            sp = OxmlElement('c:spPr')
+            sp.append(OxmlElement('a:noFill'))
+            ln = OxmlElement('a:ln')
+            ln.append(OxmlElement('a:noFill'))
+            sp.append(ln)
+            parent.append(sp)
+        cat, val = chart.category_axis, chart.value_axis
+        cat.reverse_order = True
+        cat.tick_label_position = XL_TICK_LABEL_POSITION.NONE
+        cat.major_tick_mark = cat.minor_tick_mark = XL_TICK_MARK.NONE
+        cat.format.line.fill.background()
+        val.minimum_scale, val.maximum_scale, val.major_unit = 0, 50, 25
+        val.tick_labels.font.size = Pt(18)
+        val.major_tick_mark = val.minor_tick_mark = XL_TICK_MARK.NONE
+        val.format.line.fill.background()
+        val.has_major_gridlines = True
+        val.major_gridlines.format.line.color.rgb = rgb(RULE)
+        plot = chart.plots[0]
+        plot.gap_width = 65
+        plot.has_data_labels = True
+        plot.data_labels.position = XL_DATA_LABEL_POSITION.OUTSIDE_END
+        plot.data_labels.number_format = '0.00'
+        plot.data_labels.font.name, plot.data_labels.font.size = FONT, Pt(20)
+        plot.data_labels.font.color.rgb = rgb(INK)
+        # PowerPoint can wrap a numeric label despite ample chart whitespace.
+        # Keep the complete two-decimal value on one line in the native chart.
+        label_body = plot._element.find('.//{http://schemas.openxmlformats.org/drawingml/2006/main}bodyPr')
+        label_body.set('wrap', 'none')
+        for point, model in zip(chart.series[0].points, models):
+            point.format.fill.solid()
+            point.format.fill.fore_color.rgb = rgb(COLORS[model])
+            point.format.line.fill.background()
 
 
-def panel_title(slide, label, x, y, w, color=TEAL):
-    text(slide, label, x, y, w, .42, 22, color, bold=True)
+s = base('Comparing Neural Models\nfor News Summarization', 'Fictional Riverton diagnostic • condensed teaching example')
+text(s, 'Biruk Anley and Daniela Ortega', .69, 1.91, 11.8, .43, 24, MUTED)
+text(s, 'ARTICLE', .7, 2.85, 5.2, .4, 18, TEAL, True)
+text(s, 'A valve failed. Crews repaired it.\nTwo clear tests followed.\nOfficials lifted the advisory.', .7, 3.42, 5.25, 1.95, 28)
+line(s, 6.08, 4.19, 6.78, 4.19, TEAL, 2.5, True)
+text(s, 'SUMMARY', 7.15, 2.85, 5.3, .4, 18, TEAL, True)
+text(s, 'Officials lifted the advisory\nafter repairs and clear tests.', 7.15, 3.42, 5.35, 1.8, 30, TEAL, True)
+line(s, .7, 5.82, 12.6, 5.82)
+text(s, 'The summary needs to preserve what happened.', .7, 6.13, 11.9, .55, 28)
+talk(s, 45, 'Biruk Anley',
+     'Imagine opening a news summary to find out whether you can use your tap water again. A summary might correctly mention a broken valve and testing, yet leave you unsure whether the warning ended. Our example compresses a fictional Riverton article into its main event and the evidence behind it. That is the problem we explored. We are Biruk Anley and Daniela Ortega, and our project compares neural news summarizers while building a working interface for complete articles. We will look at how two smaller models work, how we evaluated them, and why reading the source still matters.',
+     'Latest laptop diagnosis. Exact source preserved in assets/riverton_article.txt. Displayed introduction is a condensed teaching example.', 'Point to the lifted advisory before introducing model names.')
 
+s = base('Our target and goals', 'Project documentation • released checkpoint manifests')
+for yy, heading, description in [(1.85, 'Compare two core models', 'LSTM and Transformer summarization systems'), (3.25, 'Build a working interface', 'Paste an article, choose a model, inspect a summary'), (4.65, 'Evaluate the comparison', 'Reference summaries and a simple Lead-3 baseline')]:
+    line(s, .7, yy + .12, 1.3, yy + .12, TEAL, 4)
+    text(s, heading, 1.6, yy - .04, 10.8, .48, 30, bold=True)
+    text(s, description, 1.6, yy + .55, 10.8, .48, 24, MUTED)
+text(s, 'Our contribution was integration, engineering and evaluation.', .7, 6.4, 12, .45, 24, TEAL)
+talk(s, 40, 'Biruk Anley',
+     'We had three goals. First, compare an LSTM system with an encoder–decoder Transformer. Second, make them usable through an article-summarization interface. Third, evaluate returned summaries against saved reference highlights and a simple baseline. Lead-3 takes the first three sentences of an article, which is a useful standard for news. We integrated released pretrained checkpoints. We did the application engineering and evaluation, and we did not train or fine-tune these checkpoint weights. Later we will introduce two larger released systems to put the core comparison in context.',
+     'README.md, PROJECT_STATUS.md, OpenNMT_Verified_Setup/checkpoint_manifest.json, model_manifest.json.')
 
-# 01 — Problem, goals and project identity.
-s = base("Comparing Neural Models\nfor News Summarization", "CIS 634 • project overview", 1,
-         "Biruk Anley + Daniela Ortega • Repository: PROJECT_STATUS.md")
-text(s, "Biruk Anley  •  Daniela Ortega", .63, 2.02, 11.9, .40, 22, MUTED)
-shape(s, .62, 2.78, 4.02, 2.22)
-panel_title(s, "NEWS ARTICLE", .86, 3.00, 3.6)
-for i, ww in enumerate([3.18, 3.35, 2.90, 3.27, 2.15]):
-    shape(s, .88, 3.59+i*.21, ww, .065, MUTED if i != 0 else TEAL, radius=False)
-shape(s, 5.04, 3.54, 1.09, .52, TEAL, radius=False)
-text(s, "→", 5.12, 3.47, .9, .68, 36, BG, bold=True, align=PP_ALIGN.CENTER)
-shape(s, 6.51, 2.78, 6.17, 2.22)
-panel_title(s, "SHORT SUMMARY", 6.78, 3.0, 5.5)
-text(s, "Keep the main event.\nKeep the facts connected.", 6.78, 3.63, 5.55, 1.0, 29, bold=True)
-text(s, "OUR GOAL", .67, 5.54, 1.6, .35, 16, TEAL, bold=True)
-text(s, "Compare models + build a usable local demo", .67, 6.01, 11.9, .50, 26)
+s = base('CNN/DailyMail pairs articles with highlights', '[1] Dataset card, configuration 3.0.0 • exact saved test-row excerpts')
+for x, value, name in [(.7, '287,113', 'Training'), (4.7, '13,368', 'Validation'), (8.7, '11,490', 'Test')]:
+    text(s, value, x, 1.65, 3.8, .68, 38, TEAL, True)
+    text(s, name, x, 2.39, 3.8, .43, 24, MUTED)
+line(s, .7, 3.13, 12.6, 3.13)
+text(s, 'SAVED ARTICLE EXCERPT', .7, 3.48, 5.65, .35, 18, MUTED, True)
+text(s, DATASET['article_excerpt'], .7, 4.02, 5.52, 1.8, 26)
+text(s, 'REFERENCE HIGHLIGHT EXCERPT', 7.0, 3.48, 5.65, .35, 18, MUTED, True)
+text(s, DATASET['reference_excerpt'], 7.0, 4.02, 5.57, 1.8, 28, TEAL)
+text(s, 'Our fixed evaluation used 50 test articles, selected with seed 42.', .7, 6.28, 11.95, .48, 24, bold=True)
+talk(s, 55, 'Biruk Anley',
+     'CNN/DailyMail pairs a news article with short reference highlights. The card for version 3.0.0 lists these training, validation and test splits. Training is used to fit a model, validation helps development, and the test split supports evaluation. The example below is an actual saved row from our fixed test sample. The article reports why Brady missed the White House visit, and the reference captures that point. We evaluated the same 50 test articles for every system, using the frozen seed-42 selection. The released checkpoints have different histories. The OpenNMT releases were trained for CNN/DailyMail summarization. BART and PEGASUS also had broad pretraining before task fine-tuning. These counts describe our dataset version. They do not establish identical historical training data or preprocessing for all checkpoints.',
+     'Counts checked against abisee/cnn_dailymail README configuration3.0.0 on2026-11-22. Row ID ' + DATASET['id'] + '. Hashes and provenance in assets/dataset_example.json. Previous validation rows are development evidence, separate from the fixed test sample.')
 
-# 02 — Core models and the paired data idea.
-s = base("Two core models learn from article–summary pairs", "Core models + data", 2,
-         "Sources: OpenNMT summarization recipe; Nallapati et al. (2016); dataset card; manifests")
-for name, xx, desc, size in [("LSTM",.65,"Recurrent encoder–decoder\nwith attention and copying","43M"),
-                            ("Transformer",6.82,"Encoder–decoder attention\nwith copying","81M")]:
-    shape(s,xx,1.74,5.86,1.42)
-    model_label(s,name,xx+.22,1.94,25,w=3.8)
-    text(s,size,xx+4.30,1.92,1.25,.51,29,MODEL_COLORS[name],True,PP_ALIGN.RIGHT)
-    text(s,desc,xx+.22,2.43,5.35,.70,20,MUTED)
-text(s,"CNN/DAILYMAIL",.66,3.55,5,.4,22,TEAL,True)
-pill(s,"ILLUSTRATIVE PAIR • not a dataset row",6.5,3.54,6.15,size=15)
-shape(s,.65,4.12,5.57,1.35)
-text(s,"Article: The valve was repaired.\nTwo clear tests followed.\nOfficials lifted the advisory.",.85,4.28,5.16,1.15,22)
-line(s,6.35,4.71,6.85,4.71,TEAL,2.2,True)
-shape(s,7.0,4.12,5.65,1.35)
-text(s,"Reference: Officials lifted the advisory\nafter repairs and clear tests.",7.23,4.32,5.18,.83,22)
-text(s,"Released model training",.72,5.76,5.4,.4,22,TEAL,True)
-text(s,"CNN/DM summarization provenance",.72,6.21,5.7,.4,21,MUTED)
-text(s,"Our evaluation",7.04,5.76,5.3,.4,22,AMBER,True)
-text(s,"50 held-out test articles • version 3.0.0",7.04,6.21,5.7,.4,21,MUTED)
+s = base('From article text to model input', 'Inspected OpenNMT adapter and article planner • [2] original recipe')
+text(s, 'Check the input', .7, 1.72, 3.6, .48, 28, TEAL, True)
+text(s, 'Nonempty text, valid model,\nsize and workload limits', .7, 2.3, 4.15, 1.0, 24)
+line(s, 4.9, 2.55, 5.5, 2.55, TEAL, 2, True)
+text(s, 'Prepare OpenNMT words', 5.85, 1.72, 6.7, .48, 28, TEAL, True)
+text(s, 'Normalize curly quotes → split sentences\nTreebank-style word tokens → lowercase', 5.85, 2.3, 6.7, 1.0, 24)
+rect(s, .7, 3.72, 11.9, 1.36, PALE)
+text(s, 'Saved tokenizer trace • earlier fictional Riverton fixture', .94, 3.88, 10.9, .36, 18, MUTED)
+text(s, ' | '.join(SAVED_TOKENS), .94, 4.34, 11.15, .51, 25, TEAL)
+text(s, 'Saved vocabulary + source dictionary for copying', .7, 5.5, 11.9, .48, 26, bold=True)
+text(s, 'Later comparison path    BART / PEGASUS use case-preserving subwords.', .7, 6.25, 12, .47, 24, MUTED)
+talk(s, 60, 'Biruk Anley',
+     'Before either architecture runs, the software checks that the input is usable and within application workload limits. For OpenNMT, our adapter normalizes curly quotes, splits simple sentence segments, applies a Treebank-style word tokenizer and lowercases its tokens. The line shown contains actual saved tokens from an earlier fictional Riverton fixture. The source starts with Riverton officials lifted a three-day boil-water advisory. The saved vocabulary maps words to model IDs. A source-specific dictionary also lets the generator copy words from the article. Summary decoding starts with a beginning token and can end with an end-of-sequence token. Training used an older Stanford preprocessing convention. Our current NLTK approximation is a documented difference. Sentence boundaries also help plan chunks for long articles. BART and PEGASUS later use their own case-preserving subword tokenizers. Porter stemming will appear in ROUGE scoring.',
+     'Exact first seven prepared_tokens from reports/final_model_verification.json models.LSTM.chunks[0]. This trace belongs to the earlier fictional fixture, separate from the latest classroom diagnostic. prepare_article rejects U+FFE8 and uses convert_parentheses=True. OpenNMT fields supply PAD, UNK, BOS, EOS and dynamic source maps. HF prepare uses add_special_tokens=True, truncation=False. No vocabulary fitted, input stopword removal, stemming, lemmatization or dataset deduplication. ChunkPlanner uses Punkt spans. ROUGE stemming is evaluation only.')
 
-# 03 — Editable architecture diagrams, specific to these checkpoints.
-s = base("Two routes from article to summary", "Actual OpenNMT checkpoints", 3,
-         "Sources: checkpoint metadata; legacy/onmt encoders, decoders and CopyGenerator; LSTM / Transformer papers")
-model_label(s,"LSTM",.66,1.62,24,2.3)
-text(s,"≈43M parameters",10.0,1.64,2.64,.4,20,TEAL,align=PP_ALIGN.RIGHT)
-for x,y,w,h,label in [(.65,2.30,.95,.88,"Words"),(1.85,2.30,1.45,.88,"Word\nembeddings"),
-                      (3.40,2.30,1.72,.88,"Bidirectional\nLSTM encoder"),(5.43,2.30,1.40,.88,"Attention"),
-                      (7.16,2.30,1.75,.88,"Recurrent\nLSTM decoder"),(9.27,2.30,1.60,.88,"Vocabulary /\ncopy mixture"),
-                      (11.21,2.30,1.46,.88,"Summary")]:
-    shape(s,x,y,w,h,line=TEAL if x in [3.4,7.16] else None)
-    text(s,label,x+.07,y+.13,w-.14,h-.15,17.5,align=PP_ALIGN.CENTER,valign=MSO_ANCHOR.MIDDLE)
-for a,b in [(1.60,1.85),(3.30,3.40),(5.12,5.43),(6.83,7.16),(8.91,9.27),(10.87,11.21)]:
-    line(s,a,2.74,b,2.74,TEAL,2,True)
-route(s,[(7.34,2.30),(7.34,2.02),(6.12,2.02),(6.12,2.30)],TEAL,1.5)
-text(s,"decoder query",5.38,1.76,1.96,.25,13,TEAL)
-route(s,[(8.44,2.30),(8.44,1.99),(7.58,1.99),(7.58,2.30)],TEAL,1.5)
-text(s,"state",8.67,1.97,.7,.28,13,TEAL)
-route(s,[(6.13,3.18),(6.13,3.55),(10.05,3.55),(10.05,3.18)],TEAL,1.4,True)
-text(s,"attention weights → source copying",6.48,3.59,4.9,.30,15,TEAL)
-model_label(s,"Transformer",.66,4.15,24,3.9)
-text(s,"≈81M parameters",10.0,4.17,2.64,.4,20,BLUE,align=PP_ALIGN.RIGHT)
-for x,y,w,h,label in [(.65,5.07,.95,.97,"Words"),(1.85,5.07,1.65,.97,"Embeddings\n+ positions"),
-                      (3.84,5.07,2.02,.97,"Encoder\nself-attention"),(9.27,5.07,1.60,.97,"Vocabulary /\ncopy mixture"),
-                      (11.21,5.07,1.46,.97,"Summary")]:
-    shape(s,x,y,w,h,line=BLUE if x==3.84 else None)
-    text(s,label,x+.07,y+.13,w-.14,h-.15,18,align=PP_ALIGN.CENTER,valign=MSO_ANCHOR.MIDDLE)
-shape(s,6.30,4.89,2.54,1.40,line=BLUE)
-text(s,"DECODER",6.43,4.98,2.28,.27,13,BLUE,True,PP_ALIGN.CENTER)
-text(s,"Masked self-attn\nCross-attention",6.43,5.35,2.28,.77,18.5,align=PP_ALIGN.CENTER)
-for a,b in [(1.6,1.85),(3.50,3.84),(5.86,6.30),(8.84,9.27),(10.87,11.21)]:
-    line(s,a,5.67,b,5.67,BLUE,2,True)
-route(s,[(7.55,6.29),(7.55,6.65),(10.05,6.65),(10.05,6.04)],BLUE,1.4,True)
-text(s,"cross-attention weights → copy",8.04,6.64,4.5,.30,14.5,BLUE)
-route(s,[(6.30,4.94),(5.95,4.94),(5.95,4.69),(6.70,4.69),(6.70,4.89)],BLUE,1.4)
-text(s,"previous summary tokens",3.6,4.50,2.9,.30,13.5,MUTED)
+s = base('LSTM encoder–decoder with attention', '[2,3] OpenNMT release and verified architecture • approximately 43M parameters')
+text(s, '≈43M', 10.2, 1.43, 2.2, .49, 28, TEAL, True, PP_ALIGN.RIGHT)
+node(s, 'Word embeddings', .7, 2.1, 3.05, 1.0)
+node(s, 'Bidirectional\nLSTM encoder', 4.35, 2.1, 3.35, 1.0)
+node(s, 'Attention', 9.0, 2.1, 3.45, 1.0)
+line(s, 3.75, 2.6, 4.35, 2.6, TEAL, 2, True)
+line(s, 7.7, 2.6, 9.0, 2.6, TEAL, 2, True)
+text(s, 'encoder outputs', 7.64, 1.65, 2.2, .35, 20, MUTED)
+node(s, 'Recurrent LSTM\ndecoder', 4.35, 4.72, 3.35, 1.08)
+node(s, 'Vocabulary + copy\nlearned mixture gate', 9.0, 4.72, 3.45, 1.08)
+route(s, [(4.65, 3.1), (4.65, 4.72)], TEAL)
+text(s, 'initial state', 2.45, 3.75, 2.05, .40, 22, MUTED)
+route(s, [(9.0, 2.88), (8.25, 2.88), (8.25, 4.38), (6.1, 4.38), (6.1, 4.72)], TEAL)
+text(s, 'context', 6.2, 3.86, 1.65, .36, 22, TEAL)
+route(s, [(7.7, 5.0), (8.62, 5.0), (8.62, 3.65), (10.0, 3.65), (10.0, 3.1)], BLUE)
+text(s, 'decoder query', 9.9, 3.75, 2.53, .39, 22, BLUE)
+route(s, [(11.9, 3.1), (11.9, 4.72)], TEAL, True)
+text(s, 'copy\nweights', 12.0, 3.28, 1.0, .75, 18, TEAL)
+line(s, 7.7, 5.5, 9.0, 5.5, TEAL, 2, True)
+route(s, [(4.7, 5.8), (4.7, 6.25), (5.9, 6.25), (5.9, 5.8)], TEAL)
+text(s, 'state across steps', 2.05, 6.27, 4.5, .39, 22, MUTED)
+text(s, 'Previous\nsummary word', .7, 4.8, 3.0, .95, 24, MUTED)
+line(s, 3.7, 5.28, 4.35, 5.28, TEAL, 2, True)
+text(s, 'Next word → summary', 9.0, 6.23, 3.55, .48, 24, TEAL, True)
+line(s, 10.7, 5.8, 10.7, 6.13, TEAL, 2, True)
+talk(s, 65, 'Daniela Ortega',
+     'An LSTM carries a memory state as it reads or writes a sequence. Here word embeddings turn input words into vectors. The bidirectional encoder reads the article in both directions, so each encoded word can include left and right context. The decoder writes the summary in one direction, carrying its recurrent state from one generated word to the next. Its state queries attention over encoder outputs. Attention supplies a weighted source context. The generator combines vocabulary prediction with copying, using source attention and a learned gate. For example, it may generate lifted from its vocabulary and copy Riverton from the article. Copying can help reproduce names, while deciding which event matters remains the model’s task. This released checkpoint has about 43 million parameters. The arrows show dependencies within a decoding step, and the recurrent loop carries information into the next step.',
+     '42,789,205 parameters. One bidirectional encoder layer has 512 total hidden dimensions. Word embeddings have 128 dimensions. One input-feeding LSTM decoder has 512 hidden dimensions, MLP/global attention and reused copy attention. The encoder bridge initializes decoder hidden and cell states. Decoder input also includes the previous attended output. CopyGenerator mixes vocabulary probabilities with a dynamic source-attention distribution using a learned sigmoid gate. Learned coverage attention is absent. The search coverage penalty belongs to beam scoring. Verified against local rnn_encoder.py, decoder.py and copy_generator.py.', 'Trace source memory, decoder query, context and copy weights.')
 
-# 04 — Honest editable schematic and actual branching logic.
-s = base("A local app handles short and long articles", "Application", 4,
-         "Sources: app.py; article_summarizer.py; PROJECT_STATUS.md • Interface is an editable schematic")
-pill(s,"INTERFACE SCHEMATIC • based on current app",.65,1.68,7.27,size=15)
-shape(s,.65,2.20,7.28,3.57,fill="EEF4F7")
-text(s,"News Summarizer",.91,2.42,5,.40,23,BG,True)
-shape(s,.92,3.01,3.15,.45,fill="FFFFFF",line="C1D0DA")
-text(s,"Model:  LSTM   ▾",1.04,3.08,2.9,.31,17,BG)
-for xx,label in [( .92,"Article"),(4.42,"Summary")]:
-    text(s,label,xx,3.67,3.05,.33,19,BG,True)
-    shape(s,xx,4.09,3.19,.78,fill="FFFFFF",line="C1D0DA")
-    for i,ww in enumerate([2.69,2.39,1.91]):
-        shape(s,xx+.15,4.27+i*.14,ww,.045,"8B9CA9",radius=False)
-shape(s,.92,5.08,2.0,.40,fill="0B7767")
-text(s,"Summarize",1.04,5.14,1.76,.29,16,"FFFFFF",True,PP_ALIGN.CENTER)
-text(s,"Clear",3.23,5.14,.9,.3,16,BG)
-text(s,"Copy",6.63,5.14,.9,.3,16,BG)
-text(s,"Output words  •  Shorter by  •  Time  •  tok/s",4.42,4.94,3.18,.25,10.2,"506572",check=False)
-text(s,"No length selector",.92,5.98,6.7,.44,24,TEAL,True)
-shape(s,8.52,1.82,3.55,.61)
-text(s,"Fits the input window?",8.69,1.96,3.2,.36,21,align=PP_ALIGN.CENTER)
-route(s,[(9.10,2.43),(9.10,2.84),(8.57,2.84)],TEAL,1.7)
-text(s,"YES",8.37,2.49,.8,.3,14,TEAL,True)
-shape(s,8.24,2.94,1.84,.88)
-text(s,"Direct\nmodel pass",8.37,3.07,1.58,.61,20,align=PP_ALIGN.CENTER)
-route(s,[(11.55,2.43),(11.55,2.84),(11.90,2.84)],AMBER,1.7)
-text(s,"NO",11.42,2.49,.7,.3,14,AMBER,True)
-shape(s,10.62,2.94,2.06,.88)
-text(s,"Sentence-aware\nchunks",10.72,3.07,1.86,.61,18.5,align=PP_ALIGN.CENTER)
-line(s,11.65,3.82,11.65,4.10,AMBER,1.7,True)
-shape(s,10.62,4.12,2.06,.91)
-text(s,"Merge +\nconsolidation",10.72,4.27,1.86,.67,17.5,align=PP_ALIGN.CENTER)
-route(s,[(9.16,3.82),(9.16,5.40),(10.45,5.40)],TEAL,1.7)
-route(s,[(11.65,5.03),(11.65,5.40),(10.45,5.40)],TEAL,1.7)
-text(s,"Completed summary",8.55,5.68,4.15,.39,22,TEAL,True)
-text(s,"Bounded consolidation if needed",8.45,6.14,4.24,.30,15,MUTED)
-text(s,"Offline CPU checks passed • Complete input ≠ complete facts",.68,6.49,12,.39,22,MUTED)
+s = base('What the LSTM gives us', 'Architecture tendencies and separate saved observations • latest Riverton diagnostic')
+text(s, '43M', .7, 1.8, 4.0, 1.3, 78, TEAL, True)
+text(s, 'parameters', .75, 3.18, 3.9, .5, 28, TEAL)
+text(s, 'Compact weights\nAttention to the source\nCopying of source words', 5.2, 1.95, 7.25, 1.9, 30)
+line(s, .7, 4.15, 12.6, 4.15)
+text(s, 'RECURRENT COMPUTATION', .7, 4.5, 5.4, .35, 18, MUTED, True)
+text(s, 'State updates happen in sequence.\nLong-distance selection can be difficult.', .7, 5.02, 5.6, 1.2, 24)
+text(s, 'OBSERVED ON RIVERTON', 7.0, 4.5, 5.4, .35, 18, MUTED, True)
+text(s, 'It retained background details\nand omitted the lifted advisory.', 7.0, 5.02, 5.55, 1.2, 26, TEAL)
+talk(s, 40, 'Daniela Ortega',
+     'The LSTM is our smallest checkpoint, making its weight storage relatively modest. Its attention and copy mechanism give it a direct route back to source words, useful for names and numbers. Recurrent computation still proceeds step by step, and carrying context across a long article can be difficult. Those are architectural tendencies. Our saved Riverton observation is more specific. The reproduced LSTM summary retained the population, pressure risk and school details, while omitting that the advisory ended. Copying supported words did not guarantee selecting the important event. One diagnostic example cannot tell us how often that failure occurs.',
+     'FP32 parameter storage floor is about 171 MB before activations and framework overhead. The exact reproduced output is in backup. This example supplies no measured factuality rate and cannot isolate architecture as the cause.')
 
-# 05 — Comparison systems, tracks and metric language.
-s = base("Five systems, two evaluation tracks", "Evaluation design", 5,
-         "Sources: reports/pilot50/results.json; BENCHMARK_RESULTS.md; BART / PEGASUS cards; Lin (2004)")
-text(s,"50 CNN/DailyMail 3.0.0 test articles  •  fixed seed 42",.67,1.67,12,.43,24,TEAL,True)
-for name,x,subtitle,desc in [("BART",.65,"406M learned parameters","Broad denoising pretraining\n→ CNN/DM fine-tuning"),
-                            ("PEGASUS",4.78,"569M learned parameters","Gap-sentence pretraining\n→ CNN/DM fine-tuning"),
-                            ("Lead-3",8.90,"Extractive baseline","First three source sentences\n→ no model generation")]:
-    shape(s,x,2.35,3.78,1.78)
-    model_label(s,name,x+.20,2.52,24,w=3.39)
-    text(s,subtitle,x+.20,3.01,3.36,.33,18,MODEL_COLORS[name])
-    text(s,desc,x+.20,3.45,3.36,.59,18.5,MUTED)
-panel_title(s,"FULL ARTICLE",.69,4.57,5.6,TEAL)
-text(s,"Each app processes the full source.",.69,5.05,5.7,.67,23)
-panel_title(s,"SHARED PREFIX",.69,5.83,5.6,BLUE)
-text(s,"Same bounded text; original full references.",.69,6.30,5.7,.50,21,MUTED)
-for label,xx,yy,desc in [("ROUGE-1",7.0,4.61,"Shared words"),("ROUGE-2",9.92,4.61,"Word pairs"),
-                         ("ROUGE-L",7.0,5.65,"Ordered sequence"),("ROUGE-Lsum",9.92,5.65,"Sentence-aware LCS")]:
-    text(s,label,xx,yy,2.75,.35,21,AMBER,True)
-    text(s,desc,xx,yy+.43,2.75,.35,18.5,MUTED)
-text(s,"Overlap ≠ factual accuracy",7.0,6.53,5.72,.35,21,WHITE,True)
+s = base('Our encoder–decoder Transformer', '[2,4] Four encoder and four decoder layers • approximately 81M parameters')
+text(s, '≈81M', 10.2, 1.72, 2.2, .49, 28, BLUE, True, PP_ALIGN.RIGHT)
+node(s, 'Token embeddings\n+ positions', .7, 1.53, 3.6, 1.0, BLUE, PALEBLUE)
+node(s, 'Summary embeddings\n+ positions', 5.2, 1.53, 4.0, 1.0, BLUE, PALEBLUE)
+text(s, 'ENCODER × 4', .9, 2.66, 3.2, .38, 20, BLUE, True)
+text(s, 'DECODER × 4', 5.4, 2.66, 3.6, .38, 20, BLUE, True)
+rect(s, .7, 3.15, 3.6, 2.57, PALEBLUE)
+rect(s, 5.2, 3.15, 4.0, 2.57, PALEBLUE)
+text(s, 'Self-attention', .92, 3.52, 3.16, .47, 26, BLUE, True, PP_ALIGN.CENTER)
+text(s, 'Feed-forward', .92, 4.76, 3.16, .47, 26, BLUE, True, PP_ALIGN.CENTER)
+text(s, 'Masked self-attention', 5.43, 3.34, 3.54, .47, 24, BLUE, True, PP_ALIGN.CENTER)
+text(s, 'Cross-attention', 5.43, 4.25, 3.54, .47, 26, BLUE, True, PP_ALIGN.CENTER)
+text(s, 'Feed-forward', 5.43, 5.13, 3.54, .47, 24, BLUE, True, PP_ALIGN.CENTER)
+line(s, 3.94, 2.53, 3.94, 3.15, BLUE, 2, True)
+line(s, 8.83, 2.53, 8.83, 3.15, BLUE, 2, True)
+line(s, 2.5, 4.06, 2.5, 4.64, BLUE, 2, True)
+line(s, 7.2, 3.85, 7.2, 4.13, BLUE, 2, True)
+line(s, 7.2, 4.77, 7.2, 5.03, BLUE, 2, True)
+line(s, 4.3, 4.48, 5.2, 4.48, BLUE, 3, True)
+text(s, 'Source memory', .82, 6.02, 3.4, .44, 24, BLUE)
+node(s, 'Vocabulary\n+ copy gate', 10.03, 4.08, 2.6, 1.2, BLUE, PALEBLUE)
+line(s, 9.2, 4.69, 10.03, 4.69, BLUE, 2, True)
+route(s, [(8.8, 4.78), (8.8, 6.17), (11.3, 6.17), (11.3, 5.28)], BLUE, True)
+text(s, 'Cross-attention weights for copying', 5.25, 6.47, 7.38, .39, 22, BLUE)
+text(s, 'Next word', 10.1, 2.93, 2.55, .44, 24, BLUE, True)
+route(s, [(11.3, 4.08), (11.3, 3.55)], BLUE)
+talk(s, 65, 'Daniela Ortega',
+     'Our Transformer also has an encoder and a decoder, with four layers in each. Embeddings represent tokens, and positions provide order information. Encoder self-attention lets source tokens consult other source tokens, followed by a feed-forward transformation. In the decoder, masked self-attention sees only the summary words available so far. Cross-attention connects that decoder representation to the encoded article. Think of a query as what the decoder needs, keys as source addresses to compare it with, and values as the information it retrieves. The large horizontal arrow is that source-to-decoder connection. This particular OpenNMT checkpoint also has a vocabulary and copy mixture. It uses its final cross-attention weights for copying. The resulting distribution chooses the next summary word, then generation continues. It has about 81 million parameters.',
+     '81,468,757 parameters. Four encoder and four decoder layers, model dimension 512, eight attention heads and feed-forward dimension 2048. Positional encodings supply order information. Residual connections and layer normalization are omitted from the diagram for readability. Legacy TransformerDecoder uses the final standard cross-attention map for copying, despite constructing a separate copy-attention module. Encoder memory supplies cross-attention keys and values. The decoder supplies its query. Configuration and modules were checked against the pinned local OpenNMT checkout.', 'Emphasize the source arrow entering cross-attention.')
 
-# 06 — Three native editable charts, honest zero-based identical axes.
-s = base("BART leads most overlap metrics in this sample", "Saved benchmark • full-article track", 6,
-         "Source: reports/pilot50/results.json • F1 × 100, Porter stemming • n=50 per system")
-text(s,"Full-article track • higher reference overlap is better",.68,1.66,12,.4,23,MUTED)
-for row,name in enumerate(ORDER):
-    model_label(s,name,.68,3.23+row*.646,20,w=1.84)
-for j,(key,label) in enumerate([("rouge1","ROUGE-1"),("rouge2","ROUGE-2"),("rougeLsum","ROUGE-Lsum")]):
-    x=2.40+j*3.47
-    text(s,label,x+.05,2.30,3.32,.40,23,WHITE,True,PP_ALIGN.CENTER)
-    data=CategoryChartData()
-    data.categories=ORDER
-    data.add_series(label,[metrics['results']['full_article'][n][key] for n in ORDER])
-    chart=s.shapes.add_chart(XL_CHART_TYPE.BAR_CLUSTERED,Inches(x),Inches(2.76),Inches(3.34),Inches(3.65),data).chart
-    chart.has_legend=False
-    chart.chart_style=2
-    chart.chart_title.has_text_frame=False
-    chart.has_title=False
-    chart.font.name=FONT
-    chart.font.size=Pt(17)
-    chart.font.color.rgb=rgb(MUTED)
-    chart.chart_style=2
-    # Transparent chart and plot backgrounds retain navy in PowerPoint and PDF.
-    for parent in [chart._chartSpace, chart._chartSpace.chart.plotArea]:
-        spPr=parent.find('{http://schemas.openxmlformats.org/drawingml/2006/chart}spPr')
-        if spPr is None:
-            spPr=OxmlElement('c:spPr'); parent.append(spPr)
-        nofill=OxmlElement('a:noFill'); spPr.append(nofill)
-        ln=OxmlElement('a:ln'); ln.append(OxmlElement('a:noFill')); spPr.append(ln)
-    cat=chart.category_axis
-    cat.reverse_order=True
-    cat.tick_label_position=XL_TICK_LABEL_POSITION.NONE
-    cat.major_tick_mark=XL_TICK_MARK.NONE
-    cat.minor_tick_mark=XL_TICK_MARK.NONE
-    cat.format.line.fill.background()
-    val=chart.value_axis
-    val.minimum_scale=0
-    val.maximum_scale=50
-    val.major_unit=25
-    val.has_major_gridlines=True
-    val.major_gridlines.format.line.color.rgb=rgb(PANEL2)
-    val.major_gridlines.format.line.width=Pt(.7)
-    val.major_tick_mark=XL_TICK_MARK.NONE
-    val.minor_tick_mark=XL_TICK_MARK.NONE
-    val.format.line.fill.background()
-    val.tick_labels.font.name=FONT
-    val.tick_labels.font.size=Pt(14)
-    val.tick_labels.font.color.rgb=rgb(MUTED)
-    plot=chart.plots[0]
-    plot.gap_width=55
-    plot.has_data_labels=True
-    dl=plot.data_labels
-    dl.position=XL_DATA_LABEL_POSITION.OUTSIDE_END
-    dl.number_format='0.00'
-    dl.font.name=FONT
-    dl.font.size=Pt(16)
-    dl.font.bold=True
-    dl.font.color.rgb=rgb(WHITE)
-    for i,name in enumerate(ORDER):
-        point=chart.series[0].points[i]
-        point.format.fill.solid()
-        point.format.fill.fore_color.rgb=rgb(MODEL_COLORS[name])
-        point.format.line.fill.background()
-text(s,"Small sample. No significance claim or factual-quality winner.",.68,6.57,12,.35,22,AMBER)
+s = base('Connections help, but selection still matters', '[4] Transformer architecture • saved checkpoint observations')
+for word, x, width in [('Officials', .8, 2.8), ('lifted', 4.1, 1.8), ('the', 6.45, 1.1), ('advisory', 8.2, 3.1)]:
+    text(s, word, x, 2.7, width, .66, 38, BLUE, True)
+route(s, [(1.2, 2.47), (1.2, 1.85), (9.5, 1.85), (9.5, 2.47)], BLUE)
+text(s, 'Self-attention can connect distant source positions.', .8, 3.74, 11.7, .53, 28)
+line(s, .7, 4.55, 12.6, 4.55)
+text(s, 'Parallel across training positions\nAttention memory grows with input length', .8, 4.97, 5.7, 1.3, 24)
+text(s, 'Summary inference is sequential\nThis checkpoint still missed the lifting', 7.0, 4.97, 5.55, 1.3, 24, BLUE)
+talk(s, 45, 'Daniela Ortega',
+     'Self-attention gives words a way to connect across the source. That helps represent context, and during training many token positions can be computed in parallel. The cost is attention memory that grows with input length. Summary inference still generates one new token after another. These are general architectural properties. Our particular released checkpoint still omitted the lifting in Riverton, and separate saved development reviews found relationship and entity errors. A connection mechanism gives the model access to information. It does not ensure that it selects the central event or preserves who did what. Our comparisons also differ in training, tokenizer and decoding, so they do not isolate architecture alone.',
+     'Dense source attention storage scales quadratically in length. Relationship errors are evidence-linked AI-assisted development observations in MODEL_CAPABILITIES.md and factual_audit_review.html without human-rated prevalence. The illustrated word connection is schematic.')
 
-# 07 — Exact saved case comparison and live-demo bridge.
-s=base("A good score can still miss the headline", "Fictional Riverton diagnostic + live demo",7,
-       "Source: reports/LAPTOP_MODEL_DIAGNOSIS.md • separate from the benchmark • saved outputs")
-shape(s,.66,1.70,12.01,.83,fill=PANEL2)
-text(s,"SOURCE MAIN EVENT",.85,1.85,2.39,.25,14,TEAL,True)
-text(s,"“Riverton officials lifted a boil-water advisory Friday morning”",3.0,1.86,9.35,.42,23,TEAL,True)
-demo_excerpts={
-    'BART': 'Officials said the advisory was precautionary; contamination had not been confirmed. Two consecutive rounds of testing found no harmful bacteria.',
-    'PEGASUS': 'Riverton officials lifted a boil-water advisory Friday morning. The advisory had affected approximately 18,000 residents since Tuesday.',
-}
-for name,x in [('BART',.66),('PEGASUS',6.83)]:
-    model_label(s,name,x,2.84,25,w=5.8)
-    shape(s,x,3.36,5.84,2.48)
-    text(s,"EXACT SAVED OUTPUT EXCERPT",x+.22,3.55,5.40,.29,14,MODEL_COLORS[name],True)
-    text(s,demo_excerpts[name],x+.22,3.98,5.40,1.80,22,spacing=1.0)
-text(s,"Supported facts; resolution omitted",.72,6.05,5.8,.45,21,AMBER,True)
-text(s,"Lifting captured; repairs/tests omitted",6.88,6.05,5.8,.45,21,PURPLE,True)
-text(s,"“All the details… except the headline.”",.72,6.56,9.4,.32,19,MUTED)
-pill(s,"LIVE • ONE MODEL",10.15,6.52,2.45,TEAL,size=14)
+s = base('How the complete application works', 'Current app screenshot • implementation inspected without generation')
+s.shapes.add_picture(str(HERE / 'assets/current_app.png'), Inches(.7), Inches(1.75), width=Inches(5.2))
+text(s, 'Current local interface', .7, 5.57, 5.2, .45, 24, MUTED)
+text(s, 'Complete input still needs\na factual coverage check.', .7, 6.16, 5.25, .91, 25, TEAL, True)
+node(s, 'Article + chosen model', 6.5, 1.65, 6.0, .66)
+line(s, 9.5, 2.31, 9.5, 2.60, TEAL, 2, True)
+text(s, 'Token-capacity check', 6.6, 2.64, 5.8, .45, 26, TEAL, True, PP_ALIGN.CENTER)
+node(s, 'Fits → direct', 6.5, 3.32, 2.7, .66, size=22)
+node(s, 'Sentence-aware\nchunks', 9.8, 3.20, 2.7, .91, size=22)
+route(s, [(8.15, 3.1), (8.15, 3.32)])
+route(s, [(11.1, 3.1), (11.1, 3.20)])
+route(s, [(7.85, 3.98), (7.85, 4.28), (9.5, 4.28)])
+route(s, [(11.15, 4.11), (11.15, 4.28), (9.5, 4.28)])
+line(s, 9.5, 4.28, 9.5, 4.47, TEAL, 2, True)
+text(s, 'Generate → source-order merge', 6.5, 4.53, 6.0, .45, 25, bold=True, align=PP_ALIGN.CENTER)
+text(s, 'Exact-sentence deduplication', 6.5, 5.16, 6.0, .45, 24, align=PP_ALIGN.CENTER)
+text(s, 'Bounded consolidation if needed', 6.5, 5.78, 6.0, .45, 24, align=PP_ALIGN.CENTER)
+text(s, 'Summary + statistics', 6.5, 6.4, 6.0, .45, 26, TEAL, True, PP_ALIGN.CENTER)
+talk(s, 70, 'Biruk Anley',
+     'This is a screenshot of our current local interface. The user supplies an article and chooses a model. The system checks the article using that model’s tokenizer. If the input fits, it gets one direct source pass. Otherwise the planner groups text near sentence boundaries, splitting an oversized sentence safely when needed. Each chunk is summarized. The app joins those outputs in source order and removes exact complete-sentence duplicates. If the merged result fits the model window, it can be returned directly. If further reduction is necessary, the app uses bounded consolidation with limits on passes and total work. These choices try to avoid preventable information loss from unnecessary chunking or repeated compression. Statistics describe the request, including output words and time. Complete input processing leaves a separate question. Did the summary preserve the main event and its evidence? The current interface uses natural checkpoint generation and has a model selector without a summary-length selector.',
+     'Screenshot captured from localhost without submitting a request. app.py uses NATURAL_POLICY. Work windows contain 1024 selected-model tokens. ChunkPlanner covers exact source spans using Punkt boundaries. Deduplication compares whitespace-normalized, casefolded complete sentences. Natural-policy consolidation is needed only when the merge exceeds the source window. Limits include four consolidation passes, 96 calls, 64000 total input tokens and 120000 characters or 12000 words per article. The runtime guard is cooperative and cannot interrupt an in-flight model call. Implementation is in article_summarizer.py and processing_config.json.')
 
-# 08 — Conclusions grounded in limits and implemented work.
-s=base("We built a usable demo; factual review comes next", "Limitations + conclusion",8,
-       "Sources: MODEL_CAPABILITIES.md; PROJECT_STATUS.md; BENCHMARK_RESULTS.md; laptop diagnosis")
-for x,num,title,desc in [(.68,'01','Content selection','LSTM and Transformer can omit\nthe main event or confuse relationships.'),
-                         (.68,'02','Long articles','400-token training convention;\nlong chunks can lose connections.')]:
-    yy=1.92 if num=='01' else 4.04
-    text(s,num,x,yy,1.0,.6,35,TEAL,True)
-    text(s,title,x+1.13,yy+.02,4.6,.45,26,WHITE,True)
-    text(s,desc,x+1.13,yy+.65,5.00,1.08,23,MUTED)
-shape(s,7.31,1.91,5.32,4.65)
-panel_title(s,"WHAT WE DELIVERED",7.61,2.20,4.72,TEAL)
-text(s,"A four-model local app\nA reproducible 50-article comparison\nAn offline Ubuntu demo",7.61,2.85,4.72,1.72,25)
-panel_title(s,"NEXT: HUMAN REVIEW",7.61,4.91,4.72,AMBER)
-text(s,"Check main events, support and\nrelationships against each source.",7.61,5.49,4.72,.85,22,MUTED)
-text(s,"All four can miss facts. Different complete systems → no architecture-only verdict.",.70,6.64,12,.31,18.5,MUTED)
+s = base('How we measured reference overlap', '[5] ROUGE and Google Research implementation • frozen 50-article protocol')
+text(s, '50 fixed CNN/DailyMail 3.0.0 test articles • seed 42', .7, 1.6, 11.9, .48, 26, TEAL, True)
+text(s, 'Reference    crews lifted the advisory', .7, 2.55, 11.8, .58, 32)
+text(s, 'Candidate    officials lifted the advisory', .7, 3.26, 11.8, .58, 32, TEAL)
+line(s, .7, 4.16, 12.6, 4.16)
+for x, y, title, desc in [(.7, 4.54, 'ROUGE-1', 'Shared individual words'), (7.0, 4.54, 'ROUGE-2', 'Shared adjacent word pairs'), (.7, 5.6, 'ROUGE-L', 'Longest ordered word sequence'), (7.0, 5.6, 'ROUGE-Lsum', 'Sentence-aware union of sequences')]:
+    text(s, title, x, y, 5.6, .43, 26, TEAL, True)
+    text(s, desc, x, y + .49, 5.6, .43, 24)
+text(s, 'Reported scores are F1 × 100 with Porter stemming.', .7, 6.61, 12, .39, 22, MUTED)
+talk(s, 55, 'Biruk Anley',
+     'We used the same frozen 50 test articles and original highlights for every system. ROUGE compares the model summary with a reference. In this illustrative sentence pair, lifted the advisory appears in both texts. ROUGE-1 counts individual word overlap, while ROUGE-2 compares adjacent pairs. ROUGE-L looks for a matching sequence in order, allowing gaps. ROUGE-Lsum uses sentence-aware matching across the summary. We report F1, which balances precision and recall, multiplied by 100. Porter stemming reduces words to related forms during evaluation. A summary can earn overlap while missing the main event, and a valid paraphrase can receive less overlap. We therefore use ROUGE as one measured comparison, alongside source-grounded reading. The full-article track is our main narrative because it evaluates the application’s handling of complete source articles.',
+     'The sentence pair illustrates overlap without assigning a numerical score. Sample fingerprint dd071ed3cffed23cb5a566d3db9e7aa8c5b435bd87e130e041a619429c18f4de. tests/final_benchmark.py uses use_stemmer=True and consistent sentence segmentation for ROUGE-Lsum. Both tracks retain full reference highlights. The shared-prefix protocol and its separate results are in backup.')
 
-# References — outside the eight main slides.
-refs1=[
-    ("LSTM", "Hochreiter & Schmidhuber (1997)\nLong Short-Term Memory · Neural Computation 9(8), 1735–1780", "https://doi.org/10.1162/neco.1997.9.8.1735"),
-    ("TRANSFORMER", "Vaswani et al. (2017)\nAttention Is All You Need · NeurIPS 30", "https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html"),
-    ("COPY MIXTURE", "See, Liu & Manning (2017)\nGet To The Point · ACL, 1073–1083", "https://aclanthology.org/P17-1099/"),
-    ("BART", "Lewis et al. (2020)\nBART: Denoising Sequence-to-Sequence Pre-training · ACL", "https://aclanthology.org/2020.acl-main.703/"),
-    ("PEGASUS", "Zhang et al. (2020)\nPEGASUS: Pre-training with Extracted Gap-sentences · ICML", "https://proceedings.mlr.press/v119/zhang20ae.html"),
+s = base('Core models and a simple baseline', 'Saved full-article results • ROUGE F1 × 100 • n = 50 per system')
+results_chart(s, ['LSTM', 'Transformer', 'Lead-3'], 2.45, 3.45)
+text(s, 'Lead-3 takes the first three source sentences.', .7, 6.13, 11.9, .47, 26, bold=True)
+text(s, 'LSTM led this Transformer checkpoint on these overlap measures.', .7, 6.65, 11.9, .38, 22, MUTED)
+talk(s, 45, 'Biruk Anley',
+     'Here are the core results from the saved full-article track. LSTM scored 40.95 on ROUGE-1, Transformer 38.75, and Lead-3 40.36. LSTM led this Transformer checkpoint on the three measures shown. Lead-3 is a serious comparison because news often puts central facts early. It exceeded Transformer on these measures while requiring no generated summary. This describes whole systems on a small sample. It does not show that recurrent models are generally better than Transformers. The full four-metric table is in backup, including the separate ROUGE-L values. These are the existing benchmark results, with no new evaluation for this presentation.',
+     'Native charts read exact unrounded values from results.full_article. Visible values round to two decimals, with identical axes from 0 to 50. ROUGE-L values are 28.70856 for LSTM, 26.98862 for Transformer and 24.90873 for Lead-3. Historical training and decoding differ across systems.')
+
+s = base('Larger released comparison systems', '[6,7] Papers and released checkpoint cards • learned parameter counts')
+for i, (name, millions) in enumerate([('LSTM', 43), ('Transformer', 81), ('BART', 406), ('PEGASUS', 569)]):
+    y = 1.98 + i * 1.10
+    label(s, name, .7, y, 2.5, 24)
+    rect(s, 3.18, y + .08, millions / 569 * 2.65, .30, COLORS[name])
+    text(s, f'{millions}M', 3.18, y + .46, 2.7, .40, 24, COLORS[name], True)
+line(s, 6.35, 1.75, 6.35, 6.65)
+label(s, 'BART', 6.95, 1.94, 5.3, 30)
+text(s, 'Reconstruct corrupted text\n→ CNN/DailyMail fine-tuning', 6.95, 2.58, 5.5, 1.05, 26)
+label(s, 'PEGASUS', 6.95, 4.11, 5.3, 30)
+text(s, 'Generate removed sentences\n→ CNN/DailyMail fine-tuning', 6.95, 4.75, 5.5, 1.05, 26)
+text(s, 'Broad pretraining adds context.', 6.95, 6.24, 5.5, .65, 24, MUTED)
+talk(s, 55, 'Biruk Anley',
+     'We also integrated two larger released comparison systems. BART-large-CNN has about 406 million learned parameters. Its denoising pretraining teaches it to reconstruct corrupted text, followed by fine-tuning for CNN/DailyMail summarization. PEGASUS-CNN/DailyMail has about 569 million learned parameters. Its gap-sentence objective removes selected sentences and asks the model to generate them. The released card documents mixed pretraining on C4 and HugeNews before task fine-tuning. The size bars use a common scale. These systems bring different training histories as well as more parameters. BART uses byte-level subwords and PEGASUS uses SentencePiece. Both preserve case. They generate through vocabulary distributions, while the OpenNMT checkpoints have an explicit copy gate. We are adding comparison systems to the story using results already saved.',
+     'Exact learned parameter counts are 42,789,205 for LSTM, 81,468,757 for Transformer, 406,290,432 for BART and 568,699,904 for PEGASUS. Bars use rounded millions. PEGASUS has 570,797,056 instantiated parameters, including 2,097,152 fixed positional entries. Checkpoint IDs are facebook/bart-large-cnn and google/pegasus-cnn_dailymail, pinned in model_manifest.json.')
+
+s = base('The expanded comparison', 'Same saved full-article benchmark • ROUGE F1 × 100 • n = 50 per system')
+results_chart(s, ORDER, 2.30, 3.55)
+text(s, 'BART led ROUGE-1, ROUGE-2 and ROUGE-Lsum on this sample.', .7, 6.06, 11.95, .48, 26, ORANGE, True)
+text(s, 'PEGASUS narrowly led ROUGE-L, 30.92 to BART’s 30.88.', .7, 6.61, 11.95, .40, 24, MUTED)
+talk(s, 55, 'Daniela Ortega',
+     'This reveals the remaining systems from the same frozen comparison. We used the same 50 articles, references and saved results. BART led ROUGE-1, ROUGE-2 and ROUGE-Lsum on this sample. Its ROUGE-1 was 45.21, followed by PEGASUS at 43.81. PEGASUS narrowly led the separate flat ROUGE-L metric, 30.92 to BART’s 30.88. All five systems completed 50 requests in each of the two tracks, giving 500 completed evaluations and zero failed requests. Completion means an output was returned under the protocol. These measurements do not establish a general factual-quality winner or statistical significance. We also leave speed out because desktop and game activity contaminated the saved GPU timing context. Next, a diagnostic example shows why an aggregate overlap score cannot answer every useful question.',
+     'Charts read the same results.full_article object as the core slide. All four metrics and the common_input track appear in backup. No benchmark was rerun or tuned for the slides. The interrupted 1000-article study remains incomplete. Human factuality ratings and significance tests have not been measured for this comparison.')
+
+s = base('What did the summary leave out?', 'Exact saved excerpts • latest fictional Riverton diagnostic • separate from benchmark')
+rect(s, .7, 1.57, 11.9, 1.04, PALE)
+text(s, 'Source event     Officials lifted the advisory Friday morning.', .94, 1.87, 11.40, .49, 27, TEAL, True)
+label(s, 'BART', .7, 3.05, 5.4, 28)
+text(s, '“Two consecutive rounds of testing found no harmful bacteria.”', .7, 3.73, 5.45, 1.58, 28)
+text(s, 'Supported background.\nFull output omits the lifting.', .7, 5.41, 5.5, .95, 24, ORANGE)
+label(s, 'PEGASUS', 7.05, 3.05, 5.4, 28)
+text(s, '“Riverton officials lifted a boil-water advisory Friday morning.”', 7.05, 3.73, 5.5, 1.58, 28)
+text(s, 'Captures the lifting.\nRepair and testing evidence is absent.', 7.05, 5.41, 5.5, .95, 24, PLUM)
+text(s, 'All the details… except the headline.', .7, 6.61, 11.9, .42, 24, MUTED)
+talk(s, 100, 'Daniela Ortega',
+     'The main event in our latest fictional Riverton article is that officials lifted the boil-water advisory. Repairs, flushing and two clear testing rounds support that decision. The saved BART output includes supported background, including the testing sentence shown, but its full summary omits that the advisory ended. PEGASUS clearly captures the lifting, while omitting the repair and testing evidence. BART gives us a small all-the-details-except-the-headline moment. More precisely, it selected true secondary facts and missed the resolution. Both outputs ended naturally after processing the entire article in one pass. Cleanup or chunking did not remove the lifting from BART. For the brief demo, we will paste the saved article body, check the selected model and submit at most one request. While it runs, compare the returned summary with the source event. If the CPU takes about 30 seconds, we will continue with the complete saved outputs in backup. Check event, resolution and evidence separately. This example does not establish a general model ranking.',
+     'Exact saved excerpts. BART generated 59 tokens and PEGASUS 46 tokens before natural EOS. Each used one chunk and one call, processing the complete 2202-character, 315-word body. The banner is a shortened source-event paraphrase. The original duplicated LSTM/Transformer display remains unresolved. The reproduced LSTM output differs. Full exact outputs appear in backup and the saved assets.',
+     'Reserve about 30 seconds for CPU wait within this 100-second allocation. Submit at most one live request in class. If it is slow, use the saved output slides.')
+
+s = base('Experiments and lessons', 'Saved development evidence • current policy and earlier experiments')
+xs, widths = [.7, 4.65, 8.65], [3.55, 3.55, 3.95]
+for x, title in zip(xs, ['Attempt', 'Observation', 'Decision']):
+    text(s, title, x, 1.65, 3.6, .43, 26, TEAL, True)
+rows = [
+    ('Length presets and\npercentage targets', 'Early stops and\nsimilar outputs', 'Selector removed\nAPI remains experimental'),
+    ('Chunking and\nconsolidation', 'Repeated compression\ncould lose useful detail', 'Direct pass when fitting\nConsolidate when needed'),
+    ('Model-specific\ndecoding restoration', 'One development case\nrecovered its main claim', 'Retained checkpoint\nsearch profiles'),
+    ('Input-window\nassumptions', '400 was a training\nconvention', '1024-token app window\nwithin capacity guards'),
 ]
-s=base("References • model foundations", "References • outside timed deck",'R1',
-       "Primary publications • complete URLs in speaker notes and REFERENCES.md",main=False)
-for i,(tag,cite,url) in enumerate(refs1):
-    yy=1.75+i*.97
-    pill(s,tag,.68,yy,2.12,size=14)
-    tb=text(s,cite,3.06,yy-.01,9.54,.76,20.5)
-    for p in tb.text_frame.paragraphs:
-        for r in p.runs:
-            r.font.color.rgb=rgb(WHITE)
-            r.font.underline=False
-add_notes(s,"Reference slide, outside the 15-minute talk.\n\n"+'\n\n'.join(f'{a}: {b}\n{c}' for a,b,c in refs1)+"\n\nSee et al. is related copy-mixture literature, not a claim that these OpenNMT checkpoints implement their exact learned coverage model.")
-refs2=[
-    ("DATASET", "Hermann et al. (2015) · Nallapati et al. (2016)\nDataset origins, summarization task and version 3.0.0 card", "https://huggingface.co/datasets/abisee/cnn_dailymail"),
-    ("METRICS", "Lin (2004) · ROUGE\nGoogle Research implementation: flat L vs sentence-aware Lsum", "https://aclanthology.org/W04-1013/"),
-    ("CHECKPOINTS", "Official OpenNMT summarization releases\nfacebook/bart-large-cnn · google/pegasus-cnn_dailymail", "https://opennmt.net/OpenNMT-py/examples/summary/Summarization.html"),
-    ("OUR EVIDENCE", "PROJECT_STATUS.md · reports/pilot50/results.json\nreports/LAPTOP_MODEL_DIAGNOSIS.md · manifests and adapter code", "https://github.com/bam-maker/benchmarking-summarizer-models/tree/0a549a7197fab099b7ef8711e28e358c4b62a4b1"),
+for i, row in enumerate(rows):
+    y = 2.43 + i * 1.11
+    line(s, .7, y - .18, 12.6, y - .18)
+    for j, (x, width, value) in enumerate(zip(xs, widths, row)):
+        text(s, value, x, y, width, .88, 24, TEAL if j == 2 else INK)
+text(s, 'Length control was implementable. Extra words did not reliably add useful facts.', .7, 6.81, 11.9, .32, 20, MUTED)
+talk(s, 65, 'Daniela Ortega',
+     'We tried several engineering choices before settling on the current demo. Short, Medium and Detailed preferences, including percentage targets, were technically implementable. Actual lengths were unreliable. Models could stop early, different choices could produce similar summaries, and forcing more words did not reliably improve useful content. We removed the selector for a simpler, more predictable interface. The older API remains available for experiments. We also changed chunking and consolidation so a fitting article takes one source pass and a fitting merge avoids another compression step. Restoring model-specific search settings recovered the main claim in one saved development case, while other errors remained. Finally, we revisited an input-window assumption. The OpenNMT recipe’s 400 tokens was a training convention. The current application uses a guarded 1024-token work window, with no claim that this extends a learned quality boundary. These are documented decisions and observations, rather than a measured improvement on the frozen test sample.',
+     'Evidence includes the current README policy, FULL_ARTICLE.md length and quality diagnosis, MODEL_CAPABILITIES.md controls, quality_regression.json and natural_policy_verification.json. Targets of 15%, 25% and 35% remain experimental. Restored PEGASUS search recovered the main claim on the earlier unverified Huang development text. Raising only the minimum length did not. Saved direct checks processed that 580-OpenNMT-token source. The fixed-budget API keeps its 400-token convention. These observations support no aggregate causal improvement claim.')
+
+s = base('What we learned', 'Completed integration and frozen comparison • proposed next step')
+for y, heading, body in [(1.70, 'Built', 'A working article interface with four released summarizers.'), (2.95, 'Measured', 'BART led most reference-overlap metrics on 50 test articles.'), (4.20, 'Limited', 'Main events and supporting facts can still disappear.')]:
+    text(s, heading, .7, y, 2.15, .49, 28, TEAL, True)
+    text(s, body, 3.15, y, 9.3, 1.02, 28)
+line(s, .7, 5.65, 12.6, 5.65, TEAL, 1.5)
+text(s, 'Next step', .7, 6.03, 2.2, .5, 28, TEAL, True)
+text(s, 'Structured human review of events, relationships and evidence.', 3.15, 5.98, 9.3, 1.02, 28, bold=True)
+talk(s, 40, 'Daniela Ortega',
+     'We built an article interface and compared four released summarizers with Lead-3 on the same fixed articles. BART led most overlap metrics in this small sample. The diagnostic showed that supported details can survive while the main event disappears. Full input processing and fluent output still leave factual coverage to check. Our next useful step is structured human review of events, relationships and evidence on a separate set of articles. That remains proposed work. Thank you. The backups contain full results, checkpoint details and saved demo outputs.',
+     'The 16 main slides total 900 seconds, including one optional demo request. This redesign performed no benchmark, training, inference or production changes.')
+assert len(talks) == 16 and sum(t['duration_seconds'] for t in talks) == 900
+
+references = [
+    ('References for models', [
+        ('[2] OpenNMT summarization releases', 'Official recipe and pinned local checkpoint metadata', 'https://opennmt.net/OpenNMT-py/examples/summary/Summarization.html'),
+        ('[3] Hochreiter & Schmidhuber, 1997', 'Long Short-Term Memory', 'https://doi.org/10.1162/neco.1997.9.8.1735'),
+        ('[4] Vaswani et al., 2017', 'Attention Is All You Need', 'https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html'),
+        ('Copy mixture implementation', 'Local OpenNMT CopyGenerator and decoder modules', 'https://github.com/OpenNMT/OpenNMT-py/tree/6db7ec1b3afae28c257a0416dd947022c3b12bc0/onmt'),
+    ]),
+    ('References for data and comparison', [
+        ('[1] CNN/DailyMail dataset card', 'Configuration 3.0.0 and article/highlight fields', 'https://huggingface.co/datasets/abisee/cnn_dailymail'),
+        ('[5] Lin, 2004 and Google Research ROUGE', 'ROUGE F1, stemming and the two LCS variants', 'https://github.com/google-research/google-research/tree/master/rouge'),
+        ('[6] Lewis et al., 2020', 'BART denoising pretraining and released CNN checkpoint', 'https://aclanthology.org/2020.acl-main.703/'),
+        ('[7] Zhang et al., 2020', 'PEGASUS gap-sentence pretraining and released checkpoint', 'https://proceedings.mlr.press/v119/zhang20ae.html'),
+    ]),
 ]
-s=base("References • data, metrics and project evidence", "References • outside timed deck",'R2',
-       "Original sources and frozen repository evidence • details in REFERENCES.md",main=False)
-for i,(tag,cite,url) in enumerate(refs2):
-    yy=1.85+i*1.17
-    pill(s,tag,.68,yy,2.12,size=14)
-    tb=text(s,cite,3.06,yy-.01,9.54,1.03,21)
-    for p in tb.text_frame.paragraphs:
-        for r in p.runs:
-            r.font.color.rgb=rgb(WHITE)
-            r.font.underline=False
-add_notes(s,"References, outside the timed talk.\n\n"+'\n\n'.join(f'{a}: {b}\n{c}' for a,b,c in refs2)+"\n\nDataset origins: https://proceedings.neurips.cc/paper_files/paper/2015/hash/afdec7005cc9f14302cd0474fd0f3c96-Abstract.html\nSummarization task: https://aclanthology.org/K16-1028/\nROUGE implementation: https://github.com/google-research/google-research/tree/master/rouge")
+for title, items in references:
+    s = base(title, 'Primary sources • full links and evidence mapping in REFERENCES.md', False)
+    for i, (heading, description, url) in enumerate(items):
+        y = 1.70 + i * 1.22
+        box = text(s, heading, .7, y, 11.7, .44, 26, TEAL, True)
+        box.text_frame.paragraphs[0].runs[0].hyperlink.address = url
+        run = box.text_frame.paragraphs[0].runs[0]
+        run.font.color.rgb = rgb(TEAL)
+        run.font.underline = False
+        text(s, description, .7, y + .53, 11.7, .45, 24)
+    backup_notes(s, '\n\n'.join(f'{a}\n{b}\n{c}' for a, b, c in items) + '\n\nRelated sources include Nallapati et al. (2016), Bahdanau et al. (2015) and See et al. (2017), listed in REFERENCES.md. Local checkpoint code establishes the actual implementation. Frozen project scores come from the saved benchmark results.')
 
 
-def results_slide(track,title,num):
-    s=base(title,"Backup • complete metrics",num,"Source: reports/pilot50/results.json • F1 × 100, Porter stemming • each n=50, failed=0",main=False)
-    headers=["System","R-1","R-2","R-L","R-Lsum","Mean words"]
-    xpos=[.82,3.55,5.26,6.97,8.68,10.4]
-    widths=[2.6,1.5,1.5,1.5,1.5,2.0]
-    shape(s,.67,1.86,12.0,.69,fill=PANEL2,radius=False)
-    for x,w,h in zip(xpos,widths,headers): text(s,h,x,2.03,w,.4,21,WHITE,True)
-    for i,name in enumerate(ORDER):
-        yy=2.84+i*.66
-        shape(s,.67,yy-.10,12,.60,fill=PANEL if i%2==0 else BG,radius=False)
-        model_label(s,name,xpos[0],yy,22,w=2.6)
-        row=metrics['results'][track][name]
-        for x,w,k in zip(xpos[1:],widths[1:],["rouge1","rouge2","rougeL","rougeLsum","mean_words"]):
-            v=f"{row[k]:.2f}" if k!='mean_words' else f"{row[k]:.1f}"
-            text(s,v,x,yy,w,.4,23)
-    caution="PEGASUS narrowly leads flat R-L; BART leads R-1, R-2 and R-Lsum." if track=='full_article' else "Full references remain the target; some reference facts can lie beyond the prefix."
-    text(s,caution,.80,6.49,11.9,.4,21,AMBER)
-    add_notes(s,"Backup table. Values are loaded directly from reports/pilot50/results.json, without recomputation of ROUGE.\nAll five systems use the same 50 articles. Track: "+track+".\nNo significance test or human factuality ratings were measured.\nThe interrupted 1,000-article study remains incomplete. No benchmark timings are compared because the saved GPU context was contaminated by desktop/game activity.")
-    return s
+def table(s, headers, rows, xs, widths, y=1.9, step=.77, size=24):
+    for x, w, value in zip(xs, widths, headers):
+        text(s, value, x, y, w, .43, 22, TEAL, True)
+    line(s, .7, y + .6, 12.6, y + .6)
+    for i, row in enumerate(rows):
+        yy = y + .86 + i * step
+        for j, (x, w, value) in enumerate(zip(xs, widths, row)):
+            text(s, str(value), x, yy, w, .57, size, COLORS.get(str(value), INK), j == 0)
 
-results_slide('full_article','Full-article benchmark • all four metrics','B1')
-results_slide('common_input','Shared-prefix benchmark • separate track','B2')
 
-# Checkpoint identity backup.
-s=base("Which released checkpoints did we integrate?","Backup • provenance",'B3',
-       "Sources: checkpoint_manifest.json; model_manifest.json; MODEL_CAPABILITIES.md",main=False)
-cards=[('LSTM','42,789,205 learned','ada6_bridge_oldcopy_tagged_\nacc_54.17_ppl_11.17_e20','OpenNMT CNN/DM summarization'),
-       ('Transformer','81,468,757 learned','sum_transformer_model_\nacc_57.25_ppl_9.22_e16','OpenNMT CNN/DM summarization'),
-       ('BART','406,290,432 learned','facebook/bart-large-cnn','rev 37f520fa929c961707657b28798b30c003dd100b'),
-       ('PEGASUS','568,699,904 learned','google/pegasus-cnn_dailymail','rev 40d588fdab0cc077b80d950b300bf66ad3c75b92')]
-for i,(name,count,ck,rev) in enumerate(cards):
-    x=.67+(i%2)*6.17; y=1.77+(i//2)*2.44
-    shape(s,x,y,5.83,2.18)
-    model_label(s,name,x+.21,y+.18,25,w=5.4)
-    text(s,count,x+.22,y+.67,5.35,.36,20,MODEL_COLORS[name])
-    text(s,ck,x+.22,y+1.15,5.35,.70,19)
-    text(s,rev,x+.22,y+1.91,5.35,.22,11.7,MUTED,check=False)
-text(s,"PEGASUS: 570,797,056 instantiated; 2,097,152 fixed positional parameters.",.77,6.72,12,.24,17,MUTED)
-add_notes(s,"All four are released trained checkpoints integrated into this app. We did not train or fine-tune them.\nThe two OpenNMT model names refer to official releases with SHA-256 verification in OpenNMT_Verified_Setup/checkpoint_manifest.json.\nBART is denoising-pretrained then CNN/DM fine-tuned.\nPEGASUS's released card describes updated Mixed & Stochastic pretraining on C4 and HugeNews, followed by CNN/DM fine-tuning. Its fixed sinusoidal position tables account for 2,097,152 instantiated but non-learned parameters.\nExact full revisions are shown for recovery, not intended to be read aloud.")
+for track, title in [('full_article', 'Full-article results'), ('common_input', 'Shared-prefix results')]:
+    s = base(title, 'Frozen 50-article comparison • each system n = 50, failed = 0 • ROUGE F1 × 100', False)
+    rows = []
+    for model in ORDER:
+        v = METRICS['results'][track][model]
+        rows.append([model] + [f'{v[k]:.2f}' for k in ['rouge1', 'rouge2', 'rougeL', 'rougeLsum']] + [f'{v["mean_words"]:.1f}'])
+    table(s, ['System', 'R-1', 'R-2', 'R-L', 'R-Lsum', 'Words'], rows, [.7, 3.5, 5.2, 6.9, 8.6, 10.7], [2.6, 1.5, 1.5, 1.5, 1.9, 1.7], y=1.7)
+    message = 'BART led R-1, R-2 and R-Lsum. PEGASUS narrowly led R-L.' if track == 'full_article' else 'Identical bounded source prefix. References remain the full highlights.'
+    text(s, message, .7, 6.62, 11.9, .43, 24, MUTED)
+    backup_notes(s, 'Exact source is results.json, track ' + track + '. Values are rounded only for display. Both tracks use original references, Porter stemming, seed 42 and the same 50 IDs. The shared prefix fits 400 OpenNMT tokens and the Hugging Face tokenizer capacities. Reference facts may lie beyond that prefix. LSTM and Transformer change relative order across tracks. This presentation performed no new experiment or significance test. Saved GPU timings include competing desktop activity.')
 
-# Decoding backup.
-s=base("The demo preserves each checkpoint's search policy","Backup • decoding and input windows",'B4',
-       "Sources: current summarizer.py; hf_summarizer.py; article_summarizer.py; processing_config.json",main=False)
-headers=["System","Beam","Initial cap","Search details"]
-xs=[.81,3.12,4.52,7.23]; ws=[2.1,1.2,2.45,5.1]
-shape(s,.67,1.80,12,.7,fill=PANEL2,radius=False)
-for x,w,h in zip(xs,ws,headers): text(s,h,x,1.99,w,.4,22,WHITE,True)
-rows=[('LSTM','5','100','α=.9; coverage β=5; trigram block'),('Transformer','5','100','Same OpenNMT search recipe'),
-      ('BART','4','141 new','Length penalty 2; no-repeat 3'),('PEGASUS','8','127 new','Length penalty .8; no-repeat 0')]
-for i,row in enumerate(rows):
-    yy=2.87+i*.7
-    model_label(s,row[0],xs[0],yy,22,w=2.1)
-    for x,w,val in zip(xs[1:],ws[1:],row[1:]): text(s,val,x,yy,w,.47,20.5)
-text(s,"Natural EOS • deterministic search • bounded retries if capped",.80,6.01,11.6,.4,23,TEAL,True)
-text(s,"App work window: 1,024 tokens per chunk; historical OpenNMT training: 400.",.80,6.52,11.6,.4,20,MUTED)
-add_notes(s,"Current natural-checkpoint-v1 only. OpenNMT initial minimum is min(35, input tokens//8, cap-2). Native HF floor is56 for BART and32 for PEGASUS, bounded by input tokens//8; the adapter subtracts1 for min_new_tokens.\nOpenNMT beam5, stepwise penalty, Wu length alpha .9, summary coverage beta5, trigram repeat block with punctuation/sentence tags exempt. This is search coverage, not learned coverage attention.\nBART early_stopping=True. PEGASUS early_stopping=False. do_sample=False and forced_eos_token_id=None for HF. Hard caps256 OpenNMT and512 HF.\nFor latest body:359/359/405/368 input tokens; generated54/45/59/46 excluding EOS, all natural EOS before caps.\nHF special tokens count in their1024 positions. Historical OpenNMT400 training truncation is not a recurrent architecture ceiling. Transformer saved positions5000 are not an empirically validated quality range.")
+s = base('The two OpenNMT checkpoints', '[2] Official releases • verified metadata and tensor/vocabulary equivalence', False)
+for name, x, count, config in [
+    ('LSTM', .7, '42,789,205 learned parameters', '1 bidirectional encoder layer\n1 recurrent decoder layer\n128-dimensional embeddings\n512-dimensional hidden states\nMLP attention + copy mixture'),
+    ('Transformer', 7.0, '81,468,757 learned parameters', '4 encoder / 4 decoder layers\n512-dimensional model states\n8 attention heads\n2048-dimensional feed-forward\nPositions + copy mixture')]:
+    label(s, name, x, 1.75, 5.5, 30)
+    text(s, count, x, 2.4, 5.5, .46, 24, COLORS[name])
+    text(s, config, x, 3.25, 5.5, 2.6, 26)
+text(s, 'CNN/DailyMail summarization training is documented for both releases.', .7, 6.42, 11.9, .49, 24, MUTED)
+backup_notes(s, 'Official LSTM filename is ada6_bridge_oldcopy_tagged_acc_54.17_ppl_11.17_e20.pt. Transformer filename is sum_transformer_model_acc_57.25_ppl_9.22_e16.pt. Official URLs and SHA-256 hashes are in checkpoint_manifest.json. The compatibility checkout is OpenNMT-py 0.2.1 at commit 6db7ec1b3afae28c257a0416dd947022c3b12bc0. Inference copies have matching tensors and vocabularies to the verified downloads. Broad pretraining is undocumented. Learned coverage attention is absent. The LSTM encoder has 512 total hidden dimensions, 256 per direction. Its decoder is unidirectional with 512 hidden dimensions. Transformer final cross-attention supplies copy probabilities. The training convention was first 400 source tokens and target length 100. We integrated these releases without training them.')
 
-# Saved core outputs: truthful fallback and mismatch context.
-s=base("Saved fallback • distinct core-model outputs","Backup • exact latest Riverton outputs",'B5',
-       "Source: reports/LAPTOP_MODEL_DIAGNOSIS.md • body-only input • no new generation",main=False)
-for name,x in [('LSTM',.67),('Transformer',6.84)]:
-    model_label(s,name,x,1.85,25,w=5.8)
-    shape(s,x,2.46,5.83,3.85)
-    text(s,outputs[name],x+.22,2.69,5.39,3.55,22)
-text(s,"Original duplicate display: unresolved. Fresh direct and Gradio LSTM differed.",.77,6.32,11.85,.55,22,AMBER)
-add_notes(s,"These are the reproduced distinct outputs from the latest article, not the old fixture.\nThe user-supplied original LSTM and Transformer display strings were exactly identical. Only Transformer reproduced that shared string. Fresh LSTM direct, pipeline and live Gradio route produced the schools sentence shown here.\nModel dispatch, checkpoint classes and cache keys checked correctly; the original browser selection and response were not retained. Do not claim a confirmed routing bug, nor a proven user error.\nBoth omit the advisory lifting. Exact case and raw cleanup evidence are in reports/LAPTOP_MODEL_DIAGNOSIS.md.")
+s = base('BART and PEGASUS checkpoint details', '[6,7] Released cards, pinned revisions and local verification', False)
+for name, x, content in [
+    ('BART', .7, '406,290,432 learned parameters\n12 encoder / 12 decoder layers\n1024-dimensional states, 16 heads\nByte-level BPE, case preserved\nLearned positional embeddings'),
+    ('PEGASUS', 7.0, '568,699,904 learned parameters\n16 encoder / 16 decoder layers\n1024-dimensional states, 16 heads\nSentencePiece, case preserved\nFixed sinusoidal positions')]:
+    label(s, name, x, 1.75, 5.5, 30)
+    text(s, content, x, 2.65, 5.6, 2.85, 24)
+text(s, 'facebook/bart-large-cnn', .7, 6.2, 5.6, .55, 24, ORANGE)
+text(s, 'google/pegasus-cnn_dailymail', 7.0, 6.2, 5.6, .55, 24, PLUM)
+backup_notes(s, 'BART uses facebook/bart-large-cnn at revision 37f520fa929c961707657b28798b30c003dd100b, with model.safetensors. PEGASUS uses google/pegasus-cnn_dailymail at revision 40d588fdab0cc077b80d950b300bf66ad3c75b92, with pytorch_model.bin. Identities are pinned in model_manifest.json. PEGASUS has 570,797,056 instantiated parameters. Subtracting 2,097,152 fixed positional entries gives 568,699,904 learned parameters. Missing positional tables match deterministic sinusoids in the saved verification. The release documents Mixed & Stochastic pretraining on C4 and HugeNews. BART uses denoising pretraining. Both were subsequently fine-tuned on CNN/DailyMail. They use standard vocabulary generation. This project integrated the released weights without training or fine-tuning them.')
 
-s=base("Saved fallback • BART and PEGASUS","Backup • exact latest Riverton outputs",'B6',
-       "Source: reports/LAPTOP_MODEL_DIAGNOSIS.md • fictional diagnostic; separate from benchmark",main=False)
-for name,x in [('BART',.67),('PEGASUS',6.84)]:
-    model_label(s,name,x,1.85,25,w=5.8)
-    shape(s,x,2.46,5.83,4.04)
-    text(s,outputs[name],x+.22,2.69,5.39,3.66,21,spacing=1.0)
-text(s,"Raw BART omits lifting; PEGASUS includes it. One example does not rank general quality.",.77,6.66,11.85,.30,19,AMBER)
-add_notes(s,"Exact saved displayed outputs, suitable if live inference is slow. BART facts are supported, but advisory lifted and completed repairs are absent. It includes two consecutive test rounds with no harmful bacteria, and does not explicitly say the warning remains active.\nPEGASUS clearly includes lifted Friday, affected residents and valve failure; it omits completed repair and testing. Neither output has an identified unsupported claim, confused entity or repetition in this case.\nAll input was processed in one chunk; BART generated59 and PEGASUS46 tokens then natural EOS. Cleanup did not remove the lifting sentence from BART.")
+s = base('Current decoding settings', 'Inspected natural-checkpoint-v1 policy • deterministic search and natural EOS', False)
+table(s, ['System', 'Beam', 'Initial cap', 'Other search settings'], [
+    ['LSTM', '5', '100', 'Wu α .9 / coverage β 5'],
+    ['Transformer', '5', '100', 'Same OpenNMT recipe'],
+    ['BART', '4', '141 new', 'Length penalty 2 / no-repeat 3'],
+    ['PEGASUS', '8', '127 new', 'Length penalty .8 / no-repeat 0'],
+], [.7, 3.4, 4.8, 7.3], [2.5, 1.1, 2.2, 5.1], step=.83, size=23)
+text(s, 'Natural EOS can stop before the cap. Bounded retries handle capped output.', .7, 6.21, 11.9, .80, 26, TEAL)
+backup_notes(s, 'OpenNMT uses beam 5, min_length=min(35, input_tokens//8, cap-2), initial maximum 100, stepwise scoring, Wu length alpha 0.9 and summary search coverage beta 5. Trigram blocking exempts punctuation and sentence tags. The coverage setting belongs to search scoring. BART checkpoint min_length is 56 including decoder start, with early_stopping=True. PEGASUS min_length is 32 including start, with early_stopping=False. Natural-policy floors are bounded by input_tokens//8. The HF adapter subtracts one for min_new_tokens. Hugging Face calls use do_sample=False and forced_eos_token_id=None. Hard output caps are 256 tokens for OpenNMT and 512 for HF. Capped outputs may retry within workload guards. Exact logic is in the adapters and article_summarizer.py.')
 
-s=base("The source resolves the advisory explicitly","Backup • source facts for the demo",'B7',
-       "Source: exact latest article in reports/LAPTOP_MODEL_DIAGNOSIS.md; full body in assets/riverton_article.txt",main=False)
-for i,(tag,quote) in enumerate([
-    ('MAIN EVENT',body.split('\n\n')[0].split('. The advisory')[0]+'.'),
-    ('REPAIR', 'Repair crews replaced the damaged valve Tuesday evening.'),
-    ('TESTING','Two consecutive rounds of testing found no harmful bacteria, allowing the town to lift the advisory.')]):
-    y=1.85+i*1.52
-    pill(s,tag,.70,y,2.12,size=14)
-    text(s,quote,3.08,y-.01,9.42,1.22,25,TEAL if i==0 else WHITE)
-text(s,"315-word body • title inclusion originally uncertain; log counts match body only.",.77,6.63,11.9,.3,19,MUTED)
-add_notes(s,"These are exact source sentences from the latest user-supplied fictional Riverton article. Main event, repair completion and two clear testing rounds are separate factual checkpoints.\nThe log had315words and2202characters, exactly matching the supplied body; adding the title gives321words and2249characters. Title exclusion is strongly inferred, not text captured by the original log.\nThe full exact input body is included in presentation/assets/riverton_article.txt for the later live demo. No model was run during slide creation.")
+s = base('Training conventions and input windows', 'Checkpoint provenance and inspected application capacity guards', False)
+for y, heading, desc in [(1.75, 'Historical OpenNMT training', 'First 400 source tokens, target length 100'), (3.14, 'Current OpenNMT app work window', '1024 tokens per chunk, bounded by positional capacity'), (4.53, 'BART and PEGASUS input capacity', '1024 positions, including each tokenizer’s special tokens')]:
+    text(s, heading, .7, y, 11.9, .48, 28, TEAL, True)
+    text(s, desc, .7, y + .59, 11.9, .51, 26)
+text(s, 'A capacity setting does not establish factual quality at that length.', .7, 6.39, 11.9, .51, 26, MUTED)
+backup_notes(s, 'The OpenNMT training convention was 400 source tokens and 100 target tokens. LSTM recurrence has no learned absolute-position ceiling. Transformer saved positional buffers have length 5000, with an adapter generation ceiling of 4999. Quality at 5000 tokens has not been validated. The app uses a 1024-token source window and a 256-token output cap for OpenNMT. Hugging Face configurations allow 1024 input positions, an adapter ceiling of 1023 new output tokens and an app output cap of 512. BART includes two special source tokens and PEGASUS includes EOS. The historical fixed-budget API retains 400 tokens and explicit truncation permission. The separate shared-prefix track is bounded at 400 OpenNMT tokens.')
 
-s=base("Live-demo checklist • stay within the time box","Backup • Ubuntu offline demo",'B8',
-       "Sources: README.md; PROJECT_STATUS.md; laptop diagnosis • all preparation below is for the later class demo",main=False)
-text(s,"From the repository root, with the cached setup:",.77,1.82,11.8,.47,24,TEAL,True)
-shape(s,.70,2.49,11.95,1.04)
-text(s,"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1\n.venv/bin/python app.py --port 7860",.91,2.70,11.55,.72,21,font="DejaVu Sans Mono")
-text(s,"One shell line; open http://127.0.0.1:7860/",.80,3.75,11.6,.46,23,MUTED)
-for i,txt in enumerate(["Paste the saved body; identify the lifted-advisory sentence.","Submit at most one model; narrate while the CPU works.","After ~30 seconds, use B5/B6 saved outputs and continue."]):
-    yy=4.49+i*.65
-    text(s,str(i+1),.81,yy,.44,.41,25,TEAL,True)
-    text(s,txt,1.48,yy,10.83,.46,23)
-add_notes(s,"The displayed command is visually wrapped into two lines for readability; execute it as ONE shell line exactly:\nHF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python app.py --port 7860\n\nStop an existing app on7860 before relaunch. Do not reinstall or download during class. Prepared laptop resources were already checked offline.\nUse assets/riverton_article.txt without the title, preserve punctuation/case. If useful, prepare a result before class and clearly label it saved. Do not promise the current session is already running.\nDuring the15-minute talk generate at most one model if desired; cap the visible wait at about30seconds and switch to saved exact outputs B5/B6. Laptop cold loading and other RAM use can add delay. Do not interpret speed from the old GPU benchmark.")
+for name in ORDER[:4]:
+    s = base(f'Saved Riverton output · {name}', 'Exact reproduced display text • latest fictional diagnostic • no new generation', False)
+    label(s, name, .7, 1.7, 11.7, 30)
+    rect(s, .7, 2.47, .07, 2.8, COLORS[name])
+    text(s, OUTPUTS[name], 1.12, 2.53, 11.05, 3.2, 28)
+    observation = {'LSTM': 'Omits lifting, completed repairs and testing.', 'Transformer': 'Omits lifting, completed repairs and testing.', 'BART': 'Includes negative tests. Omits lifting and completed repairs.', 'PEGASUS': 'Includes lifting. Omits completed repairs and testing.'}[name]
+    text(s, observation, .7, 6.1, 11.9, .83, 26, COLORS[name], True)
+    backup_notes(s, 'Exact display from the latest diagnosis. ' + observation + '\nAll models received the same 315-word, 2202-character body in one chunk and one call. Input token counts were 359 for LSTM, 359 for Transformer, 405 for BART and 368 for PEGASUS. Generated token counts before natural EOS were 54, 45, 59 and 46, respectively. The original identical reported LSTM and Transformer strings match Transformer. Reproduced direct, pipeline and fresh Gradio LSTM outputs differ, including the schools sentence. Dispatch and caching checked correctly. The original browser response and selected value were not captured, leaving its cause unresolved. A routing bug has not been demonstrated. This single diagnostic cannot rank general quality.')
 
-# Embed the full main-script notes supplied by the evidence author.
-notes_path=HERE/'speaker_notes.json'
-if not notes_path.exists():
-    raise RuntimeError('speaker_notes.json must be written before final deck build')
-notes=json.loads(notes_path.read_text())
-assert len(notes)==8 and sum(n['duration_seconds'] for n in notes)==900
-for i,entry in enumerate(notes):
-    add_notes(prs.slides[i],f"MAIN SLIDE {i+1} / 8\nPresenter: {entry['presenter']}\nTime allocation: {entry['duration_seconds']} seconds (including transitions/demo).\n\n{entry['notes']}")
+s = base('The source event and its evidence', 'Exact latest Riverton sentences • body-only input preserved in demo asset', False)
+facts = [('EVENT', BODY.split('\n\n')[0].split('. The advisory')[0] + '.'), ('REPAIR', 'Repair crews replaced the damaged valve Tuesday evening.'), ('TESTING', 'Two consecutive rounds of testing found no harmful bacteria, allowing the town to lift the advisory.')]
+for i, (heading, value) in enumerate(facts):
+    y = 1.72 + i * 1.63
+    text(s, heading, .7, y, 2.1, .44, 22, TEAL, True)
+    text(s, value, 3.05, y - .02, 9.5, 1.43, 26)
+backup_notes(s, 'These are exact source sentences. The full body is in assets/riverton_article.txt, with SHA-256 648c2a202c8912f6d1fc5bbe468162d2670be52508916bbbf4ac7fd7e5457fa8. Omitting the title matches the original log counts of 315 words and 2202 characters. Title exclusion is inferred from those counts because the original log did not retain the source. This latest case is separate from the older fixture and RIVERTON_DIAGNOSIS.md.')
 
-HERE.mkdir(exist_ok=True)
-(HERE/'assets').mkdir(exist_ok=True)
-(HERE/'assets/riverton_article.txt').write_text(body,encoding='utf-8')
-(HERE/'assets/saved_demo_outputs.md').write_text('# Saved latest Riverton outputs\n\nSource: [laptop diagnosis](../../reports/LAPTOP_MODEL_DIAGNOSIS.md). LSTM is the reproduced distinct output.\n\n'+'\n\n'.join(f'## {name}\n\n{outputs[name]}' for name in ORDER[:4])+'\n',encoding='utf-8')
-with (HERE/'assets/benchmark_values.csv').open('w',newline='') as f:
-    writer=csv.writer(f, lineterminator="\n")
-    writer.writerow(['track','system','n','failed','rouge1','rouge2','rougeL','rougeLsum','mean_words'])
-    for track in ['full_article','common_input']:
+s = base('Offline demo and fallback checklist', 'Documented Ubuntu command • prepared cached environment', False)
+text(s, 'From the repository root', .7, 1.64, 11.9, .47, 28, TEAL, True)
+rect(s, .7, 2.37, 11.9, 1.31, PALE)
+text(s, 'HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1\n.venv/bin/python app.py --port 7860', .96, 2.62, 11.36, .86, 24, font='Consolas')
+text(s, 'Execute as one shell line. Open http://127.0.0.1:7860/', .7, 3.96, 11.9, .47, 24, MUTED)
+text(s, 'Paste the saved body and identify the lifted-advisory sentence.\nCheck the model name, submit one request, then read its result.\nAfter about 30 seconds, continue with the saved output slides.', .7, 4.82, 11.9, 1.55, 26)
+backup_notes(s, 'Execute this command as one shell line.\nHF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python app.py --port 7860\n\nStop an existing app on port 7860 before relaunching. Use the existing cached Ubuntu CPU setup. Cold loading can be slow. The input is assets/riverton_article.txt and full saved outputs are in assets/saved_demo_outputs.md. Read the model name with its response. Submit at most one live request and wait about 30 seconds within the slide 14 allocation. Identify saved results clearly. The redesign captured the app page without running inference, training or a benchmark.')
+
+s = base('Attention and the copy mixture', 'Local OpenNMT CopyGenerator and decoder implementation', False)
+text(s, 'Context = weighted sum of source representations', .7, 1.78, 11.9, .59, 30, TEAL, True)
+text(s, 'Attention weights depend on the current decoder query.', .7, 2.62, 11.9, .52, 26)
+line(s, .7, 3.48, 12.6, 3.48)
+text(s, 'p(word) = (1 − g) p_vocab(word) + g p_source(word)', .7, 3.97, 11.9, .68, 29, TEAL, True)
+text(s, 'g is a learned sigmoid gate. Source probability sums attention\nonto matching source words in the dynamic dictionary.', .7, 4.98, 11.9, 1.1, 26)
+text(s, 'Copying a word preserves its spelling. Selecting its role still needs checking.', .7, 6.42, 11.9, .52, 24, MUTED)
+backup_notes(s, 'CopyGenerator computes sigmoid(linear_copy(hidden)). It applies vocabulary softmax excluding PAD, scales vocabulary probabilities by 1-p_copy and source attention by p_copy, then projects through src_map and concatenates the distributions. Repeated source words accumulate through the source map. Prediction collapse handles words present in both vocabularies. LSTM uses MLP global attention. Transformer uses final cross-attention. Learned coverage attention is absent from both checkpoints. The beta 5 setting is beam-search coverage scoring.')
+
+prs.save(HERE / (STEM + '.pptx'))
+(HERE / 'assets/riverton_article.txt').write_text(BODY, encoding='utf-8')
+(HERE / 'assets/saved_demo_outputs.md').write_text('# Saved latest Riverton outputs\n\nExact reproduced display text from the [latest diagnosis](../../reports/LAPTOP_MODEL_DIAGNOSIS.md).\n\n' + '\n\n'.join(f'## {name}\n\n{OUTPUTS[name]}' for name in ORDER[:4]) + '\n', encoding='utf-8')
+(HERE / 'speaker_notes.json').write_text(json.dumps(talks, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+(HERE / 'assets/slide_manifest.json').write_text(json.dumps(slides, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+(HERE / 'assets/text_layout_audit.json').write_text(json.dumps(audit, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+with (HERE / 'assets/benchmark_values.csv').open('w', newline='', encoding='utf-8') as f:
+    writer = csv.writer(f, lineterminator='\n')
+    keys = ['n', 'failed', 'rouge1', 'rouge2', 'rougeL', 'rougeLsum', 'mean_words']
+    writer.writerow(['track', 'system'] + keys)
+    for track in ['full_article', 'common_input']:
         for name in ORDER:
-            row=metrics['results'][track][name]
-            writer.writerow([track,name,*[row[k] for k in ['n','failed','rouge1','rouge2','rougeL','rougeLsum','mean_words']]])
-outfile=HERE/'Comparing_Neural_Models_for_News_Summarization.pptx'
-prs.save(outfile)
-(HERE/'assets/slide_manifest.json').write_text(json.dumps(slide_meta,indent=2),encoding='utf-8')
-(HERE/'assets/text_layout_audit.json').write_text(json.dumps(text_audit,indent=2),encoding='utf-8')
-print(f'Wrote {outfile.name}: {len(prs.slides)} slides; eight main, two reference, eight backup.')
-issues=[v for v in text_audit if not v['fits_estimate']]
-print('Potential text height issues:',json.dumps(issues,indent=2))
+            writer.writerow([track, name] + [METRICS['results'][track][name][key] for key in keys])
+
+script = ['# Speaking script', '', 'Biruk Anley and Daniela Ortega. Sixteen main slides, 15:00 including transitions and the brief demo.', '', 'References and backups follow the timed talk. Slide 14 receives 100 seconds, including up to about 30 seconds of CPU wait.', '']
+elapsed = 0
+for entry in talks:
+    end = elapsed + entry['duration_seconds']
+    start_time = f'{elapsed // 60:02d}:{elapsed % 60:02d}'
+    end_time = f'{end // 60:02d}:{end % 60:02d}'
+    script += [f"## Slide {entry['slide']} · {entry['title']}", '', f"{entry['presenter']} · {start_time}–{end_time} · {entry['duration_seconds']} seconds", '', entry['speech'], '']
+    if entry['stage_directions']:
+        script += ['**Stage direction**', '', entry['stage_directions'], '']
+    elapsed = end
+script += ['## Demo checklist for Ubuntu', '', 'Use the existing cached setup. Stop an existing app on port 7860 before relaunching. From the repository root, run this as one shell line.', '', '```bash', 'HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python app.py --port 7860', '```', '', 'Open http://127.0.0.1:7860/. Paste [the saved body](assets/riverton_article.txt), without the title. Read the model name with its result. Submit at most one live request during the talk. After about 30 seconds, use the complete saved outputs on slides 25–28 and continue. Exact fallback text is also in [saved outputs](assets/saved_demo_outputs.md).', '', 'The earlier duplicate LSTM/Transformer display remains unresolved. Fresh direct, pipeline and Gradio checks produced a distinct LSTM output. Describe the saved reproduced outputs. Detailed evidence is in slide notes and [references](REFERENCES.md).', '', '## Guideline and preparation scope', '', 'No course guideline was located in the repository or supplied attachment. The deck follows the supplied redesign brief. This redesign captured the current app page without submitting an article. It ran no inference, training or benchmark.', '']
+(HERE / 'SPEAKING_SCRIPT.md').write_text('\n'.join(script), encoding='utf-8')
+print(f'Built {len(prs.slides)} slides, {len(talks)} main, {elapsed} seconds.')
+print('Text estimates requiring review', json.dumps([a for a in audit if not a['fits_estimate']], ensure_ascii=True))

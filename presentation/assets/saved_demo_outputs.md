@@ -1,6 +1,6 @@
 # Saved latest Riverton outputs
 
-Source: [laptop diagnosis](../../reports/LAPTOP_MODEL_DIAGNOSIS.md). LSTM is the reproduced distinct output.
+Exact reproduced display text from the [latest diagnosis](../../reports/LAPTOP_MODEL_DIAGNOSIS.md).
 
 ## LSTM
 

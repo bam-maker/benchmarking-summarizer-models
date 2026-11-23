@@ -1,0 +1,3692 @@
+[
+  {
+    "slide": 1,
+    "text": "Comparing Neural Models\rfor News Summarization",
+    "box_width": 867.5999755859375,
+    "box_height": 96.4800033569336,
+    "text_width": 398.7099914550781,
+    "text_height": 89.63999938964844,
+    "fits": true
+  },
+  {
+    "slide": 1,
+    "text": "Fictional Riverton diagnostic • condensed teaching example",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 293.1350402832031,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 1,
+    "text": "1",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 10.25,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 1,
+    "text": "Biruk Anley and Daniela Ortega",
+    "box_width": 849.5999755859375,
+    "box_height": 30.959999084472656,
+    "text_width": 308.3950500488281,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 1,
+    "text": "ARTICLE",
+    "box_width": 374.3999938964844,
+    "box_height": 28.799999237060547,
+    "text_width": 64.44999694824219,
+    "text_height": 21.925039291381836,
+    "fits": true
+  },
+  {
+    "slide": 1,
+    "text": "A valve failed. Crews repaired it.\rTwo clear tests followed.\rOfficials lifted the advisory.",
+    "box_width": 378.0,
+    "box_height": 140.39999389648438,
+    "text_width": 369.905029296875,
+    "text_height": 105.33503723144531,
+    "fits": true
+  },
+  {
+    "slide": 1,
+    "text": "SUMMARY",
+    "box_width": 381.6000061035156,
+    "box_height": 28.799999237060547,
+    "text_width": 85.9150390625,
+    "text_height": 21.925039291381836,
+    "fits": true
+  },
+  {
+    "slide": 1,
+    "text": "Officials lifted the advisory\rafter repairs and clear tests.",
+    "box_width": 385.20001220703125,
+    "box_height": 129.60000610351562,
+    "text_width": 354.0750427246094,
+    "text_height": 74.69999694824219,
+    "fits": true
+  },
+  {
+    "slide": 1,
+    "text": "The summary needs to preserve what happened.",
+    "box_width": 856.7999877929688,
+    "box_height": 39.599998474121094,
+    "text_width": 563.7150268554688,
+    "text_height": 34.105037689208984,
+    "fits": true
+  },
+  {
+    "slide": 2,
+    "text": "Our target and goals",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 312.0,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 2,
+    "text": "Project documentation • released checkpoint manifests",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 273.73504638671875,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 2,
+    "text": "2",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 10.25,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 2,
+    "text": "Compare two core models",
+    "box_width": 777.5999755859375,
+    "box_height": 34.560001373291016,
+    "text_width": 333.30999755859375,
+    "text_height": 36.540000915527344,
+    "fits": true
+  },
+  {
+    "slide": 2,
+    "text": "LSTM and Transformer summarization systems",
+    "box_width": 777.5999755859375,
+    "box_height": 34.560001373291016,
+    "text_width": 457.30999755859375,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 2,
+    "text": "Build a working interface",
+    "box_width": 777.5999755859375,
+    "box_height": 34.560001373291016,
+    "text_width": 316.9950256347656,
+    "text_height": 36.540000915527344,
+    "fits": true
+  },
+  {
+    "slide": 2,
+    "text": "Paste an article, choose a model, inspect a summary",
+    "box_width": 777.5999755859375,
+    "box_height": 34.560001373291016,
+    "text_width": 513.3200073242188,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 2,
+    "text": "Evaluate the comparison",
+    "box_width": 777.5999755859375,
+    "box_height": 34.560001373291016,
+    "text_width": 313.3699951171875,
+    "text_height": 36.540000915527344,
+    "fits": true
+  },
+  {
+    "slide": 2,
+    "text": "Reference summaries and a simple Lead-3 baseline",
+    "box_width": 777.5999755859375,
+    "box_height": 34.560001373291016,
+    "text_width": 501.8299865722656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 2,
+    "text": "Our contribution was integration, engineering and evaluation.",
+    "box_width": 864.0,
+    "box_height": 32.400001525878906,
+    "text_width": 606.4150390625,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 3,
+    "text": "CNN/DailyMail pairs articles with highlights",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 659.0999755859375,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 3,
+    "text": "[1] Dataset card, configuration 3.0.0 • exact saved test-row excerpts",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 332.7950439453125,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 3,
+    "text": "3",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 10.25,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 3,
+    "text": "287,113",
+    "box_width": 273.6000061035156,
+    "box_height": 48.959999084472656,
+    "text_width": 133.8750457763672,
+    "text_height": 46.285037994384766,
+    "fits": true
+  },
+  {
+    "slide": 3,
+    "text": "Training",
+    "box_width": 273.6000061035156,
+    "box_height": 30.959999084472656,
+    "text_width": 82.5199966430664,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 3,
+    "text": "13,368",
+    "box_width": 273.6000061035156,
+    "box_height": 48.959999084472656,
+    "text_width": 114.62503814697266,
+    "text_height": 46.285037994384766,
+    "fits": true
+  },
+  {
+    "slide": 3,
+    "text": "Validation",
+    "box_width": 273.6000061035156,
+    "box_height": 30.959999084472656,
+    "text_width": 102.8150405883789,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 3,
+    "text": "11,490",
+    "box_width": 273.6000061035156,
+    "box_height": 48.959999084472656,
+    "text_width": 114.62503814697266,
+    "text_height": 46.285037994384766,
+    "fits": true
+  },
+  {
+    "slide": 3,
+    "text": "Test",
+    "box_width": 273.6000061035156,
+    "box_height": 30.959999084472656,
+    "text_width": 44.09503936767578,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 3,
+    "text": "SAVED ARTICLE EXCERPT",
+    "box_width": 406.79998779296875,
+    "box_height": 25.200000762939453,
+    "text_width": 186.50999450683594,
+    "text_height": 21.925039291381836,
+    "fits": true
+  },
+  {
+    "slide": 3,
+    "text": "A spokesman for the team cited 'prior family commitments' as the reason Brady, 37, didn't attend the ceremony.",
+    "box_width": 397.44000244140625,
+    "box_height": 129.60000610351562,
+    "text_width": 370.75,
+    "text_height": 130.8750457763672,
+    "fits": true
+  },
+  {
+    "slide": 3,
+    "text": "REFERENCE HIGHLIGHT EXCERPT",
+    "box_width": 406.79998779296875,
+    "box_height": 25.200000762939453,
+    "text_width": 245.2050323486328,
+    "text_height": 21.925039291381836,
+    "fits": true
+  },
+  {
+    "slide": 3,
+    "text": "Brady cited 'prior family commitments' in bowing out of meeting with Obama .",
+    "box_width": 401.0400085449219,
+    "box_height": 129.60000610351562,
+    "text_width": 362.8999938964844,
+    "text_height": 105.33503723144531,
+    "fits": true
+  },
+  {
+    "slide": 3,
+    "text": "Our fixed evaluation used 50 test articles, selected with seed 42.",
+    "box_width": 860.4000244140625,
+    "box_height": 34.560001373291016,
+    "text_width": 644.3750610351562,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 4,
+    "text": "From article text to model input",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 484.8299865722656,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 4,
+    "text": "Inspected OpenNMT adapter and article planner • [2] original recipe",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 335.2750244140625,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 4,
+    "text": "4",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 10.25,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 4,
+    "text": "Check the input",
+    "box_width": 259.20001220703125,
+    "box_height": 34.560001373291016,
+    "text_width": 188.8750457763672,
+    "text_height": 34.105037689208984,
+    "fits": true
+  },
+  {
+    "slide": 4,
+    "text": "Nonempty text, valid model,\rsize and workload limits",
+    "box_width": 298.79998779296875,
+    "box_height": 72.0,
+    "text_width": 282.11505126953125,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 4,
+    "text": "Prepare OpenNMT words",
+    "box_width": 482.3999938964844,
+    "box_height": 34.560001373291016,
+    "text_width": 301.79998779296875,
+    "text_height": 34.105037689208984,
+    "fits": true
+  },
+  {
+    "slide": 4,
+    "text": "Normalize curly quotes → split sentences\rTreebank-style word tokens → lowercase",
+    "box_width": 482.3999938964844,
+    "box_height": 72.0,
+    "text_width": 406.21502685546875,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 4,
+    "text": "Saved tokenizer trace • earlier fictional Riverton fixture",
+    "box_width": 784.7999877929688,
+    "box_height": 25.920000076293945,
+    "text_width": 405.96502685546875,
+    "text_height": 21.925039291381836,
+    "fits": true
+  },
+  {
+    "slide": 4,
+    "text": "riverton | officials | lifted | a | three-day | boil-water | advisory",
+    "box_width": 802.7999877929688,
+    "box_height": 36.720001220703125,
+    "text_width": 653.7899780273438,
+    "text_height": 30.450000762939453,
+    "fits": true
+  },
+  {
+    "slide": 4,
+    "text": "Saved vocabulary + source dictionary for copying",
+    "box_width": 856.7999877929688,
+    "box_height": 34.560001373291016,
+    "text_width": 531.9500122070312,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 4,
+    "text": "Later comparison path    BART / PEGASUS use case-preserving subwords.",
+    "box_width": 864.0,
+    "box_height": 33.84000015258789,
+    "text_width": 710.6300048828125,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 5,
+    "text": "LSTM encoder–decoder with attention",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 582.27001953125,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 5,
+    "text": "[2,3] OpenNMT release and verified architecture • approximately 43M parameters",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 403.4450378417969,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 5,
+    "text": "5",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 10.25,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 5,
+    "text": "≈43M",
+    "box_width": 158.39999389648438,
+    "box_height": 35.279998779296875,
+    "text_width": 73.37496185302734,
+    "text_height": 34.105037689208984,
+    "fits": true
+  },
+  {
+    "slide": 5,
+    "text": "Word embeddings",
+    "box_width": 198.0,
+    "box_height": 61.20000076293945,
+    "text_width": 187.63999938964844,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 5,
+    "text": "Bidirectional\rLSTM encoder",
+    "box_width": 219.60000610351562,
+    "box_height": 61.20000076293945,
+    "text_width": 146.14999389648438,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 5,
+    "text": "Attention",
+    "box_width": 226.8000030517578,
+    "box_height": 61.20000076293945,
+    "text_width": 100.08503723144531,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 5,
+    "text": "encoder outputs",
+    "box_width": 158.39999389648438,
+    "box_height": 25.200000762939453,
+    "text_width": 139.2100067138672,
+    "text_height": 24.360000610351562,
+    "fits": true
+  },
+  {
+    "slide": 5,
+    "text": "Recurrent LSTM\rdecoder",
+    "box_width": 219.60000610351562,
+    "box_height": 66.95999908447266,
+    "text_width": 162.9199981689453,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 5,
+    "text": "Vocabulary + copy\rlearned mixture gate",
+    "box_width": 226.8000030517578,
+    "box_height": 66.95999908447266,
+    "text_width": 213.17495727539062,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 5,
+    "text": "initial state",
+    "box_width": 147.59991455078125,
+    "box_height": 28.799999237060547,
+    "text_width": 103.29503631591797,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 5,
+    "text": "context",
+    "box_width": 118.80000305175781,
+    "box_height": 25.920000076293945,
+    "text_width": 71.7300033569336,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 5,
+    "text": "decoder query",
+    "box_width": 182.16000366210938,
+    "box_height": 28.079999923706055,
+    "text_width": 135.0450439453125,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 5,
+    "text": "copy\rweights",
+    "box_width": 72.0,
+    "box_height": 54.0,
+    "text_width": 60.79999923706055,
+    "text_height": 44.81999969482422,
+    "fits": true
+  },
+  {
+    "slide": 5,
+    "text": "state across steps",
+    "box_width": 324.0,
+    "box_height": 28.079999923706055,
+    "text_width": 161.35504150390625,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 5,
+    "text": "Previous\rsummary word",
+    "box_width": 216.0,
+    "box_height": 68.4000015258789,
+    "text_width": 152.05999755859375,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 5,
+    "text": "Next word → summary",
+    "box_width": 255.60000610351562,
+    "box_height": 34.560001373291016,
+    "text_width": 235.11000061035156,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 6,
+    "text": "What the LSTM gives us",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 362.7300109863281,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 6,
+    "text": "Architecture tendencies and separate saved observations • latest Riverton diagnostic",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 415.2550354003906,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 6,
+    "text": "6",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 10.25,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 6,
+    "text": "43M",
+    "box_width": 288.0,
+    "box_height": 93.5999984741211,
+    "text_width": 164.75,
+    "text_height": 95.00504302978516,
+    "fits": true
+  },
+  {
+    "slide": 6,
+    "text": "parameters",
+    "box_width": 280.79998779296875,
+    "box_height": 36.0,
+    "text_width": 136.3699951171875,
+    "text_height": 34.105037689208984,
+    "fits": true
+  },
+  {
+    "slide": 6,
+    "text": "Compact weights\rAttention to the source\rCopying of source words",
+    "box_width": 522.0,
+    "box_height": 136.8000030517578,
+    "text_width": 305.47503662109375,
+    "text_height": 112.86000061035156,
+    "fits": true
+  },
+  {
+    "slide": 6,
+    "text": "RECURRENT COMPUTATION",
+    "box_width": 388.79998779296875,
+    "box_height": 25.200000762939453,
+    "text_width": 211.0350341796875,
+    "text_height": 21.925039291381836,
+    "fits": true
+  },
+  {
+    "slide": 6,
+    "text": "State updates happen in sequence.\rLong-distance selection can be difficult.",
+    "box_width": 403.20001220703125,
+    "box_height": 86.4000015258789,
+    "text_width": 388.8750305175781,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 6,
+    "text": "OBSERVED ON RIVERTON",
+    "box_width": 388.79998779296875,
+    "box_height": 25.200000762939453,
+    "text_width": 193.1199951171875,
+    "text_height": 21.925039291381836,
+    "fits": true
+  },
+  {
+    "slide": 6,
+    "text": "It retained background details\rand omitted the lifted advisory.",
+    "box_width": 399.6000061035156,
+    "box_height": 86.4000015258789,
+    "text_width": 336.7300109863281,
+    "text_height": 64.73503875732422,
+    "fits": true
+  },
+  {
+    "slide": 7,
+    "text": "Our encoder–decoder Transformer",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 525.1699829101562,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 7,
+    "text": "[2,4] Four encoder and four decoder layers • approximately 81M parameters",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 375.2450256347656,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 7,
+    "text": "7",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 10.25,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 7,
+    "text": "≈81M",
+    "box_width": 158.39999389648438,
+    "box_height": 35.279998779296875,
+    "text_width": 73.37496185302734,
+    "text_height": 34.105037689208984,
+    "fits": true
+  },
+  {
+    "slide": 7,
+    "text": "Token embeddings\r+ positions",
+    "box_width": 237.60000610351562,
+    "box_height": 61.20000076293945,
+    "text_width": 191.39503479003906,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 7,
+    "text": "Summary embeddings\r+ positions",
+    "box_width": 266.3999938964844,
+    "box_height": 61.20000076293945,
+    "text_width": 227.97999572753906,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 7,
+    "text": "ENCODER × 4",
+    "box_width": 230.39999389648438,
+    "box_height": 27.360000610351562,
+    "text_width": 114.10504150390625,
+    "text_height": 24.360000610351562,
+    "fits": true
+  },
+  {
+    "slide": 7,
+    "text": "DECODER × 4",
+    "box_width": 259.20001220703125,
+    "box_height": 27.360000610351562,
+    "text_width": 113.30999755859375,
+    "text_height": 24.360000610351562,
+    "fits": true
+  },
+  {
+    "slide": 7,
+    "text": "Self-attention",
+    "box_width": 227.52000427246094,
+    "box_height": 33.84000015258789,
+    "text_width": 154.14999389648438,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 7,
+    "text": "Feed-forward",
+    "box_width": 227.52000427246094,
+    "box_height": 33.84000015258789,
+    "text_width": 151.77999877929688,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 7,
+    "text": "Masked self-attention",
+    "box_width": 254.8800048828125,
+    "box_height": 33.84000015258789,
+    "text_width": 224.32000732421875,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 7,
+    "text": "Cross-attention",
+    "box_width": 254.8800048828125,
+    "box_height": 33.84000015258789,
+    "text_width": 171.5850372314453,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 7,
+    "text": "Feed-forward",
+    "box_width": 254.8800048828125,
+    "box_height": 33.84000015258789,
+    "text_width": 139.8699951171875,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 7,
+    "text": "Source memory",
+    "box_width": 244.8000030517578,
+    "box_height": 31.68000030517578,
+    "text_width": 159.38999938964844,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 7,
+    "text": "Vocabulary\r+ copy gate",
+    "box_width": 165.60000610351562,
+    "box_height": 75.5999984741211,
+    "text_width": 117.82495880126953,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 7,
+    "text": "Cross-attention weights for copying",
+    "box_width": 531.3599853515625,
+    "box_height": 28.079999923706055,
+    "text_width": 320.6650390625,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 7,
+    "text": "Next word",
+    "box_width": 183.60000610351562,
+    "box_height": 31.68000030517578,
+    "text_width": 109.25504302978516,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 8,
+    "text": "Connections help, but selection still matters",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 663.3350219726562,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 8,
+    "text": "[4] Transformer architecture • saved checkpoint observations",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 300.7750244140625,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 8,
+    "text": "8",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 10.25,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 8,
+    "text": "Officials",
+    "box_width": 201.60000610351562,
+    "box_height": 47.52000045776367,
+    "text_width": 136.25,
+    "text_height": 46.285037994384766,
+    "fits": true
+  },
+  {
+    "slide": 8,
+    "text": "lifted",
+    "box_width": 129.60000610351562,
+    "box_height": 47.52000045776367,
+    "text_width": 91.53504180908203,
+    "text_height": 46.285037994384766,
+    "fits": true
+  },
+  {
+    "slide": 8,
+    "text": "the",
+    "box_width": 79.19999694824219,
+    "box_height": 47.52000045776367,
+    "text_width": 61.25,
+    "text_height": 46.285037994384766,
+    "fits": true
+  },
+  {
+    "slide": 8,
+    "text": "advisory",
+    "box_width": 223.1999969482422,
+    "box_height": 47.52000045776367,
+    "text_width": 142.2899932861328,
+    "text_height": 46.285037994384766,
+    "fits": true
+  },
+  {
+    "slide": 8,
+    "text": "Self-attention can connect distant source positions.",
+    "box_width": 842.4000244140625,
+    "box_height": 38.15999984741211,
+    "text_width": 588.0,
+    "text_height": 34.105037689208984,
+    "fits": true
+  },
+  {
+    "slide": 8,
+    "text": "Parallel across training positions\rAttention memory grows with input length",
+    "box_width": 410.3999938964844,
+    "box_height": 93.5999984741211,
+    "text_width": 353.61505126953125,
+    "text_height": 90.29503631591797,
+    "fits": true
+  },
+  {
+    "slide": 8,
+    "text": "Summary inference is sequential\rThis checkpoint still missed the lifting",
+    "box_width": 399.6000061035156,
+    "box_height": 93.5999984741211,
+    "text_width": 368.3800048828125,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 9,
+    "text": "How the complete application works",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 556.175048828125,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 9,
+    "text": "Current app screenshot • implementation inspected without generation",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 352.7450256347656,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 9,
+    "text": "9",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 10.25,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 9,
+    "text": "Current local interface",
+    "box_width": 374.3999938964844,
+    "box_height": 32.400001525878906,
+    "text_width": 221.92999267578125,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 9,
+    "text": "Complete input still needs\ra factual coverage check.",
+    "box_width": 378.0,
+    "box_height": 65.5199966430664,
+    "text_width": 276.1199951171875,
+    "text_height": 62.25,
+    "fits": true
+  },
+  {
+    "slide": 9,
+    "text": "Article + chosen model",
+    "box_width": 410.3999938964844,
+    "box_height": 36.720001220703125,
+    "text_width": 232.3749542236328,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 9,
+    "text": "Token-capacity check",
+    "box_width": 417.6000061035156,
+    "box_height": 32.400001525878906,
+    "text_width": 233.77000427246094,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 9,
+    "text": "Fits → direct",
+    "box_width": 172.8000030517578,
+    "box_height": 36.720001220703125,
+    "text_width": 119.50504302978516,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 9,
+    "text": "Sentence-aware\rchunks",
+    "box_width": 172.8000030517578,
+    "box_height": 54.720001220703125,
+    "text_width": 151.8749542236328,
+    "text_height": 54.785037994384766,
+    "fits": true
+  },
+  {
+    "slide": 9,
+    "text": "Generate → source-order merge",
+    "box_width": 432.0,
+    "box_height": 32.400001525878906,
+    "text_width": 339.94000244140625,
+    "text_height": 30.450000762939453,
+    "fits": true
+  },
+  {
+    "slide": 9,
+    "text": "Exact-sentence deduplication",
+    "box_width": 432.0,
+    "box_height": 32.400001525878906,
+    "text_width": 291.155029296875,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 9,
+    "text": "Bounded consolidation if needed",
+    "box_width": 432.0,
+    "box_height": 32.400001525878906,
+    "text_width": 327.20001220703125,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 9,
+    "text": "Summary + statistics",
+    "box_width": 432.0,
+    "box_height": 32.400001525878906,
+    "text_width": 227.2899932861328,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 10,
+    "text": "How we measured reference overlap",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 557.969970703125,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 10,
+    "text": "[5] ROUGE and Google Research implementation • frozen 50-article protocol",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 375.47503662109375,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 10,
+    "text": "10",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 10,
+    "text": "50 fixed CNN/DailyMail 3.0.0 test articles • seed 42",
+    "box_width": 856.7999877929688,
+    "box_height": 34.560001373291016,
+    "text_width": 556.5250244140625,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 10,
+    "text": "Reference    crews lifted the advisory",
+    "box_width": 849.5999755859375,
+    "box_height": 41.7599983215332,
+    "text_width": 483.5199890136719,
+    "text_height": 38.97999954223633,
+    "fits": true
+  },
+  {
+    "slide": 10,
+    "text": "Candidate    officials lifted the advisory",
+    "box_width": 849.5999755859375,
+    "box_height": 41.7599983215332,
+    "text_width": 509.85504150390625,
+    "text_height": 38.97999954223633,
+    "fits": true
+  },
+  {
+    "slide": 10,
+    "text": "ROUGE-1",
+    "box_width": 403.20001220703125,
+    "box_height": 30.959999084472656,
+    "text_width": 105.24504089355469,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 10,
+    "text": "Shared individual words",
+    "box_width": 403.20001220703125,
+    "box_height": 30.959999084472656,
+    "text_width": 238.3800048828125,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 10,
+    "text": "ROUGE-2",
+    "box_width": 403.20001220703125,
+    "box_height": 30.959999084472656,
+    "text_width": 105.24504089355469,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 10,
+    "text": "Shared adjacent word pairs",
+    "box_width": 403.20001220703125,
+    "box_height": 30.959999084472656,
+    "text_width": 270.3699951171875,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 10,
+    "text": "ROUGE-L",
+    "box_width": 403.20001220703125,
+    "box_height": 30.959999084472656,
+    "text_width": 103.12000274658203,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 10,
+    "text": "Longest ordered word sequence",
+    "box_width": 403.20001220703125,
+    "box_height": 30.959999084472656,
+    "text_width": 318.5799865722656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 10,
+    "text": "ROUGE-Lsum",
+    "box_width": 403.20001220703125,
+    "box_height": 30.959999084472656,
+    "text_width": 148.6199951171875,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 10,
+    "text": "Sentence-aware union of sequences",
+    "box_width": 403.20001220703125,
+    "box_height": 30.959999084472656,
+    "text_width": 357.2650451660156,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 10,
+    "text": "Reported scores are F1 × 100 with Porter stemming.",
+    "box_width": 864.0,
+    "box_height": 28.079999923706055,
+    "text_width": 468.4599914550781,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 11,
+    "text": "Core models and a simple baseline",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 524.969970703125,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 11,
+    "text": "Saved full-article results • ROUGE F1 × 100 • n = 50 per system",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 307.4450378417969,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 11,
+    "text": "11",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 11,
+    "text": "LSTM",
+    "box_width": 169.1999969482422,
+    "box_height": 34.560001373291016,
+    "text_width": 59.515037536621094,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 11,
+    "text": "Transformer",
+    "box_width": 169.1999969482422,
+    "box_height": 34.560001373291016,
+    "text_width": 126.93000030517578,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 11,
+    "text": "Lead-3",
+    "box_width": 169.1999969482422,
+    "box_height": 34.560001373291016,
+    "text_width": 71.87503814697266,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 11,
+    "text": "ROUGE-1",
+    "box_width": 208.8000030517578,
+    "box_height": 30.959999084472656,
+    "text_width": 97.01496124267578,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 11,
+    "text": "ROUGE-2",
+    "box_width": 208.8000030517578,
+    "box_height": 30.959999084472656,
+    "text_width": 97.01496124267578,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 11,
+    "text": "ROUGE-Lsum",
+    "box_width": 208.8000030517578,
+    "box_height": 30.959999084472656,
+    "text_width": 137.01495361328125,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 11,
+    "text": "Lead-3 takes the first three source sentences.",
+    "box_width": 856.7999877929688,
+    "box_height": 33.84000015258789,
+    "text_width": 492.8399963378906,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 11,
+    "text": "LSTM led this Transformer checkpoint on these overlap measures.",
+    "box_width": 856.7999877929688,
+    "box_height": 27.360000610351562,
+    "text_width": 591.4400024414062,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 12,
+    "text": "Larger released comparison systems",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 546.3699951171875,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 12,
+    "text": "[6,7] Papers and released checkpoint cards • learned parameter counts",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 348.47503662109375,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 12,
+    "text": "12",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 12,
+    "text": "LSTM",
+    "box_width": 180.0,
+    "box_height": 34.560001373291016,
+    "text_width": 59.515037536621094,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 12,
+    "text": "43M",
+    "box_width": 194.39999389648438,
+    "box_height": 28.799999237060547,
+    "text_width": 50.625038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 12,
+    "text": "Transformer",
+    "box_width": 180.0,
+    "box_height": 34.560001373291016,
+    "text_width": 126.93000030517578,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 12,
+    "text": "81M",
+    "box_width": 194.39999389648438,
+    "box_height": 28.799999237060547,
+    "text_width": 50.625038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 12,
+    "text": "BART",
+    "box_width": 180.0,
+    "box_height": 34.560001373291016,
+    "text_width": 58.279998779296875,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 12,
+    "text": "406M",
+    "box_width": 194.39999389648438,
+    "box_height": 28.799999237060547,
+    "text_width": 62.75,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 12,
+    "text": "PEGASUS",
+    "box_width": 180.0,
+    "box_height": 34.560001373291016,
+    "text_width": 97.6500015258789,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 12,
+    "text": "569M",
+    "box_width": 194.39999389648438,
+    "box_height": 28.799999237060547,
+    "text_width": 62.75,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 12,
+    "text": "BART",
+    "box_width": 381.6000061035156,
+    "box_height": 34.560001373291016,
+    "text_width": 72.91000366210938,
+    "text_height": 36.540000915527344,
+    "fits": true
+  },
+  {
+    "slide": 12,
+    "text": "Reconstruct corrupted text\r→ CNN/DailyMail fine-tuning",
+    "box_width": 396.0,
+    "box_height": 75.5999984741211,
+    "text_width": 313.75,
+    "text_height": 64.73503875732422,
+    "fits": true
+  },
+  {
+    "slide": 12,
+    "text": "PEGASUS",
+    "box_width": 381.6000061035156,
+    "box_height": 34.560001373291016,
+    "text_width": 122.05999755859375,
+    "text_height": 36.540000915527344,
+    "fits": true
+  },
+  {
+    "slide": 12,
+    "text": "Generate removed sentences\r→ CNN/DailyMail fine-tuning",
+    "box_width": 396.0,
+    "box_height": 75.5999984741211,
+    "text_width": 314.9599914550781,
+    "text_height": 64.73503875732422,
+    "fits": true
+  },
+  {
+    "slide": 12,
+    "text": "Broad pretraining adds context.",
+    "box_width": 396.0,
+    "box_height": 46.79999923706055,
+    "text_width": 311.5750427246094,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 13,
+    "text": "The expanded comparison",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 402.6350402832031,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 13,
+    "text": "Same saved full-article benchmark • ROUGE F1 × 100 • n = 50 per system",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 358.7300109863281,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 13,
+    "text": "13",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 13,
+    "text": "LSTM",
+    "box_width": 169.1999969482422,
+    "box_height": 34.560001373291016,
+    "text_width": 59.515037536621094,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 13,
+    "text": "Transformer",
+    "box_width": 169.1999969482422,
+    "box_height": 34.560001373291016,
+    "text_width": 126.93000030517578,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 13,
+    "text": "BART",
+    "box_width": 169.1999969482422,
+    "box_height": 34.560001373291016,
+    "text_width": 58.279998779296875,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 13,
+    "text": "PEGASUS",
+    "box_width": 169.1999969482422,
+    "box_height": 34.560001373291016,
+    "text_width": 97.6500015258789,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 13,
+    "text": "Lead-3",
+    "box_width": 169.1999969482422,
+    "box_height": 34.560001373291016,
+    "text_width": 71.87503814697266,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 13,
+    "text": "ROUGE-1",
+    "box_width": 208.8000030517578,
+    "box_height": 30.959999084472656,
+    "text_width": 97.01496124267578,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 13,
+    "text": "ROUGE-2",
+    "box_width": 208.8000030517578,
+    "box_height": 30.959999084472656,
+    "text_width": 97.01496124267578,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 13,
+    "text": "ROUGE-Lsum",
+    "box_width": 208.8000030517578,
+    "box_height": 30.959999084472656,
+    "text_width": 137.01495361328125,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 13,
+    "text": "BART led ROUGE-1, ROUGE-2 and ROUGE-Lsum on this sample.",
+    "box_width": 860.4000244140625,
+    "box_height": 34.560001373291016,
+    "text_width": 685.4750366210938,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 13,
+    "text": "PEGASUS narrowly led ROUGE-L, 30.92 to BART’s 30.88.",
+    "box_width": 860.4000244140625,
+    "box_height": 28.799999237060547,
+    "text_width": 545.4750366210938,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 14,
+    "text": "What did the summary leave out?",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 515.1050415039062,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 14,
+    "text": "Exact saved excerpts • latest fictional Riverton diagnostic • separate from benchmark",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 417.0450439453125,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 14,
+    "text": "14",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 14,
+    "text": "Source event     Officials lifted the advisory Friday morning.",
+    "box_width": 820.7999877929688,
+    "box_height": 35.279998779296875,
+    "text_width": 665.0399780273438,
+    "text_height": 32.885040283203125,
+    "fits": true
+  },
+  {
+    "slide": 14,
+    "text": "BART",
+    "box_width": 388.79998779296875,
+    "box_height": 34.560001373291016,
+    "text_width": 68.19999694824219,
+    "text_height": 34.105037689208984,
+    "fits": true
+  },
+  {
+    "slide": 14,
+    "text": "“Two consecutive rounds of testing found no harmful bacteria.”",
+    "box_width": 392.3999938964844,
+    "box_height": 113.76000213623047,
+    "text_width": 322.60504150390625,
+    "text_height": 105.33503723144531,
+    "fits": true
+  },
+  {
+    "slide": 14,
+    "text": "Supported background.\rFull output omits the lifting.",
+    "box_width": 396.0,
+    "box_height": 68.4000015258789,
+    "text_width": 277.0,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 14,
+    "text": "PEGASUS",
+    "box_width": 388.79998779296875,
+    "box_height": 34.560001373291016,
+    "text_width": 114.08999633789062,
+    "text_height": 34.105037689208984,
+    "fits": true
+  },
+  {
+    "slide": 14,
+    "text": "“Riverton officials lifted a boil-water advisory Friday morning.”",
+    "box_width": 396.0,
+    "box_height": 113.76000213623047,
+    "text_width": 368.3150329589844,
+    "text_height": 69.72000122070312,
+    "fits": true
+  },
+  {
+    "slide": 14,
+    "text": "Captures the lifting.\rRepair and testing evidence is absent.",
+    "box_width": 396.0,
+    "box_height": 68.4000015258789,
+    "text_width": 372.09503173828125,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 14,
+    "text": "All the details… except the headline.",
+    "box_width": 856.7999877929688,
+    "box_height": 30.239999771118164,
+    "text_width": 357.5650329589844,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "Experiments and lessons",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 376.1650390625,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "Saved development evidence • current policy and earlier experiments",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 342.2799987792969,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "15",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "Attempt",
+    "box_width": 259.20001220703125,
+    "box_height": 30.959999084472656,
+    "text_width": 95.35504150390625,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "Observation",
+    "box_width": 259.20001220703125,
+    "box_height": 30.959999084472656,
+    "text_width": 138.23504638671875,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "Decision",
+    "box_width": 259.20001220703125,
+    "box_height": 30.959999084472656,
+    "text_width": 97.37503814697266,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "Length presets and\rpercentage targets",
+    "box_width": 255.60000610351562,
+    "box_height": 63.36000061035156,
+    "text_width": 190.44000244140625,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "Early stops and\rsimilar outputs",
+    "box_width": 255.60000610351562,
+    "box_height": 63.36000061035156,
+    "text_width": 151.85504150390625,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "Selector removed\rAPI remains experimental",
+    "box_width": 284.3999938964844,
+    "box_height": 63.36000061035156,
+    "text_width": 255.3000030517578,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "Chunking and\rconsolidation",
+    "box_width": 255.60000610351562,
+    "box_height": 63.36000061035156,
+    "text_width": 138.3750457763672,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "Repeated compression\rcould lose useful detail",
+    "box_width": 255.60000610351562,
+    "box_height": 63.36000061035156,
+    "text_width": 228.2899932861328,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "Direct pass when fitting\rConsolidate when needed",
+    "box_width": 284.3999938964844,
+    "box_height": 63.36000061035156,
+    "text_width": 259.0150451660156,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "Model-specific\rdecoding restoration",
+    "box_width": 255.60000610351562,
+    "box_height": 63.36000061035156,
+    "text_width": 207.38999938964844,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "One development case\rrecovered its main claim",
+    "box_width": 255.60000610351562,
+    "box_height": 63.36000061035156,
+    "text_width": 242.7050323486328,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "Retained checkpoint\rsearch profiles",
+    "box_width": 284.3999938964844,
+    "box_height": 63.36000061035156,
+    "text_width": 204.05503845214844,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "Input-window\rassumptions",
+    "box_width": 255.60000610351562,
+    "box_height": 63.36000061035156,
+    "text_width": 142.15504455566406,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "400 was a training\rconvention",
+    "box_width": 255.60000610351562,
+    "box_height": 63.36000061035156,
+    "text_width": 181.99000549316406,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "1024-token app window\rwithin capacity guards",
+    "box_width": 284.3999938964844,
+    "box_height": 63.36000061035156,
+    "text_width": 241.39503479003906,
+    "text_height": 59.765037536621094,
+    "fits": true
+  },
+  {
+    "slide": 15,
+    "text": "Length control was implementable. Extra words did not reliably add useful facts.",
+    "box_width": 856.7999877929688,
+    "box_height": 23.040000915527344,
+    "text_width": 654.47998046875,
+    "text_height": 24.360000610351562,
+    "fits": true
+  },
+  {
+    "slide": 16,
+    "text": "What we learned",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 265.3850402832031,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 16,
+    "text": "Completed integration and frozen comparison • proposed next step",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 331.7550354003906,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 16,
+    "text": "16",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 16,
+    "text": "Built",
+    "box_width": 154.8000030517578,
+    "box_height": 35.279998779296875,
+    "text_width": 60.625038146972656,
+    "text_height": 34.105037689208984,
+    "fits": true
+  },
+  {
+    "slide": 16,
+    "text": "A working article interface with four released summarizers.",
+    "box_width": 669.5999755859375,
+    "box_height": 73.44000244140625,
+    "text_width": 517.925048828125,
+    "text_height": 69.72000122070312,
+    "fits": true
+  },
+  {
+    "slide": 16,
+    "text": "Measured",
+    "box_width": 154.8000030517578,
+    "box_height": 35.279998779296875,
+    "text_width": 123.80999755859375,
+    "text_height": 34.105037689208984,
+    "fits": true
+  },
+  {
+    "slide": 16,
+    "text": "BART led most reference-overlap metrics on 50 test articles.",
+    "box_width": 669.5999755859375,
+    "box_height": 73.44000244140625,
+    "text_width": 590.6650390625,
+    "text_height": 69.72000122070312,
+    "fits": true
+  },
+  {
+    "slide": 16,
+    "text": "Limited",
+    "box_width": 154.8000030517578,
+    "box_height": 35.279998779296875,
+    "text_width": 93.28504180908203,
+    "text_height": 34.105037689208984,
+    "fits": true
+  },
+  {
+    "slide": 16,
+    "text": "Main events and supporting facts can still disappear.",
+    "box_width": 669.5999755859375,
+    "box_height": 73.44000244140625,
+    "text_width": 599.425048828125,
+    "text_height": 34.105037689208984,
+    "fits": true
+  },
+  {
+    "slide": 16,
+    "text": "Next step",
+    "box_width": 158.39999389648438,
+    "box_height": 36.0,
+    "text_width": 116.90503692626953,
+    "text_height": 34.105037689208984,
+    "fits": true
+  },
+  {
+    "slide": 16,
+    "text": "Structured human review of events, relationships and evidence.",
+    "box_width": 669.5999755859375,
+    "box_height": 73.44000244140625,
+    "text_width": 629.8599853515625,
+    "text_height": 69.72000122070312,
+    "fits": true
+  },
+  {
+    "slide": 17,
+    "text": "References for models",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 340.6250305175781,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 17,
+    "text": "Primary sources • full links and evidence mapping in REFERENCES.md",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 339.8500061035156,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 17,
+    "text": "17",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 17,
+    "text": "[2] OpenNMT summarization releases",
+    "box_width": 842.4000244140625,
+    "box_height": 31.68000030517578,
+    "text_width": 414.6400146484375,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 17,
+    "text": "Official recipe and pinned local checkpoint metadata",
+    "box_width": 842.4000244140625,
+    "box_height": 32.400001525878906,
+    "text_width": 516.4550170898438,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 17,
+    "text": "[3] Hochreiter & Schmidhuber, 1997",
+    "box_width": 842.4000244140625,
+    "box_height": 31.68000030517578,
+    "text_width": 392.989990234375,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 17,
+    "text": "Long Short-Term Memory",
+    "box_width": 842.4000244140625,
+    "box_height": 32.400001525878906,
+    "text_width": 255.47999572753906,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 17,
+    "text": "[4] Vaswani et al., 2017",
+    "box_width": 842.4000244140625,
+    "box_height": 31.68000030517578,
+    "text_width": 256.35504150390625,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 17,
+    "text": "Attention Is All You Need",
+    "box_width": 842.4000244140625,
+    "box_height": 32.400001525878906,
+    "text_width": 246.27000427246094,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 17,
+    "text": "Copy mixture implementation",
+    "box_width": 842.4000244140625,
+    "box_height": 31.68000030517578,
+    "text_width": 329.9599914550781,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 17,
+    "text": "Local OpenNMT CopyGenerator and decoder modules",
+    "box_width": 842.4000244140625,
+    "box_height": 32.400001525878906,
+    "text_width": 532.0350341796875,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 18,
+    "text": "References for data and comparison",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 546.1400146484375,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 18,
+    "text": "Primary sources • full links and evidence mapping in REFERENCES.md",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 339.8500061035156,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 18,
+    "text": "18",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 18,
+    "text": "[1] CNN/DailyMail dataset card",
+    "box_width": 842.4000244140625,
+    "box_height": 31.68000030517578,
+    "text_width": 342.6099853515625,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 18,
+    "text": "Configuration 3.0.0 and article/highlight fields",
+    "box_width": 842.4000244140625,
+    "box_height": 32.400001525878906,
+    "text_width": 451.7950439453125,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 18,
+    "text": "[5] Lin, 2004 and Google Research ROUGE",
+    "box_width": 842.4000244140625,
+    "box_height": 31.68000030517578,
+    "text_width": 454.9950256347656,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 18,
+    "text": "ROUGE F1, stemming and the two LCS variants",
+    "box_width": 842.4000244140625,
+    "box_height": 32.400001525878906,
+    "text_width": 457.175048828125,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 18,
+    "text": "[6] Lewis et al., 2020",
+    "box_width": 842.4000244140625,
+    "box_height": 31.68000030517578,
+    "text_width": 227.07000732421875,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 18,
+    "text": "BART denoising pretraining and released CNN checkpoint",
+    "box_width": 842.4000244140625,
+    "box_height": 32.400001525878906,
+    "text_width": 560.8050537109375,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 18,
+    "text": "[7] Zhang et al., 2020",
+    "box_width": 842.4000244140625,
+    "box_height": 31.68000030517578,
+    "text_width": 232.57000732421875,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 18,
+    "text": "PEGASUS gap-sentence pretraining and released checkpoint",
+    "box_width": 842.4000244140625,
+    "box_height": 32.400001525878906,
+    "text_width": 587.1900024414062,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "Full-article results",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 274.84503173828125,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "Frozen 50-article comparison • each system n = 50, failed = 0 • ROUGE F1 × 100",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 389.9599914550781,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "19",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "System",
+    "box_width": 187.1999969482422,
+    "box_height": 30.959999084472656,
+    "text_width": 70.16000366210938,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "R-1",
+    "box_width": 108.0,
+    "box_height": 30.959999084472656,
+    "text_width": 35.25,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "R-2",
+    "box_width": 108.0,
+    "box_height": 30.959999084472656,
+    "text_width": 35.25,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "R-L",
+    "box_width": 108.0,
+    "box_height": 30.959999084472656,
+    "text_width": 33.375038146972656,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "R-Lsum",
+    "box_width": 136.8000030517578,
+    "box_height": 30.959999084472656,
+    "text_width": 71.75,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "Words",
+    "box_width": 122.4000015258789,
+    "box_height": 30.959999084472656,
+    "text_width": 64.12000274658203,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "LSTM",
+    "box_width": 187.1999969482422,
+    "box_height": 41.039920806884766,
+    "text_width": 59.515037536621094,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "40.95",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "20.34",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "28.71",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "38.22",
+    "box_width": 136.8000030517578,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "55.0",
+    "box_width": 122.4000015258789,
+    "box_height": 41.039920806884766,
+    "text_width": 47.75,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "Transformer",
+    "box_width": 187.1999969482422,
+    "box_height": 41.039920806884766,
+    "text_width": 126.93000030517578,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "38.75",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "17.35",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "26.99",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "36.09",
+    "box_width": 136.8000030517578,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "47.4",
+    "box_width": 122.4000015258789,
+    "box_height": 41.039920806884766,
+    "text_width": 47.75,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "BART",
+    "box_width": 187.1999969482422,
+    "box_height": 41.039920806884766,
+    "text_width": 58.279998779296875,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "45.21",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "22.50",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "30.88",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "42.73",
+    "box_width": 136.8000030517578,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "77.4",
+    "box_width": 122.4000015258789,
+    "box_height": 41.039920806884766,
+    "text_width": 47.75,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "PEGASUS",
+    "box_width": 187.1999969482422,
+    "box_height": 41.039920806884766,
+    "text_width": 97.6500015258789,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "43.81",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "22.43",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "30.92",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "40.91",
+    "box_width": 136.8000030517578,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "68.9",
+    "box_width": 122.4000015258789,
+    "box_height": 41.039920806884766,
+    "text_width": 47.75,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "Lead-3",
+    "box_width": 187.1999969482422,
+    "box_height": 41.039920806884766,
+    "text_width": 71.87503814697266,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "40.36",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "18.28",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "24.91",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "36.30",
+    "box_width": 136.8000030517578,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "74.4",
+    "box_width": 122.4000015258789,
+    "box_height": 41.039920806884766,
+    "text_width": 47.75,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 19,
+    "text": "BART led R-1, R-2 and R-Lsum. PEGASUS narrowly led R-L.",
+    "box_width": 856.7999877929688,
+    "box_height": 30.959999084472656,
+    "text_width": 563.77001953125,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "Shared-prefix results",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 317.5199890136719,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "Frozen 50-article comparison • each system n = 50, failed = 0 • ROUGE F1 × 100",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 389.9599914550781,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "20",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "System",
+    "box_width": 187.1999969482422,
+    "box_height": 30.959999084472656,
+    "text_width": 70.16000366210938,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "R-1",
+    "box_width": 108.0,
+    "box_height": 30.959999084472656,
+    "text_width": 35.25,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "R-2",
+    "box_width": 108.0,
+    "box_height": 30.959999084472656,
+    "text_width": 35.25,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "R-L",
+    "box_width": 108.0,
+    "box_height": 30.959999084472656,
+    "text_width": 33.375038146972656,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "R-Lsum",
+    "box_width": 136.8000030517578,
+    "box_height": 30.959999084472656,
+    "text_width": 71.75,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "Words",
+    "box_width": 122.4000015258789,
+    "box_height": 30.959999084472656,
+    "text_width": 64.12000274658203,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "LSTM",
+    "box_width": 187.1999969482422,
+    "box_height": 41.039920806884766,
+    "text_width": 59.515037536621094,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "38.14",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "18.33",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "26.82",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "35.53",
+    "box_width": 136.8000030517578,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "50.2",
+    "box_width": 122.4000015258789,
+    "box_height": 41.039920806884766,
+    "text_width": 47.75,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "Transformer",
+    "box_width": 187.1999969482422,
+    "box_height": 41.039920806884766,
+    "text_width": 126.93000030517578,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "39.09",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "18.61",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "28.18",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "35.95",
+    "box_width": 136.8000030517578,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "46.7",
+    "box_width": 122.4000015258789,
+    "box_height": 41.039920806884766,
+    "text_width": 47.75,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "BART",
+    "box_width": 187.1999969482422,
+    "box_height": 41.039920806884766,
+    "text_width": 58.279998779296875,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "43.83",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "20.71",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "30.37",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "40.73",
+    "box_width": 136.8000030517578,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "62.5",
+    "box_width": 122.4000015258789,
+    "box_height": 41.039920806884766,
+    "text_width": 47.75,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "PEGASUS",
+    "box_width": 187.1999969482422,
+    "box_height": 41.039920806884766,
+    "text_width": 97.6500015258789,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "42.59",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "21.34",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "30.24",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "39.88",
+    "box_width": 136.8000030517578,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "53.9",
+    "box_width": 122.4000015258789,
+    "box_height": 41.039920806884766,
+    "text_width": 47.75,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "Lead-3",
+    "box_width": 187.1999969482422,
+    "box_height": 41.039920806884766,
+    "text_width": 71.87503814697266,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "40.36",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "18.28",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "24.91",
+    "box_width": 108.0,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "36.30",
+    "box_width": 136.8000030517578,
+    "box_height": 41.039920806884766,
+    "text_width": 59.875038146972656,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "74.4",
+    "box_width": 122.4000015258789,
+    "box_height": 41.039920806884766,
+    "text_width": 47.75,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 20,
+    "text": "Identical bounded source prefix. References remain the full highlights.",
+    "box_width": 856.7999877929688,
+    "box_height": 30.959999084472656,
+    "text_width": 685.8650512695312,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 21,
+    "text": "The two OpenNMT checkpoints",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 479.239990234375,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 21,
+    "text": "[2] Official releases • verified metadata and tensor/vocabulary equivalence",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 367.3150329589844,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 21,
+    "text": "21",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 21,
+    "text": "LSTM",
+    "box_width": 396.0,
+    "box_height": 34.560001373291016,
+    "text_width": 74.33000183105469,
+    "text_height": 36.540000915527344,
+    "fits": true
+  },
+  {
+    "slide": 21,
+    "text": "42,789,205 learned parameters",
+    "box_width": 396.0,
+    "box_height": 33.119998931884766,
+    "text_width": 311.3350524902344,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 21,
+    "text": "1 bidirectional encoder layer\r1 recurrent decoder layer\r128-dimensional embeddings\r512-dimensional hidden states\rMLP attention + copy mixture",
+    "box_width": 396.0,
+    "box_height": 187.1999969482422,
+    "text_width": 329.25,
+    "text_height": 163.94503784179688,
+    "fits": true
+  },
+  {
+    "slide": 21,
+    "text": "Transformer",
+    "box_width": 396.0,
+    "box_height": 34.560001373291016,
+    "text_width": 158.5950469970703,
+    "text_height": 36.540000915527344,
+    "fits": true
+  },
+  {
+    "slide": 21,
+    "text": "81,468,757 learned parameters",
+    "box_width": 396.0,
+    "box_height": 33.119998931884766,
+    "text_width": 311.3350524902344,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 21,
+    "text": "4 encoder / 4 decoder layers\r512-dimensional model states\r8 attention heads\r2048-dimensional feed-forward\rPositions + copy mixture",
+    "box_width": 396.0,
+    "box_height": 187.1999969482422,
+    "text_width": 339.3050537109375,
+    "text_height": 163.94503784179688,
+    "fits": true
+  },
+  {
+    "slide": 21,
+    "text": "CNN/DailyMail summarization training is documented for both releases.",
+    "box_width": 856.7999877929688,
+    "box_height": 35.279998779296875,
+    "text_width": 705.0800170898438,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 22,
+    "text": "BART and PEGASUS checkpoint details",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 578.469970703125,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 22,
+    "text": "[6,7] Released cards, pinned revisions and local verification",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 289.1300048828125,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 22,
+    "text": "22",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 22,
+    "text": "BART",
+    "box_width": 396.0,
+    "box_height": 34.560001373291016,
+    "text_width": 72.91000366210938,
+    "text_height": 36.540000915527344,
+    "fits": true
+  },
+  {
+    "slide": 22,
+    "text": "406,290,432 learned parameters\r12 encoder / 12 decoder layers\r1024-dimensional states, 16 heads\rByte-level BPE, case preserved\rLearned positional embeddings",
+    "box_width": 403.20001220703125,
+    "box_height": 205.1999969482422,
+    "text_width": 341.95001220703125,
+    "text_height": 151.35504150390625,
+    "fits": true
+  },
+  {
+    "slide": 22,
+    "text": "PEGASUS",
+    "box_width": 396.0,
+    "box_height": 34.560001373291016,
+    "text_width": 122.05999755859375,
+    "text_height": 36.540000915527344,
+    "fits": true
+  },
+  {
+    "slide": 22,
+    "text": "568,699,904 learned parameters\r16 encoder / 16 decoder layers\r1024-dimensional states, 16 heads\rSentencePiece, case preserved\rFixed sinusoidal positions",
+    "box_width": 403.20001220703125,
+    "box_height": 205.1999969482422,
+    "text_width": 341.95001220703125,
+    "text_height": 151.35504150390625,
+    "fits": true
+  },
+  {
+    "slide": 22,
+    "text": "facebook/bart-large-cnn",
+    "box_width": 403.20001220703125,
+    "box_height": 39.599998474121094,
+    "text_width": 242.6250457763672,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 22,
+    "text": "google/pegasus-cnn_dailymail",
+    "box_width": 403.20001220703125,
+    "box_height": 39.599998474121094,
+    "text_width": 300.3900146484375,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "Current decoding settings",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 390.6700134277344,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "Inspected natural-checkpoint-v1 policy • deterministic search and natural EOS",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 381.4800109863281,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "23",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "System",
+    "box_width": 180.0,
+    "box_height": 30.959999084472656,
+    "text_width": 70.16000366210938,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "Beam",
+    "box_width": 79.19999694824219,
+    "box_height": 30.959999084472656,
+    "text_width": 57.25,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "Initial cap",
+    "box_width": 158.39999389648438,
+    "box_height": 30.959999084472656,
+    "text_width": 93.99504089355469,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "Other search settings",
+    "box_width": 367.20001220703125,
+    "box_height": 30.959999084472656,
+    "text_width": 198.52999877929688,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "LSTM",
+    "box_width": 180.0,
+    "box_height": 41.039920806884766,
+    "text_width": 57.150001525878906,
+    "text_height": 28.015039443969727,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "5",
+    "box_width": 79.19999694824219,
+    "box_height": 41.039920806884766,
+    "text_width": 16.87504005432129,
+    "text_height": 28.015039443969727,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "100",
+    "box_width": 158.39999389648438,
+    "box_height": 41.039920806884766,
+    "text_width": 40.125038146972656,
+    "text_height": 28.015039443969727,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "Wu α .9 / coverage β 5",
+    "box_width": 367.20001220703125,
+    "box_height": 41.039920806884766,
+    "text_width": 215.77503967285156,
+    "text_height": 28.015039443969727,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "Transformer",
+    "box_width": 180.0,
+    "box_height": 41.039920806884766,
+    "text_width": 121.6500015258789,
+    "text_height": 28.015039443969727,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "5",
+    "box_width": 79.19999694824219,
+    "box_height": 41.039920806884766,
+    "text_width": 16.87504005432129,
+    "text_height": 28.015039443969727,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "100",
+    "box_width": 158.39999389648438,
+    "box_height": 41.039920806884766,
+    "text_width": 40.125038146972656,
+    "text_height": 28.015039443969727,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "Same OpenNMT recipe",
+    "box_width": 367.20001220703125,
+    "box_height": 41.039920806884766,
+    "text_width": 221.82000732421875,
+    "text_height": 28.015039443969727,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "BART",
+    "box_width": 180.0,
+    "box_height": 41.039920806884766,
+    "text_width": 55.92504119873047,
+    "text_height": 28.015039443969727,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "4",
+    "box_width": 79.19999694824219,
+    "box_height": 41.039920806884766,
+    "text_width": 16.87504005432129,
+    "text_height": 28.015039443969727,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "141 new",
+    "box_width": 158.39999389648438,
+    "box_height": 41.039920806884766,
+    "text_width": 85.38999938964844,
+    "text_height": 28.015039443969727,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "Length penalty 2 / no-repeat 3",
+    "box_width": 367.20001220703125,
+    "box_height": 41.039920806884766,
+    "text_width": 290.0050354003906,
+    "text_height": 28.015039443969727,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "PEGASUS",
+    "box_width": 180.0,
+    "box_height": 41.039920806884766,
+    "text_width": 93.6650390625,
+    "text_height": 28.015039443969727,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "8",
+    "box_width": 79.19999694824219,
+    "box_height": 41.039920806884766,
+    "text_width": 16.87504005432129,
+    "text_height": 28.015039443969727,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "127 new",
+    "box_width": 158.39999389648438,
+    "box_height": 41.039920806884766,
+    "text_width": 85.38999938964844,
+    "text_height": 28.015039443969727,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "Length penalty .8 / no-repeat 0",
+    "box_width": 367.20001220703125,
+    "box_height": 41.039920806884766,
+    "text_width": 295.7550354003906,
+    "text_height": 28.015039443969727,
+    "fits": true
+  },
+  {
+    "slide": 23,
+    "text": "Natural EOS can stop before the cap. Bounded retries handle capped output.",
+    "box_width": 856.7999877929688,
+    "box_height": 57.599998474121094,
+    "text_width": 812.6500244140625,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 24,
+    "text": "Training conventions and input windows",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 612.3350219726562,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 24,
+    "text": "Checkpoint provenance and inspected application capacity guards",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 323.0450439453125,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 24,
+    "text": "24",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 24,
+    "text": "Historical OpenNMT training",
+    "box_width": 856.7999877929688,
+    "box_height": 34.560001373291016,
+    "text_width": 338.0050354003906,
+    "text_height": 34.105037689208984,
+    "fits": true
+  },
+  {
+    "slide": 24,
+    "text": "First 400 source tokens, target length 100",
+    "box_width": 856.7999877929688,
+    "box_height": 36.720001220703125,
+    "text_width": 441.6199951171875,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 24,
+    "text": "Current OpenNMT app work window",
+    "box_width": 856.7999877929688,
+    "box_height": 34.560001373291016,
+    "text_width": 436.5150451660156,
+    "text_height": 34.105037689208984,
+    "fits": true
+  },
+  {
+    "slide": 24,
+    "text": "1024 tokens per chunk, bounded by positional capacity",
+    "box_width": 856.7999877929688,
+    "box_height": 36.720001220703125,
+    "text_width": 586.3150634765625,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 24,
+    "text": "BART and PEGASUS input capacity",
+    "box_width": 856.7999877929688,
+    "box_height": 34.560001373291016,
+    "text_width": 402.8750305175781,
+    "text_height": 34.105037689208984,
+    "fits": true
+  },
+  {
+    "slide": 24,
+    "text": "1024 positions, including each tokenizer’s special tokens",
+    "box_width": 856.7999877929688,
+    "box_height": 36.720001220703125,
+    "text_width": 597.2950439453125,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 24,
+    "text": "A capacity setting does not establish factual quality at that length.",
+    "box_width": 856.7999877929688,
+    "box_height": 36.720001220703125,
+    "text_width": 699.6599731445312,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 25,
+    "text": "Saved Riverton output · LSTM",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 449.9950256347656,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 25,
+    "text": "Exact reproduced display text • latest fictional diagnostic • no new generation",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 381.655029296875,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 25,
+    "text": "25",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 25,
+    "text": "LSTM",
+    "box_width": 842.4000244140625,
+    "box_height": 34.560001373291016,
+    "text_width": 74.33000183105469,
+    "text_height": 36.540000915527344,
+    "fits": true
+  },
+  {
+    "slide": 25,
+    "text": "the advisory had affected 18,000 residents since tuesday. water pressure dropped across several neighborhoods, creating a risk that contaminants could enter the distribution system. two schools closed wednesday because they could not provide sufficient drinking water, but reopened thursday after bottled supplies arrived.",
+    "box_width": 795.5999755859375,
+    "box_height": 230.39999389648438,
+    "text_width": 792.7899780273438,
+    "text_height": 176.56503295898438,
+    "fits": true
+  },
+  {
+    "slide": 25,
+    "text": "Omits lifting, completed repairs and testing.",
+    "box_width": 856.7999877929688,
+    "box_height": 59.7599983215332,
+    "text_width": 480.79998779296875,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 26,
+    "text": "Saved Riverton output · Transformer",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 550.989990234375,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 26,
+    "text": "Exact reproduced display text • latest fictional diagnostic • no new generation",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 381.655029296875,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 26,
+    "text": "26",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 26,
+    "text": "Transformer",
+    "box_width": 842.4000244140625,
+    "box_height": 34.560001373291016,
+    "text_width": 158.5950469970703,
+    "text_height": 36.540000915527344,
+    "fits": true
+  },
+  {
+    "slide": 26,
+    "text": "the advisory had affected approximately 18,000 residents since tuesday. water pressure dropped across several neighborhoods, creating a risk that contaminants could enter the distribution system. the town will cover the expense through its emergency reserve.",
+    "box_width": 795.5999755859375,
+    "box_height": 230.39999389648438,
+    "text_width": 789.9099731445312,
+    "text_height": 140.9499969482422,
+    "fits": true
+  },
+  {
+    "slide": 26,
+    "text": "Omits lifting, completed repairs and testing.",
+    "box_width": 856.7999877929688,
+    "box_height": 59.7599983215332,
+    "text_width": 480.79998779296875,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 27,
+    "text": "Saved Riverton output · BART",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 448.1450500488281,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 27,
+    "text": "Exact reproduced display text • latest fictional diagnostic • no new generation",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 381.655029296875,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 27,
+    "text": "27",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 27,
+    "text": "BART",
+    "box_width": 842.4000244140625,
+    "box_height": 34.560001373291016,
+    "text_width": 72.91000366210938,
+    "text_height": 36.540000915527344,
+    "fits": true
+  },
+  {
+    "slide": 27,
+    "text": "A control valve failed during maintenance at the town’s main pumping station. Water pressure dropped across several neighborhoods, creating a risk that contaminants could enter the distribution system. Officials said the advisory was precautionary; contamination had not been confirmed. Two consecutive rounds of testing found no harmful bacteria.",
+    "box_width": 795.5999755859375,
+    "box_height": 230.39999389648438,
+    "text_width": 769.3750610351562,
+    "text_height": 212.17999267578125,
+    "fits": true
+  },
+  {
+    "slide": 27,
+    "text": "Includes negative tests. Omits lifting and completed repairs.",
+    "box_width": 856.7999877929688,
+    "box_height": 59.7599983215332,
+    "text_width": 651.8699951171875,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 28,
+    "text": "Saved Riverton output · PEGASUS",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 507.1950378417969,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 28,
+    "text": "Exact reproduced display text • latest fictional diagnostic • no new generation",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 381.655029296875,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 28,
+    "text": "28",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 28,
+    "text": "PEGASUS",
+    "box_width": 842.4000244140625,
+    "box_height": 34.560001373291016,
+    "text_width": 122.05999755859375,
+    "text_height": 36.540000915527344,
+    "fits": true
+  },
+  {
+    "slide": 28,
+    "text": "Riverton officials lifted a boil-water advisory Friday morning. The advisory had affected approximately 18,000 residents since Tuesday. The disruption began when a control valve failed during maintenance at the town’s main pumping station.",
+    "box_width": 795.5999755859375,
+    "box_height": 230.39999389648438,
+    "text_width": 791.8750610351562,
+    "text_height": 140.9499969482422,
+    "fits": true
+  },
+  {
+    "slide": 28,
+    "text": "Includes lifting. Omits completed repairs and testing.",
+    "box_width": 856.7999877929688,
+    "box_height": 59.7599983215332,
+    "text_width": 576.1699829101562,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 29,
+    "text": "The source event and its evidence",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 513.219970703125,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 29,
+    "text": "Exact latest Riverton sentences • body-only input preserved in demo asset",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 364.2099914550781,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 29,
+    "text": "29",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 29,
+    "text": "EVENT",
+    "box_width": 151.1999969482422,
+    "box_height": 31.68000030517578,
+    "text_width": 64.87503814697266,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 29,
+    "text": "Riverton officials lifted a boil-water advisory Friday morning after laboratory tests confirmed that the town’s drinking water met safety standards.",
+    "box_width": 684.0,
+    "box_height": 102.95999908447266,
+    "text_width": 667.1150512695312,
+    "text_height": 97.80503845214844,
+    "fits": true
+  },
+  {
+    "slide": 29,
+    "text": "REPAIR",
+    "box_width": 151.1999969482422,
+    "box_height": 31.68000030517578,
+    "text_width": 70.00504302978516,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 29,
+    "text": "Repair crews replaced the damaged valve Tuesday evening.",
+    "box_width": 684.0,
+    "box_height": 102.95999908447266,
+    "text_width": 628.8050537109375,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 29,
+    "text": "TESTING",
+    "box_width": 151.1999969482422,
+    "box_height": 31.68000030517578,
+    "text_width": 81.81999969482422,
+    "text_height": 26.799999237060547,
+    "fits": true
+  },
+  {
+    "slide": 29,
+    "text": "Two consecutive rounds of testing found no harmful bacteria, allowing the town to lift the advisory.",
+    "box_width": 684.0,
+    "box_height": 102.95999908447266,
+    "text_width": 653.6099853515625,
+    "text_height": 64.73503875732422,
+    "fits": true
+  },
+  {
+    "slide": 30,
+    "text": "Offline demo and fallback checklist",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 530.6400146484375,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 30,
+    "text": "Documented Ubuntu command • prepared cached environment",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 315.1250305175781,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 30,
+    "text": "30",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 30,
+    "text": "From the repository root",
+    "box_width": 856.7999877929688,
+    "box_height": 33.84000015258789,
+    "text_width": 293.7300109863281,
+    "text_height": 34.105037689208984,
+    "fits": true
+  },
+  {
+    "slide": 30,
+    "text": "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1\r.venv/bin/python app.py --port 7860",
+    "box_width": 817.9199829101562,
+    "box_height": 61.91999816894531,
+    "text_width": 530.0,
+    "text_height": 59.605037689208984,
+    "fits": true
+  },
+  {
+    "slide": 30,
+    "text": "Execute as one shell line. Open http://127.0.0.1:7860/",
+    "box_width": 856.7999877929688,
+    "box_height": 33.84000015258789,
+    "text_width": 531.9150390625,
+    "text_height": 29.23503875732422,
+    "fits": true
+  },
+  {
+    "slide": 30,
+    "text": "Paste the saved body and identify the lifted-advisory sentence.\rCheck the model name, submit one request, then read its result.\rAfter about 30 seconds, continue with the saved output slides.",
+    "box_width": 856.7999877929688,
+    "box_height": 111.5999984741211,
+    "text_width": 684.675048828125,
+    "text_height": 97.80503845214844,
+    "fits": true
+  },
+  {
+    "slide": 31,
+    "text": "Attention and the copy mixture",
+    "box_width": 867.5999755859375,
+    "box_height": 50.400001525878906,
+    "text_width": 476.79998779296875,
+    "text_height": 43.849998474121094,
+    "fits": true
+  },
+  {
+    "slide": 31,
+    "text": "Local OpenNMT CopyGenerator and decoder implementation",
+    "box_width": 820.7999877929688,
+    "box_height": 18.719999313354492,
+    "text_width": 302.155029296875,
+    "text_height": 14.619999885559082,
+    "fits": true
+  },
+  {
+    "slide": 31,
+    "text": "31",
+    "box_width": 39.599998474121094,
+    "box_height": 20.15999984741211,
+    "text_width": 17.37504005432129,
+    "text_height": 17.055038452148438,
+    "fits": true
+  },
+  {
+    "slide": 31,
+    "text": "Context = weighted sum of source representations",
+    "box_width": 856.7999877929688,
+    "box_height": 42.47999954223633,
+    "text_width": 631.5550537109375,
+    "text_height": 36.540000915527344,
+    "fits": true
+  },
+  {
+    "slide": 31,
+    "text": "Attention weights depend on the current decoder query.",
+    "box_width": 856.7999877929688,
+    "box_height": 37.439998626708984,
+    "text_width": 601.4650268554688,
+    "text_height": 31.6650390625,
+    "fits": true
+  },
+  {
+    "slide": 31,
+    "text": "p(word) = (1 − g) p_vocab(word) + g p_source(word)",
+    "box_width": 856.7999877929688,
+    "box_height": 48.959999084472656,
+    "text_width": 629.239990234375,
+    "text_height": 35.33000183105469,
+    "fits": true
+  },
+  {
+    "slide": 31,
+    "text": "g is a learned sigmoid gate. Source probability sums attention\ronto matching source words in the dynamic dictionary.",
+    "box_width": 856.7999877929688,
+    "box_height": 79.19999694824219,
+    "text_width": 653.195068359375,
+    "text_height": 64.73503875732422,
+    "fits": true
+  },
+  {
+    "slide": 31,
+    "text": "Copying a word preserves its spelling. Selecting its role still needs checking.",
+    "box_width": 856.7999877929688,
+    "box_height": 37.439998626708984,
+    "text_width": 734.5999755859375,
+    "text_height": 29.23503875732422,
+    "fits": true
+  }
+]
