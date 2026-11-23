@@ -11,9 +11,9 @@
   </head>
   <body>
     <main class="reveal">
-      <div class="slides">
+        <div class="slides">
         <section id="title" data-background-color="#112d34" aria-label="Comparing Neural Models for News Summarization">
-          <div class="slide dark cover">
+            <div class="slide dark cover">
             <svg class="network" viewBox="0 0 1280 720" aria-hidden="true">
               <g stroke="#537c77" stroke-width="1" fill="none" opacity=".46">
                 <path d="M925 38 L1100 70"/>
@@ -59,75 +59,103 @@
               <circle class="pulse" style="animation-delay:-0s" cx="860" cy="609" r="3" fill="#9bbfab"/>
               <circle class="pulse" style="animation-delay:-1s" cx="1010" cy="680" r="4" fill="#9bbfab"/>
             </svg>
-            <div class="foreground">
+              <div class="foreground">
               <div class="kicker">CIS 634</div>
               <h1>Comparing Neural Models<br>for News Summarization</h1>
               <p class="byline">Biruk Anley and Daniela Ortega</p>
             </div>
             <div class="tokenstrip"><i>repairs</i><i>tests</i><i>Friday</i><span>→</span><strong>Advisory lifted.</strong></div>
-            <footer><span>Fictional Riverton article · Illustrative compression</span><b>01</b></footer>
+            <footer><b>01</b></footer>
           </div>
         </section>
         <section id="goals" data-background-color="#f8f7ef" aria-label="What survives compression?">
-          <div class="slide">
+            <div class="slide">
             <div class="kicker">Research question</div>
             <h2>What survives compression?</h2>
             <p class="lead">Can a short summary preserve the news a reader came for?</p>
-            <div class="goals">
+              <div class="goals">
               <div><strong>Compare</strong><span>Recurrent and attention-based encoder–decoders.</span></div>
               <div><strong>Build</strong><span>One local interface for complete news articles.</span></div>
               <div><strong>Evaluate</strong><span>Reference overlap, a Lead-3 baseline and a close reading.</span></div>
             </div>
-            <footer><span>Project scope · released checkpoints</span><b>02</b></footer>
+            <footer><b>02</b></footer>
           </div>
         </section>
         <section id="data" data-background-color="#f8f7ef" aria-label="One article, one set of highlights">
-          <div class="slide">
+            <div class="slide">
             <div class="kicker">Corpus / CNN–DailyMail 3.0.0</div>
             <h2>One article, one set of highlights</h2>
-            <div class="metrics">
+              <div class="metrics">
               <div><strong>287,113</strong><span class="tag">training</span></div>
               <div><strong>13,368</strong><span class="tag">validation</span></div>
               <div><strong>11,490</strong><span class="tag">test</span></div>
             </div>
-            <div class="cols pair">
-              <div class="ruled">
+              <div class="cols pair">
+                <div class="ruled">
                 <div class="label">Article excerpt</div>
                 <blockquote>“A spokesman for the team cited &#x27;prior family commitments&#x27; as the reason Brady, 37, didn&#x27;t attend the ceremony.”</blockquote>
               </div>
-              <div class="ruled">
+                <div class="ruled">
                 <div class="label">Reference highlight</div>
                 <blockquote>“Brady cited &#x27;prior family commitments&#x27; in bowing out of meeting with Obama .”</blockquote>
               </div>
             </div>
-            <footer><span>[1] CNN/DailyMail · test row 10,476 · exact excerpts</span><b>03</b></footer>
+            <footer><b>03</b></footer>
           </div>
         </section>
-        <section id="preparation" data-background-color="#f8f7ef" aria-label="From article to model-ready input">
-          <div class="slide">
-            <div class="kicker">Input representation</div>
-            <h2>From article to model-ready input</h2>
-            <div class="prep"><strong>Release recipe</strong><span>OpenNMT training: Stanford PTB tokens, lowercase, first 400 source tokens and up to 100 target tokens.</span><strong>App inference</strong><span>NLTK Treebank + checkpoint word vocabulary, or the released case-preserving BPE / SentencePiece tokenizer.</span><strong>Evaluation</strong><span>Seed-42 test IDs + original highlights. Porter stemming applies during ROUGE scoring.</span></div>
-            <div class="example">
-              <div class="label">Earlier Riverton fixture · two tokenizer paths</div>
-              <p>Article &nbsp; “Riverton officials lifted a three-day boil-water advisory…”</p>
-              <div class="fragment" data-fragment-index="0">
-                <p>OpenNMT words &nbsp; <span class="mono">riverton · officials · lifted · a · three-day …</span></p>
-              </div>
-              <div class="fragment" data-fragment-index="1">
-                <p>→ Checkpoint word IDs + article-specific copy map → encoder input</p>
-              </div>
-              <div class="fragment" data-fragment-index="2">
-                <p>BART byte-level BPE → <span class="mono">[0, 32960, 1054, 503, 4639, 10, …]</span> + attention mask</p>
-              </div>
-            </div>
-            <footer><span>[2, 6, 7] OpenNMT recipe · app adapters · saved token and ID prefixes</span><b>04</b></footer>
+        <section id="preparation" data-background-color="#f8f7ef" aria-label="From article to model input">
+            <div class="slide lstm">
+            <div class="kicker">Preprocessing</div>
+            <h2>From article to model input</h2>
+            <svg class="schema" viewBox="0 0 1144 475" role="img" aria-label="Historical preparation, current inference and evaluation data flow">
+              <text x="0" y="22" class="svlabel">HISTORICAL TRAINING RECIPE</text>
+              <text x="0" y="59" class="hint">Stanford PTB → lowercase → released vocabulary · source 400 / target 100</text>
+              <text x="0" y="109" class="svlabel">CURRENT APP INPUT  /  LSTM + TRANSFORMER</text>
+              <rect x="0" y="128" width="200" height="74" rx="4" class="node tint"/>
+              <text x="16" y="157" class="heavy">Article text</text>
+              <text x="16" y="185" class="hint">quote normalization</text>
+              <g class="fragment" data-fragment-index="0">
+                <path d="M202 165 L233 165 m-9 -5 l9 5 -9 5" class="wire"/>
+                <rect x="236" y="128" width="200" height="74" rx="4" class="node tint"/>
+                <text x="252" y="157" class="heavy">Word tokens</text>
+                <text x="252" y="185" class="hint">NLTK Treebank</text>
+                <text x="0" y="233" class="svlabel">WORKED EXAMPLE / EARLIER FICTIONAL FIXTURE</text>
+                <text x="0" y="262" class="heavy">“Riverton officials lifted…”</text>
+                <g class="travel">
+                  <text x="395" y="262" class="heavy">riverton · officials · lifted</text>
+                </g>
+                <path d="M344 254 L379 254 m-9 -5 l9 5 -9 5" class="wire"/>
+              </g>
+              <g class="fragment" data-fragment-index="1">
+                <path d="M438 165 L469 165 m-9 -5 l9 5 -9 5" class="wire"/>
+                <rect x="472" y="128" width="200" height="74" rx="4" class="node tint"/>
+                <text x="488" y="157" class="heavy">Existing vocab</text>
+                <text x="488" y="185" class="hint">word + copy map</text>
+                <text x="0" y="310" class="hint">Illustrative word IDs: [81, 410, 92] + article-specific source map</text>
+              </g>
+              <g class="fragment" data-fragment-index="2">
+                <path d="M674 165 L705 165 m-9 -5 l9 5 -9 5" class="wire"/>
+                <rect x="708" y="128" width="200" height="74" rx="4" class="node tint"/>
+                <text x="724" y="157" class="heavy">Input tensors</text>
+                <text x="724" y="185" class="hint">torchtext · batch of 1</text>
+                <path d="M910 165 L941 165 m-9 -5 l9 5 -9 5" class="wire"/>
+                <rect x="944" y="128" width="200" height="74" rx="4" class="node tint"/>
+                <text x="960" y="157" class="heavy">Model</text>
+                <text x="960" y="185" class="hint">LSTM / Transformer</text>
+                <text x="0" y="359" class="hint">Saved BART input prefix: [0, 32960, 1054, 503, 4639, 10, …] + mask</text>
+              </g>
+              <g class="fragment" data-fragment-index="3">
+                <text x="0" y="419" class="svlabel">EVALUATION DATA HANDLING</text>
+                <text x="0" y="455" class="hint">Article + original highlights → frozen IDs → SHA-256 text verification → ROUGE</text>
+              </g>
+            </svg>
+            <footer><b>04</b></footer>
           </div>
         </section>
-        <section id="lstm" data-background-color="#f8f7ef" aria-label="Memory moves one token at a time">
-          <div class="slide lstm">
-            <div class="kicker">Architecture / LSTM</div>
-            <h2>Memory moves one token at a time</h2>
+        <section id="lstm" data-background-color="#f8f7ef" aria-label="LSTM">
+            <div class="slide lstm">
+            <div class="kicker">Architecture / Illustrative activity</div>
+            <h2>LSTM</h2>
             <svg class="schema" viewBox="0 0 1144 430" role="img" aria-label="Two encoder directions, one decoder direction, source attention and copy">
               <text x="0" y="21" class="svlabel" text-anchor="start">SOURCE  /  BIDIRECTIONAL ENCODER</text>
               <text x="650" y="21" class="svlabel" text-anchor="start">SUMMARY  /  ONE-WAY DECODER</text>
@@ -194,20 +222,20 @@
               </g>
             </svg>
             <p class="fine">43M parameters · 128-d embeddings · 512-d hidden state · 1 encoder + 1 decoder layer</p>
-            <footer><span>[2, 3] Verified OpenNMT checkpoint · Illustrative token activity and attention</span><b>05</b></footer>
+            <footer><b>05</b></footer>
           </div>
         </section>
         <section id="lstm-tradeoffs" data-background-color="#f8f7ef" aria-label="LSTM in practice">
-          <div class="slide lstm">
+            <div class="slide lstm">
             <div class="kicker">Architecture / LSTM</div>
             <h2>LSTM in practice</h2>
-            <div class="contrast">
-              <div class="underline">
+              <div class="contrast">
+                <div class="underline">
                 <div class="bigtype">43M</div>
                 <div class="label">parameters</div>
                 <p class="small spaced">Our smallest checkpoint. The encoder reads in both directions; the summary grows in one.</p>
               </div>
-              <div>
+                <div>
                 <article>
                   <h3>A route back to names</h3>
                   <p>Attention and copying let the decoder reuse words from the article.</p>
@@ -218,13 +246,13 @@
                 </article>
               </div>
             </div>
-            <footer><span>[2, 3] OpenNMT release · latest Riverton diagnosis</span><b>06</b></footer>
+            <footer><b>06</b></footer>
           </div>
         </section>
-        <section id="transformer" data-background-color="#f8f7ef" aria-label="Source words can attend in parallel">
-          <div class="slide transformer">
-            <div class="kicker">Architecture / Transformer</div>
-            <h2>Source words can attend in parallel</h2>
+        <section id="transformer" data-background-color="#f8f7ef" aria-label="Transformer">
+            <div class="slide transformer">
+            <div class="kicker">Architecture / Illustrative activity</div>
+            <h2>Transformer</h2>
             <svg class="schema" viewBox="0 0 1144 437" role="img" aria-label="Parallel source, causal decoder, cross-attention and next token">
               <text x="0" y="21" class="svlabel" text-anchor="start">ARTICLE POSITIONS  /  PARALLEL</text>
               <text x="650" y="21" class="svlabel" text-anchor="start">SUMMARY POSITIONS  /  AUTOREGRESSIVE</text>
@@ -276,20 +304,20 @@
               </g>
             </svg>
             <p class="fine">81M parameters · 8 heads · 512-d states · 2,048-d feed-forward layers</p>
-            <footer><span>[2, 4] Verified OpenNMT checkpoint · Illustrative token activity and attention</span><b>07</b></footer>
+            <footer><b>07</b></footer>
           </div>
         </section>
         <section id="transformer-tradeoffs" data-background-color="#f8f7ef" aria-label="Transformer in practice">
-          <div class="slide transformer">
+            <div class="slide transformer">
             <div class="kicker">Architecture / Transformer</div>
             <h2>Transformer in practice</h2>
-            <div class="contrast">
-              <div class="underline">
+              <div class="contrast">
+                <div class="underline">
                 <div class="bigtype">81M</div>
                 <div class="label">parameters</div>
                 <p class="small spaced">Source positions share information within each encoder layer.</p>
               </div>
-              <div>
+                <div>
                 <article>
                   <h3>Reach across a sentence</h3>
                   <p>Self-attention can connect a name with a distant action. All source positions in a layer can run together.</p>
@@ -300,11 +328,11 @@
                 </article>
               </div>
             </div>
-            <footer><span>[2, 4] OpenNMT release · Vaswani et al. (2017)</span><b>08</b></footer>
+            <footer><b>08</b></footer>
           </div>
         </section>
         <section id="pipeline" data-background-color="#f8f7ef" aria-label="Where a long article goes">
-          <div class="slide">
+            <div class="slide">
             <div class="kicker">Application / full-article mode</div>
             <h2>Where a long article goes</h2>
             <svg class="schema" viewBox="0 0 1144 458" role="img" aria-label="Capacity check with direct and chunked paths, generation, merge and bounded consolidation">
@@ -349,20 +377,20 @@
                 <text x="0" y="448" class="heavy" text-anchor="start">Source spans are checked. What the summary preserves still needs a reader.</text>
               </g>
             </svg>
-            <footer><span>Application implementation · natural-checkpoint-v1</span><b>09</b></footer>
+            <footer><b>09</b></footer>
           </div>
         </section>
         <section id="protocol" data-background-color="#f8f7ef" aria-label="Two ways to hold the input fixed">
-          <div class="slide">
+            <div class="slide">
             <div class="kicker">Evaluation / frozen sample</div>
             <h2>Two ways to hold the input fixed</h2>
-            <div class="contrast">
-              <div class="underline">
-                <div class="bigtype">50</div>
+              <div class="contrast">
+                <div class="underline">
+                <div class="bigtype">250</div>
                 <div class="label">fixed test articles</div>
                 <p class="small spaced">Same IDs, highlights and systems on both tracks.</p>
               </div>
-              <div>
+                <div>
                 <article>
                   <h3>Full article</h3>
                   <p>Each system receives the original article. The app handles model-specific capacity.</p>
@@ -374,68 +402,68 @@
               </div>
             </div>
             <div class="callout">ROUGE F1 × 100 measures reference overlap. Lead-3 extracts the first three sentences.</div>
-            <footer><span>[1, 5] Seed 42 · saved pilot50 protocol</span><b>10</b></footer>
+            <footer><b>10</b></footer>
           </div>
         </section>
-        <section id="core" data-background-color="#f8f7ef" aria-label="A simple lead is hard to beat">
-          <div class="slide">
-            <div class="kicker">Results / full article</div>
-            <h2>A simple lead is hard to beat</h2>
+        <section id="core" data-background-color="#f8f7ef" aria-label="LSTM, Transformer and Lead-3">
+            <div class="slide">
+            <div class="kicker">Results / 250 full articles</div>
+            <h2>LSTM, Transformer and Lead-3</h2>
             <div class="label">Bars show unigram overlap (R-1) · all scores are ROUGE F1 × 100</div>
-            <div class="chart">
-              <div class="axis"><span class="tag">System</span>
+              <div class="chart">
+                <div class="axis"><span class="tag">System</span>
                 <div><span>0</span><span>10</span><span>20</span><span>30</span><span>40</span><span>50</span></div>
                 <span class="metric-head">R-1</span>
                 <span class="metric-head">R-2</span>
                 <span class="metric-head">R-L</span>
                 <span class="metric-head">R-Lsum</span>
               </div>
-              <div class="chartline lstm"><strong>LSTM</strong>
-                <div class="rail">
-                  <div class="bar" style="width:81.903504%"></div>
+                <div class="chartline lstm"><strong>LSTM</strong>
+                  <div class="rail">
+                  <div class="bar" style="width:78.348526%"></div>
                 </div>
-                <output>40.95</output>
-                <span class="score">20.34</span>
-                <span class="score">28.71</span>
-                <span class="score">38.22</span>
+                <output>39.17</output>
+                <span class="score">17.60</span>
+                <span class="score">26.56</span>
+                <span class="score">36.21</span>
               </div>
-              <div class="chartline transformer fragment" data-fragment-index="0"><strong>Transformer</strong>
-                <div class="rail">
-                  <div class="bar" style="width:77.501074%"></div>
+                <div class="chartline transformer fragment" data-fragment-index="0"><strong>Transformer</strong>
+                  <div class="rail">
+                  <div class="bar" style="width:76.500558%"></div>
                 </div>
-                <output>38.75</output>
-                <span class="score">17.35</span>
-                <span class="score">26.99</span>
-                <span class="score">36.09</span>
+                <output>38.25</output>
+                <span class="score">16.35</span>
+                <span class="score">26.02</span>
+                <span class="score">35.37</span>
               </div>
-              <div class="chartline lead-3 fragment" data-fragment-index="1"><strong>Lead-3</strong>
-                <div class="rail">
-                  <div class="bar" style="width:80.726233%"></div>
+                <div class="chartline lead-3 fragment" data-fragment-index="1"><strong>Lead-3</strong>
+                  <div class="rail">
+                  <div class="bar" style="width:82.649383%"></div>
                 </div>
-                <output>40.36</output>
-                <span class="score">18.28</span>
-                <span class="score">24.91</span>
-                <span class="score">36.30</span>
+                <output>41.32</output>
+                <span class="score">18.24</span>
+                <span class="score">25.48</span>
+                <span class="score">37.14</span>
               </div>
             </div>
-            <div class="fragment" data-fragment-index="2">
-              <div class="callout">Lead-3 scored 40.36, between the LSTM and Transformer on unigram overlap.</div>
+              <div class="fragment" data-fragment-index="2">
+              <div class="callout">250 articles · LSTM 39.17 · Transformer 38.25 · Lead-3 41.32 on ROUGE-1</div>
             </div>
-            <footer><span>[5] Frozen full-article sample · 50 articles per system</span><b>11</b></footer>
+            <footer><b>11</b></footer>
           </div>
         </section>
         <section id="pretraining" data-background-color="#f8f7ef" aria-label="What did the larger models learn first?">
-          <div class="slide">
+            <div class="slide">
             <div class="kicker">Context / pretrained systems</div>
             <h2>What did the larger models learn first?</h2>
-            <div class="cols compare">
-              <div class="bart underline">
+              <div class="cols compare">
+                <div class="bart underline">
                 <h3>BART</h3>
                 <div class="label">406M learned parameters</div>
                 <p class="lead">Reconstruct damaged text.</p>
                 <p class="small">Broad denoising pretraining, followed by CNN/DailyMail fine-tuning.</p>
               </div>
-              <div class="pegasus underline">
+                <div class="pegasus underline">
                 <h3>PEGASUS</h3>
                 <div class="label">569M learned parameters</div>
                 <p class="lead">Predict missing sentences.</p>
@@ -443,121 +471,125 @@
               </div>
             </div>
             <div class="callout">These released systems differ in size, pretraining, tokenization and decoding.</div>
-            <footer><span>[6, 7] Lewis et al. (2020) · Zhang et al. (2020) · released checkpoint cards</span><b>12</b></footer>
+            <footer><b>12</b></footer>
           </div>
         </section>
         <section id="expanded" data-background-color="#f8f7ef" aria-label="The same articles, two more systems">
-          <div class="slide">
-            <div class="kicker">Results / full article</div>
+            <div class="slide">
+            <div class="kicker">Results / 250 full articles</div>
             <h2>The same articles, two more systems</h2>
             <div class="label">Bars show unigram overlap (R-1) · all scores are ROUGE F1 × 100</div>
-            <div class="chart">
-              <div class="axis"><span class="tag">System</span>
+              <div class="chart">
+                <div class="axis"><span class="tag">System</span>
                 <div><span>0</span><span>10</span><span>20</span><span>30</span><span>40</span><span>50</span></div>
                 <span class="metric-head">R-1</span>
                 <span class="metric-head">R-2</span>
                 <span class="metric-head">R-L</span>
                 <span class="metric-head">R-Lsum</span>
               </div>
-              <div class="chartline lstm"><strong>LSTM</strong>
-                <div class="rail">
-                  <div class="bar" style="width:81.903504%"></div>
+                <div class="chartline lstm"><strong>LSTM</strong>
+                  <div class="rail">
+                  <div class="bar" style="width:78.348526%"></div>
                 </div>
-                <output>40.95</output>
-                <span class="score">20.34</span>
-                <span class="score">28.71</span>
-                <span class="score">38.22</span>
+                <output>39.17</output>
+                <span class="score">17.60</span>
+                <span class="score">26.56</span>
+                <span class="score">36.21</span>
               </div>
-              <div class="chartline transformer"><strong>Transformer</strong>
-                <div class="rail">
-                  <div class="bar" style="width:77.501074%"></div>
+                <div class="chartline transformer"><strong>Transformer</strong>
+                  <div class="rail">
+                  <div class="bar" style="width:76.500558%"></div>
                 </div>
-                <output>38.75</output>
-                <span class="score">17.35</span>
-                <span class="score">26.99</span>
-                <span class="score">36.09</span>
+                <output>38.25</output>
+                <span class="score">16.35</span>
+                <span class="score">26.02</span>
+                <span class="score">35.37</span>
               </div>
-              <div class="chartline lead-3"><strong>Lead-3</strong>
-                <div class="rail">
-                  <div class="bar" style="width:80.726233%"></div>
+                <div class="chartline lead-3"><strong>Lead-3</strong>
+                  <div class="rail">
+                  <div class="bar" style="width:82.649383%"></div>
                 </div>
-                <output>40.36</output>
-                <span class="score">18.28</span>
-                <span class="score">24.91</span>
-                <span class="score">36.30</span>
+                <output>41.32</output>
+                <span class="score">18.24</span>
+                <span class="score">25.48</span>
+                <span class="score">37.14</span>
               </div>
-              <div class="chartline bart fragment" data-fragment-index="0"><strong>BART</strong>
-                <div class="rail">
-                  <div class="bar" style="width:90.416844%"></div>
+                <div class="chartline bart fragment" data-fragment-index="0"><strong>BART</strong>
+                  <div class="rail">
+                  <div class="bar" style="width:86.509105%"></div>
                 </div>
-                <output>45.21</output>
-                <span class="score">22.50</span>
-                <span class="score">30.88</span>
-                <span class="score">42.73</span>
+                <output>43.25</output>
+                <span class="score">20.30</span>
+                <span class="score">29.24</span>
+                <span class="score">40.47</span>
               </div>
-              <div class="chartline pegasus fragment" data-fragment-index="1"><strong>PEGASUS</strong>
-                <div class="rail">
-                  <div class="bar" style="width:87.615003%"></div>
+                <div class="chartline pegasus fragment" data-fragment-index="1"><strong>PEGASUS</strong>
+                  <div class="rail">
+                  <div class="bar" style="width:84.297282%"></div>
                 </div>
-                <output>43.81</output>
-                <span class="score">22.43</span>
-                <span class="score">30.92</span>
-                <span class="score">40.91</span>
+                <output>42.15</output>
+                <span class="score">19.64</span>
+                <span class="score">28.79</span>
+                <span class="score">39.21</span>
               </div>
             </div>
-            <div class="fragment" data-fragment-index="2">
-              <p class="readout">BART led ROUGE-1, ROUGE-2 and ROUGE-Lsum. PEGASUS led ROUGE-L.</p>
+              <div class="fragment" data-fragment-index="2">
+              <p class="readout">Metric leaders on 250 articles · BART leads R-1, R-2, R-L, R-Lsum</p>
             </div>
-            <footer><span>[5] Frozen full-article sample · same axis and references</span><b>13</b></footer>
-          </div>
-        </section>
-        <section id="reading" data-background-color="#f8f7ef" aria-label="What overlap leaves open">
-          <div class="slide">
-            <div class="kicker">Close reading / Riverton</div>
-            <h2>What overlap leaves open</h2>
-            <p class="lead">Did residents still need to boil their water?</p>
-            <div class="cols compare spaced">
-              <div class="bart underline">
-                <h3>BART</h3>
-                <blockquote>“Two consecutive rounds of testing found no harmful bacteria.”</blockquote>
-                <p class="small">Includes the tests. Omits the lifting.</p>
-              </div>
-              <div class="pegasus underline">
-                <h3>PEGASUS</h3>
-                <blockquote>“Riverton officials lifted a boil-water advisory Friday morning.”</blockquote>
-                <p class="small">Includes the lifting. Omits the repair and test evidence.</p>
-              </div>
-            </div>
-            <div class="callout">Both processed the same 315-word fictional article in one pass.</div>
-            <footer><span>Latest reproduced laptop outputs · exact excerpts · fictional article</span><b>14</b></footer>
+            <footer><b>13</b></footer>
           </div>
         </section>
         <section id="demo" data-background-color="#112d34" aria-label="Live Demo">
-          <div class="slide dark demo">
+            <div class="slide dark demo">
             <h2>Live Demo</h2>
-            <footer><span></span><b>15</b></footer>
+            <footer><b>14</b></footer>
           </div>
         </section>
-        <section id="conclusion" data-background-color="#f8f7ef" aria-label="Read the summary against the story">
-          <div class="slide">
-            <div class="kicker">Conclusion</div>
-            <h2>Read the summary against the story</h2>
-            <p class="bigquote">A useful summary tells the reader <strong>what changed</strong> and <strong>what supports it.</strong></p>
-            <div class="cols">
-              <div class="ruled">
-                <div class="label">What we measured</div>
-                <p>Four released systems and Lead-3 on the same 50 articles. BART led three of four full-article overlap metrics.</p>
-              </div>
-              <div class="ruled">
-                <div class="label">What to check next</div>
-                <p>Have readers verify events, relationships and evidence against the source on fresh articles.</p>
-              </div>
+        <section id="conclusion" data-background-color="#f8f7ef" aria-label="What we learned">
+            <div class="slide ">
+            <div class="kicker">Findings</div>
+            <h2>What we learned</h2>
+              <div class="learning">
+              <p class="lead">BART leads R-1, R-2, R-L, R-Lsum.</p>
+              <p>Measured on the same 250 articles, using full original highlights.</p>
+              <p class="learning-item">Fluent summaries can omit the main event.</p>
+              <p class="learning-item">Content selection can fail with attention and copying.</p>
+              <p class="learning-item">Processing every source span can still lose important facts.</p>
+              <p class="learning-item">ROUGE and source-based reading examine different aspects of quality.</p>
             </div>
-            <footer><span>Frozen benchmark · Riverton close reading</span><b>16</b></footer>
+            <footer><b>15</b></footer>
+          </div>
+        </section>
+        <section id="attempts" data-background-color="#f8f7ef" aria-label="What we tried—and why we changed it">
+            <div class="slide attempts">
+            <div class="kicker">Engineering lessons</div>
+            <h2>What we tried—and why we changed it</h2>
+            <div class="attempt-head"><span>Attempt</span><span>Observation</span><span>Decision</span></div>
+              <div class="attempt-row fragment" data-fragment-index="0">
+              <div>Length targets</div>
+              <div>Early EOS and similar outputs across targets.</div>
+              <div>Removed the selector. Use natural checkpoint EOS.</div>
+            </div>
+              <div class="attempt-row fragment" data-fragment-index="1">
+              <div>Repeated consolidation</div>
+              <div>Extra passes could over-compress useful content.</div>
+              <div>Return a fitting merge directly.</div>
+            </div>
+              <div class="attempt-row fragment" data-fragment-index="2">
+              <div>400-token hard limit</div>
+              <div>Treating 400 as capacity caused extra chunking.</div>
+              <div>Use a guarded 1,024-token app window.</div>
+            </div>
+              <div class="attempt-row fragment" data-fragment-index="3">
+              <div>Shared decoding overrides</div>
+              <div>One shared profile changed native behavior.</div>
+              <div>Restore model-specific search settings.</div>
+            </div>
+            <footer><b>16</b></footer>
           </div>
         </section>
         <section id="full_article" data-background-color="#f8f7ef" aria-label="Full-article results">
-          <div class="slide">
+            <div class="slide">
             <div class="kicker">Appendix / benchmark</div>
             <h2>Full-article results</h2>
             <p class="small">Original articles, model-specific processing windows.</p>
@@ -576,57 +608,57 @@
               <tbody>
                 <tr class="lstm">
                   <td>LSTM</td>
-                  <td>40.95</td>
-                  <td>20.34</td>
-                  <td>28.71</td>
-                  <td>38.22</td>
-                  <td>54.98</td>
-                  <td>50 / 0</td>
+                  <td>39.17</td>
+                  <td>17.60</td>
+                  <td>26.56</td>
+                  <td>36.21</td>
+                  <td>57.24</td>
+                  <td>250 / 0</td>
                 </tr>
                 <tr class="transformer">
                   <td>Transformer</td>
-                  <td>38.75</td>
-                  <td>17.35</td>
-                  <td>26.99</td>
-                  <td>36.09</td>
-                  <td>47.42</td>
-                  <td>50 / 0</td>
+                  <td>38.25</td>
+                  <td>16.35</td>
+                  <td>26.02</td>
+                  <td>35.37</td>
+                  <td>50.20</td>
+                  <td>250 / 0</td>
                 </tr>
                 <tr class="lead-3">
                   <td>Lead-3</td>
-                  <td>40.36</td>
-                  <td>18.28</td>
-                  <td>24.91</td>
-                  <td>36.30</td>
-                  <td>74.44</td>
-                  <td>50 / 0</td>
+                  <td>41.32</td>
+                  <td>18.24</td>
+                  <td>25.48</td>
+                  <td>37.14</td>
+                  <td>75.80</td>
+                  <td>250 / 0</td>
                 </tr>
                 <tr class="bart">
                   <td>BART</td>
-                  <td>45.21</td>
-                  <td>22.50</td>
-                  <td>30.88</td>
-                  <td>42.73</td>
-                  <td>77.36</td>
-                  <td>50 / 0</td>
+                  <td>43.25</td>
+                  <td>20.30</td>
+                  <td>29.24</td>
+                  <td>40.47</td>
+                  <td>78.37</td>
+                  <td>250 / 0</td>
                 </tr>
                 <tr class="pegasus">
                   <td>PEGASUS</td>
-                  <td>43.81</td>
-                  <td>22.43</td>
-                  <td>30.92</td>
-                  <td>40.91</td>
-                  <td>68.86</td>
-                  <td>50 / 0</td>
+                  <td>42.15</td>
+                  <td>19.64</td>
+                  <td>28.79</td>
+                  <td>39.21</td>
+                  <td>71.50</td>
+                  <td>250 / 0</td>
                 </tr>
               </tbody>
             </table>
             <p class="fine">R-1 / R-2: unigram / bigram overlap. R-L: longest common subsequence. R-Lsum: sentence-aware union of subsequences. All scores are F1 × 100.</p>
-            <footer><span>[5] Frozen pilot50 results · original highlights · Porter stemming</span><b>17</b></footer>
+            <footer><b>17</b></footer>
           </div>
         </section>
         <section id="common_input" data-background-color="#f8f7ef" aria-label="Shared-prefix results">
-          <div class="slide">
+            <div class="slide">
             <div class="kicker">Appendix / benchmark</div>
             <h2>Shared-prefix results</h2>
             <p class="small">Same prefix for every system: ≤400 OpenNMT tokens and within both HF tokenizers’ capacities.</p>
@@ -645,57 +677,57 @@
               <tbody>
                 <tr class="lstm">
                   <td>LSTM</td>
-                  <td>38.14</td>
-                  <td>18.33</td>
-                  <td>26.82</td>
-                  <td>35.53</td>
-                  <td>50.20</td>
-                  <td>50 / 0</td>
+                  <td>38.72</td>
+                  <td>17.38</td>
+                  <td>26.62</td>
+                  <td>35.81</td>
+                  <td>48.69</td>
+                  <td>250 / 0</td>
                 </tr>
                 <tr class="transformer">
                   <td>Transformer</td>
-                  <td>39.09</td>
-                  <td>18.61</td>
-                  <td>28.18</td>
-                  <td>35.95</td>
-                  <td>46.70</td>
-                  <td>50 / 0</td>
+                  <td>38.59</td>
+                  <td>17.14</td>
+                  <td>26.64</td>
+                  <td>35.42</td>
+                  <td>45.96</td>
+                  <td>250 / 0</td>
                 </tr>
                 <tr class="lead-3">
                   <td>Lead-3</td>
-                  <td>40.36</td>
-                  <td>18.28</td>
-                  <td>24.91</td>
-                  <td>36.30</td>
-                  <td>74.44</td>
-                  <td>50 / 0</td>
+                  <td>41.32</td>
+                  <td>18.24</td>
+                  <td>25.48</td>
+                  <td>37.14</td>
+                  <td>75.80</td>
+                  <td>250 / 0</td>
                 </tr>
                 <tr class="bart">
                   <td>BART</td>
-                  <td>43.83</td>
-                  <td>20.71</td>
-                  <td>30.37</td>
-                  <td>40.73</td>
-                  <td>62.48</td>
-                  <td>50 / 0</td>
+                  <td>43.64</td>
+                  <td>20.40</td>
+                  <td>29.77</td>
+                  <td>40.53</td>
+                  <td>59.12</td>
+                  <td>250 / 0</td>
                 </tr>
                 <tr class="pegasus">
                   <td>PEGASUS</td>
-                  <td>42.59</td>
-                  <td>21.34</td>
-                  <td>30.24</td>
-                  <td>39.88</td>
-                  <td>53.86</td>
-                  <td>50 / 0</td>
+                  <td>42.62</td>
+                  <td>19.99</td>
+                  <td>29.54</td>
+                  <td>39.72</td>
+                  <td>54.47</td>
+                  <td>250 / 0</td>
                 </tr>
               </tbody>
             </table>
             <p class="fine">R-1 / R-2: unigram / bigram overlap. R-L: longest common subsequence. R-Lsum: sentence-aware union of subsequences. All scores are F1 × 100.</p>
-            <footer><span>[5] Frozen pilot50 results · original highlights · Porter stemming</span><b>18</b></footer>
+            <footer><b>18</b></footer>
           </div>
         </section>
         <section id="open-config" data-background-color="#f8f7ef" aria-label="Released OpenNMT checkpoints">
-          <div class="slide">
+            <div class="slide">
             <div class="kicker">Appendix / provenance</div>
             <h2>Released OpenNMT checkpoints</h2>
             <table class="tight">
@@ -735,11 +767,11 @@
               </tbody>
             </table>
             <p class="small">OpenNMT-py 0.2.1 · original download hashes recorded; inference-copy tensors and vocabularies verified.</p>
-            <footer><span>[2] OpenNMT release · checkpoint manifest · model verification</span><b>19</b></footer>
+            <footer><b>19</b></footer>
           </div>
         </section>
         <section id="hf-config" data-background-color="#f8f7ef" aria-label="Released pretrained checkpoints">
-          <div class="slide">
+            <div class="slide">
             <div class="kicker">Appendix / provenance</div>
             <h2>Released pretrained checkpoints</h2>
             <table class="tight">
@@ -779,11 +811,11 @@
               </tbody>
             </table>
             <p class="small">Both use 1,024-d states and a 1,024-position input limit including special tokens. PEGASUS learned count excludes fixed tables.</p>
-            <footer><span>[6, 7] Release cards · pinned HF manifest · model verification</span><b>20</b></footer>
+            <footer><b>20</b></footer>
           </div>
         </section>
         <section id="search" data-background-color="#f8f7ef" aria-label="How decoding stops">
-          <div class="slide">
+            <div class="slide">
             <div class="kicker">Appendix / generation</div>
             <h2>How decoding stops</h2>
             <table class="tight">
@@ -828,110 +860,110 @@
               </tbody>
             </table>
             <p class="fine">Natural EOS, deterministic search. Short inputs lower the minimum. Missing EOS permits bounded retries. ¹ OpenNMT exempts the period and sentence tags; summary coverage penalty β = 5 is a beam-search setting.</p>
-            <footer><span>natural-checkpoint-v1 · current adapters and pinned OpenNMT recipe</span><b>21</b></footer>
+            <footer><b>21</b></footer>
           </div>
         </section>
         <section id="history" data-background-color="#f8f7ef" aria-label="Why the length selector disappeared">
-          <div class="slide">
+            <div class="slide">
             <div class="kicker">Appendix / experiments</div>
             <h2>Why the length selector disappeared</h2>
-            <div class="goals">
+              <div class="goals">
               <div><strong>Length targets</strong><span>Short / Medium / Detailed and percentage goals were implementable. Early stopping and similar outputs made the targets unreliable.</span></div>
               <div><strong>Natural EOS</strong><span>The demo uses each checkpoint’s search profile. The older length API remains experimental.</span></div>
               <div><strong>Consolidation</strong><span>Fitting articles take one pass. A fitting merge avoids another lossy compression step.</span></div>
             </div>
-            <footer><span>Development records · quality regression · current processing policy</span><b>22</b></footer>
+            <footer><b>22</b></footer>
           </div>
         </section>
         <section id="chunk-policy" data-background-color="#f8f7ef" aria-label="When a merge still exceeds capacity">
-          <div class="slide">
+            <div class="slide">
             <div class="kicker">Appendix / application</div>
             <h2>When a merge still exceeds capacity</h2>
-            <div class="goals">
+              <div class="goals">
               <div><strong>Split</strong><span>Pack sentence spans within the selected tokenizer’s window. Split oversized sentences and track all original spans.</span></div>
               <div><strong>Reduce</strong><span>Generate, merge in source order and remove exact repeated sentences. Re-plan an oversized merge.</span></div>
               <div><strong>Bound</strong><span>Require progress in words and tokens. Work and depth guards stop an unsuccessful request with a clear error.</span></div>
             </div>
-            <footer><span>Full-article implementation · up to 4 consolidation passes · 96 model calls per request</span><b>23</b></footer>
+            <footer><b>23</b></footer>
           </div>
         </section>
         <section id="saved-lstm" data-background-color="#f8f7ef" aria-label="LSTM on Riverton">
-          <div class="slide lstm">
-            <div class="kicker">Appendix / saved Riverton output</div>
+            <div class="slide lstm">
+            <div class="kicker">Appendix / fictional Riverton output</div>
             <h2>LSTM on Riverton</h2>
             <div class="label">359 input · 54 output tokens · one pass · EOS</div>
             <blockquote class="fullquote">the advisory had affected 18,000 residents since tuesday. water pressure dropped across several neighborhoods, creating a risk that contaminants could enter the distribution system. two schools closed wednesday because they could not provide sufficient drinking water, but reopened thursday after bottled supplies arrived.</blockquote>
-            <footer><span>Latest fictional article · complete reproduced display text</span><b>24</b></footer>
+            <footer><b>24</b></footer>
           </div>
         </section>
         <section id="saved-transformer" data-background-color="#f8f7ef" aria-label="Transformer on Riverton">
-          <div class="slide transformer">
-            <div class="kicker">Appendix / saved Riverton output</div>
+            <div class="slide transformer">
+            <div class="kicker">Appendix / fictional Riverton output</div>
             <h2>Transformer on Riverton</h2>
             <div class="label">359 input · 45 output tokens · one pass · EOS</div>
             <blockquote class="fullquote">the advisory had affected approximately 18,000 residents since tuesday. water pressure dropped across several neighborhoods, creating a risk that contaminants could enter the distribution system. the town will cover the expense through its emergency reserve.</blockquote>
-            <footer><span>Latest fictional article · complete reproduced display text</span><b>25</b></footer>
+            <footer><b>25</b></footer>
           </div>
         </section>
         <section id="saved-bart" data-background-color="#f8f7ef" aria-label="BART on Riverton">
-          <div class="slide bart">
-            <div class="kicker">Appendix / saved Riverton output</div>
+            <div class="slide bart">
+            <div class="kicker">Appendix / fictional Riverton output</div>
             <h2>BART on Riverton</h2>
             <div class="label">405 input · 59 output tokens · one pass · EOS</div>
             <blockquote class="fullquote">A control valve failed during maintenance at the town’s main pumping station. Water pressure dropped across several neighborhoods, creating a risk that contaminants could enter the distribution system. Officials said the advisory was precautionary; contamination had not been confirmed. Two consecutive rounds of testing found no harmful bacteria.</blockquote>
-            <footer><span>Latest fictional article · complete reproduced display text</span><b>26</b></footer>
+            <footer><b>26</b></footer>
           </div>
         </section>
         <section id="saved-pegasus" data-background-color="#f8f7ef" aria-label="PEGASUS on Riverton">
-          <div class="slide pegasus">
-            <div class="kicker">Appendix / saved Riverton output</div>
+            <div class="slide pegasus">
+            <div class="kicker">Appendix / fictional Riverton output</div>
             <h2>PEGASUS on Riverton</h2>
             <div class="label">368 input · 46 output tokens · one pass · EOS</div>
             <blockquote class="fullquote">Riverton officials lifted a boil-water advisory Friday morning. The advisory had affected approximately 18,000 residents since Tuesday. The disruption began when a control valve failed during maintenance at the town’s main pumping station.</blockquote>
-            <footer><span>Latest fictional article · complete reproduced display text</span><b>27</b></footer>
+            <footer><b>27</b></footer>
           </div>
         </section>
         <section id="incident" data-background-color="#f8f7ef" aria-label="The duplicate display remains unresolved">
-          <div class="slide">
+            <div class="slide">
             <div class="kicker">Appendix / diagnosis</div>
             <h2>The duplicate display remains unresolved</h2>
-            <div class="goals">
+              <div class="goals">
               <div><strong>Reported</strong><span>The original LSTM and Transformer display strings were identical. Both matched the reproduced Transformer text.</span></div>
               <div><strong>Reproduced</strong><span>Direct, pipeline and fresh Gradio checks returned a distinct LSTM summary about the schools.</span></div>
               <div><strong>Unknown</strong><span>The original selected value and response were never captured together. The cause remains open.</span></div>
             </div>
-            <footer><span>Laptop model diagnosis · latest Riverton article</span><b>28</b></footer>
+            <footer><b>28</b></footer>
           </div>
         </section>
         <section id="references" data-background-color="#f8f7ef" aria-label="Data, models and the overlap measure">
-          <div class="slide">
+            <div class="slide">
             <div class="kicker">References / data and methods</div>
             <h2>Data, models and the overlap measure</h2>
-            <div class="refs">
+              <div class="refs">
               <p>[1] Hermann et al. (2015), <i>Teaching Machines to Read and Comprehend.</i> NeurIPS. CNN/DailyMail 3.0.0 dataset card and Nallapati et al. (2016), CoNLL.</p>
               <p>[2] OpenNMT-py 0.2.1, <i>Summarization</i> recipe and released CNN/DailyMail LSTM and Transformer checkpoints.</p>
               <p>[3] Hochreiter &amp; Schmidhuber (1997), <i>Long Short-Term Memory.</i> Neural Computation 9(8). Bahdanau et al. (2015), ICLR, on attention.</p>
               <p>[4] Vaswani et al. (2017), <i>Attention Is All You Need.</i> NeurIPS.</p>
               <p>[5] Lin (2004), <i>ROUGE: A Package for Automatic Evaluation of Summaries.</i> ACL workshop. Google Research rouge-score implementation.</p>
             </div>
-            <footer><span>Primary publications · release documentation</span><b>29</b></footer>
+            <footer><b>29</b></footer>
           </div>
         </section>
         <section id="references-pretraining" data-background-color="#f8f7ef" aria-label="Pretraining and project evidence">
-          <div class="slide">
+            <div class="slide">
             <div class="kicker">References / pretraining and evidence</div>
             <h2>Pretraining and project evidence</h2>
-            <div class="refs">
+              <div class="refs">
               <p>[6] Lewis et al. (2020), <i>BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension.</i> ACL. Released bart-large-cnn checkpoint.</p>
               <p>[7] Zhang et al. (2020), <i>PEGASUS: Pre-training with Extracted Gap-sentences for Abstractive Summarization.</i> ICML. Released Mixed &amp; Stochastic CNN/DailyMail checkpoint.</p>
-              <p>Frozen pilot50 results supply both score tables. Checkpoint manifests, adapter code and the latest laptop diagnosis supply model settings and reproduced outputs.</p>
+              <p>Completed benchmark250 results supply both score tables. Checkpoint manifests, adapter code and the latest laptop diagnosis supply model settings and reproduced outputs.</p>
             </div>
-            <footer><span>Full citations, identifiers and evidence links in the accompanying references</span><b>30</b></footer>
+            <footer><b>30</b></footer>
           </div>
         </section>
       </div>
     </main>
-    <nav class="controlbar" aria-label="Presentation controls">
+      <nav class="controlbar" aria-label="Presentation controls">
       <button id="pause-motion" type="button" aria-pressed="false">Pause motion</button>
       <button id="replay" type="button">Replay</button>
       <button id="overview" type="button">Overview</button>

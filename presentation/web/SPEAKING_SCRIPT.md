@@ -1,6 +1,6 @@
 # Comparing Neural Models for News Summarization
 
-Biruk Anley and Daniela Ortega · 15:00 including the screen switch and live demonstration. Slides 1–16 are the talk. Slides 17–30 are for questions and fallback. The quoted outputs on slides 24–27 are complete.
+Biruk Anley and Daniela Ortega · 15:00 including the screen switch and demonstration. Sixteen main slides and fourteen appendix slides. All measured main-slide results use the completed 250-article comparison.
 
 ## 1 · Comparing Neural Models for News Summarization
 
@@ -18,15 +18,15 @@ We started with two different ways of modeling sequences. One carries a recurren
 
 **Biruk · 01:25–02:20**
 
-CNN/DailyMail pairs news stories with short reference highlights. Here the article attributes Brady’s absence to prior family commitments. The highlight compresses the attribution and names the meeting with Obama. They express a similar point using different words. These are exact excerpts of a saved test row, including the reference’s punctuation spacing. The counts at the top describe version 3.0.0. Training, validation and test splits serve different purposes. We drew our frozen 50 from the test split. Each released checkpoint has its own data history.
+CNN/DailyMail pairs news stories with short reference highlights. Here the article attributes Brady’s absence to prior family commitments. The highlight compresses the attribution and names the meeting with Obama. They express a similar point using different words. These are exact excerpts of a saved test row, including the reference’s punctuation spacing. The counts at the top describe version 3.0.0. Training, validation and test splits serve different purposes. We drew our frozen 250 from the test split. Each released checkpoint has its own data history.
 
-## 4 · From article to model-ready input
+## 4 · From article to model input
 
 **Biruk · 02:20–03:20**
 
-The OpenNMT release recipe used Stanford CoreNLP PTB tokenization, lowercasing and a 400-source-token training convention. Today our adapter normalizes typographic quotes, splits simple sentence segments, and uses NLTK Treebank. **Advance.** On an earlier Riverton fixture it produced the lowercase words shown here. **Advance.** The checkpoint already supplies the word vocabulary. The source-specific dictionary maps article positions for copying. **Advance.** BART takes a different route with byte-level BPE. The displayed integers are the actual beginning of its saved input, including the leading special token. The encoder receives IDs and an attention mask. PEGASUS uses its own SentencePiece vocabulary. Both preserve case. For evaluation we kept the selected test IDs and original highlights. Stemming happens in the scorer. Hand over to Daniela.
+The top line describes historical checkpoint preparation using Stanford PTB, lowercasing and a 400-source/100-target convention. It is a release recipe. The large path shows our current app. Typographic quote normalization comes before NLTK Treebank tokenization. **Advance.** The word tokens shown are saved from the earlier Riverton fixture. **Advance.** We load the checkpoint’s existing vocabulary. The numeric word IDs here are illustrative. A separate source dictionary supports copying. **Advance.** The OpenNMT inputter uses torchtext fields and a batch of one with source lengths and the source map. BART instead uses the exact saved subword ID prefix shown below and an all-ones mask for this unpadded single input. PEGASUS has its own SentencePiece tokenizer. **Advance.** Evaluation checks frozen article/reference IDs and text hashes. Original highlights remain the scoring target. Porter stemming happens inside ROUGE. Hand over to Daniela.
 
-## 5 · Memory moves one token at a time
+## 5 · LSTM
 
 **Daniela · 03:20–04:25**
 
@@ -38,7 +38,7 @@ The OpenNMT release recipe used Stanford CoreNLP PTB tokenization, lowercasing a
 
 At roughly 43 million parameters this is our smallest checkpoint. Copying gives a name or number a route from source to summary, and recurrence carries information between neighbors. Each step waits for its predecessor, and information about distant words must travel across those steps. The saved LSTM output retained a population figure and the reopening of two schools. Both are supported details. A resident reading only that summary would still have to look up whether the advisory ended.
 
-## 7 · Source words can attend in parallel
+## 7 · Transformer
 
 **Daniela · 05:05–06:10**
 
@@ -60,13 +60,13 @@ The user supplies an article and chooses a model. Its tokenizer determines wheth
 
 **Biruk · 08:05–09:00**
 
-We used the first 50 IDs of our frozen seed-42 test sample and kept the original references in both tracks. Full article measures the end-to-end systems. Shared prefix gives every system the same beginning, bounded by 400 OpenNMT tokens and both subword capacities. The appendix keeps the tracks separate. ROUGE-1 measures unigram overlap and ROUGE-2 adjacent pairs. ROUGE-L finds an in-order subsequence, allowing gaps. ROUGE-Lsum uses sentence-aware union matching. We report F1 times 100, with Porter stemming. A paraphrase can lower overlap, and shared vocabulary can survive an important omission.
+We used the first 50 IDs of our frozen seed-42 test sample and kept the original references in both tracks. Full article measures the end-to-end systems. Shared prefix gives every system the same beginning, bounded by 400 OpenNMT tokens and both subword capacities. The appendix keeps the tracks separate. ROUGE-1 measures unigram overlap and ROUGE-2 adjacent pairs. ROUGE-L finds an in-order subsequence, allowing gaps. ROUGE-Lsum uses sentence-aware union matching. We report F1 times 100, with Porter stemming. A paraphrase can lower overlap, and shared vocabulary can survive an important omission. The first fifty are the preserved pilot inside this larger sample, so their comparison shares observations.
 
-## 11 · A simple lead is hard to beat
+## 11 · LSTM, Transformer and Lead-3
 
 **Biruk · 09:00–09:45**
 
-Start with unigram overlap. The LSTM scored 40.95. **Advance.** The Transformer scored 38.75. **Advance.** Just taking the first three sentences scored 40.36. **Advance.** Journalists often put important facts early. That makes this cheap baseline a serious point of comparison. These differences describe the particular systems and articles we tested. We did not test statistical significance or isolate architecture as the cause.
+Here are the completed full-article results for our two core systems and the baseline. The LSTM reached 39.17 on ROUGE-1. **Advance.** The Transformer reached 38.25. **Advance.** Lead-3 reached 41.32. **Advance.** The other columns distinguish bigram overlap, sequence LCS and sentence-aware LCS. They keep their own labels. News often puts central facts early, which makes a first-three-sentences baseline worth checking. These systems differ in their training history and decoding as well as architecture. This is a descriptive comparison on these 250 articles.
 
 ## 12 · What did the larger models learn first?
 
@@ -78,34 +78,34 @@ BART learned to reconstruct text after corruption. That broad denoising objectiv
 
 **Daniela · 10:40–11:35**
 
-The three core rows are already in place, on the same zero-to-fifty scale. **Advance twice to add BART and PEGASUS.** BART reached 45.21 on ROUGE-1 and PEGASUS 43.81. **Advance.** Across all four measures BART led three. PEGASUS narrowly led ROUGE-L, 30.92 to 30.88 as displayed. ROUGE-Lsum measures sentence-aware overlap separately. All systems returned results on these 50 articles under each track. Desktop activity affected the recorded GPU timings, so we leave speed out of this comparison. Let’s ask a question a person could answer by reading.
+The three core rows stay in place. **Advance twice to add BART and PEGASUS.** The axis still runs zero to fifty. BART scored 43.25 and PEGASUS 42.15 on unigram overlap. **Advance.** BART led ROUGE-1, ROUGE-2, ROUGE-L, ROUGE-Lsum. Both tracks now have all 250 records per system. We kept the original reference highlights and scored failures as zero. The pilot is the first fifty articles within the same sample. Its descriptive differences help show how the means move when we add articles. Timings combine historical and current sessions with desktop workloads present, so they do not support a controlled speed ranking.
 
-## 14 · What overlap leaves open
+## 14 · Live Demo
 
-**Daniela · 11:35–12:25**
+**Daniela · 11:35–13:30**
 
-The source says Riverton lifted its advisory Friday after repairs, flushing and two clear testing rounds. BART reproduces the negative test results. Its full output never tells the reader the warning ended. PEGASUS gives us the headline in its opening sentence but leaves out the repairs and tests. Both ended naturally on a one-pass input. Reading actual outputs lets us separate event, resolution and evidence. This is a single fictional diagnostic article, separate from the 50 benchmark articles.
+Switch to the prepared Gradio screen on port 7860. Paste the saved 315-word article body using the checklist below. Read the selected model aloud before submitting one classroom request. Point out the summary, input/output word counts and selected model. Ask the audience to find the lifted advisory and supporting tests or repairs. Allow about 30 seconds of visible CPU waiting within this slot. If the app is unavailable or still working, use the saved BART and PEGASUS outputs on slides 26 and 27 or in the local text file. The reproduced BART output contains negative testing results while omitting the lifting. PEGASUS gives the lifting while omitting repair and testing evidence. These saved examples explain what a source-based check adds. Return to slide 15 to discuss the findings.
 
-## 15 · Live Demo
+## 15 · What we learned
 
-**Daniela · 12:25–14:20 · includes the screen switch**
+**Daniela · 13:30–14:10**
 
-Switch to the prepared Gradio screen on port 7860. Paste the saved 315-word article body using the checklist below. Read the selected model aloud before submitting one classroom request. Point out its summary, input/output word counts and selected model. Ask the audience to locate the lifting and the evidence for it. Allow about 30 seconds of visible CPU waiting within this slot. If the app is unavailable or still working, use the saved BART and PEGASUS outputs on slides 26 and 27 or in the local text file. Return to slide 16 for the close. Leave the running app independent of the slide browser.
+BART led ROUGE-1, ROUGE-2, ROUGE-L, ROUGE-Lsum. Those are measured overlap results on these articles. Our saved source-based diagnosis asks different questions. Does the summary identify the central event, who acted, and what evidence supports it? Fluent language can omit the main event. Attention and copying provide routes to source information, while content selection can still go wrong. Every input span can be processed while important facts disappear. A proposed next step is structured human review on fresh articles.
 
-## 16 · Read the summary against the story
+## 16 · What we tried—and why we changed it
 
-**Daniela · 14:20–15:00**
+**Daniela · 14:10–15:00**
 
-Four released systems and a simple baseline gave us different answers on the same articles. BART led most full-article overlap measures in this small sample. Reading Riverton showed how a summary can preserve true details while omitting the very change a reader wants to know about. Our next proposed evaluation is structured human review of events, relationships and supporting evidence on fresh articles. Thank you.
+**Advance once per row.** We implemented Short, Medium, Detailed and percentage targets. Early EOS and similar outputs made lengths unreliable, so the demo now uses natural checkpoint stopping. Repeated consolidation could compress away useful content, so a fitting merge returns directly. The historical 400-token convention caused unnecessary chunks when treated as a hard capacity, so the app uses a guarded 1,024-token work window. Shared decoding overrides changed native behavior. We restored model-specific settings where saved diagnostics supported the change. These are documented engineering decisions. Thank you.
 
 ## Offline demo checklist and fallback
 
 - Before class, open the browser presentation on port 8008 and the cached Gradio app on port 7860 in a separate window or screen. When Gradio is already responding, use the existing instance.
 - On the prepared Ubuntu laptop, the documented launch from the repository root is `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python app.py --port 7860`. On the prepared Windows PC, set `$env:HF_HUB_OFFLINE='1'` and `$env:TRANSFORMERS_OFFLINE='1'` on separate PowerShell lines, then run `.\.venv\Scripts\python.exe app.py --port 7860`. Open `http://127.0.0.1:7860/`. A fresh clone needs the existing model cache and application setup for a live request.
 - Keep the article body and saved text locally accessible. Opening the presentation or PDF never submits a request. [Article body](riverton_article.txt) · [Complete saved outputs](saved_demo_outputs.md)
-- During the timed switch, use at most one live request. Fallback slides 24, 25, 26 and 27 contain LSTM, Transformer, BART and PEGASUS respectively. Return directly to the conclusion at `http://127.0.0.1:8008/#/conclusion`.
+- During the timed switch, use at most one live request. Fallback slides 24, 25, 26 and 27 contain LSTM, Transformer, BART and PEGASUS respectively. Return directly to the findings at `http://127.0.0.1:8008/#/conclusion`.
 - If asked about the earlier identical displays, the reported strings matched the Transformer. A new direct run, pipeline call and Gradio LSTM call produced distinct LSTM text. The original display’s cause remains unresolved.
 
 ## Backup discussion
 
-Slides 17–18 contain the two complete metric tables, including both LCS metrics and generation lengths. Slides 19–21 cover checkpoint identity, architecture and search. Slides 22–23 trace length controls and chunking decisions. Slides 24–28 preserve the reproduced strings and the limits of the duplicate-display diagnosis. Slides 29–30 identify the cited papers and the project evidence. [Detailed citations and links](../REFERENCES.md)
+Slides 17–18 contain the two complete metric tables, including both LCS metrics and generation lengths. Slides 19–21 cover checkpoint identity, architecture and search. Slides 22–23 trace length controls and chunking decisions. Slides 24–28 preserve the reproduced strings and the limits of the duplicate-display diagnosis. Slides 29–30 identify the cited papers and the project evidence. [Detailed citations and links](REFERENCES.md)

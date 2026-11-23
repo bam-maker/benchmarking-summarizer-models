@@ -1,6 +1,6 @@
 # Comparing Neural Models for News Summarization
 
-An offline Reveal.js presentation by Biruk Anley and Daniela Ortega. The 16-slide talk takes about 15 minutes including the live-demo switch. Fourteen appendix slides hold the two benchmark tracks, checkpoint settings, design decisions, complete reproduced outputs and references.
+An offline Reveal.js presentation by Biruk Anley and Daniela Ortega. The 16-slide talk takes about 15 minutes including the live-demo switch. Fourteen appendix slides hold the two benchmark tracks, checkpoint settings, design decisions, complete reproduced outputs and references. Main charts and both backup tables use the completed 250-article benchmark.
 
 ## Start the slide server
 
@@ -32,7 +32,7 @@ Open the slide address in a browser. The classroom app has its own process and p
 | Enter fullscreen | F or **Fullscreen**; Esc exits |
 | Jump back after the demo | Open `http://127.0.0.1:8008/#/conclusion` |
 
-The deck honors the operating system’s reduced-motion preference. Reveals still follow the presenter’s clicks. The recorded token and ID prefixes are identified on slide 4. The architecture diagrams label their token activity and attention links as illustrative.
+The deck honors the operating system’s reduced-motion preference. Reveals still follow the presenter’s clicks. Slide 4 distinguishes historical preparation, current input handling and evaluation. Its word IDs are labeled illustrative; its lowercase words and BART ID prefix come from a saved trace. The architecture diagrams label their token activity and attention links as illustrative.
 
 ## Static backup and export
 
@@ -45,5 +45,5 @@ To export again, open the deck from the local server in Chrome or Chromium, wait
 - Edit audience-facing slides and inline SVG in [index.html](index.html). The [stylesheet](deck.css) controls typography, motion and print layout. The [JavaScript](deck.js) handles Reveal initialization, controls and printing.
 - The 315-word fictional article and four reproduced outputs are available locally for demo fallback. [Article body](riverton_article.txt) · [Saved outputs](saved_demo_outputs.md)
 - All runtime libraries and fonts are in `vendor/`. Source Sans 3 is used for slide text and IBM Plex Mono for labels. The viewer needs no package manager, application environment, model cache or network connection beyond loopback. [Third-party notices](THIRD_PARTY.md)
-- Scores come from the two saved pilot50 tracks, displayed to two decimals. The deck uses the latest Riverton reproduction for the qualitative comparison, separate from the benchmark. [Frozen evidence](../../reports/pilot50/results.json) · [Diagnosis](../../reports/LAPTOP_MODEL_DIAGNOSIS.md) · [Primary citations and evidence map](../REFERENCES.md)
+- Scores come from the two completed 250-article tracks, displayed to two decimals. The 50-article pilot remains historical evidence within the larger sample. Riverton examples remain in backup material. [Benchmark report and resume commands](../../reports/benchmark250/README.md) · [Frozen metrics](../../reports/benchmark250/results.json) · [Historical pilot](../../reports/pilot50/results.json) · [Citations and evidence map](REFERENCES.md)
 - Validation covers the Windows browser and the PDF. [Validation record](VALIDATION.md)

@@ -1,59 +1,74 @@
-# Small summarization benchmark: 50 articles
+# CNN/DailyMail benchmark on 250 articles
 
-The scope was reduced at the user's request. This is a quick reference-overlap
-comparison, **not a completed 1,000-article final benchmark**. The larger run was
-stopped; its saved predictions and frozen settings are preserved separately.
+All five systems were evaluated on the same first 250 IDs from the existing frozen seed-42 CNN/DailyMail 3.0.0 test sample. Both tracks are complete. The original 50-article pilot is nested in these 250 articles. Its comparison is descriptive, and the two sample sizes share observations.
 
-All five systems use the same first 50 articles from the frozen random CNN/DailyMail
-3.0.0 test sample (seed 42), with original references. No generation settings,
-models, dependencies or UI were changed. Lead-3 extracts the first three sentences.
-
-ROUGE values below are F1 ×100 with Porter stemming; failures would score zero.
-Higher ROUGE means greater reference overlap, **not verified factual accuracy**.
-This small sample supports a rough comparison, not a broad factual-quality ranking.
+Scores are mean per-article ROUGE F1 ×100 with Porter stemming, using the original reference highlights. ROUGE-L is sequence LCS; ROUGE-Lsum uses the existing sentence-aware union-LCS segmentation. Attempted failures retain empty outputs and zero ROUGE. Output words use whitespace splitting. Input coverage measures processed characters and supplied/original source lengths.
 
 ## Full-article application
 
-| System | Articles | R-1 | R-2 | R-L | R-Lsum | Mean words | Failed |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| LSTM | 50 | 40.95 | 20.34 | 28.71 | 38.22 | 55.0 | 0 |
-| Transformer | 50 | 38.75 | 17.35 | 26.99 | 36.09 | 47.4 | 0 |
-| BART | 50 | 45.21 | 22.50 | 30.88 | 42.73 | 77.4 | 0 |
-| PEGASUS | 50 | 43.81 | 22.43 | 30.92 | 40.91 | 68.9 | 0 |
-| Lead-3 | 50 | 40.36 | 18.28 | 24.91 | 36.30 | 74.4 | 0 |
-
+| System | Complete | Failed | Pending | R-1 | R-2 | R-L | R-Lsum | Mean words | Reused |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| LSTM | 250 | 0 | 0 | 39.17 | 17.60 | 26.56 | 36.21 | 57.24 | 250 |
+| Transformer | 250 | 0 | 0 | 38.25 | 16.35 | 26.02 | 35.37 | 50.20 | 250 |
+| BART | 250 | 0 | 0 | 43.25 | 20.30 | 29.24 | 40.47 | 78.37 | 50 |
+| PEGASUS | 250 | 0 | 0 | 42.15 | 19.64 | 28.79 | 39.21 | 71.50 | 50 |
+| Lead-3 | 250 | 0 | 0 | 41.32 | 18.24 | 25.48 | 37.14 | 75.80 | 50 |
 ## Shared-prefix comparison
 
-| System | Articles | R-1 | R-2 | R-L | R-Lsum | Mean words | Failed |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| LSTM | 50 | 38.14 | 18.33 | 26.82 | 35.53 | 50.2 | 0 |
-| Transformer | 50 | 39.09 | 18.61 | 28.18 | 35.95 | 46.7 | 0 |
-| BART | 50 | 43.83 | 20.71 | 30.37 | 40.73 | 62.5 | 0 |
-| PEGASUS | 50 | 42.59 | 21.34 | 30.24 | 39.88 | 53.9 | 0 |
-| Lead-3 | 50 | 40.36 | 18.28 | 24.91 | 36.30 | 74.4 | 0 |
+| System | Complete | Failed | Pending | R-1 | R-2 | R-L | R-Lsum | Mean words | Reused |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| LSTM | 250 | 0 | 0 | 38.72 | 17.38 | 26.62 | 35.81 | 48.69 | 250 |
+| Transformer | 250 | 0 | 0 | 38.59 | 17.14 | 26.64 | 35.42 | 45.96 | 250 |
+| BART | 250 | 0 | 0 | 43.64 | 20.40 | 29.77 | 40.53 | 59.12 | 50 |
+| PEGASUS | 250 | 0 | 0 | 42.62 | 19.99 | 29.54 | 39.72 | 54.47 | 50 |
+| Lead-3 | 250 | 0 | 0 | 41.32 | 18.24 | 25.48 | 37.14 | 75.80 | 50 |
 
+## Descriptive change from the nested pilot
 
-Full-article runs use the existing natural-checkpoint-v1 production pipeline.
-The shared-prefix track uses identical text bounded by 400 OpenNMT tokens and
-each HF tokenizer's capacity. It still uses full original references, which may
-mention facts outside the prefix. Keep the two tracks separate.
+Each cell is the 250-article mean minus the 50-article mean in score points.
 
-Generation times remain in the JSON, but Fortnite/desktop GPU contexts were present;
-these are not controlled speed comparisons. No human factuality ratings were made.
-Riverton remains a separate synthetic diagnostic: PEGASUS's omission also occurs in
-direct inference with complete input. That did not justify a pipeline change.
+| Track | System | ΔR-1 | ΔR-2 | ΔR-L | ΔR-Lsum |
+|---|---|---:|---:|---:|---:|
+| common_input | LSTM | +0.58 | -0.95 | -0.20 | +0.28 |
+| common_input | Transformer | -0.50 | -1.47 | -1.54 | -0.53 |
+| common_input | BART | -0.19 | -0.31 | -0.61 | -0.20 |
+| common_input | PEGASUS | +0.03 | -1.34 | -0.70 | -0.16 |
+| common_input | Lead-3 | +0.96 | -0.04 | +0.57 | +0.84 |
+| full_article | LSTM | -1.78 | -2.74 | -2.14 | -2.01 |
+| full_article | Transformer | -0.50 | -1.00 | -0.96 | -0.72 |
+| full_article | BART | -1.95 | -2.19 | -1.64 | -2.26 |
+| full_article | PEGASUS | -1.66 | -2.80 | -2.14 | -1.70 |
+| full_article | Lead-3 | +0.96 | -0.04 | +0.57 | +0.84 |
 
-Files: [metrics and IDs](reports/pilot50/results.json),
-[outputs and references](reports/pilot50/predictions.csv),
-[Riverton diagnosis](reports/RIVERTON_DIAGNOSIS.md).
-The interrupted larger run remains in `test-results/final_test_1000/` and
-`reports/final_test_1000/`; its partial results must not be called a completed final benchmark.
+## Provenance and interpretation
 
-To reproduce this small comparison from the repository in PowerShell:
+The production code, preprocessing, native decoding, chunking and scoring match the original freeze. The requirements-file difference is the addition of a sentencepiece==0.2.3 pin. That version was already in the frozen installed dependency inventory. Every installed version matches. All four checkpoint identities were checked, and the exact prepared text hashes and parent fingerprint were checked for each reused prediction. The reuse manifest lists every original path and raw-record SHA-256.
 
-```powershell
-.\.venv\Scripts\python.exe tests\final_benchmark.py run --limit 50
-.\.venv\Scripts\python.exe tests\report_pilot50.py
-```
+1,300 existing records were reused. These include 250 per track for LSTM and Transformer from the interrupted larger run, and 50 per track for BART, PEGASUS and Lead-3 from the pilot. The run generated 400 additional BART summaries and 400 PEGASUS summaries, and extracted 400 additional Lead-3 summaries. Reused records are excluded from new-generation rate measurements.
 
-No more large runs, tuning or analysis are needed for this rough comparison.
+All neural records use CUDA on the same NVIDIA GeForce RTX 4090, FP32 with TF32 disabled, batch size one. The prepared PC had about 302 GiB of free disk and 22 GiB free GPU memory at preflight. Desktop, Epic overlay and a separate Gradio process were present. Historical timings and current timings come from different sessions. They describe operational conditions and support progress estimates. A controlled speed ranking was not performed.
+
+Full article uses the original input and the existing natural-checkpoint-v1 application policy. Shared prefix gives all systems identical original text up to 400 OpenNMT tokens and within both HF capacities. Both tracks retain full original references, including facts outside the prefix. Complete input processing and high ROUGE leave factual coverage to examine through source-based reading. Human ratings, statistical significance and factual-accuracy percentages were not measured.
+
+## Reproduce and resume
+
+Use the prepared repository with its existing .venv, pinned checkpoints, original 1,000-row prepared source cache, historical raw prediction cache and original freeze metadata. Raw traces and complete article corpus stay in ignored local storage. Committed artifacts contain IDs/hashes, compact predictions with original references, and configurations.
+
+From the repository root in Windows PowerShell, run each line separately.
+
+~~~powershell
+.\.venv\Scripts\python.exe tests\benchmark250.py prepare
+.\.venv\Scripts\python.exe -u tests\benchmark250.py run
+.\.venv\Scripts\python.exe tests\benchmark250.py status
+.\.venv\Scripts\python.exe tests\benchmark250.py report
+~~~
+
+The same commands on an identically prepared Ubuntu CUDA system use .venv/bin/python and forward-slash paths. The freeze checks hardware, installed versions and checkpoint/input hashes. This session was executed on Windows CUDA.
+
+Predictions are saved atomically after each article/track. Run again to resume missing cases; attempted failures are retained. A run.lock prevents two writers. After an abrupt process termination, verify that the PID recorded in test-results/benchmark250/run.lock is no longer running before removing that specific stale lock.
+
+The original pilot50 and interrupted final_test_1000 artifacts remain separate. A fresh clone needs the prepared datasets and model cache to generate, while it can read the committed results immediately. Presentation revisions consume results only after all 2,500 requested evaluations have records.
+
+[Metrics](reports/benchmark250/results.json) · [Predictions and references](reports/benchmark250/predictions.csv) · [Frozen configuration](reports/benchmark250/frozen_config.json) · [Article IDs and hashes](reports/benchmark250/article_ids.json) · [Reuse manifest](reports/benchmark250/reuse_manifest.json)
+
+[Historical 50-article report](reports/pilot50/README.md) · [Original 50-article browser deck at its saved commit](https://github.com/bam-maker/benchmarking-summarizer-models/tree/0351f03/presentation/web)

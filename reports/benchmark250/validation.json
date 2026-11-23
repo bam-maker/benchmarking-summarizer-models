@@ -1,0 +1,13 @@
+{
+  "records": 2500,
+  "unique_article_ids": 250,
+  "pilot_prefix_matches": true,
+  "rescored_predictions": 2500,
+  "reused_record_hashes_verified": 1300,
+  "neural_device": "cuda",
+  "baseline_device": "cpu",
+  "pending": 0,
+  "actual_encoder_inputs_within_capacity": true,
+  "failure_policy": "empty output and zero ROUGE",
+  "coverage": "covered characters equal supplied characters for completed rows"
+}

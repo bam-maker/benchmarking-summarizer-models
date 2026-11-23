@@ -1,6 +1,39 @@
 # Project status: development paused and saved
 
-## Offline animated presentation, November 22, 2026
+## Completed 250-article benchmark and revised browser deck
+
+All five systems have 250 records in each of the full-article and shared-prefix
+tracks, totaling 2,500 evaluations. The extension reuses 1,300 verified predictions,
+generates 800 additional neural summaries and extracts 400 additional Lead-3
+summaries. The pilot is nested in this sample. Frozen IDs, settings, exact
+references, compact predictions, metrics and reproduction/resume commands are in
+[reports/benchmark250](reports/benchmark250/README.md). Historical pilot50 and
+interrupted final_test_1000 artifacts retain their original results.
+
+All requested evaluations completed with zero failures and zero pending records.
+BART led all four ROUGE measures in both tracks. These are descriptive overlap
+results. Independent export validation rescored all 2,500 predictions and checked
+references, coverage, device and the reuse hashes.
+
+The active [animated presentation](presentation/web/README.md) now uses the
+completed 250-article measurements. It contains a click-stepped preprocessing
+diagram, simple architecture model labels, discreet slide numbers, two
+concluding slides on findings and engineering decisions, and the separate Live
+Demo transition. The main Riverton comparison was removed; complete saved
+examples remain in backups. Citations moved into dedicated reference material.
+The sixteen-slide talk and fourteen backups have an updated
+[15-minute script](presentation/web/SPEAKING_SCRIPT.md) and
+[PDF](presentation/web/News_Summarization.pdf).
+
+The run used the existing Windows CUDA environment and RTX 4090. Checkpoint,
+input, code and installed dependency checks matched the frozen generation
+protocol. A documented requirements-file pin addition matched an already
+installed sentencepiece version. Application code, generation/scoring policy,
+weights and installed dependencies were preserved. Timings combine sessions and
+desktop activity. They do not support a controlled speed comparison. Recorded
+counts, failures and scope limits are in the benchmark report.
+
+## Initial offline animated presentation, November 22, 2026
 
 The [browser deck](presentation/web/README.md) contains 16 main slides and 14
 appendix slides. Its [15-minute speaking script](presentation/web/SPEAKING_SCRIPT.md)

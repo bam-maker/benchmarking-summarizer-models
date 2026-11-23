@@ -124,12 +124,11 @@ h3 {
   bottom: 22px;
   left: 68px;
   right: 68px;
-  border-top: 1px solid var(--rule);
   padding-top: 10px;
   font-size: 15px;
   line-height: 1.1;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   color: var(--muted);
 }
 
@@ -712,6 +711,43 @@ td:first-child {
     animation: none!important;
     transition: none!important;
   }
+}
+
+.learning > p + p {
+  margin-top: 20px;
+}
+
+.learning-item {
+  font-size: 31px;
+  border-top: 1px solid var(--rule);
+  padding-top: 16px;
+}
+
+.attempts h2 {
+  font-size: 54px;
+}
+
+.attempt-head, .attempt-row {
+  display: grid;
+  grid-template-columns: 210px 1fr 1fr;
+  gap: 28px;
+}
+
+.attempt-head {
+  font: 500 18px Plex, DeckSymbols, monospace;
+  color: var(--muted);
+  padding-bottom: 14px;
+}
+
+.attempt-row {
+  border-top: 1px solid var(--rule);
+  padding: 19px 0;
+  font-size: 26px;
+  line-height: 1.15;
+}
+
+.attempt-row > div:first-child {
+  font-weight: 700;
 }
 
 #print-deck {

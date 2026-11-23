@@ -1,0 +1,96 @@
+{
+  "common_input": {
+    "LSTM": {
+      "completed": 250,
+      "failed": 0,
+      "pending": 0,
+      "reused": 250,
+      "newly_attempted": 0,
+      "measured_new_mean_request_seconds": null,
+      "estimated_pending_seconds": null
+    },
+    "Transformer": {
+      "completed": 250,
+      "failed": 0,
+      "pending": 0,
+      "reused": 250,
+      "newly_attempted": 0,
+      "measured_new_mean_request_seconds": null,
+      "estimated_pending_seconds": null
+    },
+    "BART": {
+      "completed": 250,
+      "failed": 0,
+      "pending": 0,
+      "reused": 50,
+      "newly_attempted": 200,
+      "measured_new_mean_request_seconds": 0.9906305399996199,
+      "estimated_pending_seconds": 0.0
+    },
+    "PEGASUS": {
+      "completed": 250,
+      "failed": 0,
+      "pending": 0,
+      "reused": 50,
+      "newly_attempted": 200,
+      "measured_new_mean_request_seconds": 1.5672388434997264,
+      "estimated_pending_seconds": 0.0
+    },
+    "Lead-3": {
+      "completed": 250,
+      "failed": 0,
+      "pending": 0,
+      "reused": 50,
+      "newly_attempted": 200,
+      "measured_new_mean_request_seconds": 0.0001960100001451792,
+      "estimated_pending_seconds": 0.0
+    }
+  },
+  "full_article": {
+    "LSTM": {
+      "completed": 250,
+      "failed": 0,
+      "pending": 0,
+      "reused": 250,
+      "newly_attempted": 0,
+      "measured_new_mean_request_seconds": null,
+      "estimated_pending_seconds": null
+    },
+    "Transformer": {
+      "completed": 250,
+      "failed": 0,
+      "pending": 0,
+      "reused": 250,
+      "newly_attempted": 0,
+      "measured_new_mean_request_seconds": null,
+      "estimated_pending_seconds": null
+    },
+    "BART": {
+      "completed": 250,
+      "failed": 0,
+      "pending": 0,
+      "reused": 50,
+      "newly_attempted": 200,
+      "measured_new_mean_request_seconds": 1.3649111964995972,
+      "estimated_pending_seconds": 0.0
+    },
+    "PEGASUS": {
+      "completed": 250,
+      "failed": 0,
+      "pending": 0,
+      "reused": 50,
+      "newly_attempted": 200,
+      "measured_new_mean_request_seconds": 2.1759125170003246,
+      "estimated_pending_seconds": 0.0
+    },
+    "Lead-3": {
+      "completed": 250,
+      "failed": 0,
+      "pending": 0,
+      "reused": 50,
+      "newly_attempted": 200,
+      "measured_new_mean_request_seconds": 0.0003475194997008657,
+      "estimated_pending_seconds": 0.0
+    }
+  }
+}
