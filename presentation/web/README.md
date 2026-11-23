@@ -1,6 +1,6 @@
 # Comparing Neural Models for News Summarization
 
-An offline Reveal.js presentation by Biruk Anley and Daniela Ortega. The 16-slide talk takes about 15 minutes including the live-demo switch. Fourteen appendix slides hold the two benchmark tracks, checkpoint settings, design decisions, complete reproduced outputs and references. Main charts and both backup tables use the completed 250-article benchmark.
+An offline Reveal.js presentation by Biruk Anley and Daniela Ortega. The 16-slide talk takes about 15 minutes including the live-demo switch. Fifteen appendix slides hold final training results, earlier benchmark tracks, app checkpoint settings, design decisions, saved outputs and references. Main charts use the supplied training scores on the same 250 full articles. PEGASUS leads every ROUGE measure, and all four neural models exceed Lead-3 on every measure.
 
 ## Start the slide server
 
@@ -36,14 +36,14 @@ The deck honors the operating system’s reduced-motion preference. Reveals stil
 
 ## Static backup and export
 
-The PDF contains one 16:9 final state per slide. All diagram stages, labels and bars appear together. PDF does not preserve animation. [Download the 30-page PDF](News_Summarization.pdf) · [Preview all slides](contact-sheet.jpg) · [Original editable PowerPoint](../Comparing_Neural_Models_for_News_Summarization.pptx)
+The PDF contains one 16:9 final state per slide. All diagram stages, labels and bars appear together. PDF does not preserve animation. [Download the 31-page PDF](News_Summarization.pdf) · [Preview all slides](contact-sheet.jpg) · [Original editable PowerPoint](../Comparing_Neural_Models_for_News_Summarization.pptx)
 
-To export again, open the deck from the local server in Chrome or Chromium, wait for the cover to appear, then press **Ctrl+P**. Choose **Save as PDF**, enable background graphics, disable headers and footers, and keep the default scale. The print layout supplies the landscape page size. The preview should contain 30 pages even when the browser is on an intermediate diagram stage.
+To export again, open the deck from the local server in Chrome or Chromium, wait for the cover to appear, then press **Ctrl+P**. Choose **Save as PDF**, enable background graphics, disable headers and footers, and keep the default scale. The print layout supplies the landscape page size. The preview should contain 31 pages even when the browser is on an intermediate diagram stage.
 
 ## Files and sources
 
 - Edit audience-facing slides and inline SVG in [index.html](index.html). The [stylesheet](deck.css) controls typography, motion and print layout. The [JavaScript](deck.js) handles Reveal initialization, controls and printing.
 - The 315-word fictional article and four reproduced outputs are available locally for demo fallback. [Article body](riverton_article.txt) · [Saved outputs](saved_demo_outputs.md)
 - All runtime libraries and fonts are in `vendor/`. Source Sans 3 is used for slide text and IBM Plex Mono for labels. The viewer needs no package manager, application environment, model cache or network connection beyond loopback. [Third-party notices](THIRD_PARTY.md)
-- Scores come from the two completed 250-article tracks, displayed to two decimals. The 50-article pilot remains historical evidence within the larger sample. Riverton examples remain in backup material. [Benchmark report and resume commands](../../reports/benchmark250/README.md) · [Frozen metrics](../../reports/benchmark250/results.json) · [Historical pilot](../../reports/pilot50/results.json) · [Citations and evidence map](REFERENCES.md)
+- Main-slide scores and the final table were supplied by the user, who confirmed the same 250 articles and full-article evaluation. The source file records their provenance. Earlier measured repository tracks and Riverton outputs remain in clearly titled backups. [Presentation scores](reported_scores.json) · [Earlier benchmark](../../reports/benchmark250/README.md) · [Historical pilot](../../reports/pilot50/results.json) · [Citations and evidence map](REFERENCES.md)
 - Validation covers the Windows browser and the PDF. [Validation record](VALIDATION.md)

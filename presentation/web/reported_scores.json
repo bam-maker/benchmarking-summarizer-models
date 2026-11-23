@@ -1,0 +1,16 @@
+{
+  "source": "Scores supplied by the user after training",
+  "sample_size": 250,
+  "track": "full_article",
+  "sample_note": "User confirmed the same 250 articles and full-article evaluation.",
+  "metrics": ["rouge1", "rouge2", "rougeL", "rougeLsum"],
+  "scale": "ROUGE F1 x100",
+  "provenance_note": "Aggregate scores were supplied in the conversation. Training logs, checkpoint identities, predictions, output lengths and failure counts were not supplied for this run.",
+  "results": {
+    "Lead-3": {"rouge1": 38.72, "rouge2": 18.24, "rougeL": 25.48, "rougeLsum": 37.14},
+    "LSTM": {"rouge1": 42.13, "rouge2": 19.26, "rougeL": 28.17, "rougeLsum": 39.08},
+    "Transformer": {"rouge1": 43.47, "rouge2": 20.58, "rougeL": 30.12, "rougeLsum": 40.63},
+    "BART": {"rouge1": 46.18, "rouge2": 23.14, "rougeL": 33.27, "rougeLsum": 43.16},
+    "PEGASUS": {"rouge1": 46.83, "rouge2": 23.76, "rougeL": 33.91, "rougeLsum": 43.85}
+  }
+}

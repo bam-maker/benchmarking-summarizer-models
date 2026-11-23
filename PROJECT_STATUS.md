@@ -1,5 +1,19 @@
 # Project status: development paused and saved
 
+## Presentation updated with supplied final training scores
+
+The active browser presentation uses the user-supplied final training scores.
+The user confirmed the same 250 articles and full-article evaluation. PEGASUS
+leads all four supplied ROUGE measures, and every neural model exceeds Lead-3
+on every measure. The exact values and provenance are recorded in
+[reported_scores.json](presentation/web/reported_scores.json).
+
+The main charts, final result table, conclusion and speaking script use these
+values. The deck has 16 main slides and 15 backups. Earlier measured repository
+results remain in clearly labeled backup tables and their original reports.
+Training logs, checkpoint identities and predictions for the supplied results
+were not provided. The application diagrams and demo describe the existing app.
+
 ## Completed 250-article benchmark and revised browser deck
 
 All five systems have 250 records in each of the full-article and shared-prefix
